@@ -69,7 +69,7 @@ a:hover {
 	border-bottom: 1px gray solid;
 }
 #layout-menu a:link, #layout-menu a:visited, #layout-menu a:hover {
-	color: #527bbd;
+	color: #022b6d;
 	text-decoration: none;
 }
 #layout-menu a:hover {
@@ -117,7 +117,7 @@ strong {
 
 
 h1, h2, h3 {
-	color: #527bbd;
+	color: #022b6d;
 	margin-top: 0.7em;
 	margin-bottom: 0.3em;
 	padding-bottom: 0.2em;
@@ -161,11 +161,11 @@ div#footer {
 	border-top: 1px solid #c0c0c0;
 	padding-top: 0.1em;
 	margin-top: 4.0em;
-	color: #c0c0c0;
+	color: #c0c0cc;
 }
 
 div#footer a {
-	color: #80a0b0;
+	color: #ccc0cc;
 }
 
 div#footer-text {

@@ -91,7 +91,7 @@ div.menu-item {
 	text-indent: -16px;
 }
 
-#clustrmaps {
+.clustrmaps {
 	width: 80px;
 	position:absolute;
 	bottom: 10px;

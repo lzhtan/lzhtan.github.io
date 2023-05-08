@@ -91,9 +91,9 @@ div.menu-item {
 	text-indent: -16px;
 }
 
-#clustrmaps {
+.clustrmaps {
 	position:absolute;
-	margin-bottom: 0.3em;
+	margin-bottom: 0.1em;
 }
 
 div#toptitle {

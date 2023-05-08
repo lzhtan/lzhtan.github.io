@@ -94,9 +94,9 @@ div.menu-item {
 }
 
 .clustrmaps {
-	float: left;
 	position:absolute;
 	bottom: 10px;
+	margin-bottom: 0.1em;
 }
 
 div#toptitle {

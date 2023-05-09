@@ -169,8 +169,8 @@ div#footer {
 	width: 100%;
 	font-size: 1vh;
 	border-top: 1px solid #c0c0c0;
-	padding-top: 0.1em;
-	padding-left: 1em;
+	padding-top: 0.5em;
+	padding-left: 0.5em;
 	margin-top: 0.1em;
 	color: #c0c0cc;
 	float: left;
@@ -386,44 +386,56 @@ table.imgtable, table.imgtable td {
 }
 
 #news {
-	position:absolute;
-	bottom: 10px;
-	margin-bottom: 10px;
+	position:fixed;
+	margin-top:90vh;
+	margin-left:15vh;
 	width: 160vh;
-	height: calc(var(--h) * 1.1px);
+	height: calc(var(--h) * 1px);
+	line-height: calc(var(--h) * 0.99px);
+	background: #f4f4f1;
+}
+#news-logo {
+	width: 10vh;
+	float: left;
+	color: #ff0000;
+	font-weight:bold;
+	font-size: 2vh;
+	height: calc(var(--h) * 1px);
+	vertical-align:middle;
+	background: #e7e779;
+}
+#news-logo a{
+	margin-left: 2vh;
+	color: #ff0000;
+}
+#news-content {
+	float: left;
+	width: 145vh;
+	height: calc(var(--h) * 1px);
 	line-height: calc(var(--h) * 0.99px);
 	background: #f4f4f1;
 	overflow: hidden;
 }
-#news-logo {
-	width: 2vh;
-	float: left;
-	margin-left: 2vh;
-	color: #ff0000;
-	font-weight:bold;
-	font-size: 2vh;
-	vertical-align:middle
-}
 
-#news ul {
+#news-content ul {
 	color: #140a32;
-	float: left;
-	width: 80%;
-  display: flex;
-  flex-wrap: nowrap;
-  flex-direction: column;
-  animation: move calc(var(--speed) * var(--s)) steps(var(--s)) infinite;
+	display: flex;
+	flex-wrap: nowrap;
+	flex-direction: column;
+	animation: move calc(var(--speed) * var(--s)) steps(var(--s)) infinite;
 }
 
-#news ul li {
+#news-content ul li {
 	list-style:none;
-  flex-shrink: 0;
-  box-sizing: border-box;
-  white-space: nowrap;
-  cursor: pointer;
-  animation: liMove calc(var(--speed)) infinite;
-  font-size: 2vh;
+	flex-shrink: 0;
+	box-sizing: border-box;
+	white-space: nowrap;
+	cursor: pointer;
+	animation: liMove calc(var(--speed)) infinite;
+	font-size: 2vh;
+	color: #ff0000;
 }
+
 @keyframes move {
   0% {
     transform: translate(0, 0);

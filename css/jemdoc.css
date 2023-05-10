@@ -20,7 +20,7 @@ body {
 	padding-left: 0.5vh;
 	padding-right: 0.5vh;
 	font-size: 2vh;
-	width: 10vh;
+	width: 12vh;
 	white-space: nowrap;
     text-align: left;
     vertical-align: top;
@@ -93,7 +93,7 @@ div.menu-item {
 }
 
 .clustrmaps {
-	width: 100px;
+	width: 110px;
 }
 
 div#toptitle {

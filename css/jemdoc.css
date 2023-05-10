@@ -388,7 +388,7 @@ table.imgtable, table.imgtable td {
 #news {
 	position:fixed;
 	margin-top:90vh;
-	margin-left:15vh;
+	margin-left:18vh;
 	width: 160vh;
 	height: calc(var(--h) * 1px);
 	line-height: calc(var(--h) * 0.99px);

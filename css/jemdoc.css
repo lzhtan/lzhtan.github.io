@@ -24,7 +24,7 @@ body {
     text-align: left;
     vertical-align: top;
 	height: 95vh;
-	width: 120px;
+	width: 140px;
 }
 
 #layout-menu td {
@@ -41,6 +41,7 @@ body {
     text-align: left;
     vertical-align: top;
 	height: calc(100vh-26px);
+	width: 100%;
 }
 
 #layout-menu a {
@@ -387,8 +388,8 @@ table.imgtable, table.imgtable td {
 
 #news {
 	position:fixed;
-	margin-top:90vh;
-	margin-left:18vh;
+	margin-top: 90vh;
+	margin-left: 140px;
 	width: 160vh;
 	height: calc(var(--h) * 1px);
 	line-height: calc(var(--h) * 0.99px);

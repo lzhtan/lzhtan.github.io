@@ -459,7 +459,7 @@ table.imgtable, table.imgtable td {
 }
 
 #album{
-	width:100%;
+	width:1200px;
 	position:relative;
 }
 
@@ -484,7 +484,6 @@ table.imgtable, table.imgtable td {
 	right: 1.5vh;
 	color: white;
 	font-size: 1.6vh;
-	font-weight:bold;
 }
 
 .clear{

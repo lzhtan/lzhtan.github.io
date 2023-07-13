@@ -19,7 +19,7 @@ body {
 	padding-top: 0.5vh;
 	padding-left: 0.5vh;
 	padding-right: 0.5vh;
-	font-size: 2vh;
+	font-size: 15px;
 	white-space: nowrap;
     text-align: left;
     vertical-align: top;
@@ -45,7 +45,7 @@ body {
 }
 
 #layout-menu a {
-	line-height: 1.5em;
+	line-height: 1.5;
 	margin-left: 0.5em;
 }
 
@@ -54,7 +54,7 @@ tt {
 }
 
 pre, tt {
-	font-size: 10vh;
+	font-size: 15px;
 	font-family: monaco, monospace;
 }
 
@@ -135,11 +135,11 @@ h1, h2, h3 {
 }
 
 h1 {
-	font-size: 3vh;
+	font-size: 20px;
 }
 
 h2 {
-	font-size: 2.5vh;
+	font-size: 15px;
 }
 
 h2 + h3 {
@@ -147,7 +147,7 @@ h2 + h3 {
 }
 
 h3 {
-	font-size: 2vh;
+	font-size: 15px;
 	border-bottom: none;
 }
 
@@ -156,7 +156,7 @@ p {
 	margin-bottom: 0.8em;
 	padding: 0;
 	line-height: 1.3;
-	font-size: 2vh;
+	font-size: 15px;
 }
 
 pre {
@@ -168,7 +168,7 @@ div#footer {
 	position:absolute
 	bottom: 0px;
 	width: 100%;
-	font-size: 1vh;
+	font-size: 10px;
 	border-top: 1px solid #c0c0c0;
 	padding-top: 0.5em;
 	padding-left: 0.5em;
@@ -386,90 +386,16 @@ table.imgtable, table.imgtable td {
   --speed: 5s;
 }
 
-#news {
-	position:fixed;
-	margin-top: 90vh;
-	margin-left: 140px;
-	width: 160vh;
-	height: calc(var(--h) * 1px);
-	line-height: calc(var(--h) * 0.99px);
-	background: #f4f4f1;
-	border: 1px solid #f23c3c;
-}
-#news-logo {
-	width: 10vh;
-	float: left;
-	color: #ff0000;
-	font-weight:bold;
-	font-size: 2vh;
-	height: calc(var(--h) * 1px);
-	vertical-align:middle;
-	background: #e7e779;
-}
-#news-logo a{
-	margin-left: 2vh;
-	color: #ff0000;
-}
-#news-content {
-	float: left;
-	width: 140vh;
-	font-size: 1.6vh;
-	font-weight:bold;
-	height: calc(var(--h) * 1px);
-	line-height: calc(var(--h) * 0.99px);
-	background: #f4f4f1;
-	overflow: hidden;
-}
-
-#news-content ul {
-	color: #140a32;
-	display: flex;
-	flex-wrap: nowrap;
-	flex-direction: column;
-	animation: move calc(var(--speed) * var(--s)) steps(var(--s)) infinite;
-}
-
-#news-content ul li {
-	list-style:none;
-	flex-shrink: 0;
-	box-sizing: border-box;
-	white-space: nowrap;
-	cursor: pointer;
-	animation: liMove calc(var(--speed)) infinite;
-	color: #ff0000;
-}
-
-@keyframes move {
-  0% {
-    transform: translate(0, 0);
-  }
-  100% {
-    transform: translate(0, calc(var(--s) * var(--h) * -1px));
-  }
-}
-
-@keyframes liMove {
-  0% {
-    transform: translate(0, 0);
-  }
-  20%,
-  100%  {
-    transform: translate(0, calc(var(--h) * -1px));
-  }
-}
-
 #album{
-	width:1200px;
 	position:relative;
 }
 
 #album ul{
-	width: 99%;
 	margin: 0 auto;
     padding: 0;
 }
 #album ul li{
-	width: 33%;
+	width: 40vh;
 	float: left;
 	list-style: none;
 	position:relative;
@@ -483,7 +409,7 @@ table.imgtable, table.imgtable td {
 	bottom: 0.1vh;
 	right: 1.5vh;
 	color: white;
-	font-size: 1.6vh;
+	font-size: 10px;
 }
 
 .clear{

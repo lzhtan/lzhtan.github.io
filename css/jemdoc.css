@@ -95,7 +95,7 @@ footer {
 	color: #9b0d31; /* 设置为强调色，与网站主题一致 */
 	/* 您可以根据需要添加更多样式，如背景色、边框等 */
 }
-@media screen and (max-width: 800px) {
+@media screen and (max-width: 1300px) {
 	header h1{
 		margin-left: 30px;
 	}

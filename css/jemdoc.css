@@ -50,7 +50,6 @@ footer {
 	font-size: 0.8em; /* 调整字体大小 */
 	padding: 20px 0;
 	color: #9b0d31;
-
 }
 .active {
 	font-weight: bold;
@@ -66,4 +65,7 @@ footer {
 	nav a {
 		margin: 1px 0;
 	}
+}
+.clstr_globe {
+    width: 50px;
 }

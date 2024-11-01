@@ -1,113 +1,177 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
-  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<!DOCTYPE html>
+<html lang="en">
 <head>
-<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-<link rel="stylesheet" href="css/jemdoc.css" type="text/css" />
-<link rel="icon" href="img/logo.ico" type="image/x-icon">
-<meta name="description" content="Homepage of Lizhuang Tan"/>
-<meta name="keywords" content="Lizhuang Tan, 谭立状, 齐鲁工业大学, 国家超级计算济南中心, 山东省计算中心, 济南超算"/>
-<meta name="author" content="Lizhuang Tan"/>
-<title>谭立状</title>
-</head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Homepage of Lizhuang Tan"/>
+    <meta name="keywords" content="Lizhuang Tan, 谭立状, 齐鲁工业大学, 国家超级计算济南中心, 山东省计算中心, 济南超算"/>
+    <meta name="author" content="Lizhuang Tan"/>
+    <link rel="icon" href="img/logo.ico" type="image/x-icon">
+    <title>Lizhuang Tan</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;700&display=swap" rel="stylesheet">        
+    <link rel="stylesheet" href="css/jemdoc.css" type="text/css" />
+    <style>
+    .paper-card {
+        background: #fff;
+        border: 1px solid #eaeaea;
+        border-radius: 8px;
+        padding: 0px 15px;
+        margin-bottom: 1px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+        transition: box-shadow 0.3s ease-in-out;
+    }
 
+    .paper-card:hover {
+        box-shadow: 0 3px 3px rgba(161, 0, 0, 0.5);
+    }
+
+    .container ol {
+        list-style: none;
+        padding: 0;
+    }
+
+    .container ol li {
+        margin-bottom: 2px;
+        line-height: 1.6;
+    }
+    .container a {
+        color: #2980b9;
+        text-decoration: none;
+        border-bottom: 1px dashed transparent;
+        transition: color 0.3s, border-color 0.3s;
+    }
+
+    .container a:hover {
+        color: #3498db;
+        border-bottom-color: #3498db;
+    }
+
+    .container a:visited {
+        color: #9b0d31;
+    }
+
+    .paper-title {
+        font-weight: bold;
+        color: #9b0d31;
+        margin-bottom: 5px;
+    }
+
+    .paper-authors {
+        font-style: italic;
+        color: #423a3a;
+        margin-bottom: 5px;
+    }
+
+    .paper-location {
+        color: #9b0d31;
+        font-size: 0.95em;
+    }
+
+    @media (max-width: 768px) {
+        .container {
+            padding: 20px;
+        }
+
+        .container h2 {
+            font-size: 24px;
+        }
+    }
+    .paper-card i {
+    color: #9b0d31; /* 将颜色设置为红色 */
+    }
+
+    </style>
+  </head>
 <body>
-<table summary="Table for page layout." id="tlayout">
-<tr valign="top">
+    <header>
+      <h1><a href="index_cn.html"><span class="name-color">谭立状（Lizhuang Tan)</span></a></h1>
+      <nav>
+            <a href="index_cn.html" class="active">主页</a>
+            <a href="cv_cn.html">简历</a>
+            <a href="teaching_cn.html">教学</a>
+            <a href="projects_cn.html">科研</a>
+            <a href="papers_cn.html">论文</a>
+            <a href="patents_cn.html" class="active">专利</a>
+            <a href="drafts_cn.html">草案</a>
+            <a href="group_cn.html">团队</a>
+            <a href="service_cn.html">服务</a>
+            <a href="data_cn.html">数据</a>
+            <a href="news_cn.html">新闻</a>
+            <a href="photos_cn.html">相册</a>
+            <a href="conference_cn.html">会议DDL</a>
+            <a href="index.html" style="font-size: 2em;">
+                <img src="img/language-solid.svg" alt="Language Icon" class="language-icon">
+            </a>
+        </nav>
+    </header>
+    <div class="container">
+      <div class="paper-card">
+        <p>
+          <span class="paper-title"><b>CPU/FPGA协同的网络遥测乱序重排方法及系统</b></span>
+          <a href="./papers/2024-专利-CPUFPGA协同的网络遥测乱序重排方法及系统.pdf" class="pdf-link"><i class="fas fa-file-pdf"></i></a><br>
+          <span class="paper-authors">谭立状, 隋宗瑞, 王新航, 董鑫, 史慧玲, 张玮</span><br>
+          <span class="paper-location"><i>ZL202410435319.0, 2024-04-11</i></span>    
+        </p>
+      </div>
+      
+      <div class="paper-card">
+        <p>
+          <span class="paper-title"><b>一种意图驱动的网络损伤配置生成方法和系统</b></span>
+          <a href="./papers/2024-专利-一种意图驱动的网络损伤配置生成方法及系统.pdf" class="pdf-link"><i class="fas fa-file-pdf"></i></a><br>
+          <span class="paper-authors">谭立状, 许一鸣, 王新航, 史慧玲, 张玮</span><br>
+          <span class="paper-location"><i>ZL202410409855.3, 2024-04-07</i></span>    
+        </p>
+      </div>
+      
+      <div class="paper-card">
+        <p>
+          <span class="paper-title"><b>一种网络损伤组合化模拟实现方法及系统</b></span>
+          <a href="./papers/2023-专利-一种网络损伤组合化模拟实现方法及系统.pdf" class="pdf-link"><i class="fas fa-file-pdf"></i></a><br>
+          <span class="paper-authors">谭立状, 王新航, 史慧玲, 张玮</span><br>
+          <span class="paper-location"><i>ZL2023117778457.0, 2023-12-21</i></span>    
+        </p>
+      </div>
+      
+      <div class="paper-card">
+        <p>
+          <span class="paper-title"><b>一种实现网络损伤的方法、系统及装置</b></span>
+          <a href="./papers/2023-专利-一种实现网络损伤的方法、系统及装置.pdf" class="pdf-link"><i class="fas fa-file-pdf"></i></a><br>
+          <span class="paper-authors">谭立状, 王新航, 史慧玲, 张玮</span><br>
+          <span class="paper-location"><i>ZL202310224941.2, 2023-03-03</i></span>    
+        </p>
+      </div>
+      
+      <div class="paper-card">
+        <p>
+          <span class="paper-title"><b>一种用于网络损伤仪的壳体及网络损伤仪</b></span>
+          <a href="./papers/2023-专利-一种用于网络损伤仪的壳体及网络损伤仪.pdf" class="pdf-link"><i class="fas fa-file-pdf"></i></a><br>
+          <span class="paper-authors">谭立状, 王新航, 史慧玲, 张玮</span><br>
+          <span class="paper-location"><i>ZL202320329297.0, 2023-02-22</i></span>    
+        </p>
+      </div>
+      
+      <div class="paper-card">
+        <p>
+          <span class="paper-title"><b>一种基于QUIC传输协议的主动连接迁移方法及系统</b></span>
+          <a href="./papers/2022-专利-一种基于QUIC传输协议的主动连接迁移方法及系统.pdf" class="pdf-link"><i class="fas fa-file-pdf"></i></a><br>
+          <span class="paper-authors">谭立状, 王成, 史慧玲, 张玮</span><br>
+          <span class="paper-location"><i>ZL202211650317.0, 2022-12-21</i></span>    
+        </p>
+      </div>
+      
+      <div class="paper-card">
+        <p>
+          <span class="paper-title"><b>一种带内网络遥测承载流选取方法及系统</b></span>
+          <a href="./papers/2020-专利-一种带内网络遥测承载流选取方法及系统.pdf" class="pdf-link"><i class="fas fa-file-pdf"></i></a><br>
+          <span class="paper-authors">苏伟, 谭立状, 郜帅, 张宏科, 刘延雯, 张臻熠</span><br>
+          <span class="paper-location"><i>CN111835588A, 2020-06-29</i></span>    
+        </p>
+      </div>
 
-<td id="layout-menu">
-  <div class="menu-category"><img src="./img/logo.jpg" alt="alt text" width="100px" /></div>
-  <div class="menu-item"><a href="index_cn.html">主页</a></div>
-  <div class="menu-item"><a href="cv_cn.html">简历</a></div>
-  <div class="menu-category">科研</div>
-  <div class="menu-item"><a href="teaching_cn.html">教学</a></div>
-  <div class="menu-item"><a href="papers_cn.html">论文</a></div>
-  <div class="menu-item"><a href="patents_cn.html"  class="current">专利</a></div>
-  <div class="menu-item"><a href="drafts_cn.html">草案</a></div>
-  <div class="menu-item"><a href="projects_cn.html">项目</a></div>
-  <div class="menu-item"><a href="group_cn.html">团队</a></div>
-  <div class="menu-item"><a href="service_cn.html">服务</a></div>
-  <div class="menu-category">其他</div>
-  <div class="menu-item"><a href="news_cn.html">消息</a></div>
-  <div class="menu-item"><a href="photos_cn.html">相册</a></div>
-  <div class="menu-category">公共</div>
-  <div class="menu-item"><a href="conference_cn.html">学术会议</a></div>
-  <div class="menu-category">链接</div>
-  <div class="menu-item"><a href="index.html">English</a></div>
-</td>
-
-<td id="layout-content">
-<div id="toptitle">
-<h1>专利</h1>
 </div>
-
-<ol>
-<li><p>
-<b>CPU/FPGA协同的网络遥测乱序重排方法及系统</b>
-[<a href="./papers/2024-专利-CPUFPGA协同的网络遥测乱序重排方法及系统.pdf">pdf</a>]<br/>
-谭立状, 隋宗瑞, 王新航, 董鑫, 史慧玲, 张玮<br/>
-<i>ZL202410435319.0, 2024-04-11</i><br/>
-</p></li>
-
-<li><p>
-<b>一种意图驱动的网络损伤配置生成方法和系统</b>
-[<a href="./papers/2024-专利-一种意图驱动的网络损伤配置生成方法及系统.pdf">pdf</a>]<br/>
-谭立状, 许一鸣, 王新航, 史慧玲, 张玮<br/>
-<i>ZL202410409855.3, 2024-04-07</i><br/>
-</p></li>
-
-<li><p>
-<b>一种网络损伤组合化模拟实现方法及系统</b>
-[<a href="./papers/2023-专利-一种网络损伤组合化模拟实现方法及系统.pdf">pdf</a>]<br/>
-谭立状, 王新航, 史慧玲, 张玮<br/>
-<i>ZL2023117778457.0, 2023-12-21</i><br/>
-</p></li>
-
-<li><p>
-<b>一种实现网络损伤的方法、系统及装置</b>
-[<a href="./papers/2023-专利-一种实现网络损伤的方法、系统及装置.pdf">pdf</a>]<br/>
-谭立状, 王新航, 史慧玲, 张玮<br/>
-<i>ZL202310224941.2, 2023-03-03</i><br/>
-</p></li>
-
-<li><p>
-<b>一种用于网络损伤仪的壳体及网络损伤仪</b>
-[<a href="./papers/2023-专利-一种用于网络损伤仪的壳体及网络损伤仪.pdf">pdf</a>]<br/>
-谭立状, 王新航, 史慧玲, 张玮<br/>
-<i>ZL202320329297.0, 2023-02-22</i><br/>
-</p></li>
-
-<li><p>
-<b>一种基于QUIC传输协议的主动连接迁移方法及系统</b>
-[<a href="./papers/2022-专利-一种基于QUIC传输协议的主动连接迁移方法及系统.pdf">pdf</a>]<br/>
-谭立状, 王成, 史慧玲, 张玮<br/>
-<i>ZL202211650317. 0, 2022-12-21</i><br/>
-</p></li>
-
-<li><p>
-<b>一种带内网络遥测承载流选取方法及系统</b>
-[<a href="./papers/2020-专利-一种带内网络遥测承载流选取方法及系统.pdf">pdf</a>]<br/>
-苏伟，谭立状，郜帅，张宏科，刘延雯，张臻熠<br/>
-<i>CN111835588A, 2020-06-29</i><br/>
-</p></li>
-
-
-</ol>
-
-
-
-</td>
-</tr>
-</table>
-<div id="footer" >
-  <div id="footer-text">
-    <a href="https://validator.w3.org/check?uri=lzhtan.github.io"><img src="http://www.w3.org/Icons/valid-xhtml11" alt="Valid XHTML 1.1" style="vertical-align:middle" height="26" width="80"/></a>
-    Copyright &copy;&nbsp;2022 - New Era. By <a href="./"> Lizhuang Tan</a>
-    <script type="text/javascript">document.write("Last updated "+new Date(document.lastModified).toUTCString());
-    </script>
-    </a>
-  </div>
-</div>
+        <footer>
+            <p>Copyright &copy; 2022 - New Era. By Lizhuang Tan</p>
+        </footer>
 </body>
 </html>

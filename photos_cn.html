@@ -1,101 +1,224 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
-  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<!DOCTYPE html>
+<html lang="en">
 <head>
-<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-<link rel="stylesheet" href="css/jemdoc.css" type="text/css" />
-<link rel="icon" href="img/logo.ico" type="image/x-icon">
-<meta name="description" content="Homepage of Lizhuang Tan"/>
-<meta name="keywords" content="Lizhuang Tan, 谭立状, 齐鲁工业大学, 国家超级计算济南中心, 山东省计算中心, 济南超算"/>
-<meta name="author" content="Lizhuang Tan"/>
-<title>谭立状</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Homepage of Lizhuang Tan"/>
+    <meta name="keywords" content="Lizhuang Tan, 谭立状, 齐鲁工业大学, 国家超级计算济南中心, 山东省计算中心, 济南超算"/>
+    <meta name="author" content="Lizhuang Tan"/>
+    <link rel="icon" href="img/logo.ico" type="image/x-icon">
+    <title>Lizhuang Tan</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;700&display=swap" rel="stylesheet">        
+    <link rel="stylesheet" href="css/jemdoc.css" type="text/css" />
+    <style>
+        #album {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); /* 列宽最小200px，自适应填充 */
+            gap: 10px; /* 图片间隔 */
+            padding: 10px; /* 相册内边距 */
+        }
+        #album .photo-item {
+            background: #fff;
+            border: 1px solid #eaeaea;
+            border-radius: 8px;
+            overflow: hidden; /* 防止内容溢出 */
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+            transition: box-shadow 0.3s ease-in-out;
+            text-align: center;
+        }
+        #album .photo-item:hover {
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        #album img {
+            width: 100%;
+            height: auto;
+            border-radius: 2px 8px 0 0; /* 图片圆角仅应用于顶部 */
+            transition: transform 0.3s ease-in-out;
+        }
+        #album img:hover {
+            transform: scale(1.02); /* 悬停时图片稍微放大 */
+        }
+        #album p {
+            margin: 1px 3px; /* 描述文本的上下外边距 */
+            color: #333;
+            font-size: 14px;
+        }
+    </style>
 </head>
-
 <body>
-<table summary="Table for page layout." id="tlayout">
-<tr valign="top">
-
-<td id="layout-menu">
-  <div class="menu-category"><img src="./img/logo.jpg" alt="alt text" width="100px" /></div>
-  <div class="menu-item"><a href="index_cn.html">主页</a></div>
-  <div class="menu-item"><a href="cv_cn.html">简历</a></div>
-  <div class="menu-category">科研</div>
-  <div class="menu-item"><a href="teaching_cn.html">教学</a></div>
-  <div class="menu-item"><a href="papers_cn.html">论文</a></div>
-  <div class="menu-item"><a href="patents_cn.html">专利</a></div>
-  <div class="menu-item"><a href="drafts_cn.html">草案</a></div>
-  <div class="menu-item"><a href="projects_cn.html">项目</a></div>
-  <div class="menu-item"><a href="group_cn.html">团队</a></div>
-  <div class="menu-item"><a href="service_cn.html">服务</a></div>
-  <div class="menu-category">其他</div>
-  <div class="menu-item"><a href="news_cn.html">消息</a></div>
-  <div class="menu-item"><a href="photos_cn.html"  class="current">相册</a></div>
-  <div class="menu-category">公共</div>
-  <div class="menu-item"><a href="conference_cn.html">学术会议</a></div>
-  <div class="menu-category">链接</div>
-  <div class="menu-item"><a href="index.html">English</a></div>
-</td>
-
-<td id="layout-content">
-<div id="toptitle">
-<h1>相册</h1>
-</div>
-
-
-<div id="album">
-  <ul>
-    <li><img src="photos/20241027.jpg" /><p>2024年10月, 与洪教授在浦项（2）</p></li>
-    <li><img src="photos/20241014.jpeg" /><p>2024年10月, 与洪教授在浦项</p></li>
-    <li><img src="photos/20241007.jpg" /><p>2024年10月, DPNM实验室聚餐</p></li>
-    <li><img src="photos/20241001.jpg" /><p>2024年10月, 浦项科技大学</p></li>
-    <li><img src="photos/20240805.jpg" /><p>2024年08月, 山东省高校青年教师教学能力提升省级示范培训</p></li>
-    <li><img src="photos/20240604.jpg" /><p>2024年06月, 国产化算力推进启动会</p></li>
-    <li><img src="photos/20240511.jpeg" /><p>2024年05月, 泰山科技论坛</p></li>
-    <li><img src="photos/20231120.jpeg" /><p>2023年11月, 网络天下论坛</p></li>
-    <li><img src="photos/20230820.jpeg" /><p>2023年08月, NaNA会议合影（2）</p></li>
-    <li><img src="photos/20230819.jpeg" /><p>2023年08月, NaNA会议合影（1）</p></li>
-    <li><img src="photos/20230725.jpeg" /><p>2023年07月, 基于P4的软件定义网络损伤仪</p></li>
-    <li><img src="photos/20230702.jpeg" /><p>2023年07月, 聊城光岳楼</p></li>
-    <li><img src="photos/20230626.jpg" /><p>2023年06月, 北京雍和宫</p></li>
-    <li><img src="photos/20230624.jpg" /><p>2023年06月, 哈尔滨苏联红军烈士纪念碑</p></li>
-    <li><img src="photos/20230623.jpg" /><p>2023年06月, 哈尔滨731部队罪证遗址</p></li>
-    <li><img src="photos/20230519.jpg" /><p>2023年05月, 潍坊坊茨小镇</p></li>
-    <li><img src="photos/20230518.jpg" /><p>2023年05月, 我们结婚啦</p></li>
-    <li><img src="photos/20230508.jpg" /><p>2023年05月, 我的猫</p></li>
-    <li><img src="photos/20230413.jpg"/><p>2023年04月, CCSA标准会</p></li>
-    <li><img src="photos/20230411-1.jpeg"/><p>2023年04月, 重庆朝天门</p></li>
-    <li><img src="photos/20230411.jpeg"/><p>2023年04月, 重庆朝天门</p></li>
-    <li><img src="photos/20230410.jpeg"/><p>2023年04月, 重庆朝天门</p></li>
-    <li><img src="photos/20230330.jpeg"/><p>2023年03月, 武汉长江大桥</p></li>
-    <li><img src="photos/20230330-1.jpeg"/><p>2023年03月, 武汉晴川阁</p></li>
-    <li><img src="photos/20230329.jpeg"/><p>2023年03月, 武汉长江眺望</p></li>
-    <li><img src="photos/20230226.jpeg"/><p>2023年02月, 青岛小麦岛</p></li>
-    <li><img src="photos/20221117.jpeg"/><p>2022年11月, 济南青铜山大峡谷</p></li>
-    <li><img src="photos/20221113.jpeg"/><p>2022年11月，团建合影</p></li>
-    <li><img src="photos/20221103.jpeg"/><p>2022年11月，云栖大会</p></li>
-    <li><img src="photos/20221101.jpeg"/><p>2022年11月，杭州灵隐寺</p></li>
-    <li><img src="photos/20221007.jpeg"/><p>2022年10月，济南大明湖</p></li>
-    <li><img src="photos/20221004.jpeg"/><p>2022年10月，潍坊一中（高中母校）</p></li>
-    <li><img src="photos/20220926.jpeg"/><p>2022年09月，京杭运河四女寺枢纽</p></li>
-    <li><img src="photos/20220731.jpeg"/><p>2022年07月，算力大会</p></li>
-    <li><img src="photos/20220628.jpeg"/><p>2022年06月，字节毕业</p></li>
-    <li><img src="photos/20220605.jpeg"/><p>2022年06月，博士毕业</p></li>
-  </ul>
-</div>
-
-
-</td>
-</tr>
-</table>
-<div id="footer" >
-  <div id="footer-text">
-    <a href="https://validator.w3.org/check?uri=lzhtan.github.io"><img src="http://www.w3.org/Icons/valid-xhtml11" alt="Valid XHTML 1.1" style="vertical-align:middle" height="26" width="80"/></a>
-    Copyright &copy;&nbsp;2022 - New Era. By <a href="./"> Lizhuang Tan</a>
-    <script type="text/javascript">document.write("Last updated "+new Date(document.lastModified).toUTCString());
-    </script>
-    </a>
-  </div>
-</div>
+    <header>
+      <h1><a href="index_cn.html"><span class="name-color">谭立状（Lizhuang Tan)</span></a></h1>
+      <nav>
+          <a href="index_cn.html" class="active">主页</a>
+          <a href="cv_cn.html">简历</a>
+          <a href="teaching_cn.html">教学</a>
+          <a href="projects_cn.html">科研</a>
+          <a href="papers_cn.html">论文</a>
+          <a href="patents_cn.html">专利</a>
+          <a href="drafts_cn.html">草案</a>
+          <a href="group_cn.html">团队</a>
+          <a href="service_cn.html">服务</a>
+          <a href="data_cn.html">数据</a>
+          <a href="news_cn.html">新闻</a>
+          <a href="photos_cn.html" class="active">相册</a>
+          <a href="conference_cn.html">会议DDL</a>
+          <a href="index.html" style="font-size: 2em;">
+              <img src="img/language-solid.svg" alt="Language Icon" class="language-icon">
+          </a>
+        </nav>
+    </header>
+    <div class="container">
+        <div id="album">
+          <div class="photo-item">
+            <img src="photos/20241027.jpg" alt="2024年10月, 与洪教授在浦项（2）" />
+            <p>2024年10月, 与洪教授在浦项（2）</p>
+        </div>
+        <div class="photo-item">
+            <img src="photos/20241014.jpeg" alt="2024年10月, 与洪教授在浦项" />
+            <p>2024年10月, 与洪教授在浦项</p>
+        </div>
+        <div class="photo-item">
+            <img src="photos/20241007.jpg" alt="2024年10月, DPNM实验室聚餐" />
+            <p>2024年10月, DPNM实验室聚餐</p>
+        </div>
+        <div class="photo-item">
+            <img src="photos/20241001.jpg" alt="2024年10月, 浦项科技大学" />
+            <p>2024年10月, 浦项科技大学</p>
+        </div>
+        <div class="photo-item">
+            <img src="photos/20240805.jpg" alt="2024年08月, 山东省高校青年教师教学能力提升省级示范培训" />
+            <p>2024年08月, 山东省高校青年教师教学能力提升省级示范培训</p>
+        </div>
+        <div class="photo-item">
+            <img src="photos/20240604.jpg" alt="2024年06月, 国产化算力推进启动会" />
+            <p>2024年06月, 国产化算力推进启动会</p>
+        </div>
+        <div class="photo-item">
+            <img src="photos/20240511.jpeg" alt="2024年05月, 泰山科技论坛" />
+            <p>2024年05月, 泰山科技论坛</p>
+        </div>
+        <div class="photo-item">
+            <img src="photos/20231120.jpeg" alt="2023年11月, 网络天下论坛" />
+            <p>2023年11月, 网络天下论坛</p>
+        </div>
+        <div class="photo-item">
+            <img src="photos/20230820.jpeg" alt="2023年08月, NaNA会议合影（2）" />
+            <p>2023年08月, NaNA会议合影（2）</p>
+        </div>
+        <div class="photo-item">
+            <img src="photos/20230819.jpeg" alt="2023年08月, NaNA会议合影（1）" />
+            <p>2023年08月, NaNA会议合影（1）</p>
+        </div>
+        <div class="photo-item">
+            <img src="photos/20230725.jpeg" alt="2023年07月, 基于P4的软件定义网络损伤仪" />
+            <p>2023年07月, 基于P4的软件定义网络损伤仪</p>
+        </div>
+        <div class="photo-item">
+            <img src="photos/20230702.jpeg" alt="2023年07月, 聊城光岳楼" />
+            <p>2023年07月, 聊城光岳楼</p>
+        </div>
+        <div class="photo-item">
+            <img src="photos/20230626.jpg" alt="2023年06月, 北京雍和宫" />
+            <p>2023年06月, 北京雍和宫</p>
+        </div>
+        <div class="photo-item">
+            <img src="photos/20230624.jpg" alt="2023年06月, 哈尔滨苏联红军烈士纪念碑" />
+            <p>2023年06月, 哈尔滨苏联红军烈士纪念碑</p>
+        </div>
+        <div class="photo-item">
+            <img src="photos/20230623.jpg" alt="2023年06月, 哈尔滨731部队罪证遗址" />
+            <p>2023年06月, 哈尔滨731部队罪证遗址</p>
+        </div>
+        <div class="photo-item">
+            <img src="photos/20230519.jpg" alt="2023年05月, 潍坊坊茨小镇" />
+            <p>2023年05月, 潍坊坊茨小镇</p>
+        </div>
+        <div class="photo-item">
+            <img src="photos/20230518.jpg" alt="2023年05月, 我们结婚啦" />
+            <p>2023年05月, 我们结婚啦</p>
+        </div>
+        <div class="photo-item">
+            <img src="photos/20230508.jpg" alt="2023年05月, 我的猫" />
+            <p>2023年05月, 我的猫</p>
+        </div>
+        <div class="photo-item">
+            <img src="photos/20230413.jpg" alt="2023年04月, CCSA标准会" />
+            <p>2023年04月, CCSA标准会</p>
+        </div>
+        <div class="photo-item">
+            <img src="photos/20230411-1.jpeg" alt="2023年04月, 重庆朝天门" />
+            <p>2023年04月, 重庆朝天门</p>
+        </div>
+        <div class="photo-item">
+            <img src="photos/20230411.jpeg" alt="2023年04月, 重庆朝天门" />
+            <p>2023年04月, 重庆朝天门</p>
+        </div>
+        <div class="photo-item">
+            <img src="photos/20230410.jpeg" alt="2023年04月, 重庆朝天门" />
+            <p>2023年04月, 重庆朝天门</p>
+        </div>
+        <div class="photo-item">
+            <img src="photos/20230330.jpeg" alt="2023年03月, 武汉长江大桥" />
+            <p>2023年03月, 武汉长江大桥</p>
+        </div>
+        <div class="photo-item">
+            <img src="photos/20230330-1.jpeg" alt="2023年03月, 武汉晴川阁" />
+            <p>2023年03月, 武汉晴川阁</p>
+        </div>
+        <div class="photo-item">
+            <img src="photos/20230329.jpeg" alt="2023年03月, 武汉长江眺望" />
+            <p>2023年03月, 武汉长江眺望</p>
+        </div>
+        <div class="photo-item">
+            <img src="photos/20230226.jpeg" alt="2023年02月, 青岛小麦岛" />
+            <p>2023年02月, 青岛小麦岛</p>
+        </div>
+        <div class="photo-item">
+            <img src="photos/20221117.jpeg" alt="2022年11月, 济南青铜山大峡谷" />
+            <p>2022年11月, 济南青铜山大峡谷</p>
+        </div>
+        <div class="photo-item">
+            <img src="photos/20221113.jpeg" alt="2022年11月，团建合影" />
+            <p>2022年11月，团建合影</p>
+        </div>
+        <div class="photo-item">
+            <img src="photos/20221103.jpeg" alt="2022年11月，云栖大会" />
+            <p>2022年11月，云栖大会</p>
+        </div>
+        <div class="photo-item">
+            <img src="photos/20221101.jpeg" alt="2022年11月，杭州灵隐寺" />
+            <p>2022年11月，杭州灵隐寺</p>
+        </div>
+        <div class="photo-item">
+            <img src="photos/20221007.jpeg" alt="2022年10月，济南大明湖" />
+            <p>2022年10月，济南大明湖</p>
+        </div>
+        <div class="photo-item">
+            <img src="photos/20221004.jpeg" alt="2022年10月，潍坊一中（高中母校）" />
+            <p>2022年10月，潍坊一中（高中母校）</p>
+        </div>
+        <div class="photo-item">
+            <img src="photos/20220926.jpeg" alt="2022年09月，京杭运河四女寺枢纽" />
+            <p>2022年09月，京杭运河四女寺枢纽</p>
+        </div>
+        <div class="photo-item">
+            <img src="photos/20220731.jpeg" alt="2022年07月，算力大会" />
+            <p>2022年07月，算力大会</p>
+        </div>
+        <div class="photo-item">
+            <img src="photos/20220628.jpeg" alt="2022年06月，字节毕业" />
+            <p>2022年06月，字节毕业</p>
+        </div>
+        <div class="photo-item">
+            <img src="photos/20220605.jpeg" alt="2022年06月，博士毕业" />
+            <p>2022年06月，博士毕业</p>
+        </div>        
+        
+        </div>
+    </div>
+    <footer>
+        <p>© 2024 Lizhuang Tan</p>
+    </footer>
 </body>
 </html>

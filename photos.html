@@ -1,101 +1,223 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
-  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<!DOCTYPE html>
+<html lang="en">
 <head>
-<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-<link rel="stylesheet" href="css/jemdoc.css" type="text/css" />
-<link rel="icon" href="img/logo.ico" type="image/x-icon">
-<meta name="description" content="Homepage of Lizhuang Tan"/>
-<meta name="keywords" content="Lizhuang Tan, 谭立状, 齐鲁工业大学, 国家超级计算济南中心, 山东省计算中心, 济南超算"/>
-<meta name="author" content="Lizhuang Tan"/>
-<title>谭立状</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Homepage of Lizhuang Tan"/>
+    <meta name="keywords" content="Lizhuang Tan, 谭立状, 齐鲁工业大学, 国家超级计算济南中心, 山东省计算中心, 济南超算"/>
+    <meta name="author" content="Lizhuang Tan"/>
+    <link rel="icon" href="img/logo.ico" type="image/x-icon">
+    <title>Lizhuang Tan</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;700&display=swap" rel="stylesheet">        
+    <link rel="stylesheet" href="css/jemdoc.css" type="text/css" />
+    <style>
+        #album {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); /* 列宽最小200px，自适应填充 */
+            gap: 10px; /* 图片间隔 */
+            padding: 10px; /* 相册内边距 */
+        }
+        #album .photo-item {
+            background: #fff;
+            border: 1px solid #eaeaea;
+            border-radius: 8px;
+            overflow: hidden; /* 防止内容溢出 */
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+            transition: box-shadow 0.3s ease-in-out;
+            text-align: center;
+        }
+        #album .photo-item:hover {
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        #album img {
+            width: 100%;
+            height: auto;
+            border-radius: 2px 8px 0 0; /* 图片圆角仅应用于顶部 */
+            transition: transform 0.3s ease-in-out;
+        }
+        #album img:hover {
+            transform: scale(1.02); /* 悬停时图片稍微放大 */
+        }
+        #album p {
+            margin: 1px 3px; /* 描述文本的上下外边距 */
+            color: #333;
+            font-size: 14px;
+        }
+    </style>
 </head>
-
 <body>
-<table summary="Table for page layout." id="tlayout">
-<tr valign="top">
-
-<td id="layout-menu">
-  <div class="menu-category"><img src="./img/logo.jpg" alt="alt text" width="100px" /></div>
-  <div class="menu-item"><a href="index.html">Home</a></div>
-  <div class="menu-item"><a href="cv.html">CV</a></div>
-  <div class="menu-category">Research</div>
-  <div class="menu-item"><a href="teaching.html">Teaching</a></div>
-  <div class="menu-item"><a href="papers.html">Publications</a></div>
-  <div class="menu-item"><a href="patents.html">Patents</a></div>
-  <div class="menu-item"><a href="drafts.html">Drafts</a></div>
-  <div class="menu-item"><a href="group.html">Group</a></div>
-  <div class="menu-item"><a href="service.html">Service</a></div>
-  <div class="menu-category">Others</div>
-  <div class="menu-item"><a href="data.html">Data</a></div>
-  <div class="menu-item"><a href="news.html">News</a></div>
-  <div class="menu-item"><a href="photos.html" class="current">Photos</a></div>
-  <div class="menu-category">Public</div>
-  <div class="menu-item"><a href="conference.html">Conference</a></div>
-  <div class="menu-category">Link</div>
-  <div class="menu-item"><a href="index_cn.html">中文主页</a></div>
-</td>
-
-<td id="layout-content">
-<div id="toptitle">
-<h1>Photos</h1>
-</div>
-
-<div id="album">
-<ul>
-  <li><img src="photos/20241027.jpg" /><p>Oct. 2024, Pohang Tour with Prof. Hong</p></li>
-  <li><img src="photos/20241014.jpeg" /><p>Oct. 2024, Pohang Tour with Prof. Hong</p></li>
-  <li><img src="photos/20241007.jpg" /><p>Oct. 2024, DPNM Lab Dinner in POSTECH</p></li>
-  <li><img src="photos/20241001.jpg" /><p>Oct. 2024, Building in POSTECH</p></li>
-  <li><img src="photos/20240805.jpg" /><p>Aug. 2024, Teaching Training Session</p></li>
-  <li><img src="photos/20240604.jpg" /><p>Jun. 2024, The Launch Meeting of Promoting Domestic Computing Power</p></li>
-  <li><img src="photos/20240511.jpeg" /><p>May 2024, Taishan Science and Technology Forum</p></li>
-  <li><img src="photos/20231120.jpeg" /><p>Nov. 2023, DCN Seminar</p></li>
-  <li><img src="photos/20230820.jpeg" /><p>Aug. 2023, NaNA Conference </p></li>
-  <li><img src="photos/20230819.jpeg" /><p>Aug. 2023, NaNA Conference </p></li>
-  <li><img src="photos/20230725.jpeg" /><p>Jul. 2023, Software-defined Network Damager is Ready </p></li>
-  <li><img src="photos/20230702.jpeg" /><p>Jul. 2023, Guangyue Tower in Liaocheng  </p></li>
-  <li><img src="photos/20230626.jpg" /><p>Jun. 2023, Lama Temple(Yonghe Palace) in Beijing</p></li>
-  <li><img src="photos/20230624.jpg" /><p>Июнь 2023, Памятник павшим солдатам Красной Армии</br>Jun. 2023, The USSR Red Army Martyrs Monument in Harbin</p></li>
-  <li><img src="photos/20230623.jpg" /><p>Jun. 2023, Unit 731 Evidence Site in Harbin</p></li>
-  <li><img src="photos/20230519.jpg" /><p>May 2023, Fangtze Eurotown in Weifang</p></li>
-  <li><img src="photos/20230518.jpg" /><p>May 2023, We got married</p></li>
-  <li><img src="photos/20230508.jpg" /><p>May 2023, My Cat</p></li>
-  <li><img src="photos/20230413.jpg"/><p>Apr. 2023, CCSA Standard Conf.</p></li>
-  <li><img src="photos/20230411-1.jpeg"/><p>Apr. 2023, Chaotianmen in Chongqing</p></li>
-  <li><img src="photos/20230411.jpeg"/><p>Apr. 2023, Chaotianmen in Chongqing</p></li>
-  <li><img src="photos/20230410.jpeg"/><p>Apr. 2023, Yangtze River in Chongqing</p></li>
-  <li><img src="photos/20230330.jpeg"/><p>Mar. 2023, Wuhan Yangtze River Bridge</p></li>
-  <li><img src="photos/20230330-1.jpeg"/><p>Mar. 2023, Qingchuan Pavilion in Wuhan</p></li>
-  <li><img src="photos/20230329.jpeg"/><p>Mar. 2023, Yangtze River in Wuhan</p></li>
-  <li><img src="photos/20230226.jpeg"/><p>Feb. 2023, Xiaomaidao in Qingdao</p></li>
-  <li><img src="photos/20221117.jpeg"/><p>Nov. 2022, Qingtong Mountain in Jinan</p></li>
-  <li><img src="photos/20221113.jpeg"/><p>Nov. 2022, Group Photo</p></li>
-  <li><img src="photos/20221103.jpeg"/><p>Nov. 2022, APSARA Conference</p></li>
-  <li><img src="photos/20221101.jpeg"/><p>Nov. 2022, Lingyin Temple in Hangzhou</p></li>
-  <li><img src="photos/20221007.jpeg"/><p>Oct. 2022, Daming Lake in Ji'nan</p></li>
-  <li><img src="photos/20221004.jpeg"/><p>Oct. 2022, My senior high school</p></li>
-  <li><img src="photos/20220926.jpeg"/><p>Sep. 2022, Beijing-Hangzhou Canal in Sinvsi</p></li>
-  <li><img src="photos/20220731.jpeg"/><p>Jul. 2022, China Computing Conference</p></li>
-  <li><img src="photos/20220628.jpeg"/><p>Jun. 2022, Graduation from ByteDance</p></li>
-  <li><img src="photos/20220605.jpeg"/><p>Jun. 2022, Graduation from BJTU</p></li>
-</ul>
-</div>
-
-
-<div class="clear" >
-</td>
-</tr>
-</table>
-<div id="footer" >
-  <div id="footer-text">
-    <a href="https://validator.w3.org/check?uri=lzhtan.github.io"><img src="http://www.w3.org/Icons/valid-xhtml11" alt="Valid XHTML 1.1" style="vertical-align:middle" height="26" width="80"/></a>
-    Copyright &copy;&nbsp;2022 - New Era. By <a href="./"> Lizhuang Tan</a>
-    <script type="text/javascript">document.write("Last updated "+new Date(document.lastModified).toUTCString());
-    </script>
-    </a>
-  </div>
-</div>
+    <header>
+        <h1><a href="index_cn.html"><span class="name-color">Lizhuang Tan (谭立状)</span></a></h1>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="cv.html">CV</a>
+            <a href="teaching.html">Teaching</a>
+            <a href="papers.html">Publications</a>
+            <a href="patents.html">Patents</a>
+            <a href="drafts.html">Drafts</a>
+            <a href="group.html">Group</a>
+            <a href="service.html">Service</a>
+            <a href="data.html">Data</a>
+            <a href="news.html">News</a>
+            <a href="photos.html" class="active">Photos</a>
+            <a href="conference.html">Conference</a>
+            <a href="index_cn.html">
+                <img src="img/language-solid.svg" alt="Language Icon" class="language-icon">
+            </a>
+        </nav>
+    </header>
+    <div class="container">
+        <div id="album">
+            <div class="photo-item">
+                <img src="photos/20241027.jpg" alt="Oct. 2024, Pohang Tour with Prof. Hong">
+                <p>Oct. 2024, Pohang Tour with Prof. Hong</p>
+            </div>
+            <div class="photo-item">
+                <img src="photos/20241014.jpeg" alt="Oct. 2024, Pohang Tour with Prof. Hong">
+                <p>Oct. 2024, Pohang Tour with Prof. Hong</p>
+            </div>
+            <div class="photo-item">
+                <img src="photos/20241007.jpg" alt="Oct. 2024, DPNM Lab Dinner in POSTECH">
+                <p>Oct. 2024, DPNM Lab Dinner in POSTECH</p>
+            </div>
+            <div class="photo-item">
+                <img src="photos/20241001.jpg" alt="Oct. 2024, Building in POSTECH">
+                <p>Oct. 2024, Building in POSTECH</p>
+            </div>
+            <div class="photo-item">
+                <img src="photos/20240805.jpg" alt="Aug. 2024, Teaching Training Session">
+                <p>Aug. 2024, Teaching Training Session</p>
+            </div>
+            <div class="photo-item">
+                <img src="photos/20240604.jpg" alt="Jun. 2024, The Launch Meeting of Promoting Domestic Computing Power">
+                <p>Jun. 2024, The Launch Meeting of Promoting Domestic Computing Power</p>
+            </div>
+            <div class="photo-item">
+                <img src="photos/20240511.jpeg" alt="May 2024, Taishan Science and Technology Forum">
+                <p>May 2024, Taishan Science and Technology Forum</p>
+            </div>
+            <div class="photo-item">
+                <img src="photos/20231120.jpeg" alt="Nov. 2023, DCN Seminar">
+                <p>Nov. 2023, DCN Seminar</p>
+            </div>
+            <div class="photo-item">
+                <img src="photos/20230820.jpeg" alt="Aug. 2023, NaNA Conference">
+                <p>Aug. 2023, NaNA Conference</p>
+            </div>
+            <div class="photo-item">
+                <img src="photos/20230819.jpeg" alt="Aug. 2023, NaNA Conference">
+                <p>Aug. 2023, NaNA Conference</p>
+            </div>
+            <div class="photo-item">
+                <img src="photos/20230725.jpeg" alt="Jul. 2023, Software-defined Network Damager is Ready">
+                <p>Jul. 2023, Software-defined Network Damager is Ready</p>
+            </div>
+            <div class="photo-item">
+                <img src="photos/20230702.jpeg" alt="Jul. 2023, Guangyue Tower in Liaocheng">
+                <p>Jul. 2023, Guangyue Tower in Liaocheng</p>
+            </div>
+            <div class="photo-item">
+                <img src="photos/20230626.jpg" alt="Jun. 2023, Lama Temple(Yonghe Palace) in Beijing">
+                <p>Jun. 2023, Lama Temple(Yonghe Palace) in Beijing</p>
+            </div>
+            <div class="photo-item">
+                <img src="photos/20230624.jpg" alt="Jun. 2023, The USSR Red Army Martyrs Monument in Harbin">
+                <p>Июнь 2023, Памятник павшим солдатам Красной Армии<br/>Jun. 2023, The USSR Red Army Martyrs Monument in Harbin</p>
+            </div>
+            <div class="photo-item">
+                <img src="photos/20230623.jpg" alt="Jun. 2023, Unit 731 Evidence Site in Harbin">
+                <p>Jun. 2023, Unit 731 Evidence Site in Harbin</p>
+            </div>
+            <div class="photo-item">
+                <img src="photos/20230519.jpg" alt="May 2023, Fangtze Eurotown in Weifang">
+                <p>May 2023, Fangtze Eurotown in Weifang</p>
+            </div>
+            <div class="photo-item">
+                <img src="photos/20230518.jpg" alt="May 2023, We got married">
+                <p>May 2023, We got married</p>
+            </div>
+            <div class="photo-item">
+                <img src="photos/20230508.jpg" alt="May 2023, My Cat">
+                <p>May 2023, My Cat</p>
+            </div>
+            <div class="photo-item">
+                <img src="photos/20230413.jpg" alt="Apr. 2023, CCSA Standard Conf.">
+                <p>Apr. 2023, CCSA Standard Conf.</p>
+            </div>
+            <div class="photo-item">
+                <img src="photos/20230411-1.jpeg" alt="Apr. 2023, Chaotianmen in Chongqing">
+                <p>Apr. 2023, Chaotianmen in Chongqing</p>
+            </div>
+            <div class="photo-item">
+              <img src="photos/20230411.jpeg" alt="Apr. 2023, Chaotianmen in Chongqing" />
+              <p>Apr. 2023, Chaotianmen in Chongqing</p>
+          </div>
+          <div class="photo-item">
+              <img src="photos/20230410.jpeg" alt="Apr. 2023, Yangtze River in Chongqing" />
+              <p>Apr. 2023, Yangtze River in Chongqing</p>
+          </div>
+          <div class="photo-item">
+              <img src="photos/20230330.jpeg" alt="Mar. 2023, Wuhan Yangtze River Bridge" />
+              <p>Mar. 2023, Wuhan Yangtze River Bridge</p>
+          </div>
+          <div class="photo-item">
+              <img src="photos/20230330-1.jpeg" alt="Mar. 2023, Qingchuan Pavilion in Wuhan" />
+              <p>Mar. 2023, Qingchuan Pavilion in Wuhan</p>
+          </div>
+          <div class="photo-item">
+              <img src="photos/20230329.jpeg" alt="Mar. 2023, Yangtze River in Wuhan" />
+              <p>Mar. 2023, Yangtze River in Wuhan</p>
+          </div>
+          <div class="photo-item">
+              <img src="photos/20230226.jpeg" alt="Feb. 2023, Xiaomaidao in Qingdao" />
+              <p>Feb. 2023, Xiaomaidao in Qingdao</p>
+          </div>
+          <div class="photo-item">
+              <img src="photos/20221117.jpeg" alt="Nov. 2022, Qingtong Mountain in Jinan" />
+              <p>Nov. 2022, Qingtong Mountain in Jinan</p>
+          </div>
+          <div class="photo-item">
+              <img src="photos/20221113.jpeg" alt="Nov. 2022, Group Photo" />
+              <p>Nov. 2022, Group Photo</p>
+          </div>
+          <div class="photo-item">
+              <img src="photos/20221103.jpeg" alt="Nov. 2022, APSARA Conference" />
+              <p>Nov. 2022, APSARA Conference</p>
+          </div>
+          <div class="photo-item">
+              <img src="photos/20221101.jpeg" alt="Nov. 2022, Lingyin Temple in Hangzhou" />
+              <p>Nov. 2022, Lingyin Temple in Hangzhou</p>
+          </div>
+          <div class="photo-item">
+              <img src="photos/20221007.jpeg" alt="Oct. 2022, Daming Lake in Ji'nan" />
+              <p>Oct. 2022, Daming Lake in Ji'nan</p>
+          </div>
+          <div class="photo-item">
+              <img src="photos/20221004.jpeg" alt="Oct. 2022, My senior high school" />
+              <p>Oct. 2022, My senior high school</p>
+          </div>
+          <div class="photo-item">
+              <img src="photos/20220926.jpeg" alt="Sep. 2022, Beijing-Hangzhou Canal in Sinvsi" />
+              <p>Sep. 2022, Beijing-Hangzhou Canal in Sinvsi</p>
+          </div>
+          <div class="photo-item">
+              <img src="photos/20220731.jpeg" alt="Jul. 2022, China Computing Conference" />
+              <p>Jul. 2022, China Computing Conference</p>
+          </div>
+          <div class="photo-item">
+              <img src="photos/20220628.jpeg" alt="Jun. 2022, Graduation from ByteDance" />
+              <p>Jun. 2022, Graduation from ByteDance</p>
+          </div>
+          <div class="photo-item">
+              <img src="photos/20220605.jpeg" alt="Jun. 2022, Graduation from BJTU" />
+              <p>Jun. 2022, Graduation from BJTU</p>
+          </div>
+        
+        </div>
+    </div>
+    <footer>
+        <p>© 2024 Lizhuang Tan</p>
+    </footer>
 </body>
 </html>

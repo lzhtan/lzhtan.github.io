@@ -1,149 +1,163 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
-  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<!DOCTYPE html>
+<html lang="en">
 <head>
-<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-<link rel="stylesheet" href="css/jemdoc.css" type="text/css" />
-<link rel="icon" href="img/logo.ico" type="image/x-icon">
-<meta name="description" content="Homepage of Lizhuang Tan"/>
-<meta name="keywords" content="Lizhuang Tan, 谭立状, 齐鲁工业大学, 国家超级计算济南中心, 山东省计算中心, 济南超算"/>
-<meta name="author" content="Lizhuang Tan"/>
-<title>谭立状</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Homepage of Lizhuang Tan"/>
+    <meta name="keywords" content="Lizhuang Tan, 谭立状, 齐鲁工业大学, 国家超级计算济南中心, 山东省计算中心, 济南超算"/>
+    <meta name="author" content="Lizhuang Tan"/>
+    <link rel="icon" href="img/logo.ico" type="image/x-icon">
+    <title>Lizhuang Tan</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;700&display=swap" rel="stylesheet">        
+    <link rel="stylesheet" href="css/jemdoc.css" type="text/css" />
+    <style>
+    .paper-card {
+        background: #fff;
+        border: 1px solid #eaeaea;
+        border-radius: 8px;
+        padding: 0px 15px;
+        margin-bottom: 1px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+        transition: box-shadow 0.3s ease-in-out;
+    }
+
+    .paper-card:hover {
+        box-shadow: 0 3px 3px rgba(161, 0, 0, 0.5);
+    }
+    .paper-card:hover i {
+      text-decoration: none;
+    }
+    .paper-card i {
+    color: #9b0d31; /* 将颜色设置为红色 */
+    }
+    </style>
 </head>
-
 <body>
-<table summary="Table for page layout." id="tlayout">
-<tr valign="top">
+    <header>
+      <h1><a href="index_cn.html"><span class="name-color">谭立状（Lizhuang Tan)</span></a></h1>
+      <nav>
+          <a href="index_cn.html" class="active">主页</a>
+          <a href="cv_cn.html">简历</a>
+          <a href="teaching_cn.html">教学</a>
+          <a href="projects_cn.html" class="active">科研</a>
+          <a href="papers_cn.html">论文</a>
+          <a href="patents_cn.html">专利</a>
+          <a href="drafts_cn.html">草案</a>
+          <a href="group_cn.html">团队</a>
+          <a href="service_cn.html">服务</a>
+          <a href="data_cn.html">数据</a>
+          <a href="news_cn.html">新闻</a>
+          <a href="photos_cn.html" class="active">相册</a>
+          <a href="conference_cn.html">会议DDL</a>
+          <a href="index.html" style="font-size: 2em;">
+              <img src="img/language-solid.svg" alt="Language Icon" class="language-icon">
+          </a>
+        </nav>
+    </header>
+    <div class="container">
 
-<td id="layout-menu">
-  <div class="menu-category"><img src="./img/logo.jpg" alt="alt text" width="100px" /></div>
-  <div class="menu-item"><a href="index_cn.html">主页</a></div>
-  <div class="menu-item"><a href="cv_cn.html">简历</a></div>
-  <div class="menu-category">科研</div>
-  <div class="menu-item"><a href="teaching_cn.html">教学</a></div>
-  <div class="menu-item"><a href="papers_cn.html">论文</a></div>
-  <div class="menu-item"><a href="patents_cn.html">专利</a></div>
-  <div class="menu-item"><a href="drafts_cn.html">草案</a></div>
-  <div class="menu-item"><a href="projects_cn.html"  class="current">项目</a></div>
-  <div class="menu-item"><a href="group_cn.html">团队</a></div>
-  <div class="menu-item"><a href="service_cn.html">服务</a></div>
-  <div class="menu-category">其他</div>
-  <div class="menu-item"><a href="news_cn.html">消息</a></div>
-  <div class="menu-item"><a href="photos_cn.html">相册</a></div>
-  <div class="menu-category">公共</div>
-  <div class="menu-item"><a href="conference_cn.html">学术会议</a></div>
-  <div class="menu-category">链接</div>
-  <div class="menu-item"><a href="index.html">English</a></div>
-</td>
-
-<td id="layout-content">
-<div id="toptitle">
-<h1>项目</h1>
-</div>
-
-<h2>主持项目</h2>
-<ol>
-
-<li style='color:rgb(245, 0, 0)'><p>
+<h3>主持项目</h3>
+  <div class="paper-card">
+    <ol>
+<li><p>
 <b>国家自然科学基金青年项目: 高速数据中心网络的缓存管控方法研究	</b><br/>
 2025/01-2027/12, No.62402257<br/>
-[<a target="_blank" rel="noopener" href="./papers/2024-论文-TCC.pdf">研究成果1</a>]
-[<a target="_blank" rel="noopener" href="https://github.com/lzhtan/ByteTuning">开源代码1</a>]
-[<a target="_blank" rel="noopener" href="https://github.com/lzhtan/Fluid-Model-for-DCQCN-ECN-PFC">开源代码2</a>]
+<a target="_blank" rel="noopener" href="./papers/2024-论文-TCC.pdf"><i class="fas fa-file-pdf"></i></a>
+<a target="_blank" rel="noopener" href="https://github.com/lzhtan/ByteTuning"><i class="fab fa-github"></i></a>
+<a target="_blank" rel="noopener" href="https://github.com/lzhtan/Fluid-Model-for-DCQCN-ECN-PFC"><i class="fab fa-github"></i></a>
 
 
 </p></li>
 
-<li style='color:rgb(245, 0, 0)'><p>
+<li><p>
 <b>中韩青年科学家交流计划中国青年科学家赴韩工作交流项目: AI赋能6G网络管理	</b><br/>
 2024/10-2025/09, No.4.0029670.01<br/>
 </p></li>
 
-<li style='color:rgb(245, 0, 0)'><p>
+<li><p>
 <b>中国高校产学研创新基金新一代信息技术创新项目: 软件定义网络流量识别及防御对抗技术研究</b><br/>
 2024/09-2025/08, No.2023IT207<br/>
 </p></li>
 
-<li style='color:rgb(245, 0, 0)'><p>
+<li><p>
 <b>山东省网信领域软科学项目重点课题: 山东省信息领域新质生产力产业现状研究	</b><br/>
 2024/07-2024/10<br/>
-[<a target="_blank" rel="noopener" href="./papers/2024-软科学-山东信息新质生产力.pdf">研究成果</a>]
+<a target="_blank" rel="noopener" href="./papers/2024-软科学-山东信息新质生产力.pdf"><i class="fas fa-file-pdf"></i></a>
 </p></li>
 
-<li style='color:rgb(245, 0, 0)'><p>
+<li><p>
 <b>山东省自然科学基金青年基金: 带内网络遥测任务编排算法研究</b><br/>
 2024/01-2026/12, No.ZR2023QF025<br/>
-[<a target="_blank" rel="noopener" href="./papers/2024-论文-ITL.pdf">研究成果1</a>]
-[<a target="_blank" rel="noopener" href="./papers/2024-专利-CPUFPGA协同的网络遥测乱序重排方法及系统.pdf">研究成果2</a>]
+<a target="_blank" rel="noopener" href="./papers/2024-论文-ITL.pdf"><i class="fas fa-file-pdf"></i></a>
+<a target="_blank" rel="noopener" href="./papers/2024-专利-CPUFPGA协同的网络遥测乱序重排方法及系统.pdf"><i class="fas fa-file-pdf"></i></a>
 </p></li>
 
-<li style='color:rgb(245, 0, 0)'><p>
+<li><p>
 <b>齐鲁工业大学(山东省科学院)人才科研项目: 数据驱动的软件定义网络流量识别及防御对抗技术研究	</b><br/>
 2023/10-2025/10, No.2023RCKY141<br/>
-[<a target="_blank" rel="noopener" href="./papers/2024-ELL-Security.pdf">研究成果</a>]
+<a target="_blank" rel="noopener" href="./papers/2024-ELL-Security.pdf"><i class="fas fa-file-pdf"></i></a>
 </p></li>
 
-<li style='color:rgb(245, 0, 0)'><p>
+<li><p>
 <b>山东省自然科学基金联合基金重点项目子课题: 面向数据中心基于FPGA的网络卸载技术研究	</b><br/>
 2023/01-2025/12, No.ZR2022LZH015<br/>
-[<a target="_blank" rel="noopener" href="./papers/2024-论文-COMCOM.pdf">研究成果1</a>]
-[<a target="_blank" rel="noopener" href="./papers/2024-专利-CPUFPGA协同的网络遥测乱序重排方法及系统.pdf">研究成果2</a>]
+<a target="_blank" rel="noopener" href="./papers/2024-论文-COMCOM.pdf"><i class="fas fa-file-pdf"></i></a>
+<a target="_blank" rel="noopener" href="./papers/2024-专利-CPUFPGA协同的网络遥测乱序重排方法及系统.pdf"><i class="fas fa-file-pdf"></i></a>
 </p></li>
 
-<li style='color:rgb(245, 0, 0)'><p>
+<li><p>
 <b>齐鲁工业大学(山东省科学院)科教产融合试点工程基础研究类项目: 数据中心网络缓存高效感知与精准管控机制研究 </b><br/>
 2023/01-2024/12, No.2023PX057<br/>
-[<a target="_blank" rel="noopener" href="./papers/2024-论文-TCC.pdf">研究成果1</a>]
-[<a target="_blank" rel="noopener" href="./papers/2024-论文-ASE.pdf">研究成果2</a>]
-[<a target="_blank" rel="noopener" href="https://github.com/lzhtan/ATS-for-BMv2">开源代码</a>]
+<a target="_blank" rel="noopener" href="./papers/2024-论文-TCC.pdf"><i class="fas fa-file-pdf"></i></a>
+<a target="_blank" rel="noopener" href="./papers/2024-论文-ASE.pdf"><i class="fas fa-file-pdf"></i></a>
+<a target="_blank" rel="noopener" href="https://github.com/lzhtan/ATS-for-BMv2"><i class="fab fa-github"></i></a>
 
 </p></li>
 
 <li><p>
 <b>中央高校基本科研业务费项目(北京交通大学研究生创新基金二类资助项目): 面向数据中心网络的带内网络遥测任务编排算法研究</b><br/>
 2020/03-2022/03, No.2020YJS013, 结项优秀(4/24)<br/>
-[<a target="_blank" rel="noopener" href="./papers/LossSight.pdf">研究成果1</a>]
-[<a target="_blank" rel="noopener" href="./papers/INT.pdf">研究成果2</a>]
-[<a target="_blank" rel="noopener" href="./papers/INTO.pdf">研究成果3</a>]
-[<a target="_blank" rel="noopener" href="./papers/FindINT.pdf">研究成果4</a>]
-[<a target="_blank" rel="noopener" href="./papers/2020-专利-一种带内网络遥测承载流选取方法及系统.pdf">研究成果5</a>]
-[<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV14Z4y1H7N2/">演示视频</a>]
-[<a target="_blank" rel="noopener" href="https://github.com/lzhtan/FindINT">开源代码1</a>]
-[<a target="_blank" rel="noopener" href="https://github.com/lzhtan/LossSight">开源代码2</a>]
-
-
+<a target="_blank" rel="noopener" href="./papers/LossSight.pdf"><i class="fas fa-file-pdf"></i></a>
+<a target="_blank" rel="noopener" href="./papers/INT.pdf"><i class="fas fa-file-pdf"></i></a>
+<a target="_blank" rel="noopener" href="./papers/INTO.pdf"><i class="fas fa-file-pdf"></i></a>
+<a target="_blank" rel="noopener" href="./papers/FindINT.pdf"><i class="fas fa-file-pdf"></i></a>
+<a target="_blank" rel="noopener" href="./papers/2020-专利-一种带内网络遥测承载流选取方法及系统.pdf"><i class="fas fa-file-pdf"></i></a>
+<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV14Z4y1H7N2/"><i class="fas fa-video"></i></a>
+<a target="_blank" rel="noopener" href="https://github.com/lzhtan/FindINT"><i class="fab fa-github"></i></a>
+<a target="_blank" rel="noopener" href="https://github.com/lzhtan/LossSight"><i class="fab fa-github"></i></a>
 </p></li>
 
 <li><p>
 <b>CERNET下一代互联网技术创新项目: 基于边缘数据的IPv6网络路由特征及故障预测</b><br/>
 2018/12-2019/12, No.NGII20180120<br/>
-[<a target="_blank" rel="noopener" href="https://ieeexplore.ieee.org/abstract/document/9027573">研究成果</a>]
-[<a target="_blank" rel="noopener" href="http://m.youku.com/v_show/id_XNDY4NjA2NTg4NA/">演示视频</a>]
-[<a target="_blank" rel="noopener" href="https://github.com/lzhtan/RouterDelay-KDN">开源代码</a>]
+<a target="_blank" rel="noopener" href="https://ieeexplore.ieee.org/abstract/document/9027573"><i class="fas fa-file-pdf"></i></a>
+<a target="_blank" rel="noopener" href="http://m.youku.com/v_show/id_XNDY4NjA2NTg4NA/"><i class="fas fa-video"></i></a>
+<a target="_blank" rel="noopener" href="https://github.com/lzhtan/RouterDelay-KDN"><i class="fab fa-github"></i></a>
 </p></li>
 
 <li><p>
 <b>中央高校基本科研业务费项目(北京交通大学研究生创新基金一类资助项目): 软件协同流采样及长流检测机制研究</b><br/>
 2018/03-2020/03, No.2018YJS002, 结项优秀(4/23)<br/>
-[<a target="_blank" rel="noopener" href="https://ieeexplore.ieee.org/abstract/document/8648748">研究成果</a>]
-[<a target="_blank" rel="noopener" href="https://github.com/lzhtan/FlowSampling">开源代码</a>]
+<a target="_blank" rel="noopener" href="https://ieeexplore.ieee.org/abstract/document/8648748"><i class="fas fa-file-pdf"></i></a>
+<a target="_blank" rel="noopener" href="https://github.com/lzhtan/FlowSampling"><i class="fab fa-github"></i></a>
 </p></li>
 
 </ol>
+</div>
 
+<h3>参与项目</h3>
 
-<h2>参与项目</h2>
-
+<div class="paper-card">
 <ol>
 <li><p>
 <b>国家重点研发计划“宽带通信和新型网络”重点专项课题: 一体化融合网络体系结构和关键技术研究</b><br/>
 2019/06-2022/06, No.2018YFB1800305<br/>
-[<a target="_blank" rel="noopener" href="./papers/PCM.pdf">研究成果1</a>]
-[<a target="_blank" rel="noopener" href="./papers/Tetris.pdf">研究成果2</a>]
-[<a target="_blank" rel="noopener" href="./papers/OpenQUIC.pdf">研究成果3</a>]
-[<a target="_blank" rel="noopener" href="./papers/PCM_IETF.pdf">研究成果4</a>]
-[<a target="_blank" rel="noopener" href="https://github.com/lzhtan/OpenQUIC">开源代码</a>]
+<a target="_blank" rel="noopener" href="./papers/PCM.pdf"><i class="fas fa-file-pdf"></i></a>
+<a target="_blank" rel="noopener" href="./papers/Tetris.pdf"><i class="fas fa-file-pdf"></i></a>
+<a target="_blank" rel="noopener" href="./papers/OpenQUIC.pdf"><i class="fas fa-file-pdf"></i></a>
+<a target="_blank" rel="noopener" href="./papers/PCM_IETF.pdf"><i class="fas fa-file-pdf"></i></a>
+<a target="_blank" rel="noopener" href="https://github.com/lzhtan/OpenQUIC"><i class="fab fa-github"></i></a>
 </p></li>
 
 <li><p>
@@ -175,21 +189,17 @@
 <b>山东省计算机网络重点实验室开放课题项目: 无损数据中心网络交换机水线闭环调优系统及算法研究</b><br/>
 2020/12-2022/12, No.SDKLCN-2020-04<br/>
 </p></li>
-
 </ol>
+</div>
 
 
 </td>
 </tr>
 </table>
-<div id="footer" >
-  <div id="footer-text">
-    <a href="https://validator.w3.org/check?uri=lzhtan.github.io"><img src="http://www.w3.org/Icons/valid-xhtml11" alt="Valid XHTML 1.1" style="vertical-align:middle" height="26" width="80"/></a>
-    Copyright &copy;&nbsp;2022 - New Era. By <a href="./"> Lizhuang Tan</a>
-    <script type="text/javascript">document.write("Last updated "+new Date(document.lastModified).toUTCString());
-    </script>
-    </a>
-  </div>
+
 </div>
+<footer>
+    <p>© 2024 Lizhuang Tan</p>
+</footer>
 </body>
 </html>

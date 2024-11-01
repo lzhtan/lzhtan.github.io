@@ -1,138 +1,241 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
-  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<!DOCTYPE html>
+<html lang="en">
 <head>
-<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-<link rel="stylesheet" href="css/jemdoc.css" type="text/css" />
-<link rel="icon" href="img/logo.ico" type="image/x-icon">
-<meta name="description" content="Homepage of Lizhuang Tan"/>
-<meta name="keywords" content="Lizhuang Tan, 谭立状, 齐鲁工业大学, 国家超级计算济南中心, 山东省计算中心, 济南超算"/>
-<meta name="author" content="Lizhuang Tan"/>
-<title>Lizhuang Tan</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Homepage of Lizhuang Tan"/>
+    <meta name="keywords" content="Lizhuang Tan, 谭立状, 齐鲁工业大学, 国家超级计算济南中心, 山东省计算中心, 济南超算"/>
+    <meta name="author" content="Lizhuang Tan"/>
+    <link rel="icon" href="img/logo.ico" type="image/x-icon">
+    <title>Lizhuang Tan</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/jemdoc.css" type="text/css" />
+    <style>
+        .profile {
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            position: relative; /* 添加相对定位 */
+        }
+        .icon-container {
+            position: absolute; /* 绝对定位 */
+            top: 10px; /* 容器顶部对齐 */
+            right: 10px; /* 容器右侧对齐 */
+            display: flex; /* 使用 Flexbox 布局 */
+            gap: 5px; /* 图标之间的间隔 */
+        }
+        .profile img {
+            width: 150px;
+            border-radius: 50%;
+            margin-right: 20px;
+        }
+        .profile h2 {
+            margin: 0;
+            font-size: 1.5 em;
+            color: #9b0d31;
+        }
+        .profile p {
+            margin: 5px 0;        }
+        .profile i {
+            margin-right: 8px; /* 添加右边距以在图标和文本之间留出空间 */
+            color: #9b0d31; /* 设置图标颜色 */
+        }
+        .icon-text {
+            display: flex; /* 使用 Flexbox 布局 */
+            align-items: center; /* 垂直居中对齐 */
+            gap: 8px; /* 图标和文字之间的间距 */
+        }
+        .about-detail {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 20px;
+            background-color: #f9f9f9;
+            padding: 15px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: justify;
+        }
+        .about-image {
+            margin-right: 20px;
+            flex: 0 0 auto;
+        }
+
+        .about-image img {
+            width: 100%;
+            max-width: 80px;
+            height: auto;
+            border-radius: 5px;
+        }
+
+        .text-container {
+            flex: 1;
+        }
+
+        .about-detail h3 {
+            margin-top: 0;
+            color: #9b0d31;
+            margin: 0 0 0 0;
+            padding: 0 0 0 0;
+        }
+
+        .about-detail p {
+            margin: 0 0 0 0;
+            padding: 0 0 0 0;
+            line-height: 1.6;
+            text-align: justify;
+
+        }
+        .news {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .news li {
+            margin-bottom: 2px;
+        }
+        .news a {
+            color: #9b0d31;
+            text-decoration: none;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 2px;
+        }
+        .news-date {
+            display: inline-block;
+            background-color: #9b0d31;
+            color: #fff;
+            padding: 5px 10px;
+            border-radius: 5px;
+            margin-right: 10px;
+            width: 60px;
+        }
+
+    </style>
 </head>
-
 <body>
-<table summary="Table for page layout." id="tlayout">
-<tr valign="top">
-  
-<td id="layout-menu">
-  <div class="menu-category"><img src="./img/logo.jpg" alt="alt text" width="100px" /></div>
-  <div class="menu-item"><a href="index.html" class="current">Home</a></div>
-  <div class="menu-item"><a href="cv.html">CV</a></div>
-  <div class="menu-category">Research</div>
-  <div class="menu-item"><a href="teaching.html">Teaching</a></div>
-  <div class="menu-item"><a href="papers.html">Publications</a></div>
-  <div class="menu-item"><a href="patents.html">Patents</a></div>
-  <div class="menu-item"><a href="drafts.html">Drafts</a></div>
-  <div class="menu-item"><a href="group.html" >Group</a></div>
-  <div class="menu-item"><a href="service.html">Service</a></div>
-  <div class="menu-category">Others</div>
-  <div class="menu-item"><a href="data.html">Data</a></div>
-  <div class="menu-item"><a href="news.html">News</a></div>
-  <div class="menu-item"><a href="photos.html">Photos</a></div>
-  <div class="menu-category">Public</div>
-  <div class="menu-item"><a href="conference.html">Conference</a></div>
-  <div class="menu-category">Link</div>
-  <div class="menu-item"><a href="index_cn.html">中文主页</a></div>
-</td>
-
-<td id="layout-content">
-<div id="toptitle">
-<h1>Lizhuang Tan (谭立状)</h1>
-</div>
-
-<table class="imgtable"><tr><td>
-<img src="./img/tan.jpg" alt="alt text" width="140vh" /></td>
-<td align="left">
-<p>
-Assistant Researcher, Ph.D.<br/>
-<a href="http://www.keylab.net/" target="_blank">Shandong Provincial Key Laboratory of Computing Power Internet and Service Computing</a>,<br/>
-<a href="http://www.scsc.cn/" target="_blank">Shandong Computer Science Center</a> (<a href="http://www.nsccjn.cn/" target="_blank">National Supercomputer Center in Ji'nan</a>),<br/>
-<a href="https://www.qlu.edu.cn/" target="_blank">Qilu University of Technology (Shandong Academy of Sciences)</a><br/>
-<br/>
-Add.:  <a href="https://j.map.baidu.com/05/u-d" target="_blank">Main Building, Supercomputing Technology Park, No. 28666, Jingshi East Road, Ji'nan, Shandong, China.</a>
-<br/>
-Email: tanlzh@sdas.org or lzhtan@qlu.edu.cn<br/>
-<br/>
-Find me at&nbsp;
-[<a href="http://jsxb.scsc.cn/introlist_76/806.html" target="_blank">Official Homepage</a>]
-[<a href="https://scholar.google.com/citations?user=knsgQNIAAAAJ" target="_blank">Google Scholar</a>]
-[<a href="https://github.com/lzhtan" target="_blank">GitHub</a>]
-[<a href="https://www.cnblogs.com/lzhtan/" target="_blank">Blog</a>]
-<br/>
-</p>
-</td>
-</tr>
-</table>
-
-
-
-<h2>About Me</h2>
-
-<p style="text-align: justify;"> Since July 2022, I have been working in the <a href="files/团队介绍-中文Chinese.pdf" target="_blank">Computing-Network Integration Research Group</a> of Shandong Computer Science Center (National Supercomputer Center in Ji'nan). 
-In June 2022, I received my Ph.D. degree from the National Engineering Research Center of Advanced Network Technologies of Beijing Jiaotong University. 
-My research interest is the Network Measurement, Testing and Management, especially Software-defined Networks and Data Center Networks. 
-</p> 
-
-<p style="text-align: justify;"><b>(1) Network Measurement</b>: SRv6-based active network telemetry architecture and its path planning strategy (CIA, 2019), 
-Telemetry flow selection method based on multi-objective optimization and its orchestration solver based on non-dominated sorting genetic algorithm (APNOMS, 2021),
-A review of in-band network telemetry research (COMNET, 2021), 
-The discovery and detection mechanism of in-band network telemetry missing-information FindINT (IEEE NETLETT, 2021),
-In-band network telemetry quality diagnosis and missing information recovery algorithm LossSight (IEEE TNSM, 2021), 
-ByteDance's intra-host delay monitoring and fault diagnosis system Hostping (NSDI, 2023).
-</p>
-
-<p style="text-align: justify;"><b>(2) Network Testing</b>: The prototype of the software-defined network damage instrument(Invention Patents ZL2023117778457.0, ZL202320329297.0, ZL202310224941.2, 2023).
-</p>
-
-<p style="text-align: justify;"><b>(3) Network Management</b>: Data center traffic scheduling method based on two-sided matching model(ETT, 2022), The lossless RDMA watermark automatic tuning mechanism ByteTuning, Data center QUIC transmission protocol DCQUIC (INFOCOM ICCN, 2021),
-Modular QUIC protocol development prototype (CoNEXT Poster, 2020), QUIC proactive connection migration mechanism for heterogeneous networks (MobiQuitous, 2020), MPDTP block scheduling mechanism in multi-path transmission scenarios (NaNA, 2021).
-</p> 
-
-<h2>News</h2>
-<ul>
-  <li style='color:rgb(245, 0, 0)'><p>
-  Oct., 2024.&nbsp;&nbsp; ByteTuning is accepted by IEEE Transacitons on Cloud Computing.
-  </p></li>
-  <li><p>
-  Aug., 2024.&nbsp;&nbsp; A project on Buffer Management of Data Center Networking was funded by the National Natural Science Foundation of China.
-  </p></li>
-  <li><p>
-  Jul., 2024.&nbsp;&nbsp; I have been selected for the Korea-China Young Scientists Exchange Program and will be conducting network management research at POSTECH.
-  </p></li>
-  <li><p>
-  Jul., 2023.&nbsp;&nbsp; Software-defined Network Damager is Ready, welcome to purchase. [<a href="./photos/20230725.jpeg" target="_blank">Link</a>]
-  </p></li>
-  <li><p>
-  Jul., 2023.&nbsp;&nbsp; A project on In-band Network Telemetry was funded by the Natural Science Foundation of Shandong.
-  </p></li>
-  <li><p>
-  May, 2023.&nbsp;&nbsp; LossSight won the second prize of the 25th China Robotics and Artificial Intelligence Competition. [<a href="./img/CRAIC2023.jpg" target="_blank">Link</a>]
-  </p></li>
-  <li><p>
-  Dec., 2022.&nbsp;&nbsp; We will host NaNA'23 in Qingdao, P.R.China in Aug. 2023, and welcome submissions on networking. [<a href="http://www.nana-conference.org/" target="_blank">Link</a>]
-  </p></li>
-  <li><p>
-  Nov., 2022.&nbsp;&nbsp; A project on FPGA-based Offloading in Data Centers was funded by the Natural Science Foundation of Shandong and Inspur Inc.
-  </p></li>
-  <a href="news.html">More...</a>
-</ul>
-
-
-</td>
-</tr>
-</table>
-<div id="footer" >
-  <div id="footer-text">
-    <a href="https://validator.w3.org/check?uri=lzhtan.github.io"><img src="http://www.w3.org/Icons/valid-xhtml11" alt="Valid XHTML 1.1" style="vertical-align:middle" height="26" width="80"/></a>
-    Copyright &copy;&nbsp;2022 - New Era. By <a href="./"> Lizhuang Tan</a>
-    <script type="text/javascript">document.write("Last updated "+new Date(document.lastModified).toUTCString());
-    </script></a>
-  </div>
-</div>
-
+    <header>
+        <h1><a href="index.html"><span class="name-color">Lizhuang Tan (谭立状)</span></a></h1>
+        <nav>
+            <a href="index.html" class="active">Home</a>
+            <a href="cv.html">CV</a>
+            <a href="teaching.html">Teaching</a>
+            <a href="papers.html">Publications</a>
+            <a href="patents.html">Patents</a>
+            <a href="drafts.html">Drafts</a>
+            <a href="group.html">Group</a>
+            <a href="service.html">Service</a>
+            <a href="data.html">Data</a>
+            <a href="news.html">News</a>
+            <a href="photos.html">Photos</a>
+            <a href="conference.html">Conference</a>
+            <a href="index_cn.html" style="font-size: 2em;">
+                <img src="img/language-solid.svg" alt="Language Icon" class="language-icon">
+            </a>
+        </nav>
+    </header>
+    <div class="container">
+        <div class="profile">
+            <img src="./img/tan.jpg" alt="Lizhuang Tan" style="border-radius: 0;">
+            <div>
+                <h2>Lizhuang Tan</h2>
+                <p>Assistant Researcher, Ph.D.</p>
+                <p>Shandong Provincial Key Laboratory of Computing Power Internet and Service Computing</p>
+                <p>Shandong Computer Science Center (National Supercomputer Center in Ji'nan)</p>
+                <p>Qilu University of Technology (Shandong Academy of Sciences)</p>
+                <p class="icon-text">
+                    <i class="fas fa-envelope"></i> tanlzh@sdas.org/lzhtan@qlu.edu.cn
+                </p>
+                <p class="icon-text">
+                    <i class="fas fa-map-marker-alt"></i> Main Building, Supercomputing Technology Park, No. 28666, Jingshi East Road, Ji'nan, Shandong, China.
+                </p>
+                </div>
+            <div class="icon-container">
+                <a href="http://jsxb.scsc.cn/introlist_76/806.html"><i class="fas fa-home"></i></a>
+                <a href="https://scholar.google.com/citations?user=knsgQNIAAAAJ"><i class="fas fa-graduation-cap"></i></a>
+                <a href="https://github.com/lzhtan"><i class="fab fa-github"></i></a>
+                <a href="https://www.cnblogs.com/lzhtan/"><i class="fas fa-blog"></i></a>
+            </div>
+        </div>
+        <div class="about">
+            <h2>About Me</h2>
+            <p>Since July 2022, I have been working in the Computing-Network Integration Research Group of Shandong Computer Science Center (National Supercomputer Center in Ji'nan). In June 2022, I received my Ph.D. degree from the National Engineering Research Center of Advanced Network Technologies of Beijing Jiaotong University. My research interest is the Network Measurement, Testing and Management, especially Software-defined Networks and Data Center Networks.</p>
+        </div>
+        <div class="about-detail">
+            <div class="about-image">
+                <img src="img/netmeasurement.webp" alt="Network Measurement Image">
+            </div>
+            <div class="text-container">
+                <h3>Network Measurement</h3>
+                <p>SRv6-based active network telemetry architecture and its path planning strategy (CIA, 2019), Telemetry flow selection method based on multi-objective optimization and its orchestration solver based on non-dominated sorting genetic algorithm (APNOMS, 2021), A review of in-band network telemetry research (COMNET, 2021), The discovery and detection mechanism of in-band network telemetry missing-information FindINT (IEEE NETLETT, 2021), In-band network telemetry quality diagnosis and missing information recovery algorithm LossSight (IEEE TNSM, 2021), ByteDance's intra-host delay monitoring and fault diagnosis system Hostping (NSDI, 2023).</p>
+            </div>
+        </div>
+        <div class="about-detail">
+            <div class="about-image">
+                <img src="img/nettesting.webp" alt="Network Management">
+            </div>
+            <div class="text-container">
+                <h3>Network Testing</h3>
+                <p>The prototype of the software-defined network damage instrument (Invention Patents: ZL2023117778457.0, ZL202320329297.0, ZL202310224941.2, 2023).</p>
+            </div>
+        </div>
+        <div class="about-detail">
+            <div class="about-image">
+                <img src="img/netmanagement.webp" alt="Network Measurement Image">
+            </div>
+            <div class="text-container">
+                <h3>Network Management</h3>
+                <p>Data center traffic scheduling method based on two-sided matching model (ETT, 2022), The lossless RDMA watermark automatic tuning mechanism ByteTuning (IEEE TCC, 2022), Data center QUIC transmission protocol DCQUIC (INFOCOM ICCN, 2021), Modular QUIC protocol development prototype (CoNEXT Poster, 2020), QUIC proactive connection migration mechanism for heterogeneous networks (MobiQuitous, 2020), MPDTP block scheduling mechanism in multi-path transmission scenarios (NaNA, 2021).</p>
+            </div>
+        </div>
+        <div class="news">
+            <h2>News</h2>
+            <table class="news-table">
+            <tr>
+                <td><span class="news-date">10/2024</span></td>
+                <td>ByteTuning is accepted by IEEE Transacitons on Cloud Computing.</td>
+            </tr>
+            <tr>
+                <td><span class="news-date">08/2024</span></td>
+                <td>A project on Buffer Management of Data Center Networking was funded by the National Natural Science Foundation of China.</td>
+            </tr>
+            <tr>
+                <td><span class="news-date">07/2023</span></td>
+                <td>I have been selected for the Korea-China Young Scientists Exchange Program and will be conducting network management research at POSTECH.</td>
+            </tr>
+            <tr>
+                <td><span class="news-date">07/2023</span></td>
+                <td>Software-defined Network Damager is Ready, welcome to purchase.</td>
+            </tr>
+            <tr>
+                <td><span class="news-date">07/2023</span></td>
+                <td>A project on In-band Network Telemetry was funded by the Natural Science Foundation of Shandong.</td>
+            </tr>
+            <tr>
+                <td><span class="news-date">05/2023</span></td>
+                <td>LossSight won the second prize of the 25th China Robotics and Artificial Intelligence Competition.<a href="./img/CRAIC2023.jpg" target="_blank" class="fas fa-link"></a></td>
+            </tr>
+            <tr>
+                <td><span class="news-date">12/2022</span></td>
+                <td>We will host NaNA'23 in Qingdao, P.R.China in Aug. 2023, and welcome submissions on networking.<a href="http://www.nana-conference.org/" target="_blank" class="fas fa-link"></a></td>
+            </tr>
+            <tr>
+                <td><span class="news-date">11/2022</span></td>
+                <td>A project on FPGA-based Offloading in Data Centers was funded by the Natural Science Foundation of Shandong and Inspur Inc.</td>
+            </tr>
+            </table>
+        </div>
+    </div>
+    <footer>
+        <script type="text/javascript" id="clstr_globe" src="//clustrmaps.com/globe.js?d=vk-nG2-GET7YVDjVk_z-Bv9Oi_sy3lxSw2W0JF8zKP4"></script>
+        <p>Copyright &copy; 2022 - New Era. By Lizhuang Tan</p>
+    </footer>
 </body>
-
 </html>
-

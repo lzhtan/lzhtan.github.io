@@ -108,4 +108,7 @@ footer {
 	nav a {
 		margin: 1px 0;
 	}
+	profile img{
+		display: none;
+	}
 }

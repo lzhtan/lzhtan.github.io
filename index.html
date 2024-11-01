@@ -234,7 +234,14 @@
         </div>
     </div>
     <footer>
-        <script type="text/javascript" id="clstr_globe" src="//clustrmaps.com/globe.js?d=NRztqdTOj8YSSxpw2P9LZso9S1K0oLHwjo-x9ASAm04"></script>
+        <script type="text/javascript" id="clstr_globe" src="//clustrmaps.com/globe.js?d=NRztqdTOj8YSSxpw2P9LZso9S1K0oLHwjo-x9ASAm04">
+            function resizeMap() {
+                var mapContainer = document.querySelector('.clstrm_outer'); // 确保选择正确的元素
+                if (mapContainer) {
+                    mapContainer.style.width = '50px';
+                }
+            }
+        </script>
         <p>Copyright &copy; 2022 - New Era. By Lizhuang Tan</p>
     </footer>
 </body>

@@ -196,11 +196,11 @@
   <td align="center" ><a href="https://wowmomconference2025.uta.edu/">Website</a></td>
 </tr>
 <tr>
-  <td align="center" >MMSys'25/SenSys'25</td>
+  <td align="center" >MMSys'25 / SenSys'25</td>
   <td align="center" >2024/11/22</td>
   <td align="center" >Stellenbosch, South Africa</td>
   <td align="center" >2025/03/31</td>
-  <td align="center" ><a href="https://2025.acmmmsys.org/">Website1</a>/<a href="https://nossdav.org/2025/">Website2</a></td>
+  <td align="center" ><a href="https://2025.acmmmsys.org/">Website1</a>/ <a href="https://nossdav.org/2025/">Website2</a></td>
 </tr>
 <tr>
   <td align="center" >IMC'25</td>
@@ -295,6 +295,18 @@
       }
     }
   }
+  function adjustTableWidth() {
+        var title = document.querySelector('.bulletin-board-title');
+        var table = document.getElementById('ConferTable');
+        var titleWidth = title.offsetWidth;
+        table.style.width = titleWidth + 'px';
+    }
+
+    // 调整表格宽度以匹配标题宽度
+    adjustTableWidth();
+
+    // 当窗口大小改变时，调整表格宽度以匹配标题宽度
+    window.onresize = adjustTableWidth;
   window.onload = function() {
     highlightPastDeadlines();
     sortTable(1); // 按照"Deadline"列的增序排序
@@ -310,7 +322,10 @@
 
 <footer>
   <script type="text/javascript" id="clstr_globe" src="//clustrmaps.com/globe.js?d=NRztqdTOj8YSSxpw2P9LZso9S1K0oLHwjo-x9ASAm04">
-  document.getElementById("clstrm_outer").style.width = "50px";
+  window.onload = function() {
+            var div = document.querySelector('.clstrm_outer');
+            div.style.width = '50px';
+        };
   </script>
   <p>Copyright &copy; 2022 - New Era. By Lizhuang Tan</p>
 </footer>

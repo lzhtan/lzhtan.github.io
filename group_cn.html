@@ -12,26 +12,38 @@
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;700&display=swap" rel="stylesheet">        
     <link rel="stylesheet" href="css/jemdoc.css" type="text/css" />
     <style>
-    table {
-        width: 80%; /* 表格宽度 */
-        border-collapse: collapse; /* 保持表格边框合并 */
-        font-weight: 100;
-        border: none; /* 确保表格本身没有边框 */
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-        margin: auto;
-
-    }
-    table th {
-      text-align: center;
-        border: none; /* 去掉单元格边框 */
-        color: #333;
-        font-weight: normal; /* 将字体粗细设置为正常 */
-    }
-    table img {
-        width: 100px; /* 图片宽度 */
-        border-radius: 3%; /* 圆形图片 */
-        margin-bottom: 0px; /* 图片底部外边距 */
-    }
+    #album {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(100px, 1fr)); /* 列宽最小200px，自适应填充 */
+            gap: 10px; /* 图片间隔 */
+            padding: 10px; /* 相册内边距 */
+        }
+        #album .photo-item {
+            background: #fff;
+            border: 1px solid #eaeaea;
+            border-radius: 8px;
+            overflow: hidden; /* 防止内容溢出 */
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+            transition: box-shadow 0.3s ease-in-out;
+            text-align: center;
+        }
+        #album .photo-item:hover {
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        #album img {
+            width: 100%;
+            height: auto;
+            border-radius: 2px 8px 0 0; /* 图片圆角仅应用于顶部 */
+            transition: transform 0.3s ease-in-out;
+        }
+        #album img:hover {
+            transform: scale(1.02); /* 悬停时图片稍微放大 */
+        }
+        #album p {
+            margin: 1px 3px; /* 描述文本的上下外边距 */
+            color: #333;
+            font-size: 14px;
+        }
     .board-card {
         background: #fff;
         border: 1px solid #eaeaea;
@@ -41,7 +53,6 @@
         box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
         transition: box-shadow 0.3s ease-in-out;
     }
-
     .board-card:hover {
         box-shadow: 0 3px 3px rgba(161, 0, 0, 0.5);
     }
@@ -99,22 +110,29 @@
         </p>
       </div>
       <h3>硕士生</h3>
-      <table>
-        <tr>
-          <th><img src="img/xindong.jpg" /></th>
-          <th><img src="img/xinhangwang.jpg" /></th>
-          <th><img src="img/chengwang.jpg" /></th>
-          <th><img src="img/kuichao.jpg" /></th>
-          <th><img src="img/yanzhou.jpg"/></th>
-        </tr>
-        <tr>
-          <th>董鑫<br/>（2024-2027）</th>
-          <th>王新航<br/>（2022-2025）</th>
-          <th>王成<br/>（2022-2025）</th>
-          <th>张奎超<br/>（2021-2024）</th>
-          <th>周岩<br/>（2020-2023）</th>
-       </tr>
-      </table>
+      <div id="album">
+        <div class="photo-item">
+          <img src="img/xindong.jpg" />
+          <p>董鑫<br/>（2024-2027）</p>
+      </div>
+        <div class="photo-item">
+          <img src="img/xinhangwang.jpg" />
+          <p>王新航<br/>（2024-2027）</p>
+      </div>
+        <div class="photo-item">
+          <img src="img/chengwang.jpg" />
+          <p>王成<br/>（2024-2027）</p>
+      </div>
+        <div class="photo-item">
+          <img src="img/kuichao.jpg" />
+          <p>张奎超<br/>（2024-2027）</p>
+      </div>
+        <div class="photo-item">
+          <img src="img/yanzhou.jpg" />
+          <p>周岩<br/>（2024-2027）</p>
+      </div>
+    </div>
+
       
       <h3>本科生</h3>
       2024年3月，与2021级本科生隋宗瑞、2021级本科生许一鸣分别合作申请发明专利1项。

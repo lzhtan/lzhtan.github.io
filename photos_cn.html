@@ -10,7 +10,7 @@
     <title>Lizhuang Tan</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;700&display=swap" rel="stylesheet">        
-    <link rel="stylesheet" href="css/jemdoc.css" type="text/css" />
+    <link rel="stylesheet" href="css/jemdoc.css" type="text/css" loading="lazy" />
     <style>
         #album {
             display: grid;
@@ -24,7 +24,7 @@
             border-radius: 8px;
             overflow: hidden; /* 防止内容溢出 */
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
-            transition: box-shadow 0.3s ease-in-out;
+            transition: box-shadow 0.1s ease-in-out;
             text-align: center;
         }
         #album .photo-item:hover {
@@ -36,21 +36,19 @@
             border-radius: 2px 8px 0 0; /* 图片圆角仅应用于顶部 */
             transition: transform 0.3s ease-in-out;
         }
-        #album img:hover {
-            transform: scale(1.02); /* 悬停时图片稍微放大 */
-        }
         #album p {
-            margin: 1px 3px; /* 描述文本的上下外边距 */
+            margin: 1px 1px 3px 1px; /* 描述文本的上下外边距 */
             color: #333;
-            font-size: 14px;
+            font-size: 13px;
+            font-weight: bold;
         }
     </style>
 </head>
 <body>
     <header>
-      <h1><a href="index_cn.html"><span class="name-color">谭立状（Lizhuang Tan)</span></a></h1>
-      <nav>
-          <a href="index_cn.html" class="active">主页</a>
+        <h1><a href="index_cn.html"><span class="name-color"><img id="tan_logo" src="./img/tan.jpg" alt="Lizhuang Tan">谭立状 (Lizhuang Tan)</span></a></h1>
+        <nav>
+          <a href="index_cn.html">主页</a>
           <a href="cv_cn.html">简历</a>
           <a href="teaching_cn.html">教学</a>
           <a href="projects_cn.html">科研</a>
@@ -70,148 +68,162 @@
     </header>
     <div class="container">
         <div id="album">
-          <div class="photo-item">
-            <img src="photos/20241027.jpg" alt="2024年10月, 与洪教授在浦项（2）" />
-            <p>2024年10月, 与洪教授在浦项（2）</p>
+        <div class="photo-item">
+                <img src="photos/20241103.jpg" alt="2024年11月, DPNM实验室合影" loading="lazy" loading="lazy" />
+                <p>2024年11月, DPNM实验室合影
+                <a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1xoS1YKEjq/"><i class="fas fa-video"></i></a></p>
         </div>
         <div class="photo-item">
-            <img src="photos/20241014.jpeg" alt="2024年10月, 与洪教授在浦项" />
-            <p>2024年10月, 与洪教授在浦项</p>
+              <img src="photos/20241102.jpg" alt="2024年11月, DPNM实验室合影" loading="lazy" loading="lazy" />
+              <p>2024年11月, DPNM实验室合影</p>
         </div>
         <div class="photo-item">
-            <img src="photos/20241007.jpg" alt="2024年10月, DPNM实验室聚餐" />
+            <img src="photos/20241027.jpg" alt="2024年10月, 与洪教授在浦项（(내연산 & 보경사)）" loading="lazy" loading="lazy" />
+            <p>2024年10月, 与洪教授在浦项 (내연산 & 보경사)
+                <a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1zW1TYzEDC/"><i class="fas fa-video"></i></a></p>
+        </div>
+        <div class="photo-item">
+            <img src="photos/20241014.jpeg" alt="2024年10月, 与洪教授在浦项" loading="lazy" />
+            <p>2024年10月, 与洪教授在浦项
+                <a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1qJ2rYPEw6/"><i class="fas fa-video"></i></a></p>
+        </div>
+        <div class="photo-item">
+            <img src="photos/20241007.jpg" alt="2024年10月, DPNM实验室聚餐" loading="lazy" />
             <p>2024年10月, DPNM实验室聚餐</p>
         </div>
         <div class="photo-item">
-            <img src="photos/20241001.jpg" alt="2024年10月, 浦项科技大学" />
+            <img src="photos/20241001.jpg" alt="2024年10月, 浦项科技大学" loading="lazy" />
             <p>2024年10月, 浦项科技大学</p>
         </div>
         <div class="photo-item">
-            <img src="photos/20240805.jpg" alt="2024年08月, 山东省高校青年教师教学能力提升省级示范培训" />
+            <img src="photos/20240805.jpg" alt="2024年08月, 山东省高校青年教师教学能力提升省级示范培训" loading="lazy" />
             <p>2024年08月, 山东省高校青年教师教学能力提升省级示范培训</p>
         </div>
         <div class="photo-item">
-            <img src="photos/20240604.jpg" alt="2024年06月, 国产化算力推进启动会" />
+            <img src="photos/20240604.jpg" alt="2024年06月, 国产化算力推进启动会" loading="lazy" />
             <p>2024年06月, 国产化算力推进启动会</p>
         </div>
         <div class="photo-item">
-            <img src="photos/20240511.jpeg" alt="2024年05月, 泰山科技论坛" />
+            <img src="photos/20240511.jpeg" alt="2024年05月, 泰山科技论坛" loading="lazy" />
             <p>2024年05月, 泰山科技论坛</p>
         </div>
         <div class="photo-item">
-            <img src="photos/20231120.jpeg" alt="2023年11月, 网络天下论坛" />
+            <img src="photos/20231120.jpeg" alt="2023年11月, 网络天下论坛" loading="lazy" />
             <p>2023年11月, 网络天下论坛</p>
         </div>
         <div class="photo-item">
-            <img src="photos/20230820.jpeg" alt="2023年08月, NaNA会议合影（2）" />
+            <img src="photos/20230820.jpeg" alt="2023年08月, NaNA会议合影（2）" loading="lazy" />
             <p>2023年08月, NaNA会议合影（2）</p>
         </div>
         <div class="photo-item">
-            <img src="photos/20230819.jpeg" alt="2023年08月, NaNA会议合影（1）" />
+            <img src="photos/20230819.jpeg" alt="2023年08月, NaNA会议合影（1）" loading="lazy" />
             <p>2023年08月, NaNA会议合影（1）</p>
         </div>
         <div class="photo-item">
-            <img src="photos/20230725.jpeg" alt="2023年07月, 基于P4的软件定义网络损伤仪" />
+            <img src="photos/20230725.jpeg" alt="2023年07月, 基于P4的软件定义网络损伤仪" loading="lazy" />
             <p>2023年07月, 基于P4的软件定义网络损伤仪</p>
         </div>
         <div class="photo-item">
-            <img src="photos/20230702.jpeg" alt="2023年07月, 聊城光岳楼" />
+            <img src="photos/20230702.jpeg" alt="2023年07月, 聊城光岳楼" loading="lazy" />
             <p>2023年07月, 聊城光岳楼</p>
         </div>
         <div class="photo-item">
-            <img src="photos/20230626.jpg" alt="2023年06月, 北京雍和宫" />
+            <img src="photos/20230626.jpg" alt="2023年06月, 北京雍和宫" loading="lazy" />
             <p>2023年06月, 北京雍和宫</p>
         </div>
         <div class="photo-item">
-            <img src="photos/20230624.jpg" alt="2023年06月, 哈尔滨苏联红军烈士纪念碑" />
+            <img src="photos/20230624.jpg" alt="2023年06月, 哈尔滨苏联红军烈士纪念碑" loading="lazy" />
             <p>2023年06月, 哈尔滨苏联红军烈士纪念碑</p>
         </div>
         <div class="photo-item">
-            <img src="photos/20230623.jpg" alt="2023年06月, 哈尔滨731部队罪证遗址" />
+            <img src="photos/20230623.jpg" alt="2023年06月, 哈尔滨731部队罪证遗址" loading="lazy" />
             <p>2023年06月, 哈尔滨731部队罪证遗址</p>
         </div>
         <div class="photo-item">
-            <img src="photos/20230519.jpg" alt="2023年05月, 潍坊坊茨小镇" />
+            <img src="photos/20230519.jpg" alt="2023年05月, 潍坊坊茨小镇" loading="lazy" />
             <p>2023年05月, 潍坊坊茨小镇</p>
         </div>
         <div class="photo-item">
-            <img src="photos/20230518.jpg" alt="2023年05月, 我们结婚啦" />
+            <img src="photos/20230518.jpg" alt="2023年05月, 我们结婚啦" loading="lazy" />
             <p>2023年05月, 我们结婚啦</p>
         </div>
         <div class="photo-item">
-            <img src="photos/20230508.jpg" alt="2023年05月, 我的猫" />
+            <img src="photos/20230508.jpg" alt="2023年05月, 我的猫" loading="lazy" />
             <p>2023年05月, 我的猫</p>
         </div>
         <div class="photo-item">
-            <img src="photos/20230413.jpg" alt="2023年04月, CCSA标准会" />
+            <img src="photos/20230413.jpg" alt="2023年04月, CCSA标准会" loading="lazy" />
             <p>2023年04月, CCSA标准会</p>
         </div>
         <div class="photo-item">
-            <img src="photos/20230411-1.jpeg" alt="2023年04月, 重庆朝天门" />
+            <img src="photos/20230411-1.jpeg" alt="2023年04月, 重庆朝天门" loading="lazy" />
+            <p>2023年04月, 重庆朝天门
+                <a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1XM411576L/"><i class="fas fa-video"></i></a></p>
+        </div>
+        <div class="photo-item">
+            <img src="photos/20230411.jpeg" alt="2023年04月, 重庆朝天门" loading="lazy" />
             <p>2023年04月, 重庆朝天门</p>
         </div>
         <div class="photo-item">
-            <img src="photos/20230411.jpeg" alt="2023年04月, 重庆朝天门" />
+            <img src="photos/20230410.jpeg" alt="2023年04月, 重庆朝天门" loading="lazy" />
             <p>2023年04月, 重庆朝天门</p>
         </div>
         <div class="photo-item">
-            <img src="photos/20230410.jpeg" alt="2023年04月, 重庆朝天门" />
-            <p>2023年04月, 重庆朝天门</p>
-        </div>
-        <div class="photo-item">
-            <img src="photos/20230330.jpeg" alt="2023年03月, 武汉长江大桥" />
+            <img src="photos/20230330.jpeg" alt="2023年03月, 武汉长江大桥" loading="lazy" />
             <p>2023年03月, 武汉长江大桥</p>
         </div>
         <div class="photo-item">
-            <img src="photos/20230330-1.jpeg" alt="2023年03月, 武汉晴川阁" />
+            <img src="photos/20230330-1.jpeg" alt="2023年03月, 武汉晴川阁" loading="lazy" />
             <p>2023年03月, 武汉晴川阁</p>
         </div>
         <div class="photo-item">
-            <img src="photos/20230329.jpeg" alt="2023年03月, 武汉长江眺望" />
+            <img src="photos/20230329.jpeg" alt="2023年03月, 武汉长江眺望" loading="lazy" />
             <p>2023年03月, 武汉长江眺望</p>
         </div>
         <div class="photo-item">
-            <img src="photos/20230226.jpeg" alt="2023年02月, 青岛小麦岛" />
+            <img src="photos/20230226.jpeg" alt="2023年02月, 青岛小麦岛" loading="lazy" />
             <p>2023年02月, 青岛小麦岛</p>
         </div>
         <div class="photo-item">
-            <img src="photos/20221117.jpeg" alt="2022年11月, 济南青铜山大峡谷" />
+            <img src="photos/20221117.jpeg" alt="2022年11月, 济南青铜山大峡谷" loading="lazy" />
             <p>2022年11月, 济南青铜山大峡谷</p>
         </div>
         <div class="photo-item">
-            <img src="photos/20221113.jpeg" alt="2022年11月，团建合影" />
+            <img src="photos/20221113.jpeg" alt="2022年11月，团建合影" loading="lazy" />
             <p>2022年11月，团建合影</p>
         </div>
         <div class="photo-item">
-            <img src="photos/20221103.jpeg" alt="2022年11月，云栖大会" />
+            <img src="photos/20221103.jpeg" alt="2022年11月，云栖大会" loading="lazy" />
             <p>2022年11月，云栖大会</p>
         </div>
         <div class="photo-item">
-            <img src="photos/20221101.jpeg" alt="2022年11月，杭州灵隐寺" />
-            <p>2022年11月，杭州灵隐寺</p>
+            <img src="photos/20221101.jpeg" alt="2022年11月，杭州灵隐寺" loading="lazy" />
+            <p>2022年11月，杭州灵隐寺
+                <a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1qJ2rYPEw6/"><i class="fas fa-video"></i></a></p>
         </div>
         <div class="photo-item">
-            <img src="photos/20221007.jpeg" alt="2022年10月，济南大明湖" />
+            <img src="photos/20221007.jpeg" alt="2022年10月，济南大明湖" loading="lazy" />
             <p>2022年10月，济南大明湖</p>
         </div>
         <div class="photo-item">
-            <img src="photos/20221004.jpeg" alt="2022年10月，潍坊一中（高中母校）" />
+            <img src="photos/20221004.jpeg" alt="2022年10月，潍坊一中（高中母校）" loading="lazy" />
             <p>2022年10月，潍坊一中（高中母校）</p>
         </div>
         <div class="photo-item">
-            <img src="photos/20220926.jpeg" alt="2022年09月，京杭运河四女寺枢纽" />
+            <img src="photos/20220926.jpeg" alt="2022年09月，京杭运河四女寺枢纽" loading="lazy" />
             <p>2022年09月，京杭运河四女寺枢纽</p>
         </div>
         <div class="photo-item">
-            <img src="photos/20220731.jpeg" alt="2022年07月，算力大会" />
+            <img src="photos/20220731.jpeg" alt="2022年07月，算力大会" loading="lazy" />
             <p>2022年07月，算力大会</p>
         </div>
         <div class="photo-item">
-            <img src="photos/20220628.jpeg" alt="2022年06月，字节毕业" />
-            <p>2022年06月，字节毕业</p>
+            <img src="photos/20220628.jpeg" alt="2022年06月，字节毕业" loading="lazy" />
+            <p>2022年06月，字节毕业
+                <a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1t94y1173n/"><i class="fas fa-video"></i></a></p>
         </div>
         <div class="photo-item">
-            <img src="photos/20220605.jpeg" alt="2022年06月，博士毕业" />
+            <img src="photos/20220605.jpeg" alt="2022年06月，博士毕业" loading="lazy" />
             <p>2022年06月，博士毕业</p>
         </div>        
         

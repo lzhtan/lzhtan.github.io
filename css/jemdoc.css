@@ -10,6 +10,9 @@ body {
 	padding: 20px;
 	min-height: 100vh; /* 设置body的最小高度为视口高度 */
 }
+#tan_logo {
+	display: none;
+}
 .profile {
 	background-color: #fff;
 	border: 1px solid #ddd;
@@ -22,15 +25,16 @@ body {
 }
 .icon-container {
 	position: absolute; /* 绝对定位 */
-	top: 10px; /* 容器顶部对齐 */
-	right: 10px; /* 容器右侧对齐 */
+	top: 15px; /* 容器顶部对齐 */
+	right: 15px; /* 容器右侧对齐 */
 	display: flex; /* 使用 Flexbox 布局 */
 	gap: 5px; /* 图标之间的间隔 */
 }
 .profile img{
 	width: 150px;
-	border-radius: 0;
 	margin-right: 20px;
+	border-radius: 10px;
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* 添加阴影 */
 }
 .profile h2 {
 	margin: 0;
@@ -38,10 +42,16 @@ body {
 	color: #9b0d31;
 }
 .profile p {
-	margin: 5px 0;        }
+	margin: 5px 0;
+}
+.profile a {
+    text-decoration: none; /* 删除下划线 */
+    color: inherit; /* 恢复默认字体颜色 */
+}
 .profile i {
 	margin-right: 8px; /* 添加右边距以在图标和文本之间留出空间 */
 	color: #9b0d31; /* 设置图标颜色 */
+
 }
 .icon-text {
 	display: flex; /* 使用 Flexbox 布局 */
@@ -103,12 +113,21 @@ footer {
 		display:flex;
 		flex-direction: column;
 		align-items: center;
-		margin-right: 30px;
+		margin-right: 50px;
 	}
 	nav a {
 		margin: 1px 0;
 	}
 	.profile img{
 		display: none;
+	}
+	#tan_logo {
+		display: block;
+		width: 100px;
+		border-radius: 10px;
+		box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* 添加阴影 */
+	}
+	.information{
+		margin-top: 30px;
 	}
 }

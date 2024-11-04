@@ -8,7 +8,7 @@ body {
 	max-width: 1200px;
 	margin: 0 auto;
 	padding: 20px;
-	min-height: 100vh; /* 设置body的最小高度为视口高度 */
+	min-height: 80vh; /* 设置body的最小高度为视口高度 */
 }
 #tan_logo {
 	display: none;

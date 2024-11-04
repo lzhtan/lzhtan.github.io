@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>与豆包对话</title>
+</head>
+
+<body>
+  <input type="text" id="inputText" placeholder="输入问题">
+  <button onclick="sendQuestion()">发送问题</button>
+  <div id="answer"></div>
+
+  <script>
+    function sendQuestion() {
+      const input = document.getElementById('inputText').value;
+      const key = '633bc030-ae6d-429c-a516-625011a3e832';
+      fetch('your_api_endpoint_here', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': key
+        },
+        body: JSON.stringify({ question: input })
+      })
+       .then(response => response.json())
+       .then(data => {
+          document.getElementById('answer').innerHTML = data.answer;
+        })
+       .catch(error => {
+          console.error('Error:', error);
+        });
+    }
+  </script>
+</body>
+
+</html>

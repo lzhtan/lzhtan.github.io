@@ -33,7 +33,7 @@ body {
 .profile img{
 	width: 150px;
 	margin-right: 20px;
-	border-radius: 10px;
+	border-radius: 3px;
 	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* 添加阴影 */
 }
 .profile h2 {
@@ -75,6 +75,14 @@ h1 a{
 	font-size: 0.6em;
 	text-decoration: none;
 }
+.researchdirection {
+    display: block; /* 或者使用 inline-block，这取决于元素的类型 */
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+	margin-bottom: 10px;
+}
+
 .language-icon {
 	align-items: center;
 	display: flex;
@@ -129,5 +137,8 @@ footer {
 	}
 	.information{
 		margin-top: 30px;
+	}
+	.researchdirection{
+		display: none;
 	}
 }

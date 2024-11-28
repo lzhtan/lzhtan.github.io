@@ -27,11 +27,6 @@
             background: transparent;
         }
 
-        /* 确保卡片背景半透明 */
-        .paper-card {
-            background-color: rgba(255, 255, 255, 0.95) !important;
-        }
-
         .about-detail {
             display: flex;
             align-items: flex-start;
@@ -113,9 +108,8 @@
         .audio-container {
             display: inline-flex;
             align-items: center;
-            margin-left: 15px;
             cursor: pointer;
-            padding: 8px 16px;
+            padding: 8px 8px;
             border-radius: 4px;
             transition: all 0.3s ease;
         }
@@ -127,30 +121,11 @@
         /* 播放图标样式 */
         .audio-icon {
             color: #9b0d31;
-            margin-right: 8px;
             font-size: 16px;
         }
 
-        /* 文字样式 */
-        .audio-text {
-            color: #666;
-            font-size: 14px;
-            font-weight: normal;
-        }
+        
 
-        /* 调整主容器的样式 */
-        .container {
-            position: relative;
-            z-index: 1;
-            background: transparent;  /* 确保背景透明 */
-        }
-
-        /* 调整卡片的样式 */
-        .paper-card {
-            position: relative;
-            z-index: 1;
-            background: rgba(255, 255, 255, 0.9);  /* 略微透明的背景 */
-        }
 
     </style>
 </head>
@@ -170,7 +145,7 @@
             <a href="news.html">News</a>
             <a href="photos.html">Photos</a>
             <a href="conference.html">Conference</a>
-            <a href="index_cn.html?manual=true" style="font-size: 2em;">
+            <a href="index_cn.html" style="font-size: 2em;">
                 <img src="img/language-solid.svg" alt="Language Icon" class="language-icon">
             </a>
         </nav>
@@ -182,7 +157,7 @@
                 <h2>Lizhuang Tan (谭立状)
                     <div class="audio-container" onclick="toggleAudio()">
                         <i class="fas fa-volume-up audio-icon"></i>
-                        <span class="audio-text">Pronunciation</span>
+                        <span class="audio-text"></span>
                         <audio id="audio-player" style="display: none;">
                             <source src="./files/tanlizhuang-chinese.mp3" type="audio/mpeg">
                         </audio>
@@ -218,7 +193,7 @@
         </div>
         <div class="about-detail">
             <div class="about-image">
-                <img src="img/netmeasurement.webp" alt="Network Measurement Image">
+                <img src="img/netmeasurement.jpeg" alt="Network Measurement Image">
             </div>
             <div class="text-container">
                 <h3>Network Measurement</h3>
@@ -227,7 +202,7 @@
         </div>
         <div class="about-detail">
             <div class="about-image">
-                <img src="img/nettesting.webp" alt="Network Management">
+                <img src="img/nettesting.jpeg" alt="Network Management">
             </div>
             <div class="text-container">
                 <h3>Network Testing</h3>
@@ -236,7 +211,7 @@
         </div>
         <div class="about-detail">
             <div class="about-image">
-                <img src="img/netmanagement.webp" alt="Network Measurement Image">
+                <img src="img/netmanagement.jpeg" alt="Network Measurement Image">
             </div>
             <div class="text-container">
                 <h3>Network Management</h3>
@@ -293,22 +268,17 @@
     const audioPlayer = document.getElementById('audio-player');
     const audioIcon = document.querySelector('.audio-icon');
 
-    function toggleAudio() {
+    audioIcon.addEventListener('click', function() {
         if (audioPlayer.paused) {
             audioPlayer.play();
-            audioIcon.classList.remove('fa-volume-up');
-            audioIcon.classList.add('fa-volume-high');
+            audioIcon.classList.add('fa-pause');
+            audioIcon.classList.remove('fa-play');
         } else {
             audioPlayer.pause();
-            audioIcon.classList.remove('fa-volume-high');
-            audioIcon.classList.add('fa-volume-up');
+            audioIcon.classList.add('fa-play');
+            audioIcon.classList.remove('fa-pause');
         }
-    }
-
-    audioPlayer.addEventListener('ended', function() {
-        audioIcon.classList.remove('fa-volume-high');
-        audioIcon.classList.add('fa-volume-up');
-    });
+    }); 
     </script>
 </body>
 </html>

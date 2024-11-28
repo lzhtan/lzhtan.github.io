@@ -114,35 +114,14 @@
             left: 50%;
             transform: translate(-50%, -50%);
             padding: 20px;
-            padding-top: 50px;
             border: 1px solid #888;
-            width: 400px;
-            max-width: 90%;
             border-radius: 10px;
             box-sizing: border-box;
         }
 
-        /* 关闭按钮样式 */
-        .close {
-            position: absolute;
-            right: 10px;
-            top: 10px;
-            color: #aaa;
-            font-size: 28px;
-            font-weight: bold;
-            cursor: pointer;
-        }
-
-        .close:hover,
-        .close:focus {
-            color: black;
-            text-decoration: none;
-        }
-
         /* 弹窗图片样式 */
         .modal-content img {
-            width: 100%;
-            height: auto;
+            width: 300px;
             display: block;
         }
 
@@ -206,7 +185,6 @@
                 <!-- 弹窗 -->
                 <div id="myModal" class="modal">
                     <div class="modal-content">
-                        <span class="close" onclick="closeModal()">&times;</span>
                         <img src="img/wechat.jpg" alt="微信图片" style="width:100%;">
                     </div>
                 </div>
@@ -225,7 +203,7 @@
         </div>
         <div class="about-detail">
             <div class="about-image">
-                <img src="img/netmeasurement.webp" alt="Network Measurement Image">
+                <img src="img/netmeasurement.jpeg" alt="Network Measurement">
             </div>
             <div class="text-container">
                 <h3>网络测量</h3>
@@ -239,7 +217,7 @@
         </div>
         <div class="about-detail">
             <div class="about-image">
-                <img src="img/nettesting.webp" alt="Network Management">
+                <img src="img/nettesting.jpeg" alt="Network Testing">
             </div>
             <div class="text-container">
                 <h3>网络测试</h3>
@@ -248,7 +226,7 @@
         </div>
         <div class="about-detail">
             <div class="about-image">
-                <img src="img/netmanagement.webp" alt="Network Measurement Image">
+                <img src="img/netmanagement.jpeg" alt="Network Measurement">
             </div>
             <div class="text-container">
                 <h3>网络管控</h3>
@@ -340,11 +318,7 @@
             modal.style.display = "block";
         }
 
-        // 关闭弹窗
-        function closeModal() {
-            var modal = document.getElementById("myModal");
-            modal.style.display = "none";
-        }
+        
         // 点击界面空白处关闭弹窗
         window.onclick = function(event) {
             var modal = document.getElementById("myModal");

@@ -12,8 +12,26 @@
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/jemdoc.css" type="text/css" />
     <style>
-        
-        
+        /* 确保主体内容有相对定位 */
+        body {
+            position: relative;
+            min-height: 100vh;
+            margin: 0;
+            background-color: white;
+        }
+
+        /* 确保内容容器样式正确 */
+        .container {
+            position: relative;
+            z-index: 1;
+            background: transparent;
+        }
+
+        /* 确保卡片背景半透明 */
+        .paper-card {
+            background-color: rgba(255, 255, 255, 0.95) !important;
+        }
+
         .about-detail {
             display: flex;
             align-items: flex-start;
@@ -87,8 +105,51 @@
             color: #fff;
             padding: 5px 10px;
             border-radius: 5px;
-            margin-right: 10px;
+            margin-right: 5px;
             width: 60px;
+        }
+
+        /* 音频播放器容器 */
+        .audio-container {
+            display: inline-flex;
+            align-items: center;
+            margin-left: 15px;
+            cursor: pointer;
+            padding: 8px 16px;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+        }
+
+        .audio-container:hover {
+            background: rgba(155, 13, 49, 0.1);
+        }
+
+        /* 播放图标样式 */
+        .audio-icon {
+            color: #9b0d31;
+            margin-right: 8px;
+            font-size: 16px;
+        }
+
+        /* 文字样式 */
+        .audio-text {
+            color: #666;
+            font-size: 14px;
+            font-weight: normal;
+        }
+
+        /* 调整主容器的样式 */
+        .container {
+            position: relative;
+            z-index: 1;
+            background: transparent;  /* 确保背景透明 */
+        }
+
+        /* 调整卡片的样式 */
+        .paper-card {
+            position: relative;
+            z-index: 1;
+            background: rgba(255, 255, 255, 0.9);  /* 略微透明的背景 */
         }
 
     </style>
@@ -109,7 +170,7 @@
             <a href="news.html">News</a>
             <a href="photos.html">Photos</a>
             <a href="conference.html">Conference</a>
-            <a href="index_cn.html" style="font-size: 2em;">
+            <a href="index_cn.html?manual=true" style="font-size: 2em;">
                 <img src="img/language-solid.svg" alt="Language Icon" class="language-icon">
             </a>
         </nav>
@@ -119,7 +180,14 @@
             <img id="tan" src="./img/tan.jpg" alt="Lizhuang Tan">
             <div class="information">
                 <h2>Lizhuang Tan (谭立状)
-                <audio id="audio-player" style="height: 30px; width: 120px;" controls ><source src="./files/tanlizhuang-chinese.mp3" type="audio/mpeg" style="height: 10px;">您的浏览器不支持 audio 元素。</audio></h2>
+                    <div class="audio-container" onclick="toggleAudio()">
+                        <i class="fas fa-volume-up audio-icon"></i>
+                        <span class="audio-text">Pronunciation</span>
+                        <audio id="audio-player" style="display: none;">
+                            <source src="./files/tanlizhuang-chinese.mp3" type="audio/mpeg">
+                        </audio>
+                    </div>
+                </h2>
                 <p>Assistant Researcher, Ph.D.</p>
                 <p><a href="http://www.keylab.net/" target="_blank">Shandong Provincial Key Laboratory of Computer Networks</a>,</p>
                 <p><a href="http://www.keylab.net/" target="_blank">Shandong Fundamental Science Research Center (Computer Science)</a>,</p>
@@ -221,5 +289,26 @@
         </div>
         <p>Copyright &copy; 2022 - New Era. By Lizhuang Tan</p>
     </footer>
+    <script>
+    const audioPlayer = document.getElementById('audio-player');
+    const audioIcon = document.querySelector('.audio-icon');
+
+    function toggleAudio() {
+        if (audioPlayer.paused) {
+            audioPlayer.play();
+            audioIcon.classList.remove('fa-volume-up');
+            audioIcon.classList.add('fa-volume-high');
+        } else {
+            audioPlayer.pause();
+            audioIcon.classList.remove('fa-volume-high');
+            audioIcon.classList.add('fa-volume-up');
+        }
+    }
+
+    audioPlayer.addEventListener('ended', function() {
+        audioIcon.classList.remove('fa-volume-high');
+        audioIcon.classList.add('fa-volume-up');
+    });
+    </script>
 </body>
 </html>

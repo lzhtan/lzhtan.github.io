@@ -30,6 +30,22 @@
     .paper-card i {
     color: #9b0d31; /* 将颜色设置为红色 */
     }
+
+    .active-project {
+        color: #9b0d31;
+    }
+
+    .active-badge {
+        display: inline-block;
+        background-color: #9b0d31;
+        color: white;
+        padding: 0px 5px;
+        border-radius: 2px;
+        font-size: 12px;
+        margin-left: 8px;
+        vertical-align: middle;
+        font-weight: normal;
+    }
     </style>
 </head>
 <body>
@@ -59,7 +75,6 @@
 <h3><span class="color-bar"></span>主持项目</h3>
   <div class="paper-card">
     <ol style="margin: 0; padding-left: 35px;">
-       
 
         <li><p>
         <b>国家自然科学基金青年项目: 高速数据中心网络的缓存管控方法研究</b><br/>
@@ -202,5 +217,38 @@
 <footer>
     <p>© 2024 Lizhuang Tan</p>
 </footer>
+
+<script>
+function checkProjectStatus() {
+    const now = new Date();
+    const projects = document.querySelectorAll('.paper-card ol li b');
+    
+    projects.forEach(project => {
+        const projectText = project.parentElement.textContent;
+        const dateMatch = projectText.match(/(\d{4})\/(\d{2})-(\d{4})\/(\d{2})/);
+        
+        if (dateMatch) {
+            const startYear = parseInt(dateMatch[1]);
+            const startMonth = parseInt(dateMatch[2]) - 1;
+            const endYear = parseInt(dateMatch[3]);
+            const endMonth = parseInt(dateMatch[4]) - 1;
+            
+            const startDate = new Date(startYear, startMonth);
+            const endDate = new Date(endYear, endMonth);
+            
+            if (now >= startDate && now <= endDate) {
+                project.classList.add('active-project');
+                const badge = document.createElement('span');
+                badge.className = 'active-badge';
+                badge.textContent = '在研';
+                project.appendChild(badge);
+            }
+        }
+    });
+}
+
+document.addEventListener('DOMContentLoaded', checkProjectStatus);
+</script>
+
 </body>
 </html>

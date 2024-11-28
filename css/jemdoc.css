@@ -82,7 +82,13 @@ h1 a{
     margin-right: auto;
 	margin-bottom: 10px;
 }
-
+.color-bar {
+	display: inline-block;
+	width: 3px; /* 色块宽度 */
+	height: 0.8em; /* 与文字高度一致 */
+	background-color: #9b0d31; /* 色块颜色 */
+	margin-right: 10px; /* 色块与文字的间距 */
+}
 .language-icon {
 	align-items: center;
 	display: flex;

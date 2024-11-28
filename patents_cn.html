@@ -16,56 +16,29 @@
         background: #fff;
         border: 1px solid #eaeaea;
         border-radius: 8px;
-        padding: 0px 15px;
-        margin-bottom: 1px;
+        padding: 2px 1px;
         box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
         transition: box-shadow 0.3s ease-in-out;
     }
-
     .paper-card:hover {
         box-shadow: 0 3px 3px rgba(161, 0, 0, 0.5);
     }
-
-    .container ol {
-        list-style: none;
-        padding: 0;
-    }
-
-    .container ol li {
-        margin-bottom: 2px;
-        line-height: 1.6;
-    }
-    .container a {
-        color: #2980b9;
-        text-decoration: none;
-        border-bottom: 1px dashed transparent;
-        transition: color 0.3s, border-color 0.3s;
-    }
-
-    .container a:hover {
-        color: #3498db;
-        border-bottom-color: #3498db;
-    }
-
-    .container a:visited {
-        color: #9b0d31;
-    }
-
+    
     .paper-title {
         font-weight: bold;
         color: #9b0d31;
-        margin-bottom: 5px;
+        margin-bottom: 2px;
     }
 
     .paper-authors {
         color: #423a3a;
-        margin-bottom: 5px;
+        margin-bottom: 2px;
     }
-
     .paper-location {
         color: #9b0d31;
         font-size: 0.95em;
     }
+    
 
     @media (max-width: 768px) {
         .container {
@@ -105,105 +78,95 @@
         </nav>
     </header>
     <div class="container">
+      <h3><span class="color-bar"></span>发明专利</h3>
       <div class="paper-card">
-        <p>
+        <ol>
+          <li><p>
           <span class="paper-title"><b>一种基于RDMA的云内存池优先级流控方法及系统</b></span>
           <a href="./papers/2024-专利-C.pdf" class="pdf-link"><i class="fas fa-file-pdf"></i></a><br>
           <span class="paper-authors">谭立状, 董鑫, 史慧玲, 张玮</span><br>
-        </p>
-      </div>
-      <div class="paper-card">
-        <p>
+        </p></li>
+
+        <li><p>
           <span class="paper-title"><b>一种RDMA与CXL协议双向高速转换方法、装置及系统</b></span>
           <a href="./papers/2024-专利-C.pdf" class="pdf-link"><i class="fas fa-file-pdf"></i></a><br>
           <span class="paper-authors">谭立状, 董鑫, 史慧玲, 张玮</span><br>
-        </p>
-      </div>
-      <div class="paper-card">
-        <p>
+        </p></li>
+
+        <li><p>
           <span class="paper-title"><b>基于多级流水线的数据库查询任务RDMA卸载方法及系统</b></span>
           <a href="./papers/2024-专利-基于多级流水线的数据库查询任务RDMA卸载方法及系统.pdf" class="pdf-link"><i class="fas fa-file-pdf"></i></a><br>
           <span class="paper-authors">谭立状, 董鑫, 史慧玲, 张玮</span><br>
           <span class="paper-location"><i>202411660753.5, 2024-11-20</i></span>    
-        </p>
-      </div>
-      <div class="paper-card">
-        <p>
+        </p></li>
+
+        <li><p>
           <span class="paper-title"><b>基于接收注册表机制的数据传输优化方法及系统</b></span>
           <a href="./papers/2024-专利-基于接收注册表机制的数据传输优化方法及系统.pdf" class="pdf-link"><i class="fas fa-file-pdf"></i></a><br>
           <span class="paper-authors">谭立状, 董鑫, 史慧玲, 张玮</span><br>
           <span class="paper-location"><i>202411660756.9, 2024-11-20</i></span>    
-        </p>
-      </div>
-      <div class="paper-card">
-        <p>
+        </p></li>
+
+        <li><p>
           <span class="paper-title"><b>基于FPGA的RDMA数据传输优化方法及系统</b></span>
           <a href="./papers/2024-专利-C.pdf" class="pdf-link"><i class="fas fa-file-pdf"></i></a><br>
           <span class="paper-authors">谭立状, 董鑫, 史慧玲, 张玮</span><br>
-        </p>
-      </div>
-      <div class="paper-card">
-        <p>
+        </p></li>
+
+        <li><p>
           <span class="paper-title"><b>CPU/FPGA协同的网络遥测乱序重排方法及系统</b></span>
           <a href="./papers/2024-专利-CPUFPGA协同的网络遥测乱序重排方法及系统.pdf" class="pdf-link"><i class="fas fa-file-pdf"></i></a><br>
           <span class="paper-authors">谭立状, 隋宗瑞, 王新航, 董鑫, 史慧玲, 张玮</span><br>
           <span class="paper-location"><i>ZL202410435319.0, 2024-04-11</i></span>    
-        </p>
-      </div>
-      
-      <div class="paper-card">
-        <p>
+        </p></li>
+
+        <li><p>
           <span class="paper-title"><b>一种意图驱动的网络损伤配置生成方法和系统</b></span>
           <a href="./papers/2024-专利-一种意图驱动的网络损伤配置生成方法及系统.pdf" class="pdf-link"><i class="fas fa-file-pdf"></i></a><br>
           <span class="paper-authors">谭立状, 许一鸣, 王新航, 史慧玲, 张玮</span><br>
           <span class="paper-location"><i>ZL202410409855.3, 2024-04-07</i></span>    
-        </p>
-      </div>
-      
-      <div class="paper-card">
-        <p>
+        </p></li>
+
+        <li><p>
           <span class="paper-title"><b>一种网络损伤组合化模拟实现方法及系统</b></span>
           <a href="./papers/2023-专利-一种网络损伤组合化模拟实现方法及系统.pdf" class="pdf-link"><i class="fas fa-file-pdf"></i></a><br>
           <span class="paper-authors">谭立状, 王新航, 史慧玲, 张玮</span><br>
           <span class="paper-location"><i>ZL2023117778457.0, 2023-12-21</i></span>    
-        </p>
-      </div>
-      
-      <div class="paper-card">
-        <p>
+        </p></li>
+
+        <li><p>
           <span class="paper-title"><b>一种实现网络损伤的方法、系统及装置</b></span>
           <a href="./papers/2023-专利-一种实现网络损伤的方法、系统及装置.pdf" class="pdf-link"><i class="fas fa-file-pdf"></i></a><br>
           <span class="paper-authors">谭立状, 王新航, 史慧玲, 张玮</span><br>
           <span class="paper-location"><i>ZL202310224941.2, 2023-03-03</i></span>    
-        </p>
-      </div>
-      
-      <div class="paper-card">
-        <p>
-          <span class="paper-title"><b>一种用于网络损伤仪的壳体及网络损伤仪</b></span>
-          <a href="./papers/2023-专利-一种用于网络损伤仪的壳体及网络损伤仪.pdf" class="pdf-link"><i class="fas fa-file-pdf"></i></a><br>
-          <span class="paper-authors">谭立状, 王新航, 史慧玲, 张玮</span><br>
-          <span class="paper-location"><i>ZL202320329297.0, 2023-02-22</i></span>    
-        </p>
-      </div>
-      
-      <div class="paper-card">
-        <p>
+        </p></li>
+
+        <li><p>
           <span class="paper-title"><b>一种基于QUIC传输协议的主动连接迁移方法及系统</b></span>
           <a href="./papers/2022-专利-一种基于QUIC传输协议的主动连接迁移方法及系统.pdf" class="pdf-link"><i class="fas fa-file-pdf"></i></a><br>
           <span class="paper-authors">谭立状, 王成, 史慧玲, 张玮</span><br>
           <span class="paper-location"><i>ZL202211650317.0, 2022-12-21</i></span>    
-        </p>
-      </div>
-      
-      <div class="paper-card">
-        <p>
+        </p></li>
+
+        <li><p>
           <span class="paper-title"><b>一种带内网络遥测承载流选取方法及系统</b></span>
           <a href="./papers/2020-专利-一种带内网络遥测承载流选取方法及系统.pdf" class="pdf-link"><i class="fas fa-file-pdf"></i></a><br>
           <span class="paper-authors">苏伟, 谭立状, 郜帅, 张宏科, 刘延雯, 张臻熠</span><br>
           <span class="paper-location"><i>CN111835588A, 2020-06-29</i></span>    
-        </p>
-      </div>
+        </p></li>
+      </ol>
+    </div>
+    <h3><span class="color-bar"></span>实用新型专利</h3>
+    <div class="paper-card">
+    <ol>
+      <li><p>
+        <span class="paper-title"><b>一种用于网络损伤仪的壳体及网络损伤仪</b></span>
+        <a href="./papers/2023-专利-一种用于网络损伤仪的壳体及网络损伤仪.pdf" class="pdf-link"><i class="fas fa-file-pdf"></i></a><br>
+        <span class="paper-authors">谭立状, 王新航, 史慧玲, 张玮</span><br>
+        <span class="paper-location"><i>ZL202320329297.0, 2023-02-22</i></span>    
+      </p></li>
+    </ol>
+  </div>
 
 </div>
         <footer>

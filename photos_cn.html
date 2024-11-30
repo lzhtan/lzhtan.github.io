@@ -18,31 +18,28 @@
             gap: 10px; /* 图片间隔 */
             padding: 10px; /* 相册内边距 */
         }
+        
         #album .photo-item {
             background: #fff;
             border: 1px solid #eaeaea;
             border-radius: 8px;
             overflow: hidden; /* 防止内容溢出 */
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+            box-shadow: 0 2px 3px rgba(0, 0, 0, 0.08);
             transition: box-shadow 0.1s ease-in-out;
             text-align: center;
         }
         #album .photo-item:hover {
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
             transform: scale(1.01);
         }
         #album img {
             width: 100%;
             height: auto;
-            border-radius: 2px 8px 0 0; /* 图片圆角仅应用于顶部 */
-            transition: transform 0.3s ease-in-out;
         }
         
         #album p {
             margin: 1px 1px 3px 1px; /* 描述文本的上下外边距 */
             color: #333;
             font-size: 13px;
-            font-weight: bold;
         }
     </style>
 </head>

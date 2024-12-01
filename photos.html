@@ -40,6 +40,31 @@
             color: #333;
             font-size: 13px;
         }
+        
+        /* 添加筛选按钮样式 */
+        .filter-buttons {
+            text-align: center;
+            margin: 20px 0;
+        }
+        
+        .filter-buttons button {
+            padding: 8px 16px;
+            margin: 0 5px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            background-color: white;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .filter-buttons button:hover {
+            background-color: #f0f0f0;
+        }
+        
+        .filter-buttons button.active {
+            background-color: #4a4a4a;
+            color: white;
+        }
     </style>
 </head>
 <body>
@@ -64,6 +89,11 @@
         </nav>
     </header>
     <div class="container">
+        <!-- 添加筛选按钮区域 -->
+        <div class="filter-buttons">
+            <button class="active" data-year="all">All</button>
+        </div>
+        
         <div id="album">
             <div class="photo-item">
                 <img src="photos/20241103.jpg" alt="Nov. 2024, Group Photo of DPNM Lab" loading="lazy" />
@@ -229,5 +259,53 @@
     <footer>
         <p>© 2024 Lizhuang Tan</p>
     </footer>
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const photos = document.querySelectorAll('.photo-item');
+        const filterButtons = document.querySelector('.filter-buttons');
+        
+        // 获取所有照片中的年份并去重
+        const years = new Set();
+        photos.forEach(photo => {
+            const photoTitle = photo.querySelector('p').textContent;
+            // 修改正则表达式以匹配英文格式的年份 (如 "Nov. 2024" 或 "2024")
+            const yearMatch = photoTitle.match(/\b(20\d{2})\b/);
+            if (yearMatch) {
+                years.add(yearMatch[1]);
+            }
+        });
+        
+        // 将年份数组排序（降序）
+        const sortedYears = Array.from(years).sort((a, b) => b - a);
+        
+        // 为每个年份创建筛选按钮
+        sortedYears.forEach(year => {
+            const button = document.createElement('button');
+            button.setAttribute('data-year', year);
+            button.textContent = year;
+            filterButtons.appendChild(button);
+        });
+        
+        // 添加筛选功能
+        const buttons = document.querySelectorAll('.filter-buttons button');
+        buttons.forEach(button => {
+            button.addEventListener('click', function() {
+                buttons.forEach(btn => btn.classList.remove('active'));
+                this.classList.add('active');
+                
+                const year = this.getAttribute('data-year');
+                
+                photos.forEach(photo => {
+                    const photoTitle = photo.querySelector('p').textContent;
+                    if (year === 'all' || photoTitle.includes(year)) {
+                        photo.style.display = 'block';
+                    } else {
+                        photo.style.display = 'none';
+                    }
+                });
+            });
+        });
+    });
+    </script>
 </body>
 </html>

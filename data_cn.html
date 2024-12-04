@@ -12,46 +12,64 @@
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;700&display=swap" rel="stylesheet">        
     <link rel="stylesheet" href="css/jemdoc.css" type="text/css" />
     <style>
-    .paper-card {
+        .paper-card {
         background: #fff;
-        border: 1px solid #eaeaea;
+        border: 1px solid #f1f1f1;
         border-radius: 8px;
-        padding: 0px 15px;
-        margin-bottom: 1px;
-        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+        box-shadow: 0 1px 1px rgba(0, 0, 0, 0.08);
         transition: box-shadow 0.3s ease-in-out;
     }
 
-    .paper-card:hover {
-        box-shadow: 0 3px 3px rgba(161, 0, 0, 0.5);
-    }
-    .container ol {
-        list-style: none;
-        padding: 0;
-    }
-
-    .container ol li {
-        margin-bottom: 2px;
-        line-height: 1.6;
-    }
-    .container a {
-        color: #2980b9;
-        text-decoration: none;
-        border-bottom: 1px dashed transparent;
-        transition: color 0.3s, border-color 0.3s;
-    }
-
-    .container a:hover {
-        color: #3498db;
-        border-bottom-color: #3498db;
-    }
-
-    .container a:visited {
+    .paper-title {
+        font-weight: bold;
         color: #9b0d31;
+        margin-bottom: 2px;
     }
 
-    .paper-card i {
+    .paper-authors {
+        color: #423a3a;
+        margin-bottom: 2px;
+    }
+    .paper-location {
+        color: #9b0d31;
+        font-size: 0.95em;
+    }
+
+    @media (max-width: 768px) {
+        .container {
+            padding: 20px;
+        }
+
+        .container h2 {
+            font-size: 24px;
+        }
+    }
+    .container i {
     color: #9b0d31; /* 将颜色设置为红色 */
+    }
+
+    /* 调整论文列表的边距 */
+    .paper-list {
+        padding-left: 20px;   /* 减小左边距 */
+        padding-right: 20px;  /* 添加右边距 */
+        margin: 10px 0;
+    }
+
+    .paper-list li {
+        margin-bottom: 10px;
+        text-align: justify;  /* 文本两端对齐，使其更整齐 */
+    }
+
+    /* 统一调整所有文件中有序列表的样式 */
+    ol {
+        padding-left: 25px;   /* 减小左边距 */
+        padding-right: 25px;  /* 添加右边距 */
+        margin: 10px auto;    /* 上下10px，左右自动居中 */
+        max-width: 1300px;     /* 控制最大宽度 */
+    }
+
+    ol li {
+        margin-bottom: 10px;
     }
     </style>
   </head>
@@ -77,18 +95,33 @@
           </a>
         </nav>
     </header>
-    <div class="container">
-      <ol>
-        <li class="paper-item">
-          <div class="paper-card">
-            <p>
-              网络打印机特征知识库 <a href="./files/Knowledge base for networked printer.xlsx" class="pdf-link"><i class="fas file-icon fa-file-pdf"></i></a>   
-            </p>
-          </div>
-        </li>
-      </ol>
       
-</div>
+      <div class="container">
+        <h3><span class="color-bar"></span>软件定义网络损伤仪</h3>
+          <div class="paper-card">
+            <ol style="margin: 0; padding-left: 35px;">
+              <li><p>
+                <span class="paper-title"><b>意图驱动网络损伤配置模型的训练数据集（英文示例）</b></span>
+                <a href="./files/Dataset/software_defined_network_impairment_emulator_intent_dataset_en_demo.json" class="pdf-link"><i class="fas file-icon fa-file-pdf"></i></a></br>
+                <span class="paper-title"><b>意图驱动网络损伤配置模型的训练数据集（中文示例）</b></span>
+                <a href="./files/Dataset/software_defined_network_impairment_emulator_intent_dataset_cn_demo.json" class="pdf-link"><i class="fas file-icon fa-file-pdf"></i></a></br>
+                <span class="paper-authors">这是一个用于LLM微调的训练数据集示例，文件格式为json，包含9个中文配置问答和9个英文配置问答。
+                </span><br>
+            </p></li>
+        </ol>
+      </div>
+      <h3><span class="color-bar"></span>网络打印机特征知识库</h3>
+          <div class="paper-card">
+            <ol style="margin: 0; padding-left: 35px;">
+              <li><p>
+                <span class="paper-title"><b>网络打印机特征知识库</b></span>
+                <a href="./files/Dataset/Knowledge base for networked printer.xlsx" class="pdf-link"><i class="fas file-icon fa-file-pdf"></i></a></br>
+                <span class="paper-authors">这是一个网络打印机特征知识库，文件格式为xlsx。更多信息请参考论文<a style="font-style: italic;">Security Analysis and Monitoring Assessment of Networked Printers: A Report</a>.
+                </span><br>
+            </p></li>
+        </ol>
+      </div>
+    </div>
         <footer>
             <p>Copyright &copy; 2022 - New Era. By Lizhuang Tan</p>
         </footer>

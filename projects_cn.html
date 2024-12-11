@@ -70,7 +70,6 @@
         color: #9b0d31;
         margin-bottom: 6px;
         font-size: 0.6em;
-        height: 4em;
         font-weight: bold;
     }
 
@@ -166,12 +165,12 @@
     /* 添加状态标签样式 */
     .status-badge {
         position: absolute;
-        top: 15px;
-        right: 15px;
-        padding: 4px 12px;
+        top: 10px;
+        right: 10px;
+        padding: 2px 5px;
         border-radius: 2px;
         font-size: 0.8em;
-        font-weight: 500;
+        font-weight: bold;
     }
 
     .status-completed {
@@ -183,10 +182,17 @@
         background-color: rgba(46, 204, 113, 0.1);
         color: #27ae60;
     }
-
+    .status-pending {
+        background-color: rgba(46, 204, 113, 0.1);
+        color: #27ae60;
+    }
     /* 确保project-card有相对定位 */
     .project-card {
         position: relative;
+    }
+    /* 在研项目的背景色 */
+    .project-card.ongoing {
+        background-color: rgb(255, 253, 227);  /* 浅黄色背景 */
     }
     </style>
 </head>
@@ -216,7 +222,7 @@
 
 <h3><span class="color-bar"></span>主持项目</h3>
 <div class="projects-grid">
-
+    
     <!-- 项目1：国家自然科学基金青年项目 -->
     <div class="project-card">
         <div class="project-content">
@@ -227,13 +233,14 @@
                 <span class="info-item"><i class="fas fa-yen-sign"></i> 30万</span>
                 <span class="info-item"><i class="fas fa-hashtag"></i> No.62402257</span>
             </div>
+            
+            <div class="project-progress">
+                <div class="progress-bar" style="width: 30%"></div>
+            </div>
             <div class="project-links">
                 <a target="_blank" rel="noopener" href="./papers/2024-论文-TCC.pdf"><i class="fas fa-file-pdf"></i></a>
                 <a target="_blank" rel="noopener" href="https://github.com/lzhtan/ByteTuning"><i class="fab fa-github"></i></a>
                 <a target="_blank" rel="noopener" href="https://github.com/lzhtan/Fluid-Model-for-DCQCN-ECN-PFC"><i class="fab fa-github"></i></a>
-            </div>
-            <div class="project-progress">
-                <div class="progress-bar" style="width: 30%"></div>
             </div>
         </div>
     </div>
@@ -257,7 +264,7 @@
     <!-- 项目3：中国高校产学研创新基金项目 -->
     <div class="project-card">
         <div class="project-content">
-            <div class="project-title">中国高校产学研创新基金</br>新一代信息技术创新项目</div>
+            <div class="project-title">中国高校产学研创新基金新一代信息技术创新项目</div>
             <div class="project-subtitle">软件定义网络流量识别及防御对抗技术研究</div>
             <div class="project-info">
                 <span class="info-item"><i class="far fa-calendar-alt"></i> 2024/09-2025/08</span>
@@ -278,11 +285,11 @@
                 <span class="info-item"><i class="far fa-calendar-alt"></i> 2024/07-2024/10</span>
                 <span class="info-item"><i class="fas fa-yen-sign"></i> 1万</span>
             </div>
-            <div class="project-links">
-                <a target="_blank" rel="noopener" href="./papers/2024-软科学-山东信息新质生产力.pdf"><i class="fas fa-file-pdf"></i></a>
-            </div>
             <div class="project-progress">
                 <div class="progress-bar" style="width: 30%"></div>
+            </div>
+            <div class="project-links">
+                <a target="_blank" rel="noopener" href="./papers/2024-软科学-山东信息新质生产力.pdf"><i class="fas fa-file-pdf"></i></a>
             </div>
         </div>
     </div>
@@ -297,12 +304,12 @@
                 <span class="info-item"><i class="fas fa-yen-sign"></i> 15万</span>
                 <span class="info-item"><i class="fas fa-hashtag"></i> No.ZR2023QF025</span>
             </div>
+            <div class="project-progress">
+                <div class="progress-bar" style="width: 30%"></div>
+            </div>
             <div class="project-links">
                 <a target="_blank" rel="noopener" href="./papers/2024-论文-ITL.pdf"><i class="fas fa-file-pdf"></i></a>
                 <a target="_blank" rel="noopener" href="./papers/2024-专利-CPUFPGA协同的网络遥测乱序重排方法及系统.pdf"><i class="fas fa-file-pdf"></i></a>
-            </div>
-            <div class="project-progress">
-                <div class="progress-bar" style="width: 30%"></div>
             </div>
         </div>
     </div>
@@ -317,11 +324,11 @@
                 <span class="info-item"><i class="fas fa-yen-sign"></i> 20万</span>
                 <span class="info-item"><i class="fas fa-hashtag"></i> No.2023RCKY141</span>
             </div>
-            <div class="project-links">
-                <a target="_blank" rel="noopener" href="./papers/2024-论文-ELL.pdf"><i class="fas fa-file-pdf"></i></a>
-            </div>
             <div class="project-progress">
                 <div class="progress-bar" style="width: 30%"></div>
+            </div>
+            <div class="project-links">
+                <a target="_blank" rel="noopener" href="./papers/2024-论文-ELL.pdf"><i class="fas fa-file-pdf"></i></a>
             </div>
         </div>
     </div>
@@ -335,6 +342,10 @@
                 <span class="info-item"><i class="fas fa-yen-sign"></i> 50万</span>
                 <span class="info-item"><i class="fas fa-hashtag"></i> No.ZR2022LZH015</span>
             </div>
+            
+            <div class="project-progress">
+                    <div class="progress-bar" style="width: 40%"></div>
+            </div>
             <div class="project-links">
                 <a target="_blank" rel="noopener" href="./papers/2024-论文-TCC.pdf"><i class="fas fa-file-pdf"></i></a>
                 <a target="_blank" rel="noopener" href="./papers/2024-论文-COMCOM.pdf"><i class="fas fa-file-pdf"></i></a>
@@ -344,9 +355,6 @@
                 <a target="_blank" rel="noopener" href="./papers/2024-专利-一种RDMA与CXL协议双向高速转换方法、装置及系统.pdf"><i class="fas fa-file-pdf"></i></a>
                 <a target="_blank" rel="noopener" href="./papers/2024-专利-一种基于RDMA的云内存池优先级流控方法及系统.pdf"><i class="fas fa-file-pdf"></i></a>
                 <a target="_blank" rel="noopener" href="./papers/2024-专利-基于FPGA的RDMA数据传输优化方法及系统.pdf"><i class="fas fa-file-pdf"></i></a>
-            </div>
-            <div class="project-progress">
-                    <div class="progress-bar" style="width: 40%"></div>
             </div>
         </div>
     </div>
@@ -362,17 +370,17 @@
                 <span class="info-item"><i class="fas fa-hashtag"></i> No.2023PX057</span>
                 <span class="info-item"><i class="fas fa-award"></i> 结项优秀</span>
             </div>
+            <div class="project-progress">
+                <div class="progress-bar" style="width: 100%"></div>
+            </div>
             <div class="project-links">
                 <a target="_blank" rel="noopener" href="./papers/2024-论文-TCC.pdf"><i class="fas fa-file-pdf"></i></a>
                 <a target="_blank" rel="noopener" href="./papers/2024-论文-ASE.pdf"><i class="fas fa-file-pdf"></i></a>
                 <a target="_blank" rel="noopener" href="https://github.com/lzhtan/ATS-for-BMv2"><i class="fab fa-github"></i></a>
             </div>
-            <div class="project-progress">
-                <div class="progress-bar" style="width: 100%"></div>
-            </div>
         </div>
     </div>
-    <!-- 项目9：北京交通大学研究生创新基金二类资助项目 -->
+    <!-- 项���9：北京交通大学研究生创新基金二类资助项目 -->
     <div class="project-card">
         <div class="project-content">
             <div class="project-title">中央高校基本科研业务费项目<br>(北京交通大学研究生创新基金二类资助项目)</div>
@@ -383,6 +391,9 @@
                 <span class="info-item"><i class="fas fa-hashtag"></i> No.2020YJS013</span>
                 <span class="info-item"><i class="fas fa-award"></i> 结项优秀</span>
             </div>
+            <div class="project-progress">
+                <div class="progress-bar" style="width: 100%"></div>
+            </div>
             <div class="project-links">
                 <a target="_blank" rel="noopener" href="./papers/2021-论文-TNSM.pdf"><i class="fas fa-file-pdf"></i></a>
                 <a target="_blank" rel="noopener" href="./papers/2021-论文-COMNET.pdf"><i class="fas fa-file-pdf"></i></a>
@@ -392,9 +403,6 @@
                 <a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV14Z4y1H7N2/"><i class="fas fa-video"></i></a>
                 <a target="_blank" rel="noopener" href="https://github.com/lzhtan/FindINT"><i class="fab fa-github"></i></a>
                 <a target="_blank" rel="noopener" href="https://github.com/lzhtan/LossSight"><i class="fab fa-github"></i></a>
-            </div>
-            <div class="project-progress">
-                <div class="progress-bar" style="width: 100%"></div>
             </div>
         </div>
     </div>
@@ -409,13 +417,13 @@
                 <span class="info-item"><i class="fas fa-yen-sign"></i> 10万</span>
                 <span class="info-item"><i class="fas fa-hashtag"></i> No.NGII20180120</span>
             </div>
+            <div class="project-progress">
+                <div class="progress-bar" style="width: 100%"></div>
+            </div>
             <div class="project-links">
                 <a target="_blank" rel="noopener" href="https://ieeexplore.ieee.org/abstract/document/9027573"><i class="fas fa-file-pdf"></i></a>
                 <a target="_blank" rel="noopener" href="http://m.youku.com/v_show/id_XNDY4NjA2NTg4NA/"><i class="fas fa-video"></i></a>
                 <a target="_blank" rel="noopener" href="https://github.com/lzhtan/RouterDelay-KDN"><i class="fab fa-github"></i></a>
-            </div>
-            <div class="project-progress">
-                <div class="progress-bar" style="width: 100%"></div>
             </div>
         </div>
     </div>
@@ -431,12 +439,13 @@
                 <span class="info-item"><i class="fas fa-hashtag"></i> No.2018YJS002</span>
                 <span class="info-item"><i class="fas fa-award"></i> 结项优秀</span>
             </div>
+            
+            <div class="project-progress">
+                <div class="progress-bar" style="width: 100%"></div>
+            </div>
             <div class="project-links">
                 <a target="_blank" rel="noopener" href="https://ieeexplore.ieee.org/abstract/document/8648748"><i class="fas fa-file-pdf"></i></a>
                 <a target="_blank" rel="noopener" href="https://github.com/lzhtan/FlowSampling"><i class="fab fa-github"></i></a>
-            </div>
-            <div class="project-progress">
-                <div class="progress-bar" style="width: 100%"></div>
             </div>
         </div>
     </div>
@@ -452,6 +461,9 @@
             <div class="project-info">
                 <span class="info-item"><i class="far fa-calendar-alt"></i> 2019/06-2022/06</span>
                 <span class="info-item"><i class="fas fa-hashtag"></i> No.2018YFB1800305</span>
+            </div>
+            <div class="project-progress">
+                <div class="progress-bar" style="width: 100%"></div>
             </div>
             <div class="project-links">
                 <a target="_blank" rel="noopener" href="./papers/2019-论文-ETT.pdf" class="link-item">
@@ -469,9 +481,6 @@
                 <a target="_blank" rel="noopener" href="https://github.com/lzhtan/OpenQUIC" class="link-item">
                     <i class="fab fa-github"></i>
                 </a>
-            </div>
-            <div class="project-progress">
-                <div class="progress-bar" style="width: 100%"></div>
             </div>
         </div>
     </div>
@@ -610,6 +619,7 @@
                 progress = 0;
                 status = '未开始';
                 statusClass = 'status-pending';
+                project.classList.remove('completed', 'ongoing');
             } else if (elapsedMonths > totalMonths) {
                 progress = 100;
                 status = '已完成';
@@ -618,6 +628,7 @@
                 progress = Math.round((elapsedMonths / totalMonths) * 100);
                 status = '在研';
                 statusClass = 'status-ongoing';
+                project.classList.add('ongoing');
             }
 
             // 更新进度条

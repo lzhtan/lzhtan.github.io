@@ -1,9 +1,12 @@
 body {
-	font-family: 'Noto Sans', sans-serif;
+	font-family: "Noto Sans SC", sans-serif;
 	margin: 0;
 	padding: 0;
 	background-color: #ffffff;
-	font-size: 90%;
+	font-size: 95%;
+}
+b{
+	font-weight: 500;
 }
 .container {
 	max-width: 1200px;
@@ -39,7 +42,11 @@ body {
 }
 .profile h2 {
 	margin: 0;
-	font-size: 1.5 em;
+	font-size: 1.2em;
+	color: #9b0d31;
+}
+h3 {
+	font-size: 1em;
 	color: #9b0d31;
 }
 .profile p {

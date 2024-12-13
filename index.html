@@ -21,7 +21,20 @@
             margin: 0;
             background-color: white;
         }
+        .profile {
+            position: relative; /* 使其相对于正常流 */
+            transform: translateY(10px); /* 隐藏在视口下方 */
+            opacity: 0; /* 初始透明度为0 */
+            animation: slideUp 0.5s forwards; /* 应用动画 */
+        }
 
+        /* 定义动画效果 */
+        @keyframes slideUp {
+            to {
+                transform: translateY(0); /* 动画结束时的位置 */
+                opacity: 1; /* 动画结束时的透明度 */
+            }
+        }
         /* 确保内容容器样式正确 */
         .container {
             position: relative;

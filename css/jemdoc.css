@@ -4,6 +4,7 @@ body {
 	padding: 0;
 	background-color: #ffffff;
 	font-size: 95%;
+	overflow-x: hidden;
 }
 b{
 	font-weight: 500;

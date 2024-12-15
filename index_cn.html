@@ -43,7 +43,6 @@
             display: flex;
             align-items: flex-start;
             margin-bottom: 20px;
-            background-color: #f9f9f9;
             padding: 15px;
             border-radius: 5px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
@@ -77,33 +76,6 @@
             padding: 0 0 0 0;
             text-align: justify;
 
-        }
-        .news {
-            background-color: #fff;
-            padding: 5px 20px ;
-            border-radius: 5px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
-        .news li {
-            margin-bottom: 2px;
-        }
-        .news a {
-            color: #9b0d31;
-            text-decoration: none;
-        }
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-bottom: 2px;
-        }
-        .news-date {
-            display: inline-block;
-            background-color: #9b0d31;
-            color: #fff;
-            padding: 5px 10px;
-            border-radius: 5px;
-            margin-right: 5px;
-            width: 60px;
         }
         .icon-container :hover{
             color: #aaa;
@@ -150,6 +122,63 @@
                 padding: 15px;
             }
         }
+        @keyframes slideIn {
+            from {
+                transform: translateY(20px); /* 从下方滑入 */
+                opacity: 0; /* 初始透明度为0 */
+            }
+            to {
+                transform: translateY(0); /* 到达最终位置 */
+                opacity: 1; /* 最终透明度为1 */
+            }
+        }
+        .card {
+            animation: slideIn 0.5s forwards; /* 应用动画 */
+            opacity: 0; /* 初始透明度为0 */
+        }
+        .card-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); /* 自适应列数 */
+            gap: 10px; /* 卡片之间的间距 */
+        }
+        .card {
+            background: #fff;
+            border: 1px solid #eaeaea;
+            border-radius: 5px;
+            padding: 10px; /* 卡片的内边距 */
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: relative;
+        }
+        .card-image {
+            width: 100%; /* 图片宽度自适应 */
+            height: auto; /* 高度自动调整 */
+            border-radius: 4px; /* 可选：为图片添加圆角 */
+            margin-top: 10px; /* 图片与文本之间的间距 */
+        }
+        .card a {
+            text-decoration: none;
+            color: #9b0d31;
+        }
+
+        .card a:hover {
+            color: #000000;
+        }
+        .card-content {
+            position: relative;
+            margin: 0; /* 移除内容的外边距 */
+            padding: 0; /* 移除内容的内边距 */
+        }
+        .news-date {
+            font-weight: bold;
+            color: #9b0d31;
+            line-height: 2; /* 调整行高，减少行间距 */
+            font-style: italic;
+            margin-bottom: 20px;
+        }
+        .card-content p {
+            margin: 0; /* 移除段落的外边距 */
+            line-height: 1.5; /* 调整行高，减少行间距 */
+        }
 
     </style>
 </head>
@@ -167,7 +196,6 @@
             <a href="group_cn.html">团队</a>
             <a href="service_cn.html">服务</a>
             <a href="data_cn.html">数据</a>
-            <a href="news_cn.html">新闻</a>
             <a href="photos_cn.html">相册</a>
             <a href="conference_cn.html">会议DDL</a>
             <a href="index.html" style="font-size: 2em;">
@@ -262,69 +290,102 @@
             </div>
         </div>
         <div class="news">
-            <h3>最新消息</h3>
-            <table class="news-table">
-                <tr>
-                    <td><span class="news-date">12/2024</span></td>
-                    <td>《网络操作系统SONiC: 原理、技术与实践》出版上市。<a href="/papers/2024-专著-SONIC.pdf" target="_blank" class="fas fa-link"></a></td>
-                </tr>
-                <tr>
-                  <td><span class="news-date">10/2024</span></td>
-                  <td>ByteTuning被《IEEE Transactions on Cloud Computing》录用。</td>
-              </tr>
-              <tr>
-                  <td><span class="news-date">08/2024</span></td>
-                  <td>《高速数据中心网络的缓存管控方法研究》获得国家自然科学基金青年项目资助。</td>
-              </tr>
-              <tr>
-                  <td><span class="news-date">07/2024</span></td>
-                  <td>入选2024年度科技部中韩青年科学家交流计划，将在浦项科技大学开展网络管理的研究工作。</td>
-              </tr>
-              <tr>
-                  <td><span class="news-date">07/2024</span></td>
-                  <td>《山东省信息领域新质生产力产业现状研究》获得山东省网信领域软科学重点课题资助。<a href="https://mp.weixin.qq.com/s?__biz=MzA5Mzg3Njk0OQ==&mid=2653396167&idx=1&sn=5ee3680ef92f63938852040ca6c811e3" target="_blank" class="fas fa-link"></a></td>
-              </tr>
-              <tr>
-                  <td><span class="news-date">02/2024</span></td>
-                  <td>我成为硕士研究生导师，可以招收电子信息（计算机技术）专业学位研究生，欢迎报考。<a href="group_cn.html" target="_blank" class="fas fa-link"></a></td>
-              </tr>
-              <tr>
-                  <td><span class="news-date">11/2023</span></td>
-                  <td>《网络遥测进展研究》获得2023年济南市网信领域基础理论研究和技术创新应用论文二等奖。 <a href="./photos/20231101.jpg" target="_blank" class="fas fa-link"></a></td>
-              </tr>
-              <tr>
-                  <td><span class="news-date">07/2023</span></td>
-                  <td>基于P4的软件定义网络损伤仪研制完成，欢迎洽谈采购。 <a href="./photos/20230725.jpeg" target="_blank" class="fas fa-link"></a></td>
-              </tr>
-              <tr>
-                  <td><span class="news-date">07/2023</span></td>
-                  <td>《带内网络遥测任务编排算法研究》获得山东省自然科学基金资助。</td>
-              </tr>
-              <tr>
-                  <td><span class="news-date">05/2023</span></td>
-                  <td>LossSight获第二十五届中国机器人及人工智能大赛国家二等奖。 <a href="./img/CRAIC2023.jpg" target="_blank" class="fas fa-link"></a></td>
-              </tr>
-              <tr>
-                  <td><span class="news-date">12/2022</span></td>
-                  <td>我们将于2023年8月在青岛举办NaNA'23学术会议，欢迎网络方向赐稿，投稿截止时间是2023年4月15号。 <a href="http://www.nana-conference.org/" target="_blank" class="fas fa-link"></a></td>
-              </tr>
-              <tr>
-                  <td><span class="news-date">11/2022</span></td>
-                  <td>《面向数据中心的基于FPGA的网络卸载研究》获得山东省自然科学基金和浪潮公司资助，欢迎洽谈合作。</td>
-              </tr>
-              <tr>
-                  <td><span class="news-date">08/2022</span></td>
-                  <td>Path-Flow Matching被《Wiley Transactions on Emerging Telecommunications Technologies》选为FEATURED COVER。 <a href="https://onlinelibrary.wiley.com/doi/10.1002/ett.4637" target="_blank" class="fas fa-link"></a></td>
-              </tr>
-              <tr>
-                  <td><span class="news-date">07/2022</span></td>
-                  <td>参加中国算力大会并做《汇聚海量数据，超算行业未来》报告。 <a href="https://www.cnii.com.cn/rmydb/202208/t20220803_401756.html" target="_blank" class="fas fa-link"></a></td>
-              </tr>
-              <tr>
-                  <td><span class="news-date">06/2022</span></td>
-                  <td>获得博士学位，感谢恩师<a href="http://faculty.bjtu.edu.cn/8131/" target="_blank">苏伟</a>教授。</td>
-              </tr>
-          </table>          
+            <h3><span class="color-bar"></span>最新消息</h3>
+            <div class="card-container">
+                <div class="card" style="grid-column: span 1; grid-row: span 2;"> <!-- 占据1列2行 -->
+                    <div class="card-content">
+                        <span class="news-date">12/2024</span>
+                        <p>《网络操作系统SONiC: 原理、技术与实践》出版上市。</p>
+                        <img src="papers/2024-专著-SONIC.jpg" alt="描述1" class="card-image" style="box-shadow: 0 2px 10px rgba(152, 48, 48, 0.1);">
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-content">
+                        <span class="news-date">10/2024</span>
+                        <p>ByteTuning被《IEEE Transactions on Cloud Computing》录用。</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-content">
+                        <span class="news-date">08/2024</span>
+                        <p>《高速数据中心网络的缓存管控方法研究》获得国家自然科学基金青年项目资助。</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-content">
+                        <span class="news-date">07/2024</span>
+                        <p>《山东省网信领域新质生产力产业现状研究》项目获得山东省网信领域软科学重点课题资助。<a href="https://mp.weixin.qq.com/s?__biz=MzA5Mzg3Njk0OQ==&mid=2653396167&idx=1&sn=5ee3680ef92f63938852040ca6c811e3" target="_blank" class="fas fa-link"></a></p>
+                    </div>
+                </div>
+                <div class="card" style="grid-column: span 1; grid-row: span 2;"> <!-- 占据1列2行 -->
+                    <div class="card-content">
+                        <span class="news-date">07/2024</span>
+                        <p>入选2024年度中韩青年科学家交流计划，将在<a href="https://cse.postech.ac.kr/">浦项科技大学</a>开展网络管理的研究工作。</p>
+                        <img src="img/postech.png" alt="描述1" class="card-image">
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-content">
+                        <span class="news-date">02/2024</span>
+                        <p>我成为硕士研究生导师，可以招收电子信息（计算机技术）专业学位研究生，<a href="/group_cn.html">欢迎报考</a>。</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-content">
+                        <span class="news-date">11/2023</span>
+                        <p>《网络遥测进展研究》获得2023年济南市网信领域基础理论研究和技术创新应用论文二等奖。 <a href="./photos/20231101.jpg" target="_blank" class="fas fa-link"></a></p>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-content">
+                        <span class="news-date">07/2023</span>
+                        <p>《带内网络遥测任务编排算法研究》项目获得山东省自然科学基金资助。</p>
+                    </div>
+                </div>
+                <div class="card" style="grid-column: span 2; grid-row: span 2;"> <!-- 占据2列2行 -->
+                    <div class="card-content">
+                        <span class="news-date">07/2023</span>
+                        <p>基于P4的软件定义网络损伤仪研制完成，欢迎洽谈采购。 <a href="./photos/20230725.jpeg" target="_blank" class="fas fa-link"></a></p>
+                        <img src="photos/20230725.jpeg" alt="描述1" class="card-image">
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-content">
+                        <span class="news-date">05/2023</span>
+                        <p>LossSight获第二十五届中国机器人及人工智能大赛国家二等奖。 <a href="./img/CRAIC2023.jpg" target="_blank" class="fas fa-link"></a></p>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-content">
+                        <span class="news-date">12/2022</span>
+                        <p>我们将于2023年8月在青岛举办NaNA'23学术会议，欢迎网络方向赐稿。 <a href="http://www.nana-conference.org/" target="_blank" class="fas fa-link"></a></p>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-content">
+                        <span class="news-date">11/2022</span>
+                        <p>《面向数据中心的基于FPGA的网络卸载研究》项目获得山东省自然科学基金和浪潮公司资助，欢迎洽谈合作。</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-content">
+                        <span class="news-date">08/2022</span>
+                        <p>Path-Flow Matching被《Wiley Transactions on Emerging Telecommunications Technologies》选为FEATURED COVER。 <a href="https://onlinelibrary.wiley.com/doi/10.1002/ett.4637" target="_blank" class="fas fa-link"></a></p>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-content">
+                        <span class="news-date">07/2022</span>
+                        <p>参加中国算力大会并做《汇聚海量数据，超算行业未来》报告。 <a href="https://www.cnii.com.cn/rmydb/202208/t20220803_401756.html" target="_blank" class="fas fa-link"></a></p>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-content">
+                        <span class="news-date">06/2022</span>
+                        <p>获得博士学位，感谢恩师<a href="http://faculty.bjtu.edu.cn/8131/" target="_blank">苏伟</a>教授。</p>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
     <footer>

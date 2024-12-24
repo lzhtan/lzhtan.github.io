@@ -78,10 +78,22 @@
     }
 
     .stats-overview {
-        display: flex;
-        gap: 20px;
         flex-wrap: wrap;
         justify-content: center;
+        position: relative; /* 使其相对于正常流 */
+        transform: translateY(3px); /* 隐藏在窗口下方 */
+        opacity: 0; /* 初始透明度为0 */
+        animation: slideUp 0.5s forwards; /* 应用动画 */
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); /* 自适应列数 */
+        gap: 10px; /* 卡片之间的间距 */
+      }
+    /* 定义动画效果 */
+    @keyframes slideUp {
+        to {
+            transform: translateY(0); /* 动画结束时的位置 */
+            opacity: 1; /* 动画结束时的透明度 */
+        }
     }
 
     .stat-card {
@@ -93,7 +105,6 @@
         box-shadow: 0 2px 4px rgba(0,0,0,0.05);
         text-align: center;
         border: 1px solid #f0f0f0;
-        transition: transform 0.2s ease, box-shadow 0.2s ease;
     }
 
     .stat-number {
@@ -105,8 +116,6 @@
     .stat-label {
         font-size: 1em;
     }
-
-  
 
     @media (max-width: 768px) {
         .stat-card {
@@ -120,44 +129,117 @@
         }
     }
 
+    /* 标签统计区域样式 */
     .tag-overview {
-        font-size: 0.95em;
-        margin: 20px 0;
+        margin: 10px 0;
         padding: 10px;
         background: white;
         border-radius: 8px;
         box-shadow: 0 2px 4px rgba(0,0,0,0.05);
         border: 1px solid #f0f0f0;
+        position: relative; /* 使其相对于正常流 */
+        transform: translateY(3px); /* 隐藏在视口下方 */
+        opacity: 0; /* 初始透明度为0 */
+        animation: slideUp 0.5s forwards; /* 应用动画 */
     }
+    .stat-card {
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+    
+    .stat-card:hover {
+    }
+    
+    .stat-card.active-filter {
+        background: rgba(155, 13, 49, 0.1);
+        border-color: #9b0d31;
+    }
+
+    .stat-card.active-filter .stat-number {
+        color: #9b0d31;
+    }
+    
+
     .tag-title {
+        color: #666;
         margin-bottom: 15px;
         padding-bottom: 10px;
         border-bottom: 1px solid #f0f0f0;
     }
+
     .tag-list {
-        display: flex;
         flex-wrap: wrap;
-        gap: 10px;
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(100px, 1fr)); /* 自适应列数 */
+        gap: 3px; /* 卡片之间的间距 */
     }
 
     .tag-item {
-        font-weight: 500;
-        padding-left: 8px;
+        position: relative;
+        padding: 6px 12px;
         background: rgba(155, 13, 49, 0.1);
+        min-width: 80px;
         color: #9b0d31;
-        border-radius: 4px;
-        display: flex;
+        border-radius: 8px;
+        font-size: 0.9em;
+        display: inline-flex;
         align-items: center;
         gap: 6px;
-        padding-right: 0;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        margin-right: 8px;
+        flex: 0 0 auto;
+        font-weight: 500;
     }
 
+    /* 悬停效果 */
+    .tag-item:hover {
+        background: rgba(155, 13, 49, 0.2);
+    }
+
+    /* 选中状态 */
+    .tag-item.active-filter {
+        background: #9b0d31;
+        color: white;
+    }
+
+    /* 选中状态下的计数标签 */
+    .tag-item.active-filter .tag-count {
+        background: white;
+        color: #9b0d31;
+    }
+
+    /* 标签计数样式 */
     .tag-count {
-        font-weight: normal;
+        position: absolute;
+        right: 10px;
+        top: 50%;
+        transform: translateY(-50%);
         background: #9b0d31;
         color: white;
         padding: 2px 8px;
         border-radius: 4px;
+        font-size: 0.85em;
+        transition: all 0.3s ease;
+    }
+
+    /* 当标签筛选激活时，统计卡片的样式 */
+    .tag-filtering .stat-card {
+        opacity: 0.5;
+        cursor: not-allowed;
+        pointer-events: none;
+    }
+
+    /* 当统计卡片筛选激活时，标签的样式 */
+    .stat-filtering .tag-item {
+        opacity: 0.5;
+        cursor: not-allowed;
+        pointer-events: none;
+    }
+
+    /* 添加过渡效果 */
+    .stat-card, .tag-item {
+        transition: all 0.3s ease;
     }
 
     </style>
@@ -199,7 +281,7 @@
         </div>
     </div>
     <div class="tag-overview">
-        <div class="tag-title">专利领域</div>
+        <div class="tag-title">研究领域</div>
         <div class="tag-list" id="tag-list"></div>
     </div>
       <h3><span class="color-bar"></span>发明专利</h3>
@@ -268,7 +350,7 @@
         <li><p>
           <span class="paper-title"><b>一种意图驱动的网络损伤配置生成方法和系统</b></span>
           <span class="patent-tags">
-          <span class="patent-tag">网络损伤仪</span>
+          <span class="patent-tag">网络仿真</span>
           </span>
           <a href="./papers/2024-专利-一种意图驱动的网络损伤配置生成方法及系统.pdf" class="pdf-link"><i class="fas fa-file-pdf"></i></a><br>
           <span class="paper-authors">谭立状, 许一鸣, 王新航, 史慧玲, 张玮</span><br>
@@ -278,19 +360,19 @@
         <li><p>
           <span class="paper-title"><b>一种网络损伤组合化模拟实现方法及系统</b></span>
           <span class="patent-tags">
-          <span class="patent-tag">网络损伤仪</span>
+          <span class="patent-tag">网络仿真</span>
           </span>
           <a href="./papers/2023-专利-一种网络损伤组合化模拟实现方法及系统.pdf" class="pdf-link"><i class="fas fa-file-pdf"></i></a><br>
-          <span class="paper-authors">谭立状, 王新航, 史慧玲, 张玮</span><br>
+          <span class="paper-authors">谭立状, 王新航, 史慧玲, 张��</span><br>
           <span class="paper-location"><i>ZL2023117778457.0, 2023-12-21</i></span>    
         </p></li>
 
         <li><p>
           <span class="paper-title"><b>一种实现网络损伤的方法、系统及装置</b></span>
           <span class="patent-tags">
-          <span class="patent-tag">网络损伤仪</span>
+          <span class="patent-tag">网络仿真</span>
           </span>
-          <a href="./papers/2023-专利-��种实现网络损伤的方法、系统及装置.pdf" class="pdf-link"><i class="fas fa-file-pdf"></i></a><br>
+          <a href="./papers/2023-专利-一种实现网络损伤的方法、系统及装置.pdf" class="pdf-link"><i class="fas fa-file-pdf"></i></a><br>
           <span class="paper-authors">谭立状, 王新航, 史慧玲, 张玮</span><br>
           <span class="paper-location"><i>ZL202310224941.2, 2023-03-03</i></span>    
         </p></li>
@@ -322,9 +404,9 @@
         <li><p>
         <span class="paper-title"><b>一种用于网络损伤仪的壳体及网络损伤仪</b></span>
         <span class="patent-tags">
-        <span class="patent-tag">网络损伤仪</span>
+        <span class="patent-tag">网络仿真</span>
         </span>
-        <a href="./papers/2023-专利-一种用于网络损伤仪的壳体及网络损伤仪.pdf" class="pdf-link"><i class="fas fa-file-pdf"></i></a><br>
+        <a href="./papers/2023-专利-一种用于网络损伤的壳体及网络损伤仪.pdf" class="pdf-link"><i class="fas fa-file-pdf"></i></a><br>
         <span class="paper-authors">谭立状, 王新航, 史慧玲, 张玮</span><br>
         <span class="paper-location"><i>ZL202320329297.0, 2023-02-22</i></span>    
       </p></li>
@@ -339,43 +421,166 @@
 
 <script>
 document.addEventListener('DOMContentLoaded', function() {
-    // 获取所有专利
-    const allPatents = document.querySelectorAll('.paper-card li');
-    const utilityPatents = document.querySelectorAll('.paper-card:last-of-type li');
-
-    // 更新数量统计
-    document.getElementById('total-patents').textContent = allPatents.length;
-    document.getElementById('invention-patents').textContent = allPatents.length - utilityPatents.length;
-    document.getElementById('utility-patents').textContent = utilityPatents.length;
-    // 获取所有专利
+    // 获取各类专利数量
     const inventionSection = Array.from(document.querySelectorAll('h3')).find(h3 => h3.textContent.includes("发明专利")).nextElementSibling;
-            const utilitySection = Array.from(document.querySelectorAll('h3')).find(h3 => h3.textContent.includes("实用新型专利")).nextElementSibling;
+    const utilitySection = Array.from(document.querySelectorAll('h3')).find(h3 => h3.textContent.includes("实用新型专利")).nextElementSibling;
 
-            // 统计标签
-            const tagStats = new Map();
-            const allTags = [...inventionSection.querySelectorAll('.patent-tag'), ...utilitySection.querySelectorAll('.patent-tag')];
-            
-            allTags.forEach(tag => {
-                const tagText = tag.textContent.trim();
-                tagStats.set(tagText, (tagStats.get(tagText) || 0) + 1);
-            });
+    // 计算各类数量
+    const inventionCount = inventionSection ? inventionSection.getElementsByTagName('li').length : 0;
+    const utilityCount = utilitySection ? utilitySection.getElementsByTagName('li').length : 0;
+    const totalCount = inventionCount + utilityCount;
 
-            // 更新标签列表
-            const tagListContainer = document.getElementById('tag-list');
-            tagListContainer.innerHTML = ''; // 清空现有内容
+    // 更新统计数字
+    document.getElementById('total-patents').textContent = totalCount;
+    document.getElementById('invention-patents').textContent = inventionCount;
+    document.getElementById('utility-patents').textContent = utilityCount;
+
+    // 统计标签
+    const tagStats = new Map();
+    const allTags = [...inventionSection.querySelectorAll('.patent-tag'), 
+                     ...utilitySection.querySelectorAll('.patent-tag')];
+    
+    allTags.forEach(tag => {
+        const tagText = tag.textContent.trim();
+        tagStats.set(tagText, (tagStats.get(tagText) || 0) + 1);
+    });
+
+    // 更新标签列表
+    const tagListContainer = document.getElementById('tag-list');
+    tagListContainer.innerHTML = ''; // 清空现有内容
+    
+    // 将标签转换为数组并排序，确保"其他"标签在最后
+    const sortedTags = Array.from(tagStats).sort((a, b) => {
+        if (a[0] === '其他') return 1;  // 如果 a 是"其他"，放到后面
+        if (b[0] === '其他') return -1; // 如果 b 是"其他"，放到后面
+        return b[1] - a[1];  // 其他情况按数量降序排序
+    });
+
+    sortedTags.forEach(([tag, count]) => {
+        const tagDiv = document.createElement('div');
+        tagDiv.className = 'tag-item';
+        tagDiv.innerHTML = `${tag}<span class="tag-count">${count}</span>`;
+        
+        // 修改点击事件处理
+        tagDiv.addEventListener('click', function() {
+            // 切换当前标签的激活状态
+            this.classList.toggle('active-filter');
             
-            Array.from(tagStats)
-                .sort((a, b) => b[1] - a[1]) // 按数量降序排序
-                .forEach(([tag, count]) => {
-                    const tagDiv = document.createElement('div');
-                    tagDiv.className = 'tag-item';
-                    tagDiv.innerHTML = `
-                        ${tag}
-                        <span class="tag-count">${count}</span>
-                    `;
-                    tagListContainer.appendChild(tagDiv);
-                });
+            // 获取所有激活的标签
+            const activeFilters = document.querySelectorAll('.tag-item.active-filter');
+            
+            if (activeFilters.length === 0) {
+                // 如果没有激活的标签，显示所有专利
+                showAllPatents();
+            } else {
+                // 根据所��激活的标签进行筛选
+                filterPatentsByTag();
+            }
         });
+        
+        tagListContainer.appendChild(tagDiv);
+    });
+});
+
+// 筛选专利的函数
+function filterPatentsByTag() {
+    const activeFilters = document.querySelectorAll('.tag-item.active-filter');
+    const activeTags = Array.from(activeFilters).map(filter => 
+        filter.textContent.replace(/\d+$/, '').trim()
+    );
+
+    const allPatents = document.querySelectorAll('.paper-card li');
+    allPatents.forEach(patent => {
+        const patentTags = Array.from(patent.querySelectorAll('.patent-tag'))
+            .map(tag => tag.textContent.trim());
+        // 如果专利的标签中包含任何一个激活的标签，就显示该专利
+        const hasTag = patentTags.some(patentTag => 
+            activeTags.includes(patentTag)
+        );
+        patent.style.display = hasTag ? '' : 'none';
+    });
+}
+
+// 显示所有专利的函数
+function showAllPatents() {
+    document.querySelectorAll('.paper-card li').forEach(patent => {
+        patent.style.display = '';
+    });
+}
+
+// 根据类型筛选内容的函数
+function filterByType(type) {
+    // 获取各个部分的内容
+    const inventionSection = Array.from(document.querySelectorAll('h3')).find(h3 => h3.textContent.includes("发明专利"));
+    const utilitySection = Array.from(document.querySelectorAll('h3')).find(h3 => h3.textContent.includes("实用新型专利"));
+
+    // 隐藏所有条目
+    const allItems = document.querySelectorAll('.paper-card li');
+    allItems.forEach(item => item.style.display = 'none');
+
+    // 添加console.log来调试
+    console.log('Filtering by type:', type);
+    console.log('Found invention section:', inventionSection);
+    console.log('Found utility section:', utilitySection);
+
+    switch(type) {
+        case '专利总量':  // 修改这里匹配实际的标签文本
+            // 显示所有专利
+            if (inventionSection) {
+                const inventionItems = inventionSection.nextElementSibling.querySelectorAll('li');
+                inventionItems.forEach(item => item.style.display = '');
+            }
+            if (utilitySection) {
+                const utilityItems = utilitySection.nextElementSibling.querySelectorAll('li');
+                utilityItems.forEach(item => item.style.display = '');
+            }
+            break;
+        case '发明专利':
+            // 显示发明专利
+            if (inventionSection) {
+                const inventionItems = inventionSection.nextElementSibling.querySelectorAll('li');
+                inventionItems.forEach(item => item.style.display = '');
+            }
+            break;
+        case '实用新型��利':  // 修改这里匹配实际的标签文本
+            // 显示实用新型专利
+            if (utilitySection) {
+                const utilityItems = utilitySection.nextElementSibling.querySelectorAll('li');
+                utilityItems.forEach(item => item.style.display = '');
+            }
+            break;
+        default:
+            // 显示所有内容
+            allItems.forEach(item => item.style.display = '');
+    }
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+  
+
+    // 为统计卡片添加点击事件
+    const statCards = document.querySelectorAll('.stat-card');
+    statCards.forEach(card => {
+        card.addEventListener('click', function() {
+            // 如果点击的是已激活的卡片，则取消激活
+            if (this.classList.contains('active-filter')) {
+                this.classList.remove('active-filter');
+                showAllPatents();
+                return;
+            }
+
+            // 清除其他统计卡片的激活状态
+            statCards.forEach(c => c.classList.remove('active-filter'));
+            
+            // 激活当前卡片
+            this.classList.add('active-filter');
+            
+            // 根据卡片类型筛选内容
+            const label = this.querySelector('.stat-label').textContent;
+            filterByType(label);
+        });
+    });
+});
 </script>
 </body>
 </html>

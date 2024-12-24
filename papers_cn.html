@@ -13,7 +13,6 @@
         border: 1px solid #f1f1f1;
         border-radius: 8px;
         box-shadow: 0 1px 1px rgba(0, 0, 0, 0.08);
-        transition: box-shadow 0.3s ease-in-out;
     }
 
     .paper-title {
@@ -67,6 +66,155 @@
         margin-bottom: 10px;
     }
 
+    .stats-overview {
+        
+        flex-wrap: wrap;
+        justify-content: center;
+        margin-bottom: 10px;
+        position: relative; /* 使其相对于正常流 */
+        transform: translateY(3px); /* 隐藏在视口下方 */
+        opacity: 0; /* 初始透明度为0 */
+        animation: slideUp 0.5s forwards; /* 应用动画 */
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); /* 自适应列数 */
+        gap: 10px; /* 卡片之间的间距 */
+    }
+   
+    .stat-card {
+        padding: 10px 10px;
+        background: white;
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        text-align: center;
+        border: 1px solid #f0f0f0;
+    }
+
+    .stat-number {
+        font-size: 1.1em;
+        font-weight: bold;
+        color: #9b0d31;
+    }
+
+    .stat-label {
+        font-size: 1em;
+    }
+
+    @media (max-width: 768px) {
+        .stat-card {
+            min-width: calc(50% - 20px);
+        }
+    }
+
+    /* 标签统计区域样式 */
+    .tag-overview {
+        margin: 10px 0;
+        padding: 10px;
+        background: white;
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        border: 1px solid #f0f0f0;
+        position: relative; /* 使其相对于正常流 */
+        transform: translateY(3px); /* 隐藏在视口下方 */
+        opacity: 0; /* 初始透明度为0 */
+        animation: slideUp 0.5s forwards; /* 应用动画 */
+    }
+    /* 定义动画效果 */
+    @keyframes slideUp {
+        to {
+            transform: translateY(0); /* 动画结束时的位置 */
+            opacity: 1; /* 动画结束时的透明度 */
+        }
+    }
+
+    .tag-title {
+        color: #666;
+        margin-bottom: 15px;
+        padding-bottom: 10px;
+        border-bottom: 1px solid #f0f0f0;
+    }
+
+    .tag-list {
+        flex-wrap: wrap;
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(100px, 1fr)); /* 自适应列数 */
+        gap: 3px; /* 卡片之间的间距 */
+    }
+
+    .tag-item {
+        position: relative;
+        padding: 6px 12px;
+        background: rgba(155, 13, 49, 0.1);
+        min-width: 80px;
+        color: #9b0d31;
+        border-radius: 8px;
+        font-size: 0.9em;
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        margin-right: 8px;
+        flex: 0 0 auto;
+        font-weight: 500;
+    }
+
+    .tag-count {
+        position: absolute;
+        right: 10px;
+        top: 50%;
+        transform: translateY(-50%);
+        background: #9b0d31;
+        color: white;
+        padding: 2px 8px;
+        border-radius: 4px;
+        font-size: 0.85em;
+    }
+
+    .tag-item:hover {
+        background: rgba(155, 13, 49, 0.2);
+    }
+
+    .tag-item.active-filter {
+        background: #9b0d31;
+        color: white;
+    }
+
+    .tag-item.active-filter .tag-count {
+        background: white;
+        color: #9b0d31;
+    }
+
+    /* 标签容器 */
+    .paper-tags {
+        display: inline;
+    }
+
+    /* 标签样式 */
+    .paper-tag {
+        display: inline-block;
+        padding: 2px 8px;
+        border-radius: 4px;
+        background: rgba(155, 13, 49, 0.1);
+        color: #9b0d31;
+        font-size: 0.85em;
+        margin-right: 4px;
+    }
+    .stat-card {
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+    
+    .stat-card:hover {
+    }
+    
+    .stat-card.active-filter {
+        background: rgba(155, 13, 49, 0.1);
+        border-color: #9b0d31;
+    }
+
+    .stat-card.active-filter .stat-number {
+        color: #9b0d31;
+    }
     </style>
   </head>
 <body>
@@ -91,11 +239,42 @@
         </nav>
     </header>
     <div class="container">
+      <div class="stats-overview">
+        <div class="stat-card">
+            <div class="stat-number" id="total-papers">0</div>
+            <div class="stat-label">论文总数</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-number" id="journal-papers">0</div>
+            <div class="stat-label">期刊论文</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-number" id="conference-papers">0</div>
+            <div class="stat-label">会议论文</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-number" id="total-books">0</div>
+            <div class="stat-label">专著</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-number" id="total-awards">0</div>
+            <div class="stat-label">奖励</div>
+        </div>
+      </div>
+
+      <div class="tag-overview">
+          <div class="tag-title">研究领域</div>
+          <div class="tag-list" id="tag-list"></div>
+      </div>
+
       <h3><span class="color-bar"></span>期刊论文</h3>
       <div class="paper-card">
         <ol style="margin: 0; padding-left: 35px;">
         <li><p>
               <span class="paper-title"><b>ByteTuning: Watermark Tuning for RoCEv2</b></span>
+              <span class="paper-tags">
+                <span class="paper-tag">RDMA</span>
+              </span>
               <a href="./papers/2025-论文-TCC.pdf" class="pdf-link"><i class="fas fa-file-pdf"></i></a>
               <a target="_blank" rel="noopener" href="https://github.com/lzhtan/ByteTuning"><i class="fab fa-github"></i></a>
               <a target="_blank" rel="noopener" href="https://github.com/lzhtan/Fluid-Model-for-DCQCN-ECN-PFC"><i class="fab fa-github"></i></a><br>
@@ -105,6 +284,9 @@
 
             <li><p>
               <span class="paper-title"><b>A Distributed Load Balancing Architecture based on In-band Network Telemetry</b></span>
+              <span class="paper-tags">
+              <span class="paper-tag">网络遥测</span>
+              </span>
               <a href="./papers/2024-论文-ITL.pdf" class="pdf-link"><i class="fas fa-file-pdf"></i></a><br>
               <span class="paper-authors">Mingfa Li, Huiling Shi*, Lizhuang Tan*, Wei Zhang</span><br>
               <span class="paper-location"><i>Internet Technology Letters, 2024</i></span>    
@@ -112,6 +294,9 @@
 
             <li><p>
               <span class="paper-title"><b>Energy Efficient Resource Allocation based on Virtual Network Embedding for IoT Data Generation</b></span>
+              <span class="paper-tags">
+              <span class="paper-tag">资源管理</span>
+              </span>
               <a href="./papers/2024-论文-ASE.pdf" class="pdf-link"><i class="fas fa-file-pdf"></i></a><br>
               <span class="paper-authors">Lizhuang Tan, Amjad Aldweesh, Ning Chen*, Jian Wang, Jianyong Zhang*, Yi Zhang, Kostromitin Konstantin Igorevich, Peiying Zhang</span><br>
               <span class="paper-location"><i>Automated Software Engineering, 2024</i></span>    
@@ -119,6 +304,9 @@
 
             <li><p>
               <span class="paper-title"><b>Local Search Resource Allocation Algorithm for Space-Based Backbone Network in Deep Reinforcement Learning Method</b></span>
+              <span class="paper-tags">
+              <span class="paper-tag">资源管理</span>
+              </span>
               <a href="./papers/2024-论文-ADHOC.pdf" class="pdf-link"><i class="fas fa-file-pdf"></i></a><br>
               <span class="paper-authors">Peiying Zhang, Zixuan Cui, Neeraj Kumar, Jian Wang, Wei Zhang, Lizhuang Tan*</span><br>
               <span class="paper-location"><i>Ad Hoc Networks, 2024</i></span>    
@@ -126,6 +314,9 @@
 
             <li><p>
               <span class="paper-title"><b>Multi-objective Optimization Of SFC Deployment Using Service Aggregation and Computing Offload</b></span>
+              <span class="paper-tags">
+              <span class="paper-tag">资源管理</span>
+              </span>
               <a href="./papers/2024-论文-COMCOM.pdf" class="pdf-link"><i class="fas fa-file-pdf"></i></a><br>
               <span class="paper-authors">Junbi Xiao, Jiaqi Zheng, Wu Wen, Mohsen Guizani, Peiying Zhang, Lizhuang Tan*</span><br>
               <span class="paper-location"><i>Computer Communications, 2024</i></span>    
@@ -133,6 +324,9 @@
 
             <li><p>
               <span class="paper-title"><b>Security Analysis and Monitoring Assessment of Networked Printers: A Report</b></span>
+              <span class="paper-tags">
+              <span class="paper-tag">网络检测</span>
+              </span>
               <a href="./papers/2024-论文-ELL.pdf" class="pdf-link"><i class="fas fa-file-pdf"></i></a>
               <a href="./files/Knowledge base for networked printer.xlsx" class="pdf-link"><i class="fas fa-file-pdf"></i></a><br>
               <span class="paper-authors">Quanbo Pan, Shengbao Li, Na Li, Peiying Zhang, Lizhuang Tan*</span><br>
@@ -141,6 +335,9 @@
 
             <li><p>
               <span class="paper-title"><b>A Packet Loss Monitoring System For In-Band Network Telemetry: Detection, Localization, Diagnosis and Recovery</b></span>
+              <span class="paper-tags">
+              <span class="paper-tag">网络遥测</span>
+              </span>
               <a href="./papers/2021-论文-TNSM.pdf" class="pdf-link"><i class="fas fa-file-pdf"></i></a>
               <a href="https://github.com/lzhtan/LossSight" target="_blank" rel="noopener"><i class="fab fa-github"></i></a><br>
               <span class="paper-authors">Lizhuang Tan, Wei Su*, Wei Zhang, Huiling Shi, Jingying Miao, Pilar Manzanares-Lopez</span><br>
@@ -149,6 +346,9 @@
 
             <li><p>
               <span class="paper-title"><b>FindINT: Detect and Locate the Lost In-Band Network Telemetry Packet</b></span>
+              <span class="paper-tags">
+              <span class="paper-tag">网络遥测</span>
+              </span>
               <a href="./papers/2021-论文-NETLETT.pdf" class="pdf-link"><i class="fas fa-file-pdf"></i></a>
               <a href="https://github.com/lzhtan/FindINT" target="_blank" rel="noopener"><i class="fab fa-github"></i></a><br>
               <span class="paper-authors">Lizhuang Tan, Wei Su*, Jingying Miao, Wei Zhang</span><br>
@@ -157,6 +357,9 @@
 
             <li><p>
               <span class="paper-title"><b>In-band Network Telemetry: A Survey</b></span>
+              <span class="paper-tags">
+              <span class="paper-tag">网络遥测</span>
+              </span>
               <a href="./papers/2021-论文-COMNET.pdf" class="pdf-link"><i class="fas fa-file-pdf"></i></a><br>
               <span class="paper-authors">Lizhuang Tan, Wei Su*, Wei Zhang, Jianhui Lv, Zhenyi Zhang, Jingying Miao, Xiaoxi Liu, Na Li</span><br>
               <span class="paper-location"><i>Computer Networks, 2021</i></span>    
@@ -164,6 +367,9 @@
 
             <li><p>
               <span class="paper-title"><b>Path-Flow Matching: Two-Sided Matching and Multiobjective Evolutionary Algorithm for Traffic Scheduling in Cloud Data Center Network</b></span>
+              <span class="paper-tags">
+              <span class="paper-tag">资源管理</span>
+              </span>
               <a href="./papers/2019-论文-ETT.pdf" class="pdf-link"><i class="fas fa-file-pdf"></i></a>
               <a target="_blank" rel="noopener" href="https://github.com/lzhtan/FlowSampling"><i class="fab fa-github"></i></a></br>
               <span class="paper-authors">Lizhuang Tan*, Wei Su, Shuai Gao, Jingying Miao, Yuan Cheng, Peng Cheng</span><br>
@@ -177,11 +383,17 @@
         <ol style="margin: 0; padding-left: 35px;">
           <li><p>
             <span class="paper-title"><b>CombNE: A Combined Network Emulator Based on Programmable Switch</b></span>
+            <span class="paper-tags">
+            <span class="paper-tag">网络仿真</span>
+            </span>
             <a href="./papers/2024-论文-HPCC.pdf" class="pdf-link"><i class="fas fa-file-pdf"></i></a><br>
             <span class="paper-authors">Xinhang Wang, Lizhuang Tan, Huiling Shi, Wei Zhang</span><br>
             <span class="paper-location"><i>HPCC'24</i></span>    
             <li><p>
             <span class="paper-title"><b>Hostping: Diagnosing Intra-host Performance Bottlenecks in RDMA Servers</b></span>
+            <span class="paper-tags">
+            <span class="paper-tag">网络遥测</span>
+            </span>
             <a href="./papers/2024-论文-NSDI.pdf" class="pdf-link"><i class="fas fa-file-pdf"></i></a><br>
             <span class="paper-authors">Kefei Liu, Zhuo Jiang, Jiao Zhang, Haoran Wei, Xiaolong Zhong, Lizhuang Tan, Tian Pan, Tao Huang</span><br>
             <span class="paper-location"><i>NSDI'23</i></span>    
@@ -189,6 +401,9 @@
 
           <li><p>
             <span class="paper-title"><b>In-band Network Telemetry Task Orchestration based on Multi-objective Optimization</b></span>
+            <span class="paper-tags">
+            <span class="paper-tag">网络遥测</span>
+            </span>
             <a href="./papers/2021-论文-APNOMS.pdf" class="pdf-link"><i class="fas fa-file-pdf"></i></a><br>
             <span class="paper-authors">Zhenyi Zhang, Wei Su, Lizhuang Tan</span><br>
             <span class="paper-location"><i>APNOMS'21</i></span>    
@@ -196,6 +411,9 @@
 
           <li><p>
             <span class="paper-title"><b>Tetris: Near-optimal Scheduling for Multi-path Deadline-aware Transport Protocol</b></span>
+            <span class="paper-tags">
+            <span class="paper-tag">QUIC</span>
+            </span>
             <a href="./papers/2021-论文-NaNA.pdf" class="pdf-link"><i class="fas fa-file-pdf"></i></a><br>
             <span class="paper-authors">Yanwen Liu, Wei Su, Lizhuang Tan</span><br>
             <span class="paper-location"><i>NaNA'21 [<b>Best Paper Award</b>]</i></span>    
@@ -203,6 +421,9 @@
 
           <li><p>
             <span class="paper-title"><b>DCQUIC: Flexible and Reliable Software-defined Data Center Transport</b></span>
+            <span class="paper-tags">
+            <span class="paper-tag">QUIC</span>
+            </span>
             <a href="./papers/2021-论文-INFOCOM.pdf" class="pdf-link"><i class="fas fa-file-pdf"></i></a><br>
             <span class="paper-authors">Lizhuang Tan, Wei Su, Yanwen Liu, Xiaochuan Gao, Wei Zhang</span><br>
             <span class="paper-location"><i>INFOCOM'21 ICCN Workshop</i></span>    
@@ -210,6 +431,9 @@
 
           <li><p>
             <span class="paper-title"><b>Proactive Connection Migration in QUIC</b></span>
+            <span class="paper-tags">
+            <span class="paper-tag">QUIC</span>
+            </span>
             <a href="./papers/2020-论文-MobiQuitous.pdf" class="pdf-link"><i class="fas fa-file-pdf"></i></a>
             <a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1ZA411J7Lv/"><i class="fas fa-video"></i></a>
             <br>
@@ -219,6 +443,9 @@
 
           <li><p>
             <span class="paper-title"><b>OpenQUIC: Software-defined Transmission like Building Blocks</b></span>
+            <span class="paper-tags">
+            <span class="paper-tag">QUIC</span>
+            </span>
             <a href="./papers/2020-论文-CoNEXT.pdf" class="pdf-link"><i class="fas fa-file-pdf"></i></a>
             <a href="https://github.com/lzhtan/OpenQUIC" target="_blank" rel="noopener"><i class="fab fa-github"></i></a><br>
             <span class="paper-authors">Lizhuang Tan, Wei Su, Xiaochuan Gao, Wei Zhang</span><br>
@@ -227,6 +454,9 @@
 
           <li><p>
             <span class="paper-title"><b>Genetic Algorithms Based on Clustering for Traveling Salesman Problems</b></span>
+            <span class="paper-tags">
+            <span class="paper-tag">其他</span>
+            </span>
             <a href="./papers/2016-论文-ICNC.pdf" class="pdf-link"><i class="fas fa-file-pdf"></i></a>
             <a href="https://github.com/lzhtan/k-means-GA-for-TSP" target="_blank" rel="noopener"><i class="fab fa-github"></i></a><br>
             <span class="paper-authors">Lizhuang Tan, Yanyan Tan, Guoxiao Yun, Yanna Wu</span><br>
@@ -240,6 +470,9 @@
           <ol style="margin: 0; padding-left: 35px;">
             <li><p>
             <span class="paper-title"><b>网络操作系统SONiC: 原理、技术与实践</b></span>
+            <span class="paper-tags">
+            <span class="paper-tag">SONiC</span>
+            </span>
             <a href="./papers/2024-专著-SONIC.pdf" class="pdf-link"><i class="fas fa-file-pdf"></i></a><br>
             <span class="paper-authors">张玮, 史慧玲, 谭立状, 吴迅亮</span><br>
             <span class="paper-location"><i>人民邮电出版社, 2024</i></span>    
@@ -252,6 +485,9 @@
           <ol style="margin: 0; padding-left: 35px;">
             <li><p>
             <span class="paper-title"><b>网络遥测进展研究</b></span>
+            <span class="paper-tags">
+            <span class="paper-tag">网络遥测</span>
+            </span>
             <a href="./photos/20231101.jpg" class="pdf-link"><i class="fas fa-file-pdf"></i></a><br>
             <span class="paper-authors">李娜, 张奎超, 谭立状, 孟繁瑞</span><br>
             <span class="paper-location"><i>济南市网信领域基础理论研究和技术创新应用论文二等奖, 2023</i></span>    
@@ -264,5 +500,208 @@
         <footer>
             <p>Copyright &copy; 2022 - New Era. By Lizhuang Tan</p>
         </footer>
+
+        <script>
+          document.addEventListener('DOMContentLoaded', function() {
+              // 获取各类论文数量
+              const journalSection = Array.from(document.querySelectorAll('h3')).find(h3 => h3.textContent.includes("期刊论文")).nextElementSibling;
+              const conferenceSection = Array.from(document.querySelectorAll('h3')).find(h3 => h3.textContent.includes("会议论文")).nextElementSibling;
+              const booksSection = Array.from(document.querySelectorAll('h3')).find(h3 => h3.textContent.includes("专著")).nextElementSibling;
+              const awardsSection = Array.from(document.querySelectorAll('h3')).find(h3 => h3.textContent.includes("奖励")).nextElementSibling;
+    
+              // 计算各类数量
+              const journalCount = journalSection ? journalSection.getElementsByTagName('li').length : 0;
+              const conferenceCount = conferenceSection ? conferenceSection.getElementsByTagName('li').length : 0;
+              const booksCount = booksSection ? booksSection.getElementsByTagName('li').length : 0;
+              const awardsCount = awardsSection ? awardsSection.getElementsByTagName('li').length : 0;
+              
+              // 修正：论文总数只包含期刊论文和会议论文
+              const totalCount = journalCount + conferenceCount;
+    
+              // 更新统计数字
+              document.getElementById('total-papers').textContent = totalCount;
+              document.getElementById('journal-papers').textContent = journalCount;
+              document.getElementById('conference-papers').textContent = conferenceCount;
+              document.getElementById('total-books').textContent = booksCount;
+              document.getElementById('total-awards').textContent = awardsCount;
+              
+              // 统计所有标签，包括专著和奖励
+              const tagStats = new Map();
+              const allTags = [
+                  ...journalSection.querySelectorAll('.paper-tag'),
+                  ...conferenceSection.querySelectorAll('.paper-tag'),
+                  ...booksSection.querySelectorAll('.paper-tag'),
+                  ...awardsSection.querySelectorAll('.paper-tag')
+              ];
+              
+              allTags.forEach(tag => {
+                  const tagText = tag.textContent.trim();
+                  tagStats.set(tagText, (tagStats.get(tagText) || 0) + 1);
+              });
+    
+              // 更新标签列表
+              const tagListContainer = document.getElementById('tag-list');
+              tagListContainer.innerHTML = '';
+              
+              // 将标签转换为数组并排序，确保"其他"标签在最后
+              const sortedTags = Array.from(tagStats).sort((a, b) => {
+                  if (a[0] === '其他') return 1;
+                  if (b[0] === '其他') return -1;
+                  return b[1] - a[1];
+              });
+
+              sortedTags.forEach(([tag, count]) => {
+                  const tagDiv = document.createElement('div');
+                  tagDiv.className = 'tag-item';
+                  tagDiv.innerHTML = `${tag}<span class="tag-count">${count}</span>`;
+                  
+                  tagDiv.addEventListener('click', function() {
+                      this.classList.toggle('active-filter');
+                      const activeFilters = document.querySelectorAll('.tag-item.active-filter');
+                      
+                      if (activeFilters.length === 0) {
+                          showAllPapers();
+                      } else {
+                          filterPapersByTag();
+                      }
+                  });
+                  
+                  tagListContainer.appendChild(tagDiv);
+              });
+          });
+    
+          // 筛选函数现在也要包括专著和奖励
+          function filterPapersByTag() {
+              const activeFilters = document.querySelectorAll('.tag-item.active-filter');
+              const activeTags = Array.from(activeFilters).map(filter => 
+                  filter.textContent.replace(/\d+$/, '').trim()
+              );
+
+              const allItems = document.querySelectorAll('.paper-card li');
+              allItems.forEach(item => {
+                  const itemTags = Array.from(item.querySelectorAll('.paper-tag'))
+                      .map(tag => tag.textContent.trim());
+                  const hasTag = itemTags.some(itemTag => 
+                      activeTags.includes(itemTag)
+                  );
+                  item.style.display = hasTag ? '' : 'none';
+              });
+          }
+    
+          // 显示所有内容的函数
+          function showAllPapers() {
+              document.querySelectorAll('.paper-card li').forEach(item => {
+                  item.style.display = '';
+              });
+          }
+
+          // 为统计卡片添加点击事件
+          const statCards = document.querySelectorAll('.stat-card');
+          const tagItems = document.querySelectorAll('.tag-item');
+          
+          // 统计卡片点击事件
+          statCards.forEach(card => {
+              card.addEventListener('click', function() {
+                  // 如果点击的是已激活的卡片，则取消激活
+                  if (this.classList.contains('active-filter')) {
+                      this.classList.remove('active-filter');
+                      showAllPapers();
+                      return;
+                  }
+
+                  // 清除其他统计卡片的激活状态
+                  statCards.forEach(c => c.classList.remove('active-filter'));
+                  
+                  // 激活当前卡片
+                  this.classList.add('active-filter');
+                  
+                  // 根据卡片类型筛选内容
+                  const label = this.querySelector('.stat-label').textContent;
+                  filterByType(label);
+              });
+          });
+
+          // 标签点击事件
+          tagItems.forEach(tag => {
+              tag.addEventListener('click', function() {
+                  // 如果是第一次点击标签，清除统计卡片的状态
+                  if (!document.querySelector('.tag-item.active-filter')) {
+                      statCards.forEach(card => card.classList.remove('active-filter'));
+                  }
+
+                  // 切换当前标签的状态
+                  this.classList.toggle('active-filter');
+                  
+                  // 根据标签状态筛选
+                  const activeFilters = document.querySelectorAll('.tag-item.active-filter');
+                  if (activeFilters.length > 0) {
+                      filterPapersByTag();
+                  } else {
+                      showAllPapers();
+                  }
+              });
+          });
+
+          
+
+          // 根据类型筛选内容的函数
+          function filterByType(type) {
+              // 获取各个部分的内容
+              const journalSection = Array.from(document.querySelectorAll('h3')).find(h3 => h3.textContent.includes("期刊论文"));
+              const conferenceSection = Array.from(document.querySelectorAll('h3')).find(h3 => h3.textContent.includes("会议论文"));
+              const booksSection = Array.from(document.querySelectorAll('h3')).find(h3 => h3.textContent.includes("专著"));
+              const awardsSection = Array.from(document.querySelectorAll('h3')).find(h3 => h3.textContent.includes("奖励"));
+
+              // 隐藏所有条目
+              const allItems = document.querySelectorAll('.paper-card li');
+              allItems.forEach(item => item.style.display = 'none');
+
+              switch(type) {
+                  case '论文总数':
+                      // 显示期刊和会议论文
+                      if (journalSection) {
+                          const journalItems = journalSection.nextElementSibling.querySelectorAll('li');
+                          journalItems.forEach(item => item.style.display = '');
+                      }
+                      if (conferenceSection) {
+                          const conferenceItems = conferenceSection.nextElementSibling.querySelectorAll('li');
+                          conferenceItems.forEach(item => item.style.display = '');
+                      }
+                      break;
+                  case '期刊论文':
+                      // 显示期刊论文
+                      if (journalSection) {
+                          const journalItems = journalSection.nextElementSibling.querySelectorAll('li');
+                          journalItems.forEach(item => item.style.display = '');
+                      }
+                      break;
+                  case '会议论文':
+                      // 显示会议论文
+                      if (conferenceSection) {
+                          const conferenceItems = conferenceSection.nextElementSibling.querySelectorAll('li');
+                          conferenceItems.forEach(item => item.style.display = '');
+                      }
+                      break;
+                  case '专著':
+                      // 显示专著
+                      if (booksSection) {
+                          const bookItems = booksSection.nextElementSibling.querySelectorAll('li');
+                          bookItems.forEach(item => item.style.display = '');
+                      }
+                      break;
+                  case '奖励':
+                      // 显示奖励
+                      if (awardsSection) {
+                          const awardItems = awardsSection.nextElementSibling.querySelectorAll('li');
+                          awardItems.forEach(item => item.style.display = '');
+                      }
+                      break;
+                  default:
+                      // 显示所有内容
+                      allItems.forEach(item => item.style.display = '');
+              }
+          }
+          </script>
+
 </body>
 </html>

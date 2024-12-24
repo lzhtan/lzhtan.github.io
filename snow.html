@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Snow Effect</title>
+    <style>
+        @font-face {
+            font-family: 'ShangShouZhiZhongTi';
+            src: url('https://cdn.jsdelivr.net/gh/wordshub/free-font/商务字体/方正手迹/方正手迹字体.ttf') format('truetype');
+        }
+        
+        body {
+            margin: 0;
+            overflow: hidden;
+            background: linear-gradient(to bottom, 
+                #000033,    /* 深蓝色 */
+                #000066,    /* 中蓝色 */
+                #000080     /* 海军蓝 */
+            );
+            height: 100vh;
+        }
+        
+        #snow {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: 1000;
+            pointer-events: none;
+        }
+    </style>
+</head>
+<body>
+    <canvas id="snow"></canvas>
+
+    <script>
+        // 创建音频上下文和音效
+        const AudioContext = window.AudioContext || window.webkitAudioContext;
+        const audioContext = new AudioContext();
+
+        // 创建和加载音效
+        async function loadSound(url) {
+            try {
+                const response = await fetch(url);
+                const arrayBuffer = await response.arrayBuffer();
+                const audioBuffer = await audioContext.decodeAudioData(arrayBuffer);
+                return audioBuffer;
+            } catch (error) {
+                console.error('Error loading sound:', error);
+                return null;
+            }
+        }
+
+        // 播放音效的函数
+        function playSound(audioBuffer, volume = 0.5) {
+            if (!audioBuffer || audioContext.state !== 'running') return;
+            
+            const source = audioContext.createBufferSource();
+            const gainNode = audioContext.createGain();
+            
+            source.buffer = audioBuffer;
+            gainNode.gain.value = volume;
+            
+            source.connect(gainNode);
+            gainNode.connect(audioContext.destination);
+            
+            source.start(0);
+        }
+
+        // 存储加载的音效
+        let explosionBuffer = null;
+        let launchBuffer = null;
+
+        // 加载音效
+        async function initSounds() {
+            explosionBuffer = await loadSound('https://raw.githubusercontent.com/scottschiller/fireworks.js/master/sounds/explosion0.mp3');
+            launchBuffer = await loadSound('https://raw.githubusercontent.com/scottschiller/fireworks.js/master/sounds/launch1.mp3');
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const canvas = document.getElementById('snow');
+            const ctx = canvas.getContext('2d');
+            
+            // 设置 canvas 尺寸
+            function setCanvasSize() {
+                canvas.width = window.innerWidth;
+                canvas.height = window.innerHeight;
+            }
+            setCanvasSize();
+            window.addEventListener('resize', setCanvasSize);
+
+            // 雪花类
+            class Snowflake {
+                constructor() {
+                    this.reset();
+                }
+
+                reset() {
+                    this.x = Math.random() * canvas.width;
+                    this.y = Math.random() * -canvas.height;
+                    this.size = Math.random() * 3 + 1;
+                    this.speed = Math.random() * 1 + 0.5;
+                    this.wind = Math.random() * 0.5 - 0.25;
+                    this.rotation = Math.random() * Math.PI * 2;
+                    this.rotationSpeed = (Math.random() - 0.5) * 0.02;
+                    this.opacity = Math.random() * 0.6 + 0.4;
+                    this.landed = false;
+                    this.groundY = canvas.height - (Math.random() * 30);
+                }
+
+                update() {
+                    if (this.landed) return;
+
+                    this.y += this.speed;
+                    this.x += this.wind;
+                    this.rotation += this.rotationSpeed;
+
+                    // 检查边界
+                    if (this.x < 0) this.x = canvas.width;
+                    if (this.x > canvas.width) this.x = 0;
+
+                    // 检查是否落地
+                    if (this.y >= this.groundY) {
+                        this.landed = true;
+                        this.y = this.groundY;
+                    }
+                }
+
+                draw() {
+                    ctx.save();
+                    ctx.translate(this.x, this.y);
+                    ctx.rotate(this.rotation);
+                    ctx.beginPath();
+                    
+                    // 绘制六角形雪花
+                    for (let i = 0; i < 6; i++) {
+                        ctx.moveTo(0, 0);
+                        ctx.lineTo(this.size * 2, 0);
+                        ctx.rotate(Math.PI / 3);
+                    }
+
+                    ctx.strokeStyle = `rgba(255, 255, 255, ${this.opacity})`;
+                    ctx.lineWidth = this.size / 3;
+                    ctx.stroke();
+                    ctx.restore();
+                }
+            }
+
+            const snowflakes = [];
+            const maxSnowflakes = 1000 ;
+
+            // 添加新雪花
+            function addSnowflake() {
+                if (snowflakes.length < maxSnowflakes) {
+                    snowflakes.push(new Snowflake());
+                }
+            }
+
+            // 在雪花代码后添加烟花相关代码
+            class Particle {
+                constructor(x, y, color) {
+                    this.x = x;
+                    this.y = y;
+                    this.color = color;
+                    this.radius = Math.random() * 2 + 1;
+                    
+                    // 更自然的爆炸轨迹
+                    const angle = Math.random() * Math.PI * 2;
+                    const velocity = Math.random() * 6 + 2;
+                    this.vx = Math.cos(angle) * velocity;
+                    this.vy = Math.sin(angle) * velocity;
+                    
+                    this.gravity = 0.15;
+                    this.life = 1;  // 生命值
+                    this.decay = Math.random() * 0.02 + 0.02; // 衰减速度
+                }
+
+                update() {
+                    this.x += this.vx;
+                    this.vy += this.gravity;
+                    this.y += this.vy;
+                    this.life -= this.decay;
+                }
+
+                draw(ctx) {
+                    ctx.save();
+                    ctx.globalAlpha = this.life;
+                    
+                    // 绘制发光效果
+                    const gradient = ctx.createRadialGradient(
+                        this.x, this.y, 0,
+                        this.x, this.y, this.radius * 2
+                    );
+                    gradient.addColorStop(0, this.color);
+                    gradient.addColorStop(0.4, this.color);
+                    gradient.addColorStop(1, 'rgba(0,0,0,0)');
+                    
+                    ctx.fillStyle = gradient;
+                    ctx.beginPath();
+                    ctx.arc(this.x, this.y, this.radius * 2, 0, Math.PI * 2);
+                    ctx.fill();
+                    
+                    // 绘制火花中心
+                    ctx.fillStyle = '#ffffff';
+                    ctx.beginPath();
+                    ctx.arc(this.x, this.y, this.radius * 0.5, 0, Math.PI * 2);
+                    ctx.fill();
+                    
+                    ctx.restore();
+                }
+            }
+
+            class Firework {
+                constructor(x, y, targetX, targetY) {
+                    this.x = x;
+                    this.y = y;
+                    this.targetX = targetX;
+                    this.targetY = targetY;
+                    
+                    // 上升轨迹
+                    const angle = Math.atan2(targetY - y, targetX - x);
+                    const velocity = 15;
+                    this.vx = Math.cos(angle) * velocity;
+                    this.vy = Math.sin(angle) * velocity;
+                    
+                    this.particles = [];
+                    this.exploded = false;
+                    
+                    // 随机选择烟花颜色
+                    this.colors = [
+                        '#ff0000', '#ffd700', '#ff69b4', '#00ff00', '#4169e1',
+                        '#ff7f50', '#ff00ff', '#00ffff', '#ffff00'
+                    ];
+                    
+                    // 播放发射音效
+                    playSound(launchBuffer, 0.3);
+                }
+
+                playExplosionSound() {
+                    playSound(explosionBuffer, 0.4);
+                }
+
+                explode() {
+                    // 在爆炸时播放声音
+                    this.playExplosionSound();
+
+                    const particleCount = 150;
+                    const color = this.colors[Math.floor(Math.random() * this.colors.length)];
+                    
+                    // 创建多层爆炸效果
+                    for (let i = 0; i < particleCount; i++) {
+                        this.particles.push(new Particle(this.x, this.y, color));
+                    }
+                    
+                    // 添加第二层不同颜色的爆炸
+                    const secondColor = this.colors[Math.floor(Math.random() * this.colors.length)];
+                    for (let i = 0; i < particleCount/2; i++) {
+                        this.particles.push(new Particle(this.x, this.y, secondColor));
+                    }
+                }
+
+                update() {
+                    if (!this.exploded) {
+                        this.x += this.vx;
+                        this.y += this.vy;
+                        this.vy += 0.1; // 添加重力效果
+
+                        // 检查是否到达目标点
+                        if (Math.abs(this.x - this.targetX) < 10 && Math.abs(this.y - this.targetY) < 10) {
+                            this.explode();
+                            this.exploded = true;
+                        }
+                    }
+
+                    // 更新所有粒子
+                    for (let i = this.particles.length - 1; i >= 0; i--) {
+                        const particle = this.particles[i];
+                        particle.update();
+                        
+                        // 移除消失的粒子
+                        if (particle.life <= 0) {
+                            this.particles.splice(i, 1);
+                        }
+                    }
+                }
+
+                draw(ctx) {
+                    if (!this.exploded) {
+                        // 绘制上升轨迹
+                        ctx.save();
+                        ctx.fillStyle = '#ffffff';
+                        ctx.beginPath();
+                        ctx.arc(this.x, this.y, 2, 0, Math.PI * 2);
+                        ctx.fill();
+                        
+                        // 添加尾迹效果
+                        const gradient = ctx.createLinearGradient(
+                            this.x, this.y,
+                            this.x - this.vx * 5, this.y - this.vy * 5
+                        );
+                        gradient.addColorStop(0, 'rgba(255, 255, 255, 0.5)');
+                        gradient.addColorStop(1, 'rgba(255, 255, 255, 0)');
+                        
+                        ctx.strokeStyle = gradient;
+                        ctx.lineWidth = 1;
+                        ctx.beginPath();
+                        ctx.moveTo(this.x, this.y);
+                        ctx.lineTo(this.x - this.vx * 5, this.y - this.vy * 5);
+                        ctx.stroke();
+                        ctx.restore();
+                    }
+
+                    // 绘制所有粒子
+                    this.particles.forEach(particle => particle.draw(ctx));
+                }
+            }
+
+            // 烟花数组
+            const fireworks = [];
+            const colors = [
+                '#ff0000', '#ffd700', '#ff69b4', '#00ff00', '#4169e1',
+                '#ff7f50', '#ff00ff', '#00ffff', '#ffff00'
+            ];
+
+            // 修改动画循环
+            let showText = false;
+            let startTime = Date.now();
+
+            // 在现有代码前添加星星和月亮的绘制函数
+            function drawMoon() {
+                ctx.save();
+                
+                // 月亮位置和大小
+                const x = 80;
+                const y = 80;
+                const radius = 30;
+                
+                // 创建弯月渐变
+                const moonGradient = ctx.createLinearGradient(x - radius, y, x + radius, y);
+                moonGradient.addColorStop(0, '#FFF5DD');   // 暖白色
+                moonGradient.addColorStop(1, '#FFE5BB');   // 稍微偏黄
+                
+                ctx.fillStyle = moonGradient;
+                
+                // 绘制弯月
+                ctx.beginPath();
+                // 外圆
+                ctx.arc(x, y, radius, -Math.PI/2, Math.PI/2, true);
+                // 内弧
+                ctx.arc(x - 10, y, radius, Math.PI/2, -Math.PI/2, false);
+                ctx.closePath();
+                ctx.fill();
+                
+                // 月亮的光晕
+                const glowGradient = ctx.createRadialGradient(
+                    x, y, radius,
+                    x, y, radius * 2
+                );
+                glowGradient.addColorStop(0, 'rgba(255, 245, 221, 0.3)');
+                glowGradient.addColorStop(1, 'rgba(255, 245, 221, 0)');
+                
+                ctx.fillStyle = glowGradient;
+                ctx.beginPath();
+                ctx.arc(x, y, radius * 2, 0, Math.PI * 2);
+                ctx.fill();
+                
+                ctx.restore();
+            }
+
+            // 创建星星数组
+            const stars = Array(100).fill().map(() => ({
+                x: Math.random() * canvas.width,
+                y: Math.random() * canvas.height * 0.7, // 只在上部70%的区域生成星星
+                size: Math.random() * 2 + 1,
+                twinkle: 0,
+                twinkleSpeed: Math.random() * 0.1 + 0.03
+            }));
+
+            function drawStars() {
+                stars.forEach(star => {
+                    // 星星闪烁效果
+                    star.twinkle += star.twinkleSpeed;
+                    const opacity = Math.sin(star.twinkle) * 0.5 + 0.5;
+                    
+                    ctx.save();
+                    ctx.fillStyle = `rgba(255, 255, 255, ${opacity})`;
+                    ctx.beginPath();
+                    ctx.arc(star.x, star.y, star.size, 0, Math.PI * 2);
+                    ctx.fill();
+                    
+                    // 星星的十字光芒
+                    ctx.strokeStyle = `rgba(255, 255, 255, ${opacity * 0.5})`;
+                    ctx.lineWidth = 0.5;
+                    ctx.beginPath();
+                    ctx.moveTo(star.x - star.size * 2, star.y);
+                    ctx.lineTo(star.x + star.size * 2, star.y);
+                    ctx.moveTo(star.x, star.y - star.size * 2);
+                    ctx.lineTo(star.x, star.y + star.size * 2);
+                    ctx.stroke();
+                    ctx.restore();
+                });
+            }
+
+            function animate() {
+                // 完全清除画布
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+                // 绘制烟花的半透明背景
+                ctx.fillStyle = 'rgba(0, 0, 51, 0.1)';
+                ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+                // 绘制星星和月亮
+                drawStars();
+                drawMoon();
+
+                // 烟花效果
+                const currentTime = Date.now();
+                if (Math.random() < 0.03) { // 调整发射频率
+                    const x = Math.random() * canvas.width;
+                    const targetX = x + (Math.random() - 0.5) * 200; // 目标点在发射点附近
+                    const targetY = canvas.height * 0.3 + Math.random() * (canvas.height * 0.2); // 在画布上部爆炸
+                    fireworks.push(new Firework(x, canvas.height, targetX, targetY));
+                }
+
+                // 更新和绘制所有烟花
+                for (let i = fireworks.length - 1; i >= 0; i--) {
+                    fireworks[i].update();
+                    fireworks[i].draw(ctx);
+                    // 移除完成的烟花
+                    if (fireworks[i].exploded && fireworks[i].particles.length === 0) {
+                        fireworks.splice(i, 1);
+                    }
+                }
+
+                // 雪花效果
+                if (Math.random() < 0.3) {
+                    addSnowflake();
+                }
+                snowflakes.forEach(snowflake => {
+                    snowflake.update();
+                    snowflake.draw();
+                });
+
+                // 绘制文字
+                ctx.shadowColor = 'rgba(255, 0, 0, 0.3)';
+                ctx.shadowBlur = 20;
+                ctx.font = '120px ShangShouZhiZhongTi';
+                
+                const gradient = ctx.createLinearGradient(
+                    canvas.width/2 - 200, 
+                    canvas.height/2 - 50, 
+                    canvas.width/2 + 200, 
+                    canvas.height/2 + 50
+                );
+                gradient.addColorStop(0, '#c41e3a');
+                gradient.addColorStop(0.5, '#ffd700');
+                gradient.addColorStop(1, '#c41e3a');
+
+                ctx.fillStyle = gradient;
+                ctx.textAlign = 'center';
+                ctx.textBaseline = 'middle';
+                ctx.strokeStyle = '#8b0000';
+                ctx.lineWidth = 2;
+                ctx.strokeText('新年快乐', canvas.width / 2, canvas.height / 2);
+                ctx.fillText('新年快乐', canvas.width / 2, canvas.height / 2);
+
+                requestAnimationFrame(animate);
+            }
+
+            // 重置开始时间
+            startTime = Date.now();
+
+            // 开始动画
+            animate();
+        });
+
+        // 添加音频控制按钮
+        function addSoundControl() {
+            const button = document.createElement('button');
+            button.style.position = 'fixed';
+            button.style.bottom = '20px';
+            button.style.right = '20px';
+            button.style.padding = '10px 20px';
+            button.style.background = 'rgba(255, 255, 255, 0.8)';
+            button.style.border = 'none';
+            button.style.borderRadius = '5px';
+            button.style.cursor = 'pointer';
+            button.style.zIndex = '1000';
+            button.style.fontSize = '16px';
+            button.style.boxShadow = '0 2px 5px rgba(0,0,0,0.2)';
+            
+            let muted = false;
+            
+            function updateButton() {
+                button.textContent = muted ? '🔇 开启声音' : '🔊 关闭声音';
+                if (audioContext) {
+                    if (muted) {
+                        audioContext.suspend();
+                    } else {
+                        audioContext.resume();
+                    }
+                }
+            }
+            
+            button.onclick = () => {
+                muted = !muted;
+                updateButton();
+            };
+            
+            updateButton();
+            document.body.appendChild(button);
+        }
+
+        // 初始化
+        document.addEventListener('DOMContentLoaded', () => {
+            addSoundControl();
+            initSounds();
+            
+            // 添加点击事件监听器来解决 Chrome 的自动播放限制
+            document.addEventListener('click', () => {
+                if (audioContext.state === 'suspended') {
+                    audioContext.resume();
+                }
+            }, { once: true });
+        });
+    </script>
+</body>
+</html>

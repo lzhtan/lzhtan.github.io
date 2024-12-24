@@ -24,7 +24,7 @@
     .paper-title {
         font-weight: bold;
         color: #9b0d31;
-        margin-bottom: 2px;
+        display: inline;
     }
 
     .paper-authors {
@@ -62,6 +62,104 @@
         margin-bottom: 10px;
     }
 
+    /* 标签容器 */
+    .patent-tags {
+        display: inline;
+    }
+
+    /* 标签样式 */
+    .patent-tag {
+        display: inline-block;
+        padding: 2px 8px;
+        border-radius: 4px;
+        background: rgba(155, 13, 49, 0.1);
+        color: #9b0d31;
+        font-size: 0.85em;
+    }
+
+    .stats-overview {
+        display: flex;
+        gap: 20px;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .stat-card {
+        flex: 1;
+        min-width: 200px;
+        padding: 10px 20px;
+        background: white;
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        text-align: center;
+        border: 1px solid #f0f0f0;
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .stat-number {
+        font-size: 1.1em;
+        font-weight: bold;
+        color: #9b0d31;
+    }
+
+    .stat-label {
+        font-size: 1em;
+    }
+
+  
+
+    @media (max-width: 768px) {
+        .stat-card {
+            min-width: calc(50% - 20px);
+        }
+    }
+
+    @media (max-width: 480px) {
+        .stat-card {
+            min-width: 100%;
+        }
+    }
+
+    .tag-overview {
+        font-size: 0.95em;
+        margin: 20px 0;
+        padding: 10px;
+        background: white;
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        border: 1px solid #f0f0f0;
+    }
+    .tag-title {
+        margin-bottom: 15px;
+        padding-bottom: 10px;
+        border-bottom: 1px solid #f0f0f0;
+    }
+    .tag-list {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+
+    .tag-item {
+        font-weight: 500;
+        padding-left: 8px;
+        background: rgba(155, 13, 49, 0.1);
+        color: #9b0d31;
+        border-radius: 4px;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        padding-right: 0;
+    }
+
+    .tag-count {
+        font-weight: normal;
+        background: #9b0d31;
+        color: white;
+        padding: 2px 8px;
+        border-radius: 4px;
+    }
+
     </style>
   </head>
 <body>
@@ -86,11 +184,32 @@
         </nav>
     </header>
     <div class="container">
+      <div class="stats-overview">
+        <div class="stat-card">
+            <div class="stat-number" id="total-patents">0</div>
+            <div class="stat-label">总专利数</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-number" id="invention-patents">0</div>
+            <div class="stat-label">发明专利</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-number" id="utility-patents">0</div>
+            <div class="stat-label">实用新型专利</div>
+        </div>
+    </div>
+    <div class="tag-overview">
+        <div class="tag-title">专利领域</div>
+        <div class="tag-list" id="tag-list"></div>
+    </div>
       <h3><span class="color-bar"></span>发明专利</h3>
       <div class="paper-card">
         <ol style="margin: 0; padding-left: 35px;">
         <li><p>
           <span class="paper-title"><b>一种基于RDMA的云内存池优先级流控方法及系统</b></span>
+          <span class="patent-tags">
+            <span class="patent-tag">RDMA</span>
+          </span>
           <a href="./papers/2024-专利-一种基于RDMA的云内存池优先级流控方法及系统.pdf" class="pdf-link"><i class="fas fa-file-pdf"></i></a><br>
           <span class="paper-authors">谭立状, 董鑫, 史慧玲, 张玮</span><br>
           <span class="paper-location"><i>ZL202411716592.7, 2024-11-27</i></span>    
@@ -98,6 +217,9 @@
 
         <li><p>
           <span class="paper-title"><b>一种RDMA与CXL协议双向高速转换方法、装置及系统</b></span>
+          <span class="patent-tags">
+          <span class="patent-tag">RDMA</span>
+          </span>
           <a href="./papers/2024-专利-一种RDMA与CXL协议双向高速转换方法、装置及系统.pdf" class="pdf-link"><i class="fas fa-file-pdf"></i></a><br>
           <span class="paper-authors">谭立状, 董鑫, 史慧玲, 张玮</span><br>
           <span class="paper-location"><i>ZL202411716594.6, 2024-11-27</i></span>    
@@ -105,6 +227,9 @@
 
         <li><p>
           <span class="paper-title"><b>基于FPGA的RDMA数据传输优化方法及系统</b></span>
+          <span class="patent-tags">
+          <span class="patent-tag">RDMA</span>
+          </span>
           <a href="./papers/2024-专利-基于FPGA的RDMA数据传输优化方法及系统.pdf" class="pdf-link"><i class="fas fa-file-pdf"></i></a><br>
           <span class="paper-authors">谭立状, 董鑫, 史慧玲, 张玮</span><br>
           <span class="paper-location"><i>ZL202411712714.5, 2024-11-27</i></span>    
@@ -112,6 +237,9 @@
 
         <li><p>
           <span class="paper-title"><b>基于多级流水线的数据库查询任务RDMA卸载方法及系统</b></span>
+          <span class="patent-tags">
+          <span class="patent-tag">RDMA</span>
+          </span>
           <a href="./papers/2024-专利-基于多级流水线的数据库查询任务RDMA卸载方法及系统.pdf" class="pdf-link"><i class="fas fa-file-pdf"></i></a><br>
           <span class="paper-authors">谭立状, 董鑫, 史慧玲, 张玮</span><br>
           <span class="paper-location"><i>ZL202411660753.5, 2024-11-20</i></span>    
@@ -119,6 +247,9 @@
 
         <li><p>
           <span class="paper-title"><b>基于接收注册表机制的数据传输优化方法及系统</b></span>
+          <span class="patent-tags">
+          <span class="patent-tag">RDMA</span>
+          </span>
           <a href="./papers/2024-专利-基于接收注册表机制的数据传输优化方法及系统.pdf" class="pdf-link"><i class="fas fa-file-pdf"></i></a><br>
           <span class="paper-authors">谭立状, 董鑫, 史慧玲, 张玮</span><br>
           <span class="paper-location"><i>ZL202411660756.9, 2024-11-20</i></span>    
@@ -126,6 +257,9 @@
 
         <li><p>
           <span class="paper-title"><b>CPU/FPGA协同的网络遥测乱序重排方法及系统</b></span>
+          <span class="patent-tags">
+          <span class="patent-tag">网络遥测</span>
+          </span>
           <a href="./papers/2024-专利-CPUFPGA协同的网络遥测乱序重排方法及系统.pdf" class="pdf-link"><i class="fas fa-file-pdf"></i></a><br>
           <span class="paper-authors">谭立状, 隋宗瑞, 王新航, 董鑫, 史慧玲, 张玮</span><br>
           <span class="paper-location"><i>ZL202410435319.0, 2024-04-11</i></span>    
@@ -133,6 +267,9 @@
 
         <li><p>
           <span class="paper-title"><b>一种意图驱动的网络损伤配置生成方法和系统</b></span>
+          <span class="patent-tags">
+          <span class="patent-tag">网络损伤仪</span>
+          </span>
           <a href="./papers/2024-专利-一种意图驱动的网络损伤配置生成方法及系统.pdf" class="pdf-link"><i class="fas fa-file-pdf"></i></a><br>
           <span class="paper-authors">谭立状, 许一鸣, 王新航, 史慧玲, 张玮</span><br>
           <span class="paper-location"><i>ZL202410409855.3, 2024-04-07</i></span>    
@@ -140,6 +277,9 @@
 
         <li><p>
           <span class="paper-title"><b>一种网络损伤组合化模拟实现方法及系统</b></span>
+          <span class="patent-tags">
+          <span class="patent-tag">网络损伤仪</span>
+          </span>
           <a href="./papers/2023-专利-一种网络损伤组合化模拟实现方法及系统.pdf" class="pdf-link"><i class="fas fa-file-pdf"></i></a><br>
           <span class="paper-authors">谭立状, 王新航, 史慧玲, 张玮</span><br>
           <span class="paper-location"><i>ZL2023117778457.0, 2023-12-21</i></span>    
@@ -147,13 +287,19 @@
 
         <li><p>
           <span class="paper-title"><b>一种实现网络损伤的方法、系统及装置</b></span>
-          <a href="./papers/2023-专利-一种实现网络损伤的方法、系统及装置.pdf" class="pdf-link"><i class="fas fa-file-pdf"></i></a><br>
+          <span class="patent-tags">
+          <span class="patent-tag">网络损伤仪</span>
+          </span>
+          <a href="./papers/2023-专利-��种实现网络损伤的方法、系统及装置.pdf" class="pdf-link"><i class="fas fa-file-pdf"></i></a><br>
           <span class="paper-authors">谭立状, 王新航, 史慧玲, 张玮</span><br>
           <span class="paper-location"><i>ZL202310224941.2, 2023-03-03</i></span>    
         </p></li>
 
         <li><p>
           <span class="paper-title"><b>一种基于QUIC传输协议的主动连接迁移方法及系统</b></span>
+          <span class="patent-tags">
+          <span class="patent-tag">QUIC</span>
+          </span>
           <a href="./papers/2022-专利-一种基于QUIC传输协议的主动连接迁移方法及系统.pdf" class="pdf-link"><i class="fas fa-file-pdf"></i></a><br>
           <span class="paper-authors">谭立状, 王成, 史慧玲, 张玮</span><br>
           <span class="paper-location"><i>ZL202211650317.0, 2022-12-21</i></span>    
@@ -161,6 +307,9 @@
 
         <li><p>
           <span class="paper-title"><b>一种带内网络遥测承载流选取方法及系统</b></span>
+          <span class="patent-tags">
+          <span class="patent-tag">网络遥测</span>
+          </span>
           <a href="./papers/2020-专利-一种带内网络遥测承载流选取方法及系统.pdf" class="pdf-link"><i class="fas fa-file-pdf"></i></a><br>
           <span class="paper-authors">苏伟, 谭立状, 郜帅, 张宏科, 刘延雯, 张臻熠</span><br>
           <span class="paper-location"><i>CN111835588A, 2020-06-29</i></span>    
@@ -172,6 +321,9 @@
       <ol style="margin: 0; padding-left: 35px;">
         <li><p>
         <span class="paper-title"><b>一种用于网络损伤仪的壳体及网络损伤仪</b></span>
+        <span class="patent-tags">
+        <span class="patent-tag">网络损伤仪</span>
+        </span>
         <a href="./papers/2023-专利-一种用于网络损伤仪的壳体及网络损伤仪.pdf" class="pdf-link"><i class="fas fa-file-pdf"></i></a><br>
         <span class="paper-authors">谭立状, 王新航, 史慧玲, 张玮</span><br>
         <span class="paper-location"><i>ZL202320329297.0, 2023-02-22</i></span>    
@@ -183,5 +335,47 @@
         <footer>
             <p>Copyright &copy; 2022 - New Era. By Lizhuang Tan</p>
         </footer>
+
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // 获取所有专利
+    const allPatents = document.querySelectorAll('.paper-card li');
+    const utilityPatents = document.querySelectorAll('.paper-card:last-of-type li');
+
+    // 更新数量统计
+    document.getElementById('total-patents').textContent = allPatents.length;
+    document.getElementById('invention-patents').textContent = allPatents.length - utilityPatents.length;
+    document.getElementById('utility-patents').textContent = utilityPatents.length;
+    // 获取所有专利
+    const inventionSection = Array.from(document.querySelectorAll('h3')).find(h3 => h3.textContent.includes("发明专利")).nextElementSibling;
+            const utilitySection = Array.from(document.querySelectorAll('h3')).find(h3 => h3.textContent.includes("实用新型专利")).nextElementSibling;
+
+            // 统计标签
+            const tagStats = new Map();
+            const allTags = [...inventionSection.querySelectorAll('.patent-tag'), ...utilitySection.querySelectorAll('.patent-tag')];
+            
+            allTags.forEach(tag => {
+                const tagText = tag.textContent.trim();
+                tagStats.set(tagText, (tagStats.get(tagText) || 0) + 1);
+            });
+
+            // 更新标签列表
+            const tagListContainer = document.getElementById('tag-list');
+            tagListContainer.innerHTML = ''; // 清空现有内容
+            
+            Array.from(tagStats)
+                .sort((a, b) => b[1] - a[1]) // 按数量降序排序
+                .forEach(([tag, count]) => {
+                    const tagDiv = document.createElement('div');
+                    tagDiv.className = 'tag-item';
+                    tagDiv.innerHTML = `
+                        ${tag}
+                        <span class="tag-count">${count}</span>
+                    `;
+                    tagListContainer.appendChild(tagDiv);
+                });
+        });
+</script>
 </body>
 </html>

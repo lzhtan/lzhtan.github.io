@@ -179,9 +179,194 @@
             line-height: 1.5; /* 调整行高，减少行间距 */
         }
 
+        .new-year-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 10000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            animation: fadeOut 0.1s ease-in-out forwards;
+            animation-delay: 5s;
+            background: linear-gradient(45deg, #9b0d31, #cc1f1f);  /* 渐变背景 */
+        }
+
+        .new-year-text {
+            text-align: center;
+            color: #FFD700;
+            animation: scaleIn 1s ease-out forwards;
+        }
+
+        .new-year-text .chinese {
+            font-size: 72px;
+            font-weight: bold;
+            font-family: 'Noto Sans SC', sans-serif;
+            margin-bottom: 20px;
+            opacity: 0;
+            text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);  /* 金色光晕 */
+            animation-delay: 0.5s;
+        }
+
+        .new-year-text .english {
+            font-size: 24px;
+            font-weight: bold;
+            font-family: 'Noto Sans SC', sans-serif;
+            opacity: 0;
+            animation: fadeIn 1s forwards;
+            text-shadow: 0 0 3px rgba(255, 215, 0, 0.5);  /* 金色光晕 */
+            animation-delay: 1s;
+            z-index: 10000;
+        }
+        .new-year-text .chinese {
+            animation: fadeIn 1s forwards, float 2s ease-in-out infinite;  /* 添加漂浮动画 */
+            animation-delay: 0.5s;
+            z-index: 10000;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-5px); }
+        }
+        @keyframes fadeOut {
+            from { opacity: 1; }
+            to { 
+                opacity: 0;
+                visibility: hidden;
+            }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes scaleIn {
+            from { 
+                transform: scale(0.8);
+                opacity: 0;
+            }
+            to { 
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        @media screen and (max-width: 768px) {
+            .new-year-text .chinese {
+                font-size: 48px;
+            }
+            .new-year-text .english {
+                font-size: 18px;
+            }
+        }
+
+        .new-year-text .countdown {
+            font-size: 24px;
+            color: #FFD700;
+            margin-top: 20px;
+            opacity: 0;
+            animation: fadeIn 1s forwards;
+            animation-delay: 1.5s;  /* 在新年快乐和英文之后显示 */
+            text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+        }
+
+        .new-year-text .countdown span {
+            font-weight: bold;
+            font-size: 28px;
+        }
+
+        .countdown {
+            font-size: 14px;
+            color: #FFD700;
+            margin-top: 20px;
+            text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+            position: absolute;
+            bottom: 100px;  /* 调整位置到底部 */
+            width: 100%;
+            text-align: center;
+            z-index: 10000;
+        }
+
+        .countdown span {
+            font-weight: bold;
+            font-size: 14px;
+        }
+
+        .firework {
+            position: absolute;
+            width: 5px;
+            height: 5px;
+            border-radius: 50%;
+            animation: explode 1s ease-out forwards;
+        }
+
+        @keyframes explode {
+            0% {
+                transform: scale(1);
+                opacity: 1;
+            }
+            100% {
+                transform: scale(30);
+                opacity: 0;
+            }
+        }
+
+        .particle {
+            position: absolute;
+            width: 3px;
+            height: 3px;
+            border-radius: 50%;
+            animation: shoot 1s ease-out forwards;
+        }
+
+        @keyframes shoot {
+            from {
+                transform: translateY(0) translateX(0);
+                opacity: 1;
+            }
+            to {
+                transform: translateY(var(--dy)) translateX(var(--dx));
+                opacity: 0;
+            }
+        }
+
+        /* 几何图形的基础样式 */
+        .shape {
+            position: absolute;
+            opacity: 0.3;
+            bottom: 0;  /* 从底部开始 */
+        }
+
+        /* 圆形 */
+        .circle {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+        }
+
+       
+
+        /* 矩形 */
+        .rectangle {
+            width: 140px;
+            height: 80px;
+        }
+
+       
     </style>
 </head>
 <body>
+    <div class="new-year-overlay" id="newYearOverlay">
+        <div class="new-year-text">
+            <div class="chinese">新年快乐，蛇年大吉</div>
+            <div class="english">Happy New Year!<br>Happy 2025!</div>
+        </div>
+        <div class="countdown">距离中国蛇年还有 <span id="countdown">--</span> 天</div>
+    </div>
     <header>
         <h1><a href="index_cn.html"><span class="name-color"><img id="tan_logo" src="./img/tan.jpg" alt="Lizhuang Tan">谭立状 (Lizhuang Tan)</span></a></h1>
         <nav>
@@ -239,7 +424,7 @@
           <h3><span class="color-bar"></span>工作及教育经历</h3>
 
           <p>
-          2022年7月至今，我在山东省计算中心（国家超级计算济南中心）<a href="files/团队介绍-中文Chinese.pdf" target="_blank">算网融合研究团队</a>工作，从事<a href="https://www.bilibili.com/video/BV1xK411x75o" target="_blank">超算互联网</a>/<a href="https://haokan.baidu.com/v?pd=wisenatural&vid=2442334794048871825" target="_blank">山东算网</a>相关研究工作。2024年10月至2025年9月，我在浦项科技大学<a href="http://dpnm.postech.ac.kr/~jwkhong/" target="_blank">洪元基（James Won-ki Hong）</a>教授实验室访问学习，从事网络智能平面研究工作。2021年4月至2022年6月，我在字节跳动高速网络实验室网络工程团队担任研发实习生，在<a href="https://scholar.google.com/citations?user=qOX0mXMAAAAJ" target="_blank">江卓</a>博士指导下从事RDMA/RoCE研发工作。<br />
+          2022年7月至今，我在山东省计算中心（国家超级计算济南中心）<a href="files/团队介绍-中文Chinese.pdf" target="_blank">算网融合研究团队</a>工作，从事<a href="https://www.bilibili.com/video/BV1xK411x75o" target="_blank">超算互联网</a><a href="https://haokan.baidu.com/v?pd=wisenatural&vid=2442334794048871825" target="_blank">山东算网</a>相关研究工作。2024年10月至2025年9月，我在浦项科技大学<a href="http://dpnm.postech.ac.kr/~jwkhong/" target="_blank">洪元基（James Won-ki Hong）</a>教授实验室访问学习，从事网络智能平面研究工作。2021年4月至2022年6月，我在字节跳动高速网络实验室网络工程团队担任研发实习生，在<a href="https://scholar.google.com/citations?user=qOX0mXMAAAAJ" target="_blank">江卓</a>博士指导下从事RDMA/RoCE研发工作。<br />
           2022年6月，我从北京交通大学电子信息工程学院移动专用网络国家工程研究中心（原下一代互联网互联设备国家工程实验室）获得信息与通信工程专业工学博士学位。2017年6月，我从山东师范大学信息科学与工程学院获得通信工程专业工学学术学位，同时获得法学学士学位。<br />
           
           <h3><span class="color-bar"></span>研究概况</h3>
@@ -326,7 +511,7 @@
                 <div class="card">
                     <div class="card-content">
                         <span class="news-date">02/2024</span>
-                        <p>我成为硕士研究生导师，可以招收电子信息（计算机技术）专业学位研究生，<a href="/group_cn.html">欢迎报考</a>。</p>
+                        <p>我成为硕士研究生导师，可以招收计算机科学与技术（学术型）和电子信息（计算机技术，专业型）两个方向的研究生，<a href="/group_cn.html">欢迎报考</a>。</p>
                     </div>
                 </div>
                 <div class="card">
@@ -410,6 +595,158 @@
                 modal.style.display = "none";
             }
         }
+
+        // 5秒后完全移除遮罩
+        setTimeout(() => {
+            const overlay = document.getElementById('newYearOverlay');
+            if (overlay) {
+                overlay.parentNode.removeChild(overlay);
+            }
+        }, 10000);
+        // 点击任意位置可以跳过动画
+        document.querySelector('.new-year-overlay').addEventListener('click', function() {
+            this.style.animation = 'fadeOut 0.5s forwards';
+            setTimeout(() => {
+                this.parentNode.removeChild(this);
+            }, 500);
+        });
+            
+    </script>
+
+    <script>
+        function updateCountdown() {
+            const snakeYear = new Date('2025-01-29T00:00:00+08:00');
+            const now = new Date();
+            
+            const countdownElement = document.getElementById('countdown');
+            if (countdownElement) {
+                if (now < snakeYear) {
+                    // 计算剩余天数
+                    const diff = snakeYear - now;
+                    const days = Math.ceil(diff / (1000 * 60 * 60 * 24));
+                    countdownElement.textContent = days;
+                } else {
+                    // 如果已过春节，移除整个倒计时文本
+                    const countdownContainer = document.querySelector('.countdown');
+                    if (countdownContainer) {
+                        countdownContainer.remove();
+                    }
+                }
+            }
+        }
+
+        // 页面加载时立即更新一次
+        updateCountdown();
+    </script>
+
+    <script>
+        function createFirework(x, y) {
+            const colors = ['#FFD700', '#FF0000', '#FF69B4', '#87CEEB'];
+            
+            // 创建烟花中心点
+            const firework = document.createElement('div');
+            firework.className = 'firework';
+            firework.style.left = x + 'px';
+            firework.style.top = y + 'px';
+            firework.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+            document.querySelector('.new-year-overlay').appendChild(firework);
+
+            // 创建烟花粒子
+            for (let i = 0; i < 30; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = x + 'px';
+                particle.style.top = y + 'px';
+                particle.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                
+                // 随机设置粒子运动方向
+                const angle = (i / 30) * 360 * (Math.PI / 180);
+                const distance = 100 + Math.random() * 50;
+                particle.style.setProperty('--dx', Math.cos(angle) * distance + 'px');
+                particle.style.setProperty('--dy', Math.sin(angle) * distance + 'px');
+                
+                document.querySelector('.new-year-overlay').appendChild(particle);
+                
+                // 移除粒子
+                setTimeout(() => particle.remove(), 1000);
+            }
+
+            // 移除烟花中心点
+            setTimeout(() => firework.remove(), 1000);
+        }
+
+        // 页面加载时随机位置发射烟花
+        window.addEventListener('load', () => {
+            const overlay = document.querySelector('.new-year-overlay');
+            const width = overlay.clientWidth;
+            const height = overlay.clientHeight;
+
+            for (let i = 0; i < 500; i++) {
+                setTimeout(() => {
+                    const x = Math.random() * width;
+                    const y = Math.random() * (height * 0.7); // 控制在上部70%的区域
+                    createFirework(x, y);
+                }, i * 50);
+            }
+        });
+    </script>
+
+    <script>
+        function createShapes() {
+            const overlay = document.querySelector('.new-year-overlay');
+            const shapes = [
+                { type: 'circle', colors: ['#9b0d31', '#800d31', '#650d31'] },
+                { type: 'rectangle', colors: ['#650d31', '#600d31', '#450d31'] }
+            ];
+
+            // 将底部区域划分为网格
+            const gridColumns = 20;  // 水平方向的网格数
+            const gridRows = 4;      // 垂直方向的网格数（底部20%区域分4层）
+            const usedPositions = new Set();  // 用于记录已使用的位置
+
+            // 创建50个随机图形
+            for (let i = 0; i < 20; i++) {
+                const shape = document.createElement('div');
+                const shapeType = shapes[Math.floor(Math.random() * shapes.length)];
+                
+                // 寻找未被占用的网格位置
+                let gridX, gridY;
+                let attempts = 0;
+                do {
+                    gridX = Math.floor(Math.random() * gridColumns);
+                    gridY = Math.floor(Math.random() * gridRows);
+                    attempts++;
+                } while (usedPositions.has(`${gridX},${gridY}`) && attempts < 100);
+
+                // 如果找到了未占用的位置
+                if (attempts < 100) {
+                    usedPositions.add(`${gridX},${gridY}`);
+                    
+                    shape.className = `shape ${shapeType.type}`;
+                    
+                    // 将网格位置转换为百分比
+                    const xPos = (gridX / gridColumns) * 100;
+                    const yPos = (gridY / gridRows) * 10; // 20%的底部区域
+                    
+                    shape.style.left = `${xPos}%`;
+                    shape.style.bottom = `${yPos}%`;
+                    
+                    // 在网格内添加一些随机偏移，使分布更自然
+                    shape.style.transform = `translate(
+                        ${Math.random() * 20 - 10}px,
+                        ${Math.random() * 20 - 10}px
+                    ) scale(${Math.random() * 0.5 + 0.5})`;
+                    
+                    shape.style.backgroundColor = shapeType.colors[Math.floor(Math.random() * shapeType.colors.length)];
+                    shape.style.opacity = Math.random() * 0.3 + 0.1;
+                    
+                    overlay.appendChild(shape);
+                }
+            }
+        }
+
+        // 页面加载时创建图形
+        window.addEventListener('load', createShapes);
     </script>
 </body>
 </html>

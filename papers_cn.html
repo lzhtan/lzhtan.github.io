@@ -68,7 +68,7 @@
         opacity: 0; /* 初始透明度为0 */
         animation: slideUp 0.5s forwards; /* 应用动画 */
         display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); /* 自适应列数 */
+        grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); /* 自适应列数 */
         gap: 10px; /* 卡片之间的间距 */
     }
    
@@ -244,6 +244,10 @@
         <div class="stat-card">
             <div class="stat-number" id="total-awards">0</div>
             <div class="stat-label">奖励</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-number">400+</div>
+            <div class="stat-label">引用数</div>
         </div>
       </div>
 
@@ -631,36 +635,50 @@
 
           // 根据类型筛选内容的函数
           function filterByType(type) {
-              console.log('Filtering by type:', type); // 添加调试日志
+              console.log('Filtering by type:', type);
               
-              const inventionSection = Array.from(document.querySelectorAll('h3')).find(h3 => h3.textContent.includes("发明专利"));
-              const utilitySection = Array.from(document.querySelectorAll('h3')).find(h3 => h3.textContent.includes("实用新型专利"));
+              const journalSection = Array.from(document.querySelectorAll('h3')).find(h3 => h3.textContent.includes("期刊论文"));
+              const conferenceSection = Array.from(document.querySelectorAll('h3')).find(h3 => h3.textContent.includes("会议论文"));
+              const booksSection = Array.from(document.querySelectorAll('h3')).find(h3 => h3.textContent.includes("专著"));
+              const awardsSection = Array.from(document.querySelectorAll('h3')).find(h3 => h3.textContent.includes("奖励"));
 
               // 隐藏所有条目
               const allItems = document.querySelectorAll('.paper-card li');
               allItems.forEach(item => item.style.display = 'none');
 
               switch(type) {
-                  case '总专利数':
-                      if (inventionSection) {
-                          const inventionItems = inventionSection.nextElementSibling.querySelectorAll('li');
-                          inventionItems.forEach(item => item.style.display = '');
+                  case '论文总数':
+                      if (journalSection) {
+                          const journalItems = journalSection.nextElementSibling.querySelectorAll('li');
+                          journalItems.forEach(item => item.style.display = '');
                       }
-                      if (utilitySection) {
-                          const utilityItems = utilitySection.nextElementSibling.querySelectorAll('li');
-                          utilityItems.forEach(item => item.style.display = '');
-                      }
-                      break;
-                  case '发明专利':
-                      if (inventionSection) {
-                          const inventionItems = inventionSection.nextElementSibling.querySelectorAll('li');
-                          inventionItems.forEach(item => item.style.display = '');
+                      if (conferenceSection) {
+                          const conferenceItems = conferenceSection.nextElementSibling.querySelectorAll('li');
+                          conferenceItems.forEach(item => item.style.display = '');
                       }
                       break;
-                  case '实用新型专利':
-                      if (utilitySection) {
-                          const utilityItems = utilitySection.nextElementSibling.querySelectorAll('li');
-                          utilityItems.forEach(item => item.style.display = '');
+                  case '期刊论文':
+                      if (journalSection) {
+                          const journalItems = journalSection.nextElementSibling.querySelectorAll('li');
+                          journalItems.forEach(item => item.style.display = '');
+                      }
+                      break;
+                  case '会议论文':
+                      if (conferenceSection) {
+                          const conferenceItems = conferenceSection.nextElementSibling.querySelectorAll('li');
+                          conferenceItems.forEach(item => item.style.display = '');
+                      }
+                      break;
+                  case '专著':
+                      if (booksSection) {
+                          const bookItems = booksSection.nextElementSibling.querySelectorAll('li');
+                          bookItems.forEach(item => item.style.display = '');
+                      }
+                      break;
+                  case '奖励':
+                      if (awardsSection) {
+                          const awardItems = awardsSection.nextElementSibling.querySelectorAll('li');
+                          awardItems.forEach(item => item.style.display = '');
                       }
                       break;
                   default:

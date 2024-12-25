@@ -311,7 +311,7 @@
         </p></li>
 
         <li><p>
-          <span class="paper-title"><b>基于接收注册表机制的数据传输优化方法及系统</b></span>
+          <span class="paper-title"><b>基于接收注册表机制的���据传输优化方法及系统</b></span>
           <span class="patent-tags">
           <span class="patent-tag">RDMA</span>
           </span>
@@ -405,12 +405,12 @@
 <script>
 document.addEventListener('DOMContentLoaded', function() {
     // 获取各类专利数量
-    const inventionSection = Array.from(document.querySelectorAll('h3')).find(h3 => h3.textContent.includes("发明专利")).nextElementSibling;
-    const utilitySection = Array.from(document.querySelectorAll('h3')).find(h3 => h3.textContent.includes("实用新型专利")).nextElementSibling;
+    const inventionSection = Array.from(document.querySelectorAll('h3')).find(h3 => h3.textContent.includes("发明专利"));
+    const utilitySection = Array.from(document.querySelectorAll('h3')).find(h3 => h3.textContent.includes("实用新型专利"));
 
     // 计算各类数量
-    const inventionCount = inventionSection ? inventionSection.getElementsByTagName('li').length : 0;
-    const utilityCount = utilitySection ? utilitySection.getElementsByTagName('li').length : 0;
+    const inventionCount = inventionSection ? inventionSection.nextElementSibling.getElementsByTagName('li').length : 0;
+    const utilityCount = utilitySection ? utilitySection.nextElementSibling.getElementsByTagName('li').length : 0;
     const totalCount = inventionCount + utilityCount;
 
     // 更新统计数字
@@ -420,8 +420,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // 统计标签
     const tagStats = new Map();
-    const allTags = [...inventionSection.querySelectorAll('.patent-tag'), 
-                     ...utilitySection.querySelectorAll('.patent-tag')];
+    const allTags = [...inventionSection.nextElementSibling.querySelectorAll('.patent-tag'), 
+                     ...utilitySection.nextElementSibling.querySelectorAll('.patent-tag')];
     
     allTags.forEach(tag => {
         const tagText = tag.textContent.trim();
@@ -430,38 +430,40 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // 更新标签列表
     const tagListContainer = document.getElementById('tag-list');
-    tagListContainer.innerHTML = ''; // 清空现有内容
+    tagListContainer.innerHTML = '';
     
-    // 将标签转换为数组并排序，确保"其他"标签在最后
-    const sortedTags = Array.from(tagStats).sort((a, b) => {
-        if (a[0] === '其他') return 1;  // 如果 a 是"其他"，放到后面
-        if (b[0] === '其他') return -1; // 如果 b 是"其他"，放到后面
-        return b[1] - a[1];  // 其他情况按数量降序排序
-    });
-
+    // 标签排序和添加
+    const sortedTags = Array.from(tagStats).sort((a, b) => b[1] - a[1]);
     sortedTags.forEach(([tag, count]) => {
         const tagDiv = document.createElement('div');
         tagDiv.className = 'tag-item';
         tagDiv.innerHTML = `${tag}<span class="tag-count">${count}</span>`;
-        
-        // 修改点击事件处理
         tagDiv.addEventListener('click', function() {
-            // 切换当前标签的激活状态
             this.classList.toggle('active-filter');
-            
-            // 获取所有激活的标签
             const activeFilters = document.querySelectorAll('.tag-item.active-filter');
-            
             if (activeFilters.length === 0) {
-                // 如果没有激活的标签，显示所有专利
                 showAllPatents();
             } else {
-                // 根据所激活的标签进行筛选
                 filterPatentsByTag();
             }
         });
-        
         tagListContainer.appendChild(tagDiv);
+    });
+
+    // 为统计卡片添加点击事件
+    const statCards = document.querySelectorAll('.stat-card');
+    statCards.forEach(card => {
+        card.addEventListener('click', function() {
+            if (this.classList.contains('active-filter')) {
+                this.classList.remove('active-filter');
+                showAllPatents();
+                return;
+            }
+            statCards.forEach(c => c.classList.remove('active-filter'));
+            this.classList.add('active-filter');
+            const label = this.querySelector('.stat-label').textContent;
+            filterByType(label);
+        });
     });
 });
 
@@ -528,33 +530,6 @@ function filterByType(type) {
             allItems.forEach(item => item.style.display = '');
     }
 }
-
-document.addEventListener('DOMContentLoaded', function() {
-  
-
-    // 为统计卡片添加点击事件
-    const statCards = document.querySelectorAll('.stat-card');
-    statCards.forEach(card => {
-        card.addEventListener('click', function() {
-            // 如果点击的是已激活的卡片，则取消激活
-            if (this.classList.contains('active-filter')) {
-                this.classList.remove('active-filter');
-                showAllPatents();
-                return;
-            }
-
-            // 清除其他统计卡片的激活状态
-            statCards.forEach(c => c.classList.remove('active-filter'));
-            
-            // 激活当前卡片
-            this.classList.add('active-filter');
-            
-            // 根据卡片类型筛选内容
-            const label = this.querySelector('.stat-label').textContent;
-            filterByType(label);
-        });
-    });
-});
 </script>
 </body>
 </html>

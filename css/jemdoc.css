@@ -165,4 +165,10 @@ footer {
 	.researchdirection{
 		display: none;
 	}
+	.container {
+		padding-top: 10px;
+	}
+	.language-icon {
+		padding: 0px 0;
+	}
 }

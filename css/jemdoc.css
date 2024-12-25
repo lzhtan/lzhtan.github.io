@@ -3,14 +3,13 @@ body {
 	margin: 0;
 	padding: 0;
 	background-color: #ffffff;
-	font-size: 95%;
 	overflow-x: hidden;
 }
 b{
 	font-weight: 500;
 }
 p{
-	font-size: 1em;
+	font-size: 0.95em;
 }
 
 .container {
@@ -38,6 +37,7 @@ p{
 	right: 15px; /* 容器右侧对齐 */
 	display: flex; /* 使用 Flexbox 布局 */
 	gap: 5px; /* 图标之间的间隔 */
+	font-size: 0.95em;
 }
 .profile img{
 	width: 150px;
@@ -47,11 +47,11 @@ p{
 }
 .profile h2 {
 	margin: 0;
-	font-size: 1em;
+	font-size: 1.1em;
 	color: #9b0d31;
 }
 h3 {
-	font-size: 1em;
+	font-size: 0.95em;
 	color: #9b0d31;
 }
 .profile p {
@@ -85,8 +85,8 @@ header {
 h1 a{
 	display: flex;
 	align-items: center; /* 垂直居中 */
-	font-size: 0.6em;
 	text-decoration: none;
+	font-size: 0.6em;
 }
 .researchdirection {
     display: block; /* 或者使用 inline-block，这取决于元素的类型 */
@@ -95,13 +95,10 @@ h1 a{
     margin-right: auto;
 	margin-bottom: 10px;
 }
-.news-table{
-	font-size: 1em;
-}
 .color-bar {
 	display: inline-block;
 	width: 3px; /* 色块宽度 */
-	height: 0.8em; /* 与文字高度一致 */
+	height: 0.95em; /* 与文字高度一致 */
 	background-color: #9b0d31; /* 色块颜色 */
 	margin-right: 10px; /* 色块与文字的间距 */
 }
@@ -114,6 +111,7 @@ h1 a{
 nav {
 	display: flex;
 	align-items: center; /* 垂直居中 */
+	font-size: 0.95em;
 }
 nav a {
 	text-decoration: none;
@@ -131,6 +129,8 @@ footer {
 	text-align: center;
 	font-size: 0.8em; /* 调整字体大小 */
 	padding: 20px 20px;
+	color: #000;
+	margin-bottom: 20px;
 }
 .active {
 	font-weight: bold;
@@ -155,7 +155,7 @@ footer {
 	}
 	#tan_logo {
 		display: block;
-		width: 100px;
+		width: 120px;
 		border-radius: 10px;
 		box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* 添加阴影 */
 	}

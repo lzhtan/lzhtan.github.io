@@ -20,7 +20,6 @@
         transition: box-shadow 0.3s ease-in-out;
     }
     
-    
     .paper-title {
         font-weight: bold;
         color: #9b0d31;
@@ -36,16 +35,6 @@
         font-size: 0.95em;
     }
     
-
-    @media (max-width: 768px) {
-        .container {
-            padding: 20px;
-        }
-
-        .container h2 {
-            font-size: 24px;
-        }
-    }
     .paper-card i {
     color: #9b0d31; /* 将颜色设置为红色 */
     }
@@ -80,14 +69,15 @@
     .stats-overview {
         flex-wrap: wrap;
         justify-content: center;
+        margin-bottom: 10px;
         position: relative; /* 使其相对于正常流 */
-        transform: translateY(3px); /* 隐藏在窗口下方 */
+        transform: translateY(3px); /* 隐藏在视口下方 */
         opacity: 0; /* 初始透明度为0 */
         animation: slideUp 0.5s forwards; /* 应用动画 */
         display: grid;
         grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); /* 自适应列数 */
         gap: 10px; /* 卡片之间的间距 */
-      }
+    }
     /* 定义动画效果 */
     @keyframes slideUp {
         to {
@@ -97,9 +87,7 @@
     }
 
     .stat-card {
-        flex: 1;
-        min-width: 200px;
-        padding: 10px 20px;
+        padding: 10px 10px;
         background: white;
         border-radius: 8px;
         box-shadow: 0 2px 4px rgba(0,0,0,0.05);
@@ -114,19 +102,13 @@
     }
 
     .stat-label {
-        font-size: 1em;
+        font-size: 0.95em;
     }
 
-    @media (max-width: 768px) {
-        .stat-card {
-            min-width: calc(50% - 20px);
-        }
+    @media (max-width: 1300px) {
+        .stats-overview {
+        grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
     }
-
-    @media (max-width: 480px) {
-        .stat-card {
-            min-width: 100%;
-        }
     }
 
     /* 标签统计区域样式 */
@@ -142,6 +124,14 @@
         opacity: 0; /* 初始透明度为0 */
         animation: slideUp 0.5s forwards; /* 应用动画 */
     }
+    /* 定义动画效果 */
+    @keyframes slideUp {
+        to {
+            transform: translateY(0); /* 动画结束时的位置 */
+            opacity: 1; /* 动画结束时的透明度 */
+        }
+    }
+
     .stat-card {
         cursor: pointer;
         transition: all 0.3s ease;
@@ -161,41 +151,48 @@
     
 
     .tag-title {
-        color: #666;
-        margin-bottom: 15px;
+        margin-bottom: 10px;
         padding-bottom: 10px;
         border-bottom: 1px solid #f0f0f0;
+        font-size: 0.95em;
     }
 
     .tag-list {
         flex-wrap: wrap;
         display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(100px, 1fr)); /* 自适应列数 */
+        grid-template-columns: repeat(auto-fill, minmax(115px, 1fr)); /* 自适应列数 */
         gap: 3px; /* 卡片之间的间距 */
+        font-size: 0.95em;
     }
 
     .tag-item {
         position: relative;
         padding: 6px 12px;
         background: rgba(155, 13, 49, 0.1);
-        min-width: 80px;
         color: #9b0d31;
         border-radius: 8px;
-        font-size: 0.9em;
+        font-size: 0.95em;
         display: inline-flex;
         align-items: center;
         gap: 6px;
         cursor: pointer;
         transition: all 0.3s ease;
-        margin-right: 8px;
+        margin: 0 2px;
         flex: 0 0 auto;
         font-weight: 500;
     }
 
-    /* 悬停效果 */
-    .tag-item:hover {
-        background: rgba(155, 13, 49, 0.2);
+    .tag-count {
+        position: absolute;
+        right: 10px;
+        top: 50%;
+        transform: translateY(-50%);
+        background: #9b0d31;
+        color: white;
+        padding: 2px 8px;
+        border-radius: 4px;
     }
+
 
     /* 选中状态 */
     .tag-item.active-filter {
@@ -207,20 +204,6 @@
     .tag-item.active-filter .tag-count {
         background: white;
         color: #9b0d31;
-    }
-
-    /* 标签计数样式 */
-    .tag-count {
-        position: absolute;
-        right: 10px;
-        top: 50%;
-        transform: translateY(-50%);
-        background: #9b0d31;
-        color: white;
-        padding: 2px 8px;
-        border-radius: 4px;
-        font-size: 0.85em;
-        transition: all 0.3s ease;
     }
 
     /* 当标签筛选激活时，统计卡片的样式 */
@@ -363,7 +346,7 @@
           <span class="patent-tag">网络仿真</span>
           </span>
           <a href="./papers/2023-专利-一种网络损伤组合化模拟实现方法及系统.pdf" class="pdf-link"><i class="fas fa-file-pdf"></i></a><br>
-          <span class="paper-authors">谭立状, 王新航, 史慧玲, 张��</span><br>
+          <span class="paper-authors">谭立状, 王新航, 史慧玲, 张玮</span><br>
           <span class="paper-location"><i>ZL2023117778457.0, 2023-12-21</i></span>    
         </p></li>
 
@@ -473,7 +456,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 // 如果没有激活的标签，显示所有专利
                 showAllPatents();
             } else {
-                // 根据所��激活的标签进行筛选
+                // 根据所激活的标签进行筛选
                 filterPatentsByTag();
             }
         });
@@ -510,22 +493,16 @@ function showAllPatents() {
 
 // 根据类型筛选内容的函数
 function filterByType(type) {
-    // 获取各个部分的内容
+    console.log('Filtering by type:', type);
+    
     const inventionSection = Array.from(document.querySelectorAll('h3')).find(h3 => h3.textContent.includes("发明专利"));
     const utilitySection = Array.from(document.querySelectorAll('h3')).find(h3 => h3.textContent.includes("实用新型专利"));
 
-    // 隐藏所有条目
     const allItems = document.querySelectorAll('.paper-card li');
     allItems.forEach(item => item.style.display = 'none');
 
-    // 添加console.log来调试
-    console.log('Filtering by type:', type);
-    console.log('Found invention section:', inventionSection);
-    console.log('Found utility section:', utilitySection);
-
     switch(type) {
-        case '专利总量':  // 修改这里匹配实际的标签文本
-            // 显示所有专利
+        case '总专利数':  // 修改这里匹配实际的标签文本
             if (inventionSection) {
                 const inventionItems = inventionSection.nextElementSibling.querySelectorAll('li');
                 inventionItems.forEach(item => item.style.display = '');
@@ -536,21 +513,18 @@ function filterByType(type) {
             }
             break;
         case '发明专利':
-            // 显示发明专利
             if (inventionSection) {
                 const inventionItems = inventionSection.nextElementSibling.querySelectorAll('li');
                 inventionItems.forEach(item => item.style.display = '');
             }
             break;
-        case '实用新型��利':  // 修改这里匹配实际的标签文本
-            // 显示实用新型专利
+        case '实用新型专利':
             if (utilitySection) {
                 const utilityItems = utilitySection.nextElementSibling.querySelectorAll('li');
                 utilityItems.forEach(item => item.style.display = '');
             }
             break;
         default:
-            // 显示所有内容
             allItems.forEach(item => item.style.display = '');
     }
 }

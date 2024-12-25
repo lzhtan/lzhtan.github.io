@@ -29,15 +29,7 @@
         color: #9b0d31;
     }
 
-    @media (max-width: 768px) {
-        .container {
-            padding: 20px;
-        }
-
-        .container h2 {
-            font-size: 24px;
-        }
-    }
+    
     .container i {
     color: #9b0d31; /* 将颜色设置为红色 */
     }
@@ -96,13 +88,13 @@
     }
 
     .stat-label {
-        font-size: 1em;
+        font-size: 0.95em;
     }
 
-    @media (max-width: 768px) {
-        .stat-card {
-            min-width: calc(50% - 20px);
-        }
+    @media (max-width: 1300px) {
+        .stats-overview {
+        grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+    }
     }
 
     /* 标签统计区域样式 */
@@ -127,33 +119,33 @@
     }
 
     .tag-title {
-        color: #666;
-        margin-bottom: 15px;
+        margin-bottom: 10px;
         padding-bottom: 10px;
         border-bottom: 1px solid #f0f0f0;
+        font-size: 0.95em;
     }
 
     .tag-list {
         flex-wrap: wrap;
         display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(100px, 1fr)); /* 自适应列数 */
+        grid-template-columns: repeat(auto-fill, minmax(115px, 1fr)); /* 自适应列数 */
         gap: 3px; /* 卡片之间的间距 */
+        font-size: 0.95em;
     }
 
     .tag-item {
         position: relative;
         padding: 6px 12px;
         background: rgba(155, 13, 49, 0.1);
-        min-width: 80px;
         color: #9b0d31;
         border-radius: 8px;
-        font-size: 0.9em;
+        font-size: 0.95em;
         display: inline-flex;
         align-items: center;
         gap: 6px;
         cursor: pointer;
         transition: all 0.3s ease;
-        margin-right: 8px;
+        margin: 0 2px;
         flex: 0 0 auto;
         font-weight: 500;
     }
@@ -167,12 +159,8 @@
         color: white;
         padding: 2px 8px;
         border-radius: 4px;
-        font-size: 0.85em;
     }
 
-    .tag-item:hover {
-        background: rgba(155, 13, 49, 0.2);
-    }
 
     .tag-item.active-filter {
         background: #9b0d31;
@@ -202,9 +190,6 @@
     .stat-card {
         cursor: pointer;
         transition: all 0.3s ease;
-    }
-    
-    .stat-card:hover {
     }
     
     .stat-card.active-filter {
@@ -328,7 +313,7 @@
               <span class="paper-tag">网络检测</span>
               </span>
               <a href="./papers/2024-论文-ELL.pdf" class="pdf-link"><i class="fas fa-file-pdf"></i></a>
-              <a href="./files/Knowledge base for networked printer.xlsx" class="pdf-link"><i class="fas fa-file-pdf"></i></a><br>
+              <a href="./files/Dataset/Knowledge base for networked printer.xlsx" class="pdf-link"><i class="fas fa-file-pdf"></i></a><br>
               <span class="paper-authors">Quanbo Pan, Shengbao Li, Na Li, Peiying Zhang, Lizhuang Tan*</span><br>
               <span class="paper-location"><i>IET Electronics Letters, 2024</i></span>    
             </p></li>
@@ -646,60 +631,47 @@
 
           // 根据类型筛选内容的函数
           function filterByType(type) {
-              // 获取各个部分的内容
-              const journalSection = Array.from(document.querySelectorAll('h3')).find(h3 => h3.textContent.includes("期刊论文"));
-              const conferenceSection = Array.from(document.querySelectorAll('h3')).find(h3 => h3.textContent.includes("会议论文"));
-              const booksSection = Array.from(document.querySelectorAll('h3')).find(h3 => h3.textContent.includes("专著"));
-              const awardsSection = Array.from(document.querySelectorAll('h3')).find(h3 => h3.textContent.includes("奖励"));
+              console.log('Filtering by type:', type); // 添加调试日志
+              
+              const inventionSection = Array.from(document.querySelectorAll('h3')).find(h3 => h3.textContent.includes("发明专利"));
+              const utilitySection = Array.from(document.querySelectorAll('h3')).find(h3 => h3.textContent.includes("实用新型专利"));
 
               // 隐藏所有条目
               const allItems = document.querySelectorAll('.paper-card li');
               allItems.forEach(item => item.style.display = 'none');
 
               switch(type) {
-                  case '论文总数':
-                      // 显示期刊和会议论文
-                      if (journalSection) {
-                          const journalItems = journalSection.nextElementSibling.querySelectorAll('li');
-                          journalItems.forEach(item => item.style.display = '');
+                  case '总专利数':
+                      if (inventionSection) {
+                          const inventionItems = inventionSection.nextElementSibling.querySelectorAll('li');
+                          inventionItems.forEach(item => item.style.display = '');
                       }
-                      if (conferenceSection) {
-                          const conferenceItems = conferenceSection.nextElementSibling.querySelectorAll('li');
-                          conferenceItems.forEach(item => item.style.display = '');
-                      }
-                      break;
-                  case '期刊论文':
-                      // 显示期刊论文
-                      if (journalSection) {
-                          const journalItems = journalSection.nextElementSibling.querySelectorAll('li');
-                          journalItems.forEach(item => item.style.display = '');
+                      if (utilitySection) {
+                          const utilityItems = utilitySection.nextElementSibling.querySelectorAll('li');
+                          utilityItems.forEach(item => item.style.display = '');
                       }
                       break;
-                  case '会议论文':
-                      // 显示会议论文
-                      if (conferenceSection) {
-                          const conferenceItems = conferenceSection.nextElementSibling.querySelectorAll('li');
-                          conferenceItems.forEach(item => item.style.display = '');
+                  case '发明专利':
+                      if (inventionSection) {
+                          const inventionItems = inventionSection.nextElementSibling.querySelectorAll('li');
+                          inventionItems.forEach(item => item.style.display = '');
                       }
                       break;
-                  case '专著':
-                      // 显示专著
-                      if (booksSection) {
-                          const bookItems = booksSection.nextElementSibling.querySelectorAll('li');
-                          bookItems.forEach(item => item.style.display = '');
-                      }
-                      break;
-                  case '奖励':
-                      // 显示奖励
-                      if (awardsSection) {
-                          const awardItems = awardsSection.nextElementSibling.querySelectorAll('li');
-                          awardItems.forEach(item => item.style.display = '');
+                  case '实用新型专利':
+                      if (utilitySection) {
+                          const utilityItems = utilitySection.nextElementSibling.querySelectorAll('li');
+                          utilityItems.forEach(item => item.style.display = '');
                       }
                       break;
                   default:
-                      // 显示所有内容
                       allItems.forEach(item => item.style.display = '');
               }
+          }
+
+          function showAllPatents() {
+              document.querySelectorAll('.paper-card li').forEach(item => {
+                  item.style.display = '';
+              });
           }
           </script>
 

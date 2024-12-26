@@ -356,14 +356,55 @@
             height: 80px;
         }
 
-       
+        .animation-countdown {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            color: #FFD700;
+            font-size: 16px;
+            z-index: 10000;
+            text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+        }
+
+        /* 图片装饰元素样式 */
+        .decoration-image {
+            position: absolute;
+            bottom: 0;  /* 从底部开始 */
+            opacity: 0.5;  /* 降低透明度 */
+            height: auto;
+            z-index: 1;  /* 确保在其他元素下方 */
+        }
+
+        /* 第一张图片样式 */
+        .image1 {
+            left: 5%;
+            bottom: 5%;  /* 在20%底部区域内的位置 */
+        }
+
+        /* 第二张图片样式 */
+        .image2 {
+            right: 15%;
+            bottom: 8%;  /* 在20%底部区域内的位置 */
+        }
+        @media screen and (max-width: 1300px) {
+            .image1 {
+            width: 100px;
+        }
+
+        /* 第二张图片样式 */
+        .image2 {
+            width: 80px;
+        }
+        }
+
     </style>
 </head>
 <body>
     <div class="new-year-overlay" id="newYearOverlay">
+        <div class="animation-countdown">距离跳转至中文主页剩余: <span id="animationTimer">9</span>s</div>
         <div class="new-year-text">
-            <div class="chinese">新年快乐，蛇年大吉</div>
-            <div class="english">Happy New Year!<br>Happy 2025!</div>
+            <div class="chinese">新春快乐，蛇年大吉</div>
+            <div class="english">Happy New Year!<br>Happy Lunar New Year (Snake Year)!</div>
         </div>
         <div class="countdown">距离中国蛇年还有 <span id="countdown">--</span> 天</div>
     </div>
@@ -424,7 +465,7 @@
           <h3><span class="color-bar"></span>工作及教育经历</h3>
 
           <p>
-          2022年7月至今，我在山东省计算中心（国家超级计算济南中心）<a href="files/团队介绍-中文Chinese.pdf" target="_blank">算网融合研究团队</a>工作，从事<a href="https://www.bilibili.com/video/BV1xK411x75o" target="_blank">超算互联网</a><a href="https://haokan.baidu.com/v?pd=wisenatural&vid=2442334794048871825" target="_blank">山东算网</a>相关研究工作。2024年10月至2025年9月，我在浦项科技大学<a href="http://dpnm.postech.ac.kr/~jwkhong/" target="_blank">洪元基（James Won-ki Hong）</a>教授实验室访问学习，从事网络智能平面研究工作。2021年4月至2022年6月，我在字节跳动高速网络实验室网络工程团队担任研发实习生，在<a href="https://scholar.google.com/citations?user=qOX0mXMAAAAJ" target="_blank">江卓</a>博士指导下从事RDMA/RoCE研发工作。<br />
+          2022年7月至今，我在山东省计算中心（国家超级计算济南中心）<a href="files/团队介绍-中文Chinese.pdf" target="_blank">算网融合研究团队</a>工作，从事<a href="https://www.bilibili.com/video/BV1xK411x75o" target="_blank">超算互联网</a>/<a href="https://haokan.baidu.com/v?pd=wisenatural&vid=2442334794048871825" target="_blank">山东算网</a>相关研究工作。2024年10月至2025年9月，我在浦项科技大学<a href="http://dpnm.postech.ac.kr/~jwkhong/" target="_blank">洪元基（James Won-ki Hong）</a>教授实验室访问学习，从事网络智能平面研究工作。2021年4月至2022年6月，我在字节跳动高速网络实验室网络工程团队担任研发实习生，在<a href="https://scholar.google.com/citations?user=qOX0mXMAAAAJ" target="_blank">江卓</a>博士指导下从事RDMA/RoCE研发工作。<br />
           2022年6月，我从北京交通大学电子信息工程学院移动专用网络国家工程研究中心（原下一代互联网互联设备国家工程实验室）获得信息与通信工程专业工学博士学位。2017年6月，我从山东师范大学信息科学与工程学院获得通信工程专业工学学术学位，同时获得法学学士学位。<br />
           
           <h3><span class="color-bar"></span>研究概况</h3>
@@ -610,6 +651,17 @@
                 this.parentNode.removeChild(this);
             }, 500);
         });
+        function typeWriter(element, text, delay) {
+        let index = 0;
+        function type() {
+            if (index < text.length) {
+                element.innerHTML += text.charAt(index);
+                index++;
+                setTimeout(type, delay);
+            }
+        }
+        type();
+    }
             
     </script>
 
@@ -747,6 +799,72 @@
 
         // 页面加载时创建图形
         window.addEventListener('load', createShapes);
+    </script>
+
+    <script>
+        // 动画倒计时函数
+        function startAnimationTimer() {
+            let timeLeft = 9; 
+            const timerElement = document.getElementById('animationTimer');
+            
+            const timer = setInterval(() => {
+                timeLeft--;
+                if (timerElement) {
+                    timerElement.textContent = timeLeft;
+                }
+                
+                if (timeLeft <= 0) {
+                    clearInterval(timer);
+                }
+            }, 1000);
+        }
+
+        // 页面加载时启动倒计时
+        window.addEventListener('load', startAnimationTimer);
+    </script>
+
+    <script>
+    function addDecorationImages() {
+    const overlay = document.querySelector('.new-year-overlay');
+    
+    // 创建包装器div（用于点击事件）
+    const wrapper1 = document.createElement('a');
+    wrapper1.href = 'https://www.bilibili.com/video/BV1zp421S7kH';
+    wrapper1.target = '_blank';  // 在新标签页打开
+    wrapper1.style.cursor = 'pointer';  // 鼠标悬停时显示手型
+    
+    // 添加第一张图片
+    const image1 = document.createElement('img');
+    image1.src = 'files/sheniandaji/baishezhuan.jpeg';
+    image1.className = 'decoration-image image1';
+    wrapper1.appendChild(image1);
+    overlay.appendChild(wrapper1);
+    
+    // 创建第二个包装器
+    const wrapper2 = document.createElement('a');
+    wrapper2.href = 'https://www.bilibili.com/video/BV1Xb411M7ST';
+    wrapper2.target = '_blank';
+    wrapper2.style.cursor = 'pointer';
+    
+    // 添加第二张图片
+    const image2 = document.createElement('img');
+    image2.src = 'files/sheniandaji/baisheyuanqi.jpeg';
+    image2.className = 'decoration-image image2';
+    wrapper2.appendChild(image2);
+    overlay.appendChild(wrapper2);
+    
+    // 阻止图片点击事件冒泡到overlay
+    wrapper1.addEventListener('click', (e) => {
+        e.stopPropagation();
+    });
+    
+    wrapper2.addEventListener('click', (e) => {
+        e.stopPropagation();
+    });
+}
+
+        // 在页面加载时添加图片
+        window.addEventListener('load', addDecorationImages);
     </script>
 </body>
 </html>

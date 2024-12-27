@@ -246,7 +246,7 @@
         </div>
         <div class="stat-card">
             <div class="stat-number" id="total-awards">0</div>
-            <div class="stat-label">奖励</div>
+            <div class="stat-label">奖励/奖项</div>
         </div>
         <div class="stat-card">
             <div class="stat-number">400+</div>
@@ -472,7 +472,7 @@
         </ol>
       </div>
 
-      <h3><span class="color-bar"></span>奖励</h3>
+      <h3><span class="color-bar"></span>奖励/奖项</h3>
         <div class="paper-card">
           <ol style="margin: 0; padding-left: 35px;">
             <li><p>
@@ -483,6 +483,16 @@
             <a href="./photos/20231101.jpg" class="pdf-link"><i class="fas fa-file-pdf"></i></a><br>
             <span class="paper-authors">李娜, 张奎超, 谭立状, 孟繁瑞</span><br>
             <span class="paper-location"><i>济南市网信领域基础理论研究和技术创新应用论文二等奖, 2023</i></span>    
+          </p></li>
+          <ol style="margin: 0; padding-left: 35px;"></ol>
+            <li><p>
+            <span class="paper-title"><b>Tetris: Near-optimal Scheduling for Multi-path Deadline-aware Transport Protocol</b></span>
+            <span class="paper-tags">
+            <span class="paper-tag">QUIC</span>
+            </span>
+            <a href="./papers/2021-论文-NaNA.pdf" class="pdf-link"><i class="fas fa-file-pdf"></i></a><br>
+            <span class="paper-authors">刘延雯, 苏伟, 谭立状</span><br>
+            <span class="paper-location"><i>Best Paper Award of NaNA Conference, 2021</i></span>    
           </p></li>
         </ol>
       </div>
@@ -499,7 +509,7 @@
               const journalSection = Array.from(document.querySelectorAll('h3')).find(h3 => h3.textContent.includes("期刊论文")).nextElementSibling;
               const conferenceSection = Array.from(document.querySelectorAll('h3')).find(h3 => h3.textContent.includes("会议论文")).nextElementSibling;
               const booksSection = Array.from(document.querySelectorAll('h3')).find(h3 => h3.textContent.includes("专著")).nextElementSibling;
-              const awardsSection = Array.from(document.querySelectorAll('h3')).find(h3 => h3.textContent.includes("奖励")).nextElementSibling;
+              const awardsSection = Array.from(document.querySelectorAll('h3')).find(h3 => h3.textContent.includes("奖励/奖项")).nextElementSibling;
     
               // 计算各类数量
               const journalCount = journalSection ? journalSection.getElementsByTagName('li').length : 0;
@@ -643,7 +653,7 @@
               const journalSection = Array.from(document.querySelectorAll('h3')).find(h3 => h3.textContent.includes("期刊论文"));
               const conferenceSection = Array.from(document.querySelectorAll('h3')).find(h3 => h3.textContent.includes("会议论文"));
               const booksSection = Array.from(document.querySelectorAll('h3')).find(h3 => h3.textContent.includes("专著"));
-              const awardsSection = Array.from(document.querySelectorAll('h3')).find(h3 => h3.textContent.includes("奖励"));
+              const awardsSection = Array.from(document.querySelectorAll('h3')).find(h3 => h3.textContent.includes("奖励/奖项"));
 
               // 隐藏所有条目
               const allItems = document.querySelectorAll('.paper-card li');
@@ -678,7 +688,7 @@
                           bookItems.forEach(item => item.style.display = '');
                       }
                       break;
-                  case '奖励':
+                  case '奖励/奖项':
                       if (awardsSection) {
                           const awardItems = awardsSection.nextElementSibling.querySelectorAll('li');
                           awardItems.forEach(item => item.style.display = '');

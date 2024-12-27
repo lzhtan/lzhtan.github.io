@@ -86,8 +86,8 @@
     }
 
     .stat-card {
-        padding: 10px 0;
-        background: #9b0d31;
+        padding: 10px 10px;
+        background: rgba(155, 13, 49, 0.1);
         border-radius: 8px;
         box-shadow: 0 2px 4px rgba(0,0,0,0.05);
         text-align: center;
@@ -97,12 +97,12 @@
     .stat-number {
         font-size: 1.1em;
         font-weight: bold;
-        color: #fff;
+        color: #9b0d31;
     }
 
     .stat-label {
+        color: #9b0d31;
         font-size: 0.95em;
-        color: #fdf500;
     }
 
     @media (max-width: 1300px) {
@@ -138,15 +138,6 @@
     }
     
     .stat-card:hover {
-    }
-    
-    .stat-card.active-filter {
-        background: rgba(155, 13, 49, 0.1);
-        border-color: #9b0d31;
-    }
-
-    .stat-card.active-filter .stat-number {
-        color: #9b0d31;
     }
     
 
@@ -220,12 +211,15 @@
         pointer-events: none;
     }
 
-    /* 添加过渡效果 */
-    .stat-card, .tag-item {
-        transition: all 0.3s ease;
+    .stat-card.active-filter {
+        background: #9b0d31;
+    }
+
+    .stat-card.active-filter .stat-number {
+        color: #fff;
     }
     .stat-card.active-filter .stat-label {
-        color: #9b0d31;
+        color: #fff;
     }
 
     </style>

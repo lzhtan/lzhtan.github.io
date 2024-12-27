@@ -172,7 +172,11 @@
             margin: 0; /* 移除段落的外边距 */
             line-height: 1.5; /* 调整行高，减少行间距 */
         }
-        
+        @media screen and (max-width: 1300px) {
+            .card-container {
+            grid-template-columns: repeat(auto-fill, minmax(170px, 1fr)); /* 自适应列数 */
+        }
+        }
 
 
     </style>

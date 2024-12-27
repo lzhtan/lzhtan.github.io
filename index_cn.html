@@ -115,11 +115,14 @@
         }
 
         /* 移动端适配 */
-        @media screen and (max-width: 768px) {
+        @media screen and (max-width: 1300px) {
             .modal-content {
                 width: 280px;
                 padding: 15px;
             }
+            .card-container {
+            grid-template-columns: repeat(auto-fill, minmax(170px, 1fr)); /* 自适应列数 */
+        }
         }
         @keyframes slideIn {
             from {

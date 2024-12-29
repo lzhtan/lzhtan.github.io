@@ -13,37 +13,37 @@
     <link rel="stylesheet" href="css/jemdoc.css" type="text/css" />
     <style>
     #album {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); /* 自适应列数 */
-            gap: 10px; /* 卡片之间的间距 */
-            font-size: 0.95em;
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(30%, 1fr)); /* 自适应列数 */
+        gap: 10px; /* 卡片之间的间距 */
+        font-size: 0.95em;
+    }
+    .photo-item {
+        display: grid;
+        background: #fff;
+        border: 1px solid #eaeaea;
+        border-radius: 8px;
+        overflow: hidden; /* 防止内容溢出 */
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+        transition: box-shadow 0.3s ease-in-out;
+    }
+    .photo-content {
+        display: flex; /* 使用 Flexbox 布局 */
+        align-items:normal; /* 垂直居中对齐 */
+        width: 100%; /* 确保内容占满整个宽度 */
+    }
 
-        }
-.photo-item {
-    display: grid;
-    background: #fff;
-    border: 1px solid #eaeaea;
-    border-radius: 8px;
-    overflow: hidden; /* 防止内容溢出 */
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
-    transition: box-shadow 0.3s ease-in-out;
-}
-.photo-content {
-    display: flex; /* 使用 Flexbox 布局 */
-    align-items:normal; /* 垂直居中对齐 */
-    width: 100%; /* 确保内容占满整个宽度 */
-}
+    .photo-content img {
+        width: 100px; /* 设置图片宽度 */
+        height: auto; /* 高度自动调整 */
+        border-radius: 4px; /* 可选：为图片添加圆角 */
+        margin-right: 15px; /* 图片与文本之间的间距 */
+    }
 
-.photo-content img {
-    width: 100px; /* 设置图片宽度 */
-    height: auto; /* 高度自动调整 */
-    border-radius: 4px; /* 可选：为图片添加圆角 */
-    margin-right: 15px; /* 图片与文本之间的间距 */
-}
+    .info {
+        flex: 1; /* 使文本信息部分占据剩余空间 */
+    }
 
-.info {
-    flex: 1; /* 使文本信息部分占据剩余空间 */
-}
 
     
     .board-card {
@@ -63,6 +63,12 @@
     .board-detail {
         color: #000000;
     }
+
+    @media (max-width: 1200px) {
+            #album {
+            grid-template-columns: repeat(auto-fill, minmax(90%, 1fr));
+        }
+        }
     </style>
   </head>
 <body>
@@ -112,11 +118,11 @@
             <div class="photo-content">
                 <img src="img/xindong.jpg" alt="董鑫" />
                 <div class="info">
-                    <p><b style="color: #9b0d31;">董鑫</b>（2024-2027）
+                    <p><b style="color: #9b0d31;">董鑫</b>
                       <br/>研究方向: 虚拟网络、FPGA虚拟化
                       <br/>成果发表: 专利*5
                       <br/>实习实践: 浪潮
-                      <br/>备注: 指导的第一个研究生</p>
+                      <br/>备注: 2024级, 指导的第一个研究生</p>
                 </div>
             </div>
         </div>
@@ -124,11 +130,11 @@
             <div class="photo-content">
                 <img src="img/xinhangwang.jpg" alt="王新航" />
                 <div class="info">
-                    <p><b style="color: #9b0d31;">王新航</b>（2022-2025）
+                    <p><b style="color: #9b0d31;">王新航</b>
                       <br/>研究方向: 可编程网络
                       <br/>成果发表: HPCC*1, APNOMS*1, 专利*3
                       <br/>实习实践: 浪潮
-                      <br/>备注: 合作指导</p>
+                      <br/>备注: 2022级, 合作指导</p>
                 </div>
             </div>
         </div>
@@ -136,10 +142,10 @@
             <div class="photo-content">
                 <img src="img/chengwang.jpg" alt="王成" />
                 <div class="info">
-                    <p><b style="color: #9b0d31;">王成</b>（2022-2025）
+                    <p><b style="color: #9b0d31;">王成</b>
                     <br/>研究方向: QUIC
                     <br/>成果发表: 专利*1
-                    <br/>备注: 合作指导</p>
+                    <br/>备注: 2022级, 合作指导</p>
                 </div>
             </div>
         </div>
@@ -147,10 +153,10 @@
             <div class="photo-content">
                 <img src="img/kuichao.jpg" alt="张奎超" />
                 <div class="info">
-                    <p><b style="color: #9b0d31;">张奎超</b>（2021-2024）
+                    <p><b style="color: #9b0d31;">张奎超</b>
                     <br/>研究方向: 网络遥测
                     <br/>成果发表: APNOMS*1
-                    <br/>备注: 合作指导</p>
+                    <br/>备注: 2021级, 合作指导</p>
                 </div>
             </div>
         </div>
@@ -158,10 +164,10 @@
             <div class="photo-content">
                 <img src="img/yanzhou.jpg" alt="周岩" />
                 <div class="info">
-                    <p><b style="color: #9b0d31;">周岩</b>（2020-2023）
+                    <p><b style="color: #9b0d31;">周岩</b>（2021-2022）
                       <br/>研究方向: 网络测量
                       <br/>成果发表: APNOMS*1
-                      <br/>备注: 合作指导</p>
+                      <br/>备注: 2020级, 合作指导</p>
                 </div>
             </div>
         </div>

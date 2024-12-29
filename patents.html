@@ -19,12 +19,12 @@
         box-shadow: 0 1px 1px rgba(0, 0, 0, 0.08);
         transition: box-shadow 0.3s ease-in-out;
     }
-    
     .paper-title {
         font-weight: bold;
         color: #9b0d31;
-        margin-bottom: 2px;
+        display: inline;
     }
+
     .paper-authors {
         color: #423a3a;
         margin-bottom: 2px;
@@ -37,135 +37,470 @@
     .paper-card i {
     color: #9b0d31; /* 将颜色设置为红色 */
     }
+
     /* 统一调整所有文件中有序列表的样式 */
     ol {
         padding-left: 25px;   /* 减小左边距 */
-        padding-right: 25px;  /* 添加右边距 */
+        padding-right: 10px;  /* 添加右边距 */
         margin: 10px auto;    /* 上下10px，左右自动居中 */
-        max-width: 900px;     /* 控制最大宽度 */
     }
 
     ol li {
         margin-bottom: 10px;
     }
+
+    /* 标签容器 */
+    .patent-tags {
+        display: inline;
+    }
+
+    /* 标签样式 */
+    .patent-tag {
+        display: inline-block;
+        padding: 2px 8px;
+        border-radius: 4px;
+        background: rgba(155, 13, 49, 0.1);
+        color: #9b0d31;
+        font-size: 0.85em;
+    }
+
+    .stats-overview {
+        flex-wrap: wrap;
+        justify-content: center;
+        margin-bottom: 10px;
+        position: relative; /* 使其相对于正常流 */
+        transform: translateY(3px); /* 隐藏在视口下方 */
+        opacity: 0; /* 初始透明度为0 */
+        animation: slideUp 0.5s forwards; /* 应用动画 */
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); /* 自适应列数 */
+        gap: 10px; /* 卡片之间的间距 */
+    }
+    /* 定义动画效果 */
+    @keyframes slideUp {
+        to {
+            transform: translateY(0); /* 动画结束时的位置 */
+            opacity: 1; /* 动画结束时的透明度 */
+        }
+    }
+
+    .stat-card {
+        padding: 10px 0px;
+        background: rgba(155, 13, 49, 0.1);
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        text-align: center;
+        border: 1px solid #f0f0f0;
+    }
+
+    .stat-number {
+        font-size: 1.1em;
+        font-weight: bold;
+        color: #9b0d31;
+    }
+
+    .stat-label {
+        color: #9b0d31;
+        font-size: 0.95em;
+    }
+
+    @media (max-width: 1300px) {
+        .stats-overview {
+        grid-template-columns: repeat(auto-fill, minmax(30%, 1fr));
+    }
+    }
+
+    /* 标签统计区域样式 */
+    .tag-overview {
+        margin: 10px 0;
+        padding: 10px;
+        background: white;
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        border: 1px solid #f0f0f0;
+        position: relative; /* 使其相对于正常流 */
+        transform: translateY(3px); /* 隐藏在视口下方 */
+        opacity: 0; /* 初始透明度为0 */
+        animation: slideUp 0.5s forwards; /* 应用动画 */
+    }
+    /* 定义动画效果 */
+    @keyframes slideUp {
+        to {
+            transform: translateY(0); /* 动画结束时的位置 */
+            opacity: 1; /* 动画结束时的透明度 */
+        }
+    }
+
+    .stat-card {
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+    
+    .stat-card:hover {
+    }
+    
+
+    .tag-title {
+        margin-bottom: 10px;
+        padding-bottom: 10px;
+        border-bottom: 1px solid #f0f0f0;
+        font-size: 0.95em;
+    }
+
+    .tag-list {
+        flex-wrap: wrap;
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); /* 自适应列数 */
+        gap: 3px; /* 卡片之间的间距 */
+        font-size: 0.95em;
+    }
+
+    .tag-item {
+        position: relative;
+        padding: 6px 12px;
+        background: rgba(155, 13, 49, 0.1);
+        color: #9b0d31;
+        border-radius: 8px;
+        font-size: 0.95em;
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        margin: 0 2px;
+        flex: 0 0 auto;
+        font-weight: 500;
+    }
+
+    .tag-count {
+        position: absolute;
+        right: 10px;
+        top: 50%;
+        transform: translateY(-50%);
+        background: #9b0d31;
+        color: white;
+        padding: 2px 8px;
+        border-radius: 4px;
+    }
+
+
+    /* 选中状态 */
+    .tag-item.active-filter {
+        background: #9b0d31;
+        color: white;
+    }
+
+    /* 选中状态下的计数标签 */
+    .tag-item.active-filter .tag-count {
+        background: white;
+        color: #9b0d31;
+    }
+
+    /* 当标签筛选激活时，统计卡片的样式 */
+    .tag-filtering .stat-card {
+        opacity: 0.5;
+        cursor: not-allowed;
+        pointer-events: none;
+    }
+
+    /* 当统计卡片筛选激活时，标签的样式 */
+    .stat-filtering .tag-item {
+        opacity: 0.5;
+        cursor: not-allowed;
+        pointer-events: none;
+    }
+
+    .stat-card.active-filter {
+        background: #9b0d31;
+    }
+
+    .stat-card.active-filter .stat-number {
+        color: #fff;
+    }
+    .stat-card.active-filter .stat-label {
+        color: #fff;
+    }
+
     </style>
   </head>
 <body>
-    <header>
-      <h1><a href="index.html"><span class="name-color"><img id="tan_logo" src="./img/tan.jpg" alt="Lizhuang Tan">Lizhuang Tan (谭立状)</span></a></h1>
-      <nav>
-            <a href="index.html">Home</a>
-            <a href="cv.html">CV</a>
-            <a href="teaching.html">Teaching</a>
-            <a href="papers.html">Publication</a>
-            <a href="patents.html" class="active">Patent</a>
-            <a href="standard.html">Standard</a>
-            <a href="group.html">Group</a>
-            <a href="service.html">Service</a>
-            <a href="data.html">Data</a>
-            <a href="photos.html">Photo</a>
-            <a href="conference.html">Conference</a>
-            <a href="index_cn.html">
-              <img src="img/language-solid.svg" alt="Language Icon" class="language-icon">
-            </a>
-        </nav>
-    </header>
+  <header>
+    <h1><a href="index.html"><span class="name-color"><img id="tan_logo" src="./img/tan.jpg" alt="Lizhuang Tan">Lizhuang Tan (谭立状)</span></a></h1>
+    <nav>
+          <a href="index.html">Home</a>
+          <a href="cv.html">CV</a>
+          <a href="teaching.html">Teaching</a>
+          <a href="papers.html">Publication</a>
+          <a href="patents.html" class="active">Patent</a>
+          <a href="standard.html">Standard</a>
+          <a href="group.html">Group</a>
+          <a href="service.html">Service</a>
+          <a href="data.html">Data</a>
+          <a href="photos.html">Photo</a>
+          <a href="conference.html">Conference</a>
+          <a href="index_cn.html">
+            <img src="img/language-solid.svg" alt="Language Icon" class="language-icon">
+          </a>
+      </nav>
+  </header>
     <div class="container">
+      <div class="stats-overview">
+        <div class="stat-card">
+            <div class="stat-number" id="total-patents">0</div>
+            <div class="stat-label">Total Patents</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-number" id="invention-patents">0</div>
+            <div class="stat-label">Utility</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-number" id="utility-patents">0</div>
+            <div class="stat-label">Design</div>
+        </div>
+    </div>
+    <div class="tag-overview">
+        <div class="tag-title">研究领域</div>
+        <div class="tag-list" id="tag-list"></div>
+    </div>
+      <h3><span class="color-bar"></span>Utility Patents</h3>
       <div class="paper-card">
         <ol style="margin: 0; padding-left: 35px;">
-        <li><p>
-          <span class="paper-title"><b>An RDMA-based Cloud Memory Pool Priority Flow Control Method and System</b></span>
-          <a href="./papers/2024-专利-一种基于RDMA的云内存池优先级流控方法及系统.pdf" class="pdf-link"><i class="fas fa-file-pdf"></i></a><br>
-          <span class="paper-authors">Lizhuang Tan, Xin Dong, Huiling Shi, Wei Zhang</span><br>
-          <span class="paper-location"><i>ZL202411716592.7, 2024-11-27</i></span>    
-        </p></li>
-
-        <li><p>
-          <span class="paper-title"><b>A Bidirectional High-Speed Conversion Method, Device, and System for RDMA and CXL Protocols</b></span>
-          <a href="./papers/2024-专利-一种RDMA与CXL协议双向高速转换方法、装置及系统.pdf" class="pdf-link"><i class="fas fa-file-pdf"></i></a><br>
-          <span class="paper-authors">Lizhuang Tan, Xin Dong, Huiling Shi, Wei Zhang</span><br>
-          <span class="paper-location"><i>ZL202411716594.6, 2024-11-27</i></span>    
-        </p></li>
-
-        <li><p>
-          <span class="paper-title"><b>FPGA-based RDMA Data Transmission Optimization Method and System</b></span>
-          <a href="./papers/2024-专利-基于FPGA的RDMA数据传输优化方法及系统.pdf" class="pdf-link"><i class="fas fa-file-pdf"></i></a><br>
-          <span class="paper-authors">Lizhuang Tan, Xin Dong, Huiling Shi, Wei Zhang</span><br>
-          <span class="paper-location"><i>ZL202411712714.5, 2024-11-27</i></span>    
-        </p></li>
-      
-        <li><p>
-          <span class="paper-title"><b>RDMA Offloading Method and System for Database Query Tasks Based on Multi-Stage Pipeline</b></span>
-          <a href="./papers/2024-专利-基于多级流水线的数据库查询任务RDMA卸载方法及系统.pdf" class="pdf-link"><i class="fas fa-file-pdf"></i></a><br>
-          <span class="paper-authors">Lizhuang Tan, Xin Dong, Huiling Shi, Wei Zhang</span><br>
-          <span class="paper-location"><i>ZL202411660753.5, 2024-11-20</i></span>    
-        </p></li>
-
-        <li><p>
-          <span class="paper-title"><b>Data Transmission Optimization Method and System Based on Receiving Registration Table Mechanism</b></span>
-          <a href="./papers/2024-专利-基于接收注册表机制的数据传输优化方法及系统.pdf" class="pdf-link"><i class="fas fa-file-pdf"></i></a><br>
-          <span class="paper-authors">Lizhuang Tan, Xin Dong, Huiling Shi, Wei Zhang</span><br>
-          <span class="paper-location"><i>ZL202411660756.9, 2024-11-20</i></span>    
-        </p></li>
-
-        <li><p>
-          <span class="paper-title"><b>A CPU/FPGA Collaborative Network Telemetry Reordering Method and System</b></span>
-          <a href="./papers/2024-专利-CPUFPGA协同的网络遥测乱序重排方法及系统.pdf" class="pdf-link"><i class="fas fa-file-pdf"></i></a><br>
-          <span class="paper-authors">Lizhuang Tan, Zongrui Sui, Xinhang Wang, Xin Dong, Huiling Shi, Wei Zhang</span><br>
-          <span class="paper-location"><i>ZL202410435319.0, 2024-04-11</i></span>    
-        </p></li>
-
-        <li><p>
-          <span class="paper-title"><b>An Intent-driven Network Impairment Configuration Generation Method and System</b></span>
-          <a href="./papers/2024-专利-一种意图驱动的网络损伤配置生成方法及系统.pdf" class="pdf-link"><i class="fas fa-file-pdf"></i></a><br>
-          <span class="paper-authors">Lizhuang Tan, Yiming Xu, Xinhang Wang, Huiling Shi, Wei Zhang</span><br>
-          <span class="paper-location"><i>ZL202410409855.3, 2024-04-07</i></span>    
-        </p></li>
-
-        <li><p>
-          <span class="paper-title"><b>A Method and System for Combined Network Damage Emulation</b></span>
-          <a href="./papers/2023-专利-一种网络损伤组合化模拟实现方法及系统.pdf" class="pdf-link"><i class="fas fa-file-pdf"></i></a><br>
-          <span class="paper-authors">Lizhuang Tan, Xinhang Wang, Huiling Shi, Wei Zhang</span><br>
-          <span class="paper-location"><i>ZL2023117778457.0, 2023-12-21</i></span>    
-        </p></li>
-
-        <li><p>
-          <span class="paper-title"><b>A Method, System and Device for Realizing Network Damage</b></span>
-          <a href="./papers/2023-专利-一种实现网络损伤的方法、系统及装置.pdf" class="pdf-link"><i class="fas fa-file-pdf"></i></a><br>
-          <span class="paper-authors">Lizhuang Tan, Xinhang Wang, Huiling Shi, Wei Zhang</span><br>
-          <span class="paper-location"><i>ZL202310224941.2, 2023-03-03</i></span>    
-        </p></li>
-
+          <li><p>
+            <span class="paper-title"><b>An RDMA-based Cloud Memory Pool Priority Flow Control Method and System</b></span>
+            <span class="patent-tag">RDMA</span>
+            <a href="./papers/2024-专利-一种基于RDMA的云内存池优先级流控方法及系统.pdf" class="pdf-link"><i class="fas fa-file-pdf"></i></a><br>
+            <span class="paper-authors">Lizhuang Tan, Xin Dong, Huiling Shi, Wei Zhang</span><br>
+            <span class="paper-location"><i>ZL202411716592.7, 2024-11-27</i></span>    
+          </p></li>
+  
+          <li><p>
+            <span class="paper-title"><b>A Bidirectional High-Speed Conversion Method, Device, and System for RDMA and CXL Protocols</b></span>
+            <span class="patent-tag">RDMA</span>
+            <a href="./papers/2024-专利-一种RDMA与CXL协议双向高速转换方法、装置及系统.pdf" class="pdf-link"><i class="fas fa-file-pdf"></i></a><br>
+            <span class="paper-authors">Lizhuang Tan, Xin Dong, Huiling Shi, Wei Zhang</span><br>
+            <span class="paper-location"><i>ZL202411716594.6, 2024-11-27</i></span>    
+          </p></li>
+  
+          <li><p>
+            <span class="paper-title"><b>FPGA-based RDMA Data Transmission Optimization Method and System</b></span>
+            <span class="patent-tag">RDMA</span>
+            <a href="./papers/2024-专利-基于FPGA的RDMA数据传输优化方法及系统.pdf" class="pdf-link"><i class="fas fa-file-pdf"></i></a><br>
+            <span class="paper-authors">Lizhuang Tan, Xin Dong, Huiling Shi, Wei Zhang</span><br>
+            <span class="paper-location"><i>ZL202411712714.5, 2024-11-27</i></span>    
+          </p></li>
+        
+          <li><p>
+            <span class="paper-title"><b>RDMA Offloading Method and System for Database Query Tasks Based on Multi-Stage Pipeline</b></span>
+            <span class="patent-tag">RDMA</span>
+            <a href="./papers/2024-专利-基于多级流水线的数据库查询任务RDMA卸载方法及系统.pdf" class="pdf-link"><i class="fas fa-file-pdf"></i></a><br>
+            <span class="paper-authors">Lizhuang Tan, Xin Dong, Huiling Shi, Wei Zhang</span><br>
+            <span class="paper-location"><i>ZL202411660753.5, 2024-11-20</i></span>    
+          </p></li>
+  
+          <li><p>
+            <span class="paper-title"><b>Data Transmission Optimization Method and System Based on Receiving Registration Table Mechanism</b></span>
+            <span class="patent-tag">RDMA</span>
+            <a href="./papers/2024-专利-基于接收注册表机制的数据传输优化方法及系统.pdf" class="pdf-link"><i class="fas fa-file-pdf"></i></a><br>
+            <span class="paper-authors">Lizhuang Tan, Xin Dong, Huiling Shi, Wei Zhang</span><br>
+            <span class="paper-location"><i>ZL202411660756.9, 2024-11-20</i></span>    
+          </p></li>
+  
+          <li><p>
+            <span class="paper-title"><b>A CPU/FPGA Collaborative Network Telemetry Reordering Method and System</b></span>
+            <span class="patent-tag">Network Telemetry</span>
+            <a href="./papers/2024-专利-CPUFPGA协同的网络遥测乱序重排方法及系统.pdf" class="pdf-link"><i class="fas fa-file-pdf"></i></a><br>
+            <span class="paper-authors">Lizhuang Tan, Zongrui Sui, Xinhang Wang, Xin Dong, Huiling Shi, Wei Zhang</span><br>
+            <span class="paper-location"><i>ZL202410435319.0, 2024-04-11</i></span>    
+          </p></li>
+  
+          <li><p>
+            <span class="paper-title"><b>An Intent-driven Network Impairment Configuration Generation Method and System</b></span>
+            <span class="patent-tag">Network Emulation</span>
+            <a href="./papers/2024-专利-一种意图驱动的网络损伤配置生成方法及系统.pdf" class="pdf-link"><i class="fas fa-file-pdf"></i></a><br>
+            <span class="paper-authors">Lizhuang Tan, Yiming Xu, Xinhang Wang, Huiling Shi, Wei Zhang</span><br>
+            <span class="paper-location"><i>ZL202410409855.3, 2024-04-07</i></span>    
+          </p></li>
+  
+          <li><p>
+            <span class="paper-title"><b>A Method and System for Combined Network Damage Emulation</b></span>
+            <span class="patent-tag">Network Emulation</span>
+            <a href="./papers/2023-专利-一种网络损伤组合化模拟实现方法及系统.pdf" class="pdf-link"><i class="fas fa-file-pdf"></i></a><br>
+            <span class="paper-authors">Lizhuang Tan, Xinhang Wang, Huiling Shi, Wei Zhang</span><br>
+            <span class="paper-location"><i>ZL2023117778457.0, 2023-12-21</i></span>    
+          </p></li>
+  
+          <li><p>
+            <span class="paper-title"><b>A Method, System and Device for Realizing Network Damage</b></span>
+            <span class="patent-tag">Network Emulation</span>
+            <a href="./papers/2023-专利-一种实现网络损伤的方法、系统及装置.pdf" class="pdf-link"><i class="fas fa-file-pdf"></i></a><br>
+            <span class="paper-authors">Lizhuang Tan, Xinhang Wang, Huiling Shi, Wei Zhang</span><br>
+            <span class="paper-location"><i>ZL202310224941.2, 2023-03-03</i></span>    
+          </p></li> 
+  
+          <li><p>
+            <span class="paper-title"><b>A Method and System for Active Connection Migration based on QUIC Transport Protocol</b></span>
+            <span class="patent-tag">QUIC</span>
+            <a href="./papers/2022-专利-一种基于QUIC传输协议的主动连接迁移方法及系统.pdf" class="pdf-link"><i class="fas fa-file-pdf"></i></a><br>
+            <span class="paper-authors">Lizhuang Tan, Cheng Wang, Huiling Shi, Wei Zhang</span><br>
+            <span class="paper-location"><i>ZL202211650317.0, 2022-12-21</i></span>    
+          </p></li>
+  
+          <li><p>
+            <span class="paper-title"><b>In-band Network Telemetry Bearer Stream Selection Method and System</b></span>
+            <span class="patent-tag">Network Telemetry</span>
+            <a href="./papers/2020-专利-一种带内网络遥测承载流选取方法及系统.pdf" class="pdf-link"><i class="fas fa-file-pdf"></i></a><br>
+            <span class="paper-authors">Wei Su, Lizhuang Tan, Shuai Gao, Hongke Zhang, Yanwen Liu, Zhenyi Zhang</span><br>
+            <span class="paper-location"><i>WO/2022/000189, 2022-01-06</i></span>    
+          </p></li>
+      </ol>
+    </div>
+    <h3><span class="color-bar"></span>Design Patents</h3>
+    <div class="paper-card">
+      <ol style="margin: 0; padding-left: 35px;">
         <li><p>
           <span class="paper-title"><b>A Housing for Network Damage Meter and A Network Damage Meter</b></span>
+            <span class="patent-tag">Network Emulation</span>
           <a href="./papers/2023-专利-一种用于网络损伤仪的壳体及网络损伤仪.pdf" class="pdf-link"><i class="fas fa-file-pdf"></i></a><br>
           <span class="paper-authors">Lizhuang Tan, Xinhang Wang, Huiling Shi, Wei Zhang</span><br>
           <span class="paper-location"><i>ZL202320329297.0, 2023-02-22</i></span>    
         </p></li>
-
-        <li><p>
-          <span class="paper-title"><b>A Method and System for Active Connection Migration based on QUIC Transport Protocol</b></span>
-          <a href="./papers/2022-专利-一种基于QUIC传输协议的主动连接迁移方法及系统.pdf" class="pdf-link"><i class="fas fa-file-pdf"></i></a><br>
-          <span class="paper-authors">Lizhuang Tan, Cheng Wang, Huiling Shi, Wei Zhang</span><br>
-          <span class="paper-location"><i>ZL202211650317.0, 2022-12-21</i></span>    
-        </p></li>
-
-        <li><p>
-          <span class="paper-title"><b>In-band Network Telemetry Bearer Stream Selection Method and System</b></span>
-          <a href="./papers/2020-专利-一种带内网络遥测承载流选取方法及系统.pdf" class="pdf-link"><i class="fas fa-file-pdf"></i></a><br>
-          <span class="paper-authors">Wei Su, Lizhuang Tan, Shuai Gao, Hongke Zhang, Yanwen Liu, Zhenyi Zhang</span><br>
-          <span class="paper-location"><i>WO/2022/000189, 2022-01-06</i></span>    
-        </p></li>
       </ol>
     </div>
-      
-
- 
-
 
 </div>
         <footer>
             <p>Copyright &copy; 2022 - New Era. By Lizhuang Tan</p>
         </footer>
+
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // 获取各类专利数量
+    const inventionSection = Array.from(document.querySelectorAll('h3')).find(h3 => h3.textContent.includes("Utility Patents"));
+    const utilitySection = Array.from(document.querySelectorAll('h3')).find(h3 => h3.textContent.includes("Design Patents"));
+
+    // 计算各类数量
+    const inventionCount = inventionSection ? inventionSection.nextElementSibling.getElementsByTagName('li').length : 0;
+    const utilityCount = utilitySection ? utilitySection.nextElementSibling.getElementsByTagName('li').length : 0;
+    const totalCount = inventionCount + utilityCount;
+
+    // 更新统计数字
+    document.getElementById('total-patents').textContent = totalCount;
+    document.getElementById('invention-patents').textContent = inventionCount;
+    document.getElementById('utility-patents').textContent = utilityCount;
+
+    // 统计标签
+    const tagStats = new Map();
+    const allTags = [...inventionSection.nextElementSibling.querySelectorAll('.patent-tag'), 
+                     ...utilitySection.nextElementSibling.querySelectorAll('.patent-tag')];
+    
+    allTags.forEach(tag => {
+        const tagText = tag.textContent.trim();
+        tagStats.set(tagText, (tagStats.get(tagText) || 0) + 1);
+    });
+
+    // 更新标签列表
+    const tagListContainer = document.getElementById('tag-list');
+    tagListContainer.innerHTML = '';
+    
+    // 标签排序和添加
+    const sortedTags = Array.from(tagStats).sort((a, b) => b[1] - a[1]);
+    sortedTags.forEach(([tag, count]) => {
+        const tagDiv = document.createElement('div');
+        tagDiv.className = 'tag-item';
+        tagDiv.innerHTML = `${tag}<span class="tag-count">${count}</span>`;
+        tagDiv.addEventListener('click', function() {
+            this.classList.toggle('active-filter');
+            const activeFilters = document.querySelectorAll('.tag-item.active-filter');
+            if (activeFilters.length === 0) {
+                showAllPatents();
+            } else {
+                filterPatentsByTag();
+            }
+        });
+        tagListContainer.appendChild(tagDiv);
+    });
+
+    // 为统计卡片添加点击事件
+    const statCards = document.querySelectorAll('.stat-card');
+    statCards.forEach(card => {
+        card.addEventListener('click', function() {
+            if (this.classList.contains('active-filter')) {
+                this.classList.remove('active-filter');
+                showAllPatents();
+                return;
+            }
+            statCards.forEach(c => c.classList.remove('active-filter'));
+            this.classList.add('active-filter');
+            const label = this.querySelector('.stat-label').textContent;
+            filterByType(label);
+        });
+    });
+});
+
+// 筛选专利的函数
+function filterPatentsByTag() {
+    const activeFilters = document.querySelectorAll('.tag-item.active-filter');
+    const activeTags = Array.from(activeFilters).map(filter => 
+        filter.textContent.replace(/\d+$/, '').trim()
+    );
+
+    const allPatents = document.querySelectorAll('.paper-card li');
+    allPatents.forEach(patent => {
+        const patentTags = Array.from(patent.querySelectorAll('.patent-tag'))
+            .map(tag => tag.textContent.trim());
+        // 如果专利的标签中包含任何一个激活的标签，就显示该专利
+        const hasTag = patentTags.some(patentTag => 
+            activeTags.includes(patentTag)
+        );
+        patent.style.display = hasTag ? '' : 'none';
+    });
+}
+
+// 显示所有专利的函数
+function showAllPatents() {
+    document.querySelectorAll('.paper-card li').forEach(patent => {
+        patent.style.display = '';
+    });
+}
+
+// 根据类型筛选内容的函数
+function filterByType(type) {
+    console.log('Filtering by type:', type);
+    
+    const inventionSection = Array.from(document.querySelectorAll('h3')).find(h3 => h3.textContent.includes("Utility Patents"));
+    const utilitySection = Array.from(document.querySelectorAll('h3')).find(h3 => h3.textContent.includes("Design Patents"));
+
+    const allItems = document.querySelectorAll('.paper-card li');
+    allItems.forEach(item => item.style.display = 'none');
+
+    switch(type) {
+        case 'Total Patents':  // 修改这里匹配实际的标签文本
+            if (inventionSection) {
+                const inventionItems = inventionSection.nextElementSibling.querySelectorAll('li');
+                inventionItems.forEach(item => item.style.display = '');
+            }
+            if (utilitySection) {
+                const utilityItems = utilitySection.nextElementSibling.querySelectorAll('li');
+                utilityItems.forEach(item => item.style.display = '');
+            }
+            break;
+        case 'Utility':
+            if (inventionSection) {
+                const inventionItems = inventionSection.nextElementSibling.querySelectorAll('li');
+                inventionItems.forEach(item => item.style.display = '');
+            }
+            break;
+        case 'Design':
+            if (utilitySection) {
+                const utilityItems = utilitySection.nextElementSibling.querySelectorAll('li');
+                utilityItems.forEach(item => item.style.display = '');
+            }
+            break;
+        default:
+            allItems.forEach(item => item.style.display = '');
+    }
+}
+</script>
 </body>
 </html>

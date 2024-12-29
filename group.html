@@ -14,33 +14,35 @@
     <style>
     #album {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(100px, 1fr)); /* 列宽最小200px，自适应填充 */
-            gap: 10px; /* 图片间隔 */
-            padding: 10px; /* 相册内边距 */
+            grid-template-columns: repeat(auto-fill, minmax(500px, 1fr)); /* 自适应列数 */
+            gap: 10px; /* 卡片之间的间距 */
+            font-size: 0.95em;
         }
-        #album .photo-item {
-            background: #fff;
-            border: 1px solid #eaeaea;
-            border-radius: 8px;
-            overflow: hidden; /* 防止内容溢出 */
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
-            transition: box-shadow 0.3s ease-in-out;
-            text-align: center;
-        }
-        #album .photo-item:hover {
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-        }
-        #album img {
-            width: 100%;
-            height: auto;
-            border-radius: 2px 8px 0 0; /* 图片圆角仅应用于顶部 */
-            transition: transform 0.3s ease-in-out;
-        }
-        #album p {
-            margin: 1px 3px; /* 描述文本的上下外边距 */
-            color: #333;
-            font-size: 0.9em;
-        }
+        .photo-item {
+    display: grid;
+    background: #fff;
+    border: 1px solid #eaeaea;
+    border-radius: 8px;
+    overflow: hidden; /* 防止内容溢出 */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+    transition: box-shadow 0.3s ease-in-out;
+}
+.photo-content {
+    display: flex; /* 使用 Flexbox 布局 */
+    align-items:normal; /* 垂直居中对齐 */
+    width: 100%; /* 确保内容占满整个宽度 */
+}
+
+.photo-content img {
+    width: 100px; /* 设置图片宽度 */
+    height: auto; /* 高度自动调整 */
+    border-radius: 4px; /* 可选：为图片添加圆角 */
+    margin-right: 15px; /* 图片与文本之间的间距 */
+}
+
+.info {
+    flex: 1; /* 使文本信息部分占据剩余空间 */
+}
     </style>
   </head>
 <body>
@@ -67,25 +69,62 @@
       <h3><span class="color-bar"></span>Master Student</h3>
       <div id="album">
         <div class="photo-item">
-          <img src="img/xindong.jpg" />
-          <p>Xin Dong<br/>（2024-2027）</p>
-      </div>
+            <div class="photo-content">
+                <img src="img/xindong.jpg" alt="董鑫" />
+                <div class="info">
+                    <p><b style="color: #9b0d31;">Xin Dong</b>（2024-2027）
+                      <br/>Research Direction: Virtual Networks
+                      <br/>Publications: Patent*5
+                      <br/>Internship: Inspur
+                </div>
+            </div>
+        </div>
         <div class="photo-item">
-          <img src="img/xinhangwang.jpg" />
-          <p>Xinhang Wang<br/>（2022-2025）</p>
-      </div>
+            <div class="photo-content">
+                <img src="img/xinhangwang.jpg" alt="王新航" />
+                <div class="info">
+                    <p><b style="color: #9b0d31;">Xinhang Wang</b>（2022-2025）
+                      <br/>Research Direction: Programmable Network
+                      <br/>Publications: HPCC*1, APNOMS*1, Patent*3
+                      <br/>Internship: Inspur
+                      <br/>Note: Co-supervisor</p>
+                </div>
+            </div>
+        </div>
         <div class="photo-item">
-          <img src="img/chengwang.jpg" />
-          <p>Cheng Wang<br/>（2022-2025）</p>
-      </div>
+            <div class="photo-content">
+                <img src="img/chengwang.jpg" alt="王成" />
+                <div class="info">
+                    <p><b style="color: #9b0d31;">Cheng Wang</b>（2022-2022）
+                      <br/>Research Direction: QUIC
+                      <br/>Publications: Patent*1
+                      <br/>Internship: Inspur
+                      <br/>Note: Co-supervisor</p>
+                </div>
+            </div>
+        </div>
         <div class="photo-item">
-          <img src="img/kuichao.jpg" />
-          <p>Kuichao Zhang<br/>（2021-2024）</p>
-      </div>
+            <div class="photo-content">
+                <img src="img/kuichao.jpg" alt="张奎超" />
+                <div class="info">
+                    <p><b style="color: #9b0d31;">Kuichao Zhang</b>（2022-2023）
+                      <br/>Research Direction: Network Telemetry
+                      <br/>Publications: APNOMS*1
+                      <br/>Note: Co-supervisor</p>
+                </div>
+            </div>
+        </div>
         <div class="photo-item">
-          <img src="img/yanzhou.jpg" />
-          <p>Yan Zhou<br/>（2020-2023）</p>
-      </div>
+            <div class="photo-content">
+                <img src="img/yanzhou.jpg" alt="周岩" />
+                <div class="info">
+                    <p><b style="color: #9b0d31;">Yan Zhou</b>（2021-2022）
+                      <br/>Research Direction: Network Measurement
+                      <br/>Publications: APNOMS*1
+                      <br/>Note: Co-supervisor</p>
+                </div>
+            </div>
+        </div>
     </div>
       
       <h3><span class="color-bar"></span>Undergraduate Student</h3>

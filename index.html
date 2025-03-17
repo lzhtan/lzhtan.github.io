@@ -41,17 +41,6 @@
             z-index: 1;
             background: transparent;
         }
-
-        .about-detail {
-            display: flex;
-            align-items: flex-start;
-            margin-bottom: 20px;
-            background-color: #f9f9f9;
-            padding: 15px;
-            border-radius: 5px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            text-align: justify;
-        }
         .about a {
             color: #9b0d31;
             text-decoration: none;
@@ -59,8 +48,18 @@
         .about p {
             text-align: justify;
         }
+        
         .about a:hover {
             text-decoration: underline;
+        }
+        .about-detail {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 20px;
+            padding: 15px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: justify;
         }
         .about-image {
             margin-right: 20px;
@@ -84,17 +83,13 @@
             margin: 0 0 0 0;
             padding: 0 0 0 0;
         }
-        .icon-container :hover{
-            color: #aaa;
-        }
+        
         .about-detail p {
             margin: 0 0 0 0;
             padding: 0 0 0 0;
             text-align: justify;
 
         }
-        
-        
 
         /* 音频播放器容器 */
         .audio-container {
@@ -177,8 +172,47 @@
             grid-template-columns: repeat(auto-fill, minmax(170px, 1fr)); /* 自适应列数 */
         }
         }
-
-
+        
+        /* 回到顶部按钮样式 */
+        #back-to-top {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            display: none;
+            background-color: #9b0d31;
+            color: white;
+            width: 40px;
+            height: 40px;
+            text-align: center;
+            line-height: 40px;
+            border-radius: 50%;
+            z-index: 99;
+            opacity: 0.8;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+        
+        #back-to-top:hover {
+            background-color: #7b0925;
+            opacity: 1;
+            transform: translateY(-3px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        }
+        
+        /* 添加平滑滚动效果 */
+        html {
+            scroll-behavior: smooth;
+        }
+        @media screen and (max-width: 768px) {
+            #back-to-top {
+                bottom: 15px;
+                right: 15px;
+                width: 35px;
+                height: 35px;
+                line-height: 35px;
+                font-size: 0.9em;
+            }
+        }
     </style>
 </head>
 <body>
@@ -359,21 +393,42 @@
         </div>
         <p>Copyright &copy; 2022 - New Era. By Lizhuang Tan</p>
     </footer>
-    <script>
-    const audioPlayer = document.getElementById('audio-player');
-    const audioIcon = document.querySelector('.audio-icon');
+    
+    <!-- 回到顶部按钮 -->
+    <a href="#" id="back-to-top" title="Back to Top">
+        <i class="fas fa-arrow-up"></i>
+    </a>
 
-    audioIcon.addEventListener('click', function() {
-        if (audioPlayer.paused) {
-            audioPlayer.play();
-            audioIcon.classList.add('fa-pause');
-            audioIcon.classList.remove('fa-play');
-        } else {
-            audioPlayer.pause();
-            audioIcon.classList.add('fa-play');
-            audioIcon.classList.remove('fa-pause');
+    <script>
+        // 音频播放控制
+        function toggleAudio() {
+            var audio = document.getElementById("audio-player");
+            if (audio.paused) {
+                audio.play();
+            } else {
+                audio.pause();
+            }
         }
-    }); 
+        
+        // 回到顶部按钮
+        window.onscroll = function() {
+            var backToTopBtn = document.getElementById("back-to-top");
+            if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
+                backToTopBtn.style.display = "block";
+            } else {
+                backToTopBtn.style.display = "none";
+            }
+        };
+
+        // 点击回到顶部按钮
+        document.getElementById("back-to-top").addEventListener("click", function(e) {
+            e.preventDefault();
+            // 对于不支持scroll-behavior的浏览器，使用JavaScript滚动
+            window.scrollTo({
+                top: 0,
+                behavior: "smooth"
+            });
+        });
     </script>
 </body>
 </html>

@@ -11,6 +11,48 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@100..900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/jemdoc.css" type="text/css" />
+    <style>
+        /* 回到顶部按钮样式 */
+        #back-to-top {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            display: none;
+            background-color: #9b0d31;
+            color: white;
+            width: 40px;
+            height: 40px;
+            text-align: center;
+            line-height: 40px;
+            border-radius: 50%;
+            z-index: 99;
+            opacity: 0.8;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+        
+        #back-to-top:hover {
+            background-color: #7b0925;
+            opacity: 1;
+            transform: translateY(-3px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        }
+        
+        /* 添加平滑滚动效果 */
+        html {
+            scroll-behavior: smooth;
+        }
+        @media screen and (max-width: 768px) {
+            #back-to-top {
+                bottom: 15px;
+                right: 15px;
+                width: 35px;
+                height: 35px;
+                line-height: 35px;
+                font-size: 0.9em;
+            }
+        }
+    </style>
 </head>
 <body>
     <header>
@@ -43,5 +85,32 @@
         <footer>
             <p>Copyright &copy; 2022 - New Era. By Lizhuang Tan</p>
         </footer>
+
+    <!-- 回到顶部按钮 -->
+    <a href="#" id="back-to-top" title="回到顶部">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+
+    <script>
+        // 回到顶部按钮
+        window.onscroll = function() {
+            var backToTopBtn = document.getElementById("back-to-top");
+            if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
+                backToTopBtn.style.display = "block";
+            } else {
+                backToTopBtn.style.display = "none";
+            }
+        };
+
+        // 点击回到顶部按钮
+        document.getElementById("back-to-top").addEventListener("click", function(e) {
+            e.preventDefault();
+            // 平滑滚动回顶部
+            window.scrollTo({
+                top: 0,
+                behavior: "smooth"
+            });
+        });
+    </script>
 </body>
 </html>

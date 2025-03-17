@@ -135,6 +135,47 @@
     .project-card.ongoing {
         background-color: rgb(238, 255, 0, 0.05);  /* 浅黄色背景 */
     }
+
+    /* 回到顶部按钮样式 */
+    #back-to-top {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        display: none;
+        background-color: #9b0d31;
+        color: white;
+        width: 40px;
+        height: 40px;
+        text-align: center;
+        line-height: 40px;
+        border-radius: 50%;
+        z-index: 99;
+        opacity: 0.8;
+        transition: all 0.3s ease;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    }
+    
+    #back-to-top:hover {
+        background-color: #7b0925;
+        opacity: 1;
+        transform: translateY(-3px);
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    }
+    
+    /* 添加平滑滚动效果 */
+    html {
+        scroll-behavior: smooth;
+    }
+    @media screen and (max-width: 768px) {
+        #back-to-top {
+            bottom: 15px;
+            right: 15px;
+            width: 35px;
+            height: 35px;
+            line-height: 35px;
+            font-size: 0.9em;
+        }
+    }
     </style>
 </head>
 <body>
@@ -347,7 +388,7 @@
             </div>
         </div>
     </div>
-    <!-- 项���9：北京交通大学研究生创新基金二类资助项目 -->
+    <!-- 项目9：北京交通大学研究生创新基金二类资助项目 -->
     <div class="project-card">
         <div class="project-content">
             <div class="project-title">中央高校基本科研业务费项目<br>(北京交通大学研究生创新基金二类资助项目)</div>
@@ -539,6 +580,10 @@
     <p>Copyright &copy; 2022 - New Era. By Lizhuang Tan</p>
 </footer>
 
+<!-- 回到顶部按钮 -->
+<a href="#" id="back-to-top" title="回到顶部">
+    <i class="fas fa-arrow-up"></i>
+</a>
 
 <script>
     function calculateProjectProgress() {
@@ -613,6 +658,26 @@
 
 // 页面加载完成后执行
 document.addEventListener('DOMContentLoaded', calculateProjectProgress);
+
+// 回到顶部按钮
+window.onscroll = function() {
+    var backToTopBtn = document.getElementById("back-to-top");
+    if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
+        backToTopBtn.style.display = "block";
+    } else {
+        backToTopBtn.style.display = "none";
+    }
+};
+
+// 点击回到顶部按钮
+document.getElementById("back-to-top").addEventListener("click", function(e) {
+    e.preventDefault();
+    // 平滑滚动回顶部
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+    });
+});
 </script>
 
 </body>

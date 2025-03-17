@@ -71,6 +71,47 @@
         background-color: yellow;
     }
 
+    /* 回到顶部按钮样式 */
+    #back-to-top {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        display: none;
+        background-color: #9b0d31;
+        color: white;
+        width: 40px;
+        height: 40px;
+        text-align: center;
+        line-height: 40px;
+        border-radius: 50%;
+        z-index: 99;
+        opacity: 0.8;
+        transition: all 0.3s ease;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    }
+    
+    #back-to-top:hover {
+        background-color: #7b0925;
+        opacity: 1;
+        transform: translateY(-3px);
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    }
+    
+    /* 添加平滑滚动效果 */
+    html {
+        scroll-behavior: smooth;
+    }
+    @media screen and (max-width: 768px) {
+        #back-to-top {
+            bottom: 15px;
+            right: 15px;
+            width: 35px;
+            height: 35px;
+            line-height: 35px;
+            font-size: 0.9em;
+        }
+    }
+
     </style>
 </head>
 <body>
@@ -339,7 +380,7 @@
   <td align="center" >Kaohsiung, Taiwan, China</td>
   <td align="center" >2025/09/22</td>
   <td align="center" >C</td>
-  <td align="center" ><a href="https://sites.google.com/view/apnoms2025/home">Website</a></td>
+  <td align="center" ><a href="https://sites.google.com/view/apnoms2025/home">链接</a></td>
 </tr>
 <tr>
   <td align="center" >FORTE'25 (DisCoTec'25)</td>
@@ -403,7 +444,7 @@
   <td align="center" >St. Louis, USA</td>
   <td align="center" >2025/11/16</td>
   <td align="center" >A</td>
-  <td align="center" ><a href="https://sc25.supercomputing.org/">Website</a></td>
+  <td align="center" ><a href="https://sc25.supercomputing.org/">链接</a></td>
 </tr>
 <tr>
   <td align="center" >Networking'25</td>
@@ -871,7 +912,7 @@
         // 设置背景颜色高亮
         row.style.backgroundColor = "#ffcccc"; // 浅红色背景
 
-        // 创建红底色块并添加“即将截稿”文字
+        // 创建红底色块并添加"即将截稿"文字
         const warningBlock = document.createElement("span");
         warningBlock.textContent = "即将截稿";
         warningBlock.style.backgroundColor = "#ff0000"; // 红色背景
@@ -912,7 +953,7 @@ function highlightUpcomingData() {
         // 设置背景颜色高亮
         row.style.backgroundColor = "#ffcccc"; // 浅红色背景
 
-        // 创建红底色块并添加“即将截稿”文字
+        // 创建红底色块并添加"即将截稿"文字
         const warningBlock = document.createElement("span");
         warningBlock.textContent = "即将举办";
         warningBlock.style.backgroundColor = "#ff0000"; // 红色背景
@@ -981,7 +1022,27 @@ document.getElementById("filterInput").addEventListener("input", function() {
     highlightPastDeadlines();
     sortTable(1); // 按照"Deadline"列的增序排序
 };
-  </script>
+
+// 回到顶部按钮
+window.onscroll = function() {
+    var backToTopBtn = document.getElementById("back-to-top");
+    if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
+        backToTopBtn.style.display = "block";
+    } else {
+        backToTopBtn.style.display = "none";
+    }
+};
+
+// 点击回到顶部按钮
+document.getElementById("back-to-top").addEventListener("click", function(e) {
+    e.preventDefault();
+    // 平滑滚动回顶部
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+    });
+});
+</script>
 
 </td>
 </tr>
@@ -997,5 +1058,10 @@ document.getElementById("filterInput").addEventListener("input", function() {
   </div>
     <p>Copyright &copy; 2022 - New Era. By Lizhuang Tan</p>
 </footer>
+
+<!-- 回到顶部按钮 -->
+<a href="#" id="back-to-top" title="回到顶部">
+    <i class="fas fa-arrow-up"></i>
+</a>
 </body>
 </html>

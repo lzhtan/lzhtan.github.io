@@ -68,6 +68,47 @@
             background-color: #9b0d31;
             color: white;
         }
+        
+        /* Back to top button */
+        #back-to-top {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            display: none;
+            background-color: #9b0d31;
+            color: white;
+            width: 40px;
+            height: 40px;
+            text-align: center;
+            line-height: 40px;
+            border-radius: 50%;
+            z-index: 99;
+            opacity: 0.8;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+        
+        #back-to-top:hover {
+            background-color: #7b0925;
+            opacity: 1;
+            transform: translateY(-3px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        }
+        
+        /* Smooth scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+        @media screen and (max-width: 768px) {
+            #back-to-top {
+                bottom: 15px;
+                right: 15px;
+                width: 35px;
+                height: 35px;
+                line-height: 35px;
+                font-size: 0.9em;
+            }
+        }
     </style>
 </head>
 <body>
@@ -261,6 +302,10 @@
     <footer>
         <p>Copyright &copy; 2022 - New Era. By Lizhuang Tan</p>
     </footer>
+    <!-- Back to top button -->
+    <a href="#" id="back-to-top" title="Back to Top">
+        <i class="fas fa-arrow-up"></i>
+    </a>
     <script>
     document.addEventListener('DOMContentLoaded', function() {
         const photos = document.querySelectorAll('.photo-item');
@@ -306,6 +351,26 @@
                     }
                 });
             });
+        });
+    });
+
+    // Back to top button
+    window.onscroll = function() {
+        var backToTopBtn = document.getElementById("back-to-top");
+        if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
+            backToTopBtn.style.display = "block";
+        } else {
+            backToTopBtn.style.display = "none";
+        }
+    };
+
+    // Click event for back to top button
+    document.getElementById("back-to-top").addEventListener("click", function(e) {
+        e.preventDefault();
+        // Smooth scroll to top
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth"
         });
     });
     </script>

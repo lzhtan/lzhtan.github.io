@@ -298,7 +298,7 @@
                 <p>提出基于SRv6的主动网络遥测架构及其实现策略<a style="color: #666;">（中国信息通信大会第二届互联网体系结构学术会议，2019）</a>，将段路由标签栈以IPv6扩展报头的形式耦合到自定义探针中，使用改进广度优先搜索算法对遥测指令和遥测路径进行灵活编排，是领域内较早将SRv6和INT融合的研究方案；
                   围绕提高遥测新鲜度和减小遥测入侵性两个系统目标，提出基于多目标优化遥测承载流选取方法<a style="color: #666;">（PCT专利202010609191.7，2020；APNOMS，2021）</a>和混合型带内网络遥测任务编排算法<a style="color: #666;">（APNOMS，2022）</a>，研发并开源基于非支配排序遗传算法的编排求解器；
                   发表带内网络遥测研究综述<a style="color: #666;">（Computer Networks，2021）</a>，系统概述带内网络遥测关键实现技术、优化手段和应用部署情况，获评济南市网信领域基础理论研究和技术创新应用论文二等奖；提出基于染色标记的丢包检测及定位机制<a style="color: #666;">（IEEE Networking Letters，2021）</a>和多路径场景下丢包检测及定位方案<a style="color: #666;">（Internet Technology Letters，2022）</a>，被带内网络遥测参考标准规范采纳；
-                  发现带内网络遥测信息随流缺失问题，提出带内网络遥测质量诊断及缺失数据恢复算法<a style="color: #666;">（IEEE Transactions on Network and Service Management，2021）</a>；
+                  发现带内网络遥测信息随流缺失问题，提出带内网络遥测质量诊断及缺失数据恢复算法<a style="color: #666;">（IEEE Transactions on Network and Service Management，2021）</a>；发现任务编排导致带内网络遥测乱序问题，提出在离线排序相结合的乱序重排架构；
                   参与设计字节跳动主机内延迟监测及故障诊断系统Hostping<a style="color: #666;">（NSDI，2023）</a>，原型成果已应用于字节跳动数据中心网络监测系统。
                   </p>
             </div>
@@ -321,9 +321,9 @@
                 <h3>网络管控</h3>
                 <p><b>网络管理</b>：提出基于偏好排序和双边匹配的数据中心流量调度方法，建模考虑偏好排序的路径-流匹配问题，提出同时考虑匹配结果的稳定性和最优性的双边匹配求解算法<a style="color: #666;">（Transactions on Emerging Telecommunications Technologies封面论文，2022）</a>；
                   设计基于知识定义网络和边缘数据分布的混合云端到端延迟预测算法<a style="color: #666;">（NaNA，2019）</a>，提出服务功能链聚合映射算法，将功能链映射建模为混合整数线性规划问题，所提算法显著减少成本和延迟<a style="color: #666;">（Journal of Network and Computer Applications，2024）</a>；
-                  提出无损网络水线自动化调优机制ByteTuning<a style="color: #666;">（IEEE Transactions on Cloud Computing，2024）</a>，支持交换机和网卡的全链路RoCEv2网络性能调优，通过最小化端口覆盖集、数据聚合和配置语言转译等方式简化搜索空间并提高调优搜索效率，原型成果已应用于字节跳动数据中心网络系统。
+                  提出无损网络水线自动化调优机制ByteTuning<a style="color: #666;">（IEEE Transactions on Cloud Computing，2024）</a>，支持交换机和网卡的全链路RoCEv2网络性能调优，通过最小化端口覆盖集、数据聚合和配置语言转译等方式简化搜索空间并提高调优搜索效率，原型成果已应用于字节跳动数据中心网络系统；针对FPGA网卡动态重配置性能瓶颈，提出时分复用FPGA虚拟化网络方案，显著提升FPGA网络资源利用率及处理性能。
                   <br>
-                  <b>网络传输</b>：提出数据中心网络QUIC传输协议方案DCQUIC<a style="color: #666;">（INFOCOM ICCN，2021）</a>，通过FPGA硬件卸载建连密钥协商过程，相较于DCTCP、DCUDP，DCQUIC在建连速度、传输效率、灵活性和可靠性上性能出色；
+                  <b>网络传输</b>：提出数据中心网络QUIC传输协议方案DCQUIC<a style="color: #666;">（INFOCOM ICCN，2021）</a>，通过FPGA硬件卸载建连密钥协商过程<a style="color: #666;">（ICCCN，2025）</a>，相较于DCTCP、DCUDP，DCQUIC在建连速度、传输效率、灵活性和可靠性上性能出色；
                   开源模块化QUIC协议开发原型<a style="color: #666;">（CoNEXT Poster，2020）</a>及OpenQUIC项目，通过标准化拥塞控制、流量控制和加解密组件显著提高QUIC协议可扩展性和兼容性；
                   提出主动连接迁移机制<a style="color: #666;">（MobiQuitous，2020）</a>，将连接管理与网络垂直/水平切换分离，基于多臂老虎机探索利用网络链路质量，利用冗余接入和自适应迁移提升传输可靠性和性能，并提交IETF草案；
                   提出多路径传输场景下MPDTP块调度机制<a style="color: #666;">（NaNA Best Paper Award，2021）</a>，结合多路径延迟、吞吐和块截止时间特性，有效提升传输效率；

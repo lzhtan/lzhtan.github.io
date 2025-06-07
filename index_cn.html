@@ -1,33 +1,79 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Homepage of Lizhuang Tan"/>
     <meta name="keywords" content="Lizhuang Tan, tanlizhuang, 谭立状, 齐鲁工业大学, 国家超级计算济南中心, 山东省计算中心, 济南超算, 超算互联网, 山东算网"/>
     <meta name="author" content="Lizhuang Tan"/>
+    
+    <!-- 预加载关键资源 -->
+    <link rel="preload" href="css/jemdoc.css" as="style">
+    <link rel="preload" href="img/tan.jpg" as="image">
+    <link rel="preload" href="img/netmeasurement.jpeg" as="image">
+    
+    <!-- DNS预解析 -->
+    <link rel="dns-prefetch" href="//cdnjs.cloudflare.com">
+    <link rel="dns-prefetch" href="//fonts.googleapis.com">
+    <link rel="dns-prefetch" href="//fonts.gstatic.com">
+    <link rel="dns-prefetch" href="//clustrmaps.com">
+    
+    <!-- 图标优化 -->
     <link rel="icon" href="img/logo.ico" type="image/x-icon">
     <title>谭立状 / Lizhuang Tan</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.0/css/all.min.css">
+    
+    <!-- 关键CSS内联 -->
+    <style>
+        /* 关键首屏CSS */
+        body { margin: 0; padding: 0; font-family: Arial, sans-serif; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 20px; }
+        .profile { opacity: 0; transform: translateY(10px); animation: slideUp 0.5s forwards; }
+        @keyframes slideUp { to { transform: translateY(0); opacity: 1; } }
+    </style>
+    
+    <!-- 字体优化 - 使用font-display: swap -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@100..900&display=swap" rel="stylesheet">
+    
+    <!-- 非关键CSS延迟加载 -->
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.0/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.0/css/all.min.css"></noscript>
+    
+    <!-- 主要CSS -->
     <link rel="stylesheet" href="css/jemdoc.css" type="text/css" />
+    
     <style>
-        .profile {
-            position: relative; /* 使其相对于正常流 */
-            transform: translateY(10px); /* 隐藏在视口下方 */
-            opacity: 0; /* 初始透明度为0 */
-            animation: slideUp 0.5s forwards; /* 应用动画 */
+        /* 内联关键CSS减少阻塞 */
+        
+        /* 懒加载图片占位符 */
+        .lazy-image {
+            background: #f0f0f0;
+            transition: opacity 0.3s;
         }
-
-        /* 定义动画效果 */
-        @keyframes slideUp {
+        
+        .lazy-image.loaded {
+            opacity: 1;
+        }
+        
+        /* 优化动画性能 */
+        .card {
+            will-change: transform, opacity;
+            animation: slideIn 0.5s forwards;
+            opacity: 0;
+        }
+        
+        @keyframes slideIn {
+            from {
+                transform: translate3d(0, 20px, 0);
+                opacity: 0;
+            }
             to {
-                transform: translateY(0); /* 动画结束时的位置 */
-                opacity: 1; /* 动画结束时的透明度 */
+                transform: translate3d(0, 0, 0);
+                opacity: 1;
             }
         }
+        
         .about a {
             color: #9b0d31;
             text-decoration: none;
@@ -121,41 +167,28 @@
                 padding: 15px;
             }
             .card-container {
-            grid-template-columns: repeat(auto-fill, minmax(170px, 1fr)); /* 自适应列数 */
+            grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
         }
         }
-        @keyframes slideIn {
-            from {
-                transform: translateY(20px); /* 从下方滑入 */
-                opacity: 0; /* 初始透明度为0 */
-            }
-            to {
-                transform: translateY(0); /* 到达最终位置 */
-                opacity: 1; /* 最终透明度为1 */
-            }
-        }
-        .card {
-            animation: slideIn 0.5s forwards; /* 应用动画 */
-            opacity: 0; /* 初始透明度为0 */
-        }
+
         .card-container {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(190px, 1fr)); /* 自适应列数 */
-            gap: 10px; /* 卡片之间的间距 */
+            grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
+            gap: 10px;
         }
         .card {
             background: #fff;
             border: 1px solid #eaeaea;
             border-radius: 5px;
-            padding: 10px; /* 卡片的内边距 */
+            padding: 10px;
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
             position: relative;
         }
         .card-image {
-            width: 100%; /* 图片宽度自适应 */
-            height: auto; /* 高度自动调整 */
-            border-radius: 4px; /* 可选：为图片添加圆角 */
-            margin-top: 10px; /* 图片与文本之间的间距 */
+            width: 100%;
+            height: auto;
+            border-radius: 4px;
+            margin-top: 10px;
         }
         .card a {
             text-decoration: none;
@@ -167,19 +200,19 @@
         }
         .card-content {
             position: relative;
-            margin: 0; /* 移除内容的外边距 */
-            padding: 0; /* 移除内容的内边距 */
+            margin: 0;
+            padding: 0;
         }
         .news-date {
             font-weight: bold;
             color: #9b0d31;
-            line-height: 2; /* 调整行高，减少行间距 */
+            line-height: 2;
             font-style: italic;
             margin-bottom: 20px;
         }
         .card-content p {
-            margin: 0; /* 移除段落的外边距 */
-            line-height: 1.5; /* 调整行高，减少行间距 */
+            margin: 0;
+            line-height: 1.5;
         }
 
         /* 回到顶部按钮样式 */
@@ -223,6 +256,8 @@
             }
         }
     </style>
+    
+
 </head>
 <body>
     <header>
@@ -358,7 +393,7 @@
                     <div class="card-content">
                         <span class="news-date">12/2024</span>
                         <p>《网络操作系统SONiC: 原理、技术与实践》出版上市。</p>
-                        <img src="papers/2024-专著-SONIC.jpg" class="card-image" style="box-shadow: 0 2px 10px rgba(152, 48, 48, 0.1);">
+                        <img data-src="papers/2024-专著-SONIC.jpg" class="card-image lazy-image" style="box-shadow: 0 2px 10px rgba(152, 48, 48, 0.1);" alt="SONiC Book Cover">
                     </div>
                 </div>
                 <div class="card">
@@ -377,7 +412,7 @@
                     <div class="card-content">
                         <span class="news-date">07/2024</span>
                         <p>入选2024年度中韩青年科学家交流计划，将在<a href="https://cse.postech.ac.kr/">浦项科技大学</a>开展网络管理的研究工作。</p>
-                        <img src="img/postech.png" class="card-image">
+                        <img data-src="img/postech.png" class="card-image lazy-image" alt="POSTECH">
                     </div>
                 </div>
                 <div class="card">
@@ -408,7 +443,7 @@
                     <div class="card-content">
                         <span class="news-date">07/2023</span>
                         <p>基于P4的软件定义网络损伤仪研制完成，欢迎洽谈采购。</p>
-                        <img src="photos/20230725.jpeg" class="card-image">
+                        <img data-src="photos/20230725.jpeg" class="card-image lazy-image" alt="P4 Network Impairment Device">
                     </div>
                 </div>
                 <div class="card">
@@ -421,7 +456,7 @@
                     <div class="card-content">
                         <span class="news-date">05/2023</span>
                         <p>LossSight获第二十五届中国机器人及人工智能大赛国家二等奖。</p>
-                        <img src="img/CRAIC2023.jpg" class="card-image">
+                        <img data-src="img/CRAIC2023.jpg" class="card-image lazy-image" alt="CRAIC 2023 Award">
                     </div>
                 </div>
                 <div class="card">
@@ -440,7 +475,7 @@
                     <div class="card-content">
                         <span class="news-date">08/2022</span>
                         <p>Path-Flow Matching被《Wiley Transactions on Emerging Telecommunications Technologies》选为 <a href="https://onlinelibrary.wiley.com/doi/10.1002/ett.4637" target="_blank">FEATURED COVER</a>。</p>
-                        <img src="papers/2019-论文-ETT-Cover.jpg" class="card-image">
+                        <img data-src="papers/2019-论文-ETT-Cover.jpg" class="card-image lazy-image" alt="ETT Journal Cover">
                     </div>
                 </div>
                 <div class="card">
@@ -473,13 +508,116 @@
     </a>
     
     <script>
+        // 性能优化：图片懒加载
+        function lazyLoadImages() {
+            const images = document.querySelectorAll('img[data-src]');
+            const imageObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const img = entry.target;
+                        img.src = img.dataset.src;
+                        img.classList.remove('lazy-image');
+                        img.classList.add('loaded');
+                        imageObserver.unobserve(img);
+                    }
+                });
+            }, {
+                rootMargin: '50px 0px', // 提前50px开始加载
+                threshold: 0.01
+            });
+            
+            images.forEach(img => imageObserver.observe(img));
+        }
+
+        // 性能优化：卡片动画延迟执行
+        function animateCards() {
+            const cards = document.querySelectorAll('.card');
+            cards.forEach((card, index) => {
+                setTimeout(() => {
+                    card.style.opacity = '1';
+                    card.style.transform = 'translate3d(0, 0, 0)';
+                }, index * 100); // 每张卡片延迟100ms
+            });
+        }
+
+        // 防抖函数优化滚动性能
+        function debounce(func, wait) {
+            let timeout;
+            return function executedFunction(...args) {
+                const later = () => {
+                    clearTimeout(timeout);
+                    func(...args);
+                };
+                clearTimeout(timeout);
+                timeout = setTimeout(later, wait);
+            };
+        }
+
+        // 优化滚动事件处理
+        const optimizedScrollHandler = debounce(function() {
+            const backToTopBtn = document.getElementById("back-to-top");
+            const scrollTop = document.body.scrollTop || document.documentElement.scrollTop;
+            
+            if (scrollTop > 300) {
+                backToTopBtn.style.display = "block";
+            } else {
+                backToTopBtn.style.display = "none";
+            }
+        }, 10);
+
+        // 预加载关键资源
+        function preloadCriticalResources() {
+            const criticalImages = [
+                'img/tan.jpg',
+                'img/netmeasurement.jpeg',
+                'img/nettesting.jpeg',
+                'img/netmanagement.jpeg'
+            ];
+            
+            criticalImages.forEach(src => {
+                const link = document.createElement('link');
+                link.rel = 'preload';
+                link.as = 'image';
+                link.href = src;
+                document.head.appendChild(link);
+            });
+        }
+
+        // DOM加载完成后执行
+        document.addEventListener('DOMContentLoaded', function() {
+            // 初始化懒加载
+            if ('IntersectionObserver' in window) {
+                lazyLoadImages();
+            }
+            
+            // 启动卡片动画
+            setTimeout(animateCards, 500);
+            
+            // 预加载关键资源
+            preloadCriticalResources();
+        });
+
+        // 页面加载完成后的优化
+        window.addEventListener('load', function() {
+            // 移除加载状态
+            document.body.classList.add('loaded');
+            
+            // 预加载下一页面资源（可选）
+            const nextPageUrls = ['papers_cn.html', 'projects_cn.html', 'cv_cn.html'];
+            nextPageUrls.forEach(url => {
+                const link = document.createElement('link');
+                link.rel = 'prefetch';
+                link.href = url;
+                document.head.appendChild(link);
+            });
+        });
+
         // 打开弹窗
         function openModal() {
             var modal = document.getElementById("myModal");
             modal.style.display = "block";
         }
 
-        
         // 点击界面空白处关闭弹窗
         window.onclick = function(event) {
             var modal = document.getElementById("myModal");
@@ -488,15 +626,8 @@
             }
         }
             
-        // 回到顶部按钮
-        window.onscroll = function() {
-            var backToTopBtn = document.getElementById("back-to-top");
-            if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
-                backToTopBtn.style.display = "block";
-            } else {
-                backToTopBtn.style.display = "none";
-            }
-        };
+        // 优化后的滚动事件监听
+        window.addEventListener('scroll', optimizedScrollHandler, { passive: true });
 
         // 点击回到顶部按钮
         document.getElementById("back-to-top").addEventListener("click", function(e) {
@@ -507,6 +638,17 @@
                 behavior: "smooth"
             });
         });
+
+        // 服务工作者注册（用于缓存优化）
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', function() {
+                navigator.serviceWorker.register('sw.js').then(function(registration) {
+                    console.log('SW registered: ', registration);
+                }).catch(function(registrationError) {
+                    console.log('SW registration failed: ', registrationError);
+                });
+            });
+        }
     </script>
 </body>
 </html>

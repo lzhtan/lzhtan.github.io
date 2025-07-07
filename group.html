@@ -13,36 +13,68 @@
     <link rel="stylesheet" href="css/jemdoc.css" type="text/css" />
     <style>
     #album {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(48%, 1fr)); /* 自适应列数 */
-            gap: 10px; /* 卡片之间的间距 */
-            font-size: 0.95em;
-        }
-        .photo-item {
-            display: grid;
-            background: #fff;
-            border: 1px solid #eaeaea;
-            border-radius: 8px;
-            overflow: hidden; /* 防止内容溢出 */
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
-            transition: box-shadow 0.3s ease-in-out;
-        }
-        .photo-content {
-            display: flex; /* 使用 Flexbox 布局 */
-            align-items:normal; /* 垂直居中对齐 */
-            width: 100%; /* 确保内容占满整个宽度 */
-        }
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(30%, 1fr)); /* 自适应列数 */
+        gap: 10px; /* 卡片之间的间距 */
+        font-size: 0.95em;
+    }
+    .photo-item {
+        display: flex;
+        flex-direction: column;
+        background: #fff;
+        border: 1px solid #eaeaea;
+        border-radius: 8px;
+        overflow: hidden; /* 防止内容溢出 */
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+        transition: box-shadow 0.3s ease-in-out;
+    }
+    
+         .photo-header {
+         display: flex;
+         align-items: center;
+         padding: 10px 15px;
+         background: #fff;
+         border-bottom: 1px solid #eaeaea;
+     }
+    
+         .photo-header img {
+         width: 88px;
+         height: 110px;
+         object-fit: cover;
+         border-radius: 6px;
+         margin-right: 15px;
+         box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+     }
+    
+    .photo-header .name {
+        font-weight: 600;
+        color: #9b0d31;
+        font-size: 1em;
+    }
+    .photo-content {
+        display: flex; /* 使用 Flexbox 布局 */
+        align-items:normal; /* 垂直居中对齐 */
+        width: 100%; /* 确保内容占满整个宽度 */
+    }
 
-        .photo-content img {
-            width: 100px; /* 设置图片宽度 */
-            height: auto; /* 高度自动调整 */
-            border-radius: 4px; /* 可选：为图片添加圆角 */
-            margin-right: 15px; /* 图片与文本之间的间距 */
-        }
+    .photo-content img {
+        width: 100px; /* 设置图片宽度 */
+        height: auto; /* 高度自动调整 */
+        border-radius: 4px; /* 可选：为图片添加圆角 */
+        margin-right: 15px; /* 图片与文本之间的间距 */
+    }
 
-        .info {
-            flex: 1; /* 使文本信息部分占据剩余空间 */
-        }
+         .info {
+         flex: 1; /* 使文本信息部分占据剩余空间 */
+         padding: 10px 15px;
+         background: linear-gradient(135deg, #f8f9fa 0%, #fff 100%);
+     }
+    
+    .info p {
+        margin: 0;
+        line-height: 1.6;
+        color: #333;
+    }
         @media (max-width: 1300px) {
             #album {
             grid-template-columns: repeat(auto-fill, minmax(90%, 1fr));
@@ -115,96 +147,96 @@
       <h3><span class="color-bar"></span>Master Student</h3>
       <div id="album">
         <div class="photo-item">
-            <div class="photo-content">
+            <div class="photo-header">
                 <img src="img/ruichao.png" alt="张瑞超" />
-                <div class="info">
-                    <p><b style="color: #9b0d31;">Ruichao Zhang</b>
-                        <br/>Interest: N/A
-                        <br/>Publications: N/A
-                        <br/>Internship: N/A
-                        <br/>Note: 2025-2028, Forth Master Student</p>
-                    </div>
+                <div class="name">Ruichao Zhang<br/>2025-2028</div>
+            </div>
+            <div class="info">
+                <p>Interest: N/A
+                  <br/>Publications: N/A
+                  <br/>Internship: N/A
+                  <br/>Note: Forth Master Student</p>
             </div>
         </div>
         <div class="photo-item">
-            <div class="photo-content">
+            <div class="photo-header">
                 <img src="img/chufuming.png" alt="褚夫明" />
-                <div class="info">
-                    <p><b><a href="https://blog.csdn.net/qq_72505850" style="color: #9b0d31;">Fuming Chu</a></b>
-                    <br/>Interest: N/A
-                    <br/>Publications: N/A
-                    <br/>Internship: N/A
-                    <br/>Note: 2025-2028, Third Master Student</p>
-                </div>
+                <div class="name"><a href="https://blog.csdn.net/qq_72505850" style="color: #9b0d31;">Fuming Chu</a><br/>2025-2028</div>
+            </div>
+            <div class="info">
+                <p>Interest: N/A
+                  <br/>Publications: N/A
+                  <br/>Internship: N/A
+                  <br/>Note: Third Master Student</p>
             </div>
         </div>
         <div class="photo-item">
-            <div class="photo-content">
+            <div class="photo-header">
                 <img src="img/zhangyonghao.png" alt="张永毫" />
-                <div class="info">
-                    <p><b style="color: #9b0d31;">Yonghao Zhang</b>
-                        <br/>Interest: N/A
-                        <br/>Publications: N/A
-                        <br/>Internship: N/A
-                        <br/>Note: 2025-2028, Second Master Student</p>
-                    </div>
+                <div class="name" style="color: #9b0d31;">Yonghao Zhang<br/>2025-2028</div>
+            </div>
+            <div class="info">
+                <p>Interest: N/A
+                  <br/>Publications: N/A
+                  <br/>Internship: N/A
+                  <br/>Note: Second Master Student</p>
             </div>
         </div>
         <div class="photo-item">
-            <div class="photo-content">
+            <div class="photo-header">
                 <img src="img/xindong.jpg" alt="董鑫" />
-                <div class="info">
-                    <p><b style="color: #9b0d31;">Xin Dong</b>
-                      <br/>Interest: Virtual Networks
-                      <br/>Publications: IJNM, ICCCN, Patent*5
-                      <br/>Internship: Inspur
-                      <br/>Note: 2024-2027, First Master Student</p>
-                </div>
+                <div class="name" style="color: #9b0d31;">Xin Dong<br/>2024-2027</div>
+            </div>
+            <div class="info">
+                <p>Interest: Virtual Networks
+                  <br/>Publications: IJNM, ICCCN, Patent*5
+                  <br/>Internship: Inspur
+                  <br/>Note: First Master Student</p>
             </div>
         </div>
         <div class="photo-item">
-            <div class="photo-content">
+            <div class="photo-header">
                 <img src="img/xinhangwang.jpg" alt="王新航" />
-                <div class="info">
-                    <p><b style="color: #9b0d31;">Xinhang Wang</b>
-                      <br/>Interest: Network Emulation
-                      <br/>Publications: HPCC*1, APNOMS*1, Patent*4
-                      <br/>Internship: Inspur
-                      <br/>Note: 2022-2025, Co-supervision</p>
-                </div>
+                <div class="name" style="color: #9b0d31;">Xinhang Wang<br/>2022-2025</div>
+            </div>
+            <div class="info">
+                <p>Interest: Network Emulation
+                  <br/>Publications: HPCC*1, APNOMS*1, Patent*4
+                  <br/>Internship: Inspur
+                  <br/>Note: Co-supervision</p>
             </div>
         </div>
         <div class="photo-item">
-            <div class="photo-content">
+            <div class="photo-header">
                 <img src="img/chengwang.jpg" alt="王成" />
-                <div class="info">
-                    <p><b style="color: #9b0d31;">Cheng Wang</b>
-                      <br/>Interest: QUIC
-                      <br/>Publication: Patent*1
-                      <br/>Note: 2022-2025, Co-supervision</p>
-                </div>
+                <div class="name" style="color: #9b0d31;">Cheng Wang<br/>2022-2025</div>
+            </div>
+            <div class="info">
+                <p>Interest: QUIC
+                  <br/>Publication: Patent*1
+                  <br/>Note: Co-supervision</p>
             </div>
         </div>
         <div class="photo-item">
-            <div class="photo-content">
+            <div class="photo-header">
                 <img src="img/kuichao.jpg" alt="张奎超" />
-                <div class="info">
-                    <p><b style="color: #9b0d31;">Kuichao Zhang</b>
-                      <br/>Interest: Network Telemetry
-                      <br/>Publication: APNOMS*1
-                      <br/>Note: 2021-2024, Co-supervision</p>
-                </div>
+                <div class="name" style="color: #9b0d31;">Kuichao Zhang<br/>2021-2024</div>
+            </div>
+            <div class="info">
+                <p>Interest: Network Telemetry
+                  <br/>Publication: APNOMS*1
+                  <br/>Note: Co-supervision</p>
             </div>
         </div>
         <div class="photo-item">
-            <div class="photo-content">
+            <div class="photo-header">
                 <img src="img/yanzhou.jpg" alt="周岩" />
-                <div class="info">
-                    <p><b style="color: #9b0d31;">Yan Zhou</b>
-                      <br/>Interest: Network Measurement
-                      <br/>Publication: APNOMS*1
-                      <br/>Note: 2020-2023, Co-supervision</p>
-                </div>
+                <div class="name" style="color: #9b0d31;">Yan Zhou<br/>2020-2023</div>
+            </div>
+            <div class="info">
+                <p>Interest: Network Measurement
+                  <br/>Publication: APNOMS*1
+                  <br/>Note: Co-supervision</p>
             </div>
         </div>
     </div>

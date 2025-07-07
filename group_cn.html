@@ -19,13 +19,37 @@
         font-size: 0.95em;
     }
     .photo-item {
-        display: grid;
+        display: flex;
+        flex-direction: column;
         background: #fff;
         border: 1px solid #eaeaea;
         border-radius: 8px;
         overflow: hidden; /* 防止内容溢出 */
         box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
         transition: box-shadow 0.3s ease-in-out;
+    }
+    
+    .photo-header {
+        display: flex;
+        align-items: center;
+        padding: 10px 15px;
+        background: #fff;
+        border-bottom: 1px solid #eaeaea;
+    }
+    
+    .photo-header img {
+        width: 88px;
+        height: 110px;
+        object-fit: cover;
+        border-radius: 6px;
+        margin-right: 15px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    }
+    
+    .photo-header .name {
+        font-weight: 500;
+        color: #9b0d31;
+        font-size: 1em;
     }
     .photo-content {
         display: flex; /* 使用 Flexbox 布局 */
@@ -42,6 +66,14 @@
 
     .info {
         flex: 1; /* 使文本信息部分占据剩余空间 */
+        padding: 10px 15px;
+        background: linear-gradient(135deg, #f8f9fa 0%, #fff 100%);
+    }
+    
+    .info p {
+        margin: 0;
+        line-height: 1.6;
+        color: #333;
     }
 
 
@@ -75,11 +107,9 @@
         #album {
             grid-template-columns: 1fr; /* 手机屏幕一行一个 */
             gap: 20px;
-            padding: 0 10px;
         }
         
         .photo-item {
-            padding: 20px;
             border-radius: 12px;
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
             background: linear-gradient(135deg, #fff 0%, #f8f9fa 100%);
@@ -107,7 +137,7 @@
         
         .info p {
             margin: 0;
-            line-height: 1.6;
+            line-height: 1;
         }
         
         .info b {
@@ -115,7 +145,6 @@
             text-align: center; /* 姓名居中 */
             font-size: 1em; /* 姓名稍微大一点 */
             color: #9b0d31;
-            font-weight: 600;
         }
         
         /* 重新组织信息显示 */
@@ -202,7 +231,7 @@
       <div class="board-card">
         <p>
           <span class="board-title"><b><i class="fas fa-people-group"></i> 研究生</b></span><br>
-          <span class="board-detail"><b style="color: blue;">我可以依托齐鲁工业大学（山东省科学院）计算机科学与技术学部招收<a style="color: red;">计算机科学与技术（081200，学硕）</a>、<a style="color: red;">计算机技术（085404，专硕）</a>两个方向的硕士研究生。欢迎邮件联系。</b></br>
+          <span class="board-detail"><b style="color: blue;">我可以依托齐鲁工业大学（山东省科学院）计算机科学与技术学部招收<a style="color: red;">计算机科学与技术（081200，学硕）</a>、<a style="color: red;">计算机技术（085404，专硕）</a>两个方向的硕士研究生。</b></br>
             欢迎具有一定学科基础和强烈科研热情、乐于从事<b>计算机网络、网络测量与测试、数据中心网络性能优化</b>方向的科研与工程工作、<b style="color: red;">有志气且有骨气</b>的学生报考。</br>
             名额充足（3年可招生10人），待遇优越。</br>
             <a style="color: red;">我的研究生培养经验不多，要求较为严格；在研项目及研究方向难度较大，工作任务较重，成果产出周期较长。对此无法适应的同学，不建议联系报考。</a></br>
@@ -221,96 +250,96 @@
       <h3><span class="color-bar"></span>硕士生</h3>
       <div id="album">
         <div class="photo-item">
-            <div class="photo-content">
+            <div class="photo-header">
                 <img src="img/ruichao.png" alt="张瑞超" />
-                <div class="info">
-                    <p><b><a style="color: #9b0d31;">张瑞超</a></b>
-                      <br/>研究方向: 暂无
-                      <br/>成果发表: 暂无
-                      <br/>实习实践: 暂无
-                      <br/>备注: 2025级, 指导的第四个研究生</p>
-                </div>
+                <div class="name"><a style="color: #9b0d31;">张瑞超</a></br><span style="color: black; font-weight: normal;">2025级</span></div>
+            </div>
+            <div class="info">
+                <p><b>研究方向:</b> 暂无
+                  <br/><b>成果发表:</b> 暂无
+                  <br/><b>实习实践:</b> 暂无
+                  <br/><b>备注:</b> 指导的第四个研究生</p>
             </div>
         </div>
         <div class="photo-item">
-            <div class="photo-content">
+            <div class="photo-header">
                 <img src="img/chufuming.png" alt="褚夫明" />
-                <div class="info">
-                    <p><b><a href="https://blog.csdn.net/qq_72505850" style="color: #9b0d31;">褚夫明</a></b>
-                      <br/>研究方向: 暂无
-                      <br/>成果发表: 暂无
-                      <br/>实习实践: 暂无
-                      <br/>备注: 2025级, 指导的第三个研究生</p>
-                </div>
+                <div class="name"><a href="https://blog.csdn.net/qq_72505850" style="color: #9b0d31;">褚夫明</a></br><span style="color: black; font-weight: normal;">2025级</span></div>
+            </div>
+            <div class="info">
+                <p><b>研究方向:</b> 暂无
+                  <br/><b>成果发表:</b> 暂无
+                  <br/><b>实习实践:</b> 暂无
+                  <br/><b>备注:</b> 指导的第三个研究生</p>
             </div>
         </div>
         <div class="photo-item">
-            <div class="photo-content">
+            <div class="photo-header">
                 <img src="img/zhangyonghao.png" alt="张永毫" />
-                <div class="info">
-                    <p><b style="color: #9b0d31;">张永毫</b>
-                        <br/>研究方向: 暂无
-                        <br/>成果发表: 暂无
-                        <br/>实习实践: 暂无
-                      <br/>备注: 2025级, 指导的第二个研究生</p>
-                </div>
+                <div class="name"><span style="color: #9b0d31;">张永毫</span></br><span style="color: black; font-weight: normal;">2025级</span></div>
+            </div>
+            <div class="info">
+                <p><b>研究方向:</b> 暂无
+                  <br/><b>成果发表:</b> 暂无
+                  <br/><b>实习实践:</b> 暂无
+                  <br/><b>备注:</b> 指导的第二个研究生</p>
             </div>
         </div>
         <div class="photo-item">
-            <div class="photo-content">
+            <div class="photo-header">
                 <img src="img/xindong.jpg" alt="董鑫" />
-                <div class="info">
-                    <p><b style="color: #9b0d31;">董鑫</b>
-                      <br/>研究方向: 虚拟网络、FPGA虚拟化
-                      <br/>成果发表: IJNM, ICCCN'25, 专利*5
-                      <br/>实习实践: 浪潮
-                      <br/>备注: 2024级, 指导的第一个研究生</p>
-                </div>
+                <div class="name"><span style="color: #9b0d31;">董鑫</span></br><span style="color: black; font-weight: normal;">2024级</span></div>
+            </div>
+            <div class="info">
+                <p><b>研究方向:</b> 虚拟网络、FPGA虚拟化
+                  <br/><b>成果发表:</b> IJNM, ICCCN'25, 专利*5
+                  <br/><b>实习实践:</b> 浪潮
+                  <br/><b>备注:</b> 指导的第一个研究生</p>
             </div>
         </div>
         <div class="photo-item">
-            <div class="photo-content">
+            <div class="photo-header">
                 <img src="img/xinhangwang.jpg" alt="王新航" />
-                <div class="info">
-                    <p><b style="color: #9b0d31;">王新航</b>
-                      <br/>研究方向: 可编程网络
-                      <br/>成果发表: HPCC'24, APNOMS'23, 专利*4
-                      <br/>实习实践: 浪潮
-                      <br/>备注: 2022级, 合作指导</p>
-                </div>
+                <div class="name"><span style="color: #9b0d31;">王新航</span></br><span style="color: black; font-weight: normal;">2022级</span></div>
+            </div>
+            <div class="info">
+                <p><b>研究方向:</b> 可编程网络
+                  <br/><b>成果发表:</b> HPCC'24, APNOMS'23, 专利*4
+                  <br/><b>实习实践:</b> 浪潮
+                  <br/><b>备注:</b> 合作指导</p>
             </div>
         </div>
         <div class="photo-item">
-            <div class="photo-content">
+            <div class="photo-header">
                 <img src="img/chengwang.jpg" alt="王成" />
-                <div class="info">
-                    <p><b style="color: #9b0d31;">王成</b>
-                    <br/>研究方向: QUIC
-                    <br/>成果发表: 专利*1
-                    <br/>备注: 2022级, 合作指导</p>
-                </div>
+                <div class="name"><span style="color: #9b0d31;">王成</span></br><span style="color: black; font-weight: normal;">2022级</span></div>
+            </div>
+            <div class="info">
+                <p><b>研究方向:</b> QUIC
+                  <br/><b>成果发表:</b> 专利*1
+                  <br/><b>备注:</b> 合作指导</p>
             </div>
         </div>
         <div class="photo-item">
-            <div class="photo-content">
+            <div class="photo-header">
                 <img src="img/kuichao.jpg" alt="张奎超" />
-                <div class="info">
-                    <p><b style="color: #9b0d31;">张奎超</b>
-                    <br/>研究方向: 网络遥测
-                    <br/>成果发表: APNOMS'23
-                    <br/>备注: 2021级, 合作指导</p>
-                </div>
+                <div class="name"><span style="color: #9b0d31;">张奎超</span></br><span style="color: black; font-weight: normal;">2021级</span></div>
+            </div>
+            <div class="info">
+                <p><b>研究方向:</b> 网络遥测
+                  <br/><b>成果发表:</b> APNOMS'23
+                  <br/><b>备注:</b> 合作指导</p>
             </div>
         </div>
         <div class="photo-item">
-            <div class="photo-content">
+            <div class="photo-header">
                 <img src="img/yanzhou.jpg" alt="周岩" />
-                <div class="info">
-                    <p><b style="color: #9b0d31;">周岩</b>
-                      <br/>研究方向: 网络测量
-                      <br/>成果发表: APNOMS'21
-                      <br/>备注: 2020级, 合作指导</p>
-                </div>
+                <div class="name"><span style="color: #9b0d31;">周岩</span></br><span style="color: black; font-weight: normal;">2020级</span></div>
+            </div>
+            <div class="info">
+                <p><b>研究方向:</b> 网络测量
+                  <br/><b>成果发表:</b> APNOMS'21
+                  <br/><b>备注:</b> 合作指导</p>
             </div>
         </div>
     </div>

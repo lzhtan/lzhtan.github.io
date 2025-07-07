@@ -70,6 +70,70 @@
         }
         }
 
+    /* 手机屏幕适配 */
+    @media (max-width: 768px) {
+        #album {
+            grid-template-columns: 1fr; /* 手机屏幕一行一个 */
+            gap: 20px;
+            padding: 0 10px;
+        }
+        
+        .photo-item {
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            background: linear-gradient(135deg, #fff 0%, #f8f9fa 100%);
+        }
+        
+        .photo-content {
+            flex-direction: column; /* 改为垂直布局 */
+            align-items: center; /* 居中对齐 */
+            text-align: center; /* 文本居中 */
+        }
+        
+        .photo-content img {
+            width: 100px; /* 头像大小 */
+            height: 130px; /* 固定高度，防止拉伸 */
+            object-fit: cover; /* 保持图片比例，裁剪多余部分 */
+            border-radius: 8px; /* 圆角矩形 */
+            margin-right: 0; /* 取消右边距 */
+            margin-bottom: 5px; /* 图片下方间距 */
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+        
+        .info {
+            width: 100%;
+        }
+        
+        .info p {
+            margin: 0;
+            line-height: 1.6;
+        }
+        
+        .info b {
+            display: block; /* 姓名独占一行 */
+            text-align: center; /* 姓名居中 */
+            font-size: 1em; /* 姓名稍微大一点 */
+            color: #9b0d31;
+            font-weight: 600;
+        }
+        
+        /* 重新组织信息显示 */
+        .info p {
+            text-align: left;
+            padding: 5px;
+            border-radius: 8px;
+            color: #333;
+            line-height: 1.4;
+        }
+        .info p br {
+            display: block;
+            content: "";
+        }
+        
+        
+    }
+
     /* 回到顶部按钮样式 */
     #back-to-top {
         position: fixed;

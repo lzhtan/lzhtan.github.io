@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -51,18 +51,7 @@
         color: #9b0d31;
         font-size: 1em;
     }
-    .photo-content {
-        display: flex; /* 使用 Flexbox 布局 */
-        align-items:normal; /* 垂直居中对齐 */
-        width: 100%; /* 确保内容占满整个宽度 */
-    }
 
-    .photo-content img {
-        width: 100px; /* 设置图片宽度 */
-        height: auto; /* 高度自动调整 */
-        border-radius: 4px; /* 可选：为图片添加圆角 */
-        margin-right: 15px; /* 图片与文本之间的间距 */
-    }
 
     .info {
         flex: 1; /* 使文本信息部分占据剩余空间 */
@@ -107,59 +96,46 @@
         #album {
             grid-template-columns: 1fr; /* 手机屏幕一行一个 */
             gap: 20px;
+            padding: 0 10px;
         }
         
         .photo-item {
             border-radius: 12px;
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-            background: linear-gradient(135deg, #fff 0%, #f8f9fa 100%);
         }
         
-        .photo-content {
+        .photo-header {
             flex-direction: column; /* 改为垂直布局 */
             align-items: center; /* 居中对齐 */
             text-align: center; /* 文本居中 */
+            padding: 20px 15px 15px 15px;
         }
         
-        .photo-content img {
+        .photo-header img {
             width: 100px; /* 头像大小 */
             height: 130px; /* 固定高度，防止拉伸 */
             object-fit: cover; /* 保持图片比例，裁剪多余部分 */
             border-radius: 8px; /* 圆角矩形 */
             margin-right: 0; /* 取消右边距 */
-            margin-bottom: 5px; /* 图片下方间距 */
+            margin-bottom: 10px; /* 图片下方间距 */
             box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+        
+        .photo-header .name {
+            text-align: center;
+            line-height: 1.4;
         }
         
         .info {
             width: 100%;
+            padding: 15px;
         }
         
         .info p {
             margin: 0;
-            line-height: 1;
-        }
-        
-        .info b {
-            display: block; /* 姓名独占一行 */
-            text-align: center; /* 姓名居中 */
-            font-size: 1em; /* 姓名稍微大一点 */
-            color: #9b0d31;
-        }
-        
-        /* 重新组织信息显示 */
-        .info p {
-            text-align: left;
-            padding: 5px;
-            border-radius: 8px;
-            color: #333;
             line-height: 1.4;
+            text-align: left;
         }
-        .info p br {
-            display: block;
-            content: "";
-        }
-        
         
     }
 

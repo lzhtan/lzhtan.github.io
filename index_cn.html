@@ -784,17 +784,6 @@
                 behavior: "smooth"
             });
         });
-
-        // 服务工作者注册（用于缓存优化）
-        if ('serviceWorker' in navigator) {
-            window.addEventListener('load', function() {
-                navigator.serviceWorker.register('sw.js').then(function(registration) {
-                    console.log('SW registered: ', registration);
-                }).catch(function(registrationError) {
-                    console.log('SW registration failed: ', registrationError);
-                });
-            });
-        }
         
         // 播放按钮点击事件
         document.addEventListener('DOMContentLoaded', function() {

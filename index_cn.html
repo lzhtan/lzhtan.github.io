@@ -50,32 +50,16 @@
     <style>
         /* 内联关键CSS减少阻塞 */
         
-        /* 懒加载图片占位符 */
-        .lazy-image {
-            background: #f0f0f0;
-            transition: opacity 0.3s;
-        }
-        
-        .lazy-image.loaded {
-            opacity: 1;
-        }
-        
-        /* 优化动画性能 */
-        .card {
-            will-change: transform, opacity;
-            animation: slideIn 0.5s forwards;
+        /* 卡片动画 */
+        .news-card {
             opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
         }
         
-        @keyframes slideIn {
-            from {
-                transform: translate3d(0, 20px, 0);
-                opacity: 0;
-            }
-            to {
-                transform: translate3d(0, 0, 0);
-                opacity: 1;
-            }
+        .news-card.animate {
+            opacity: 1;
+            transform: translateY(0);
         }
         
         .about a {
@@ -366,7 +350,7 @@
 </head>
 <body>
     <header>
-        <h1><a href="index_cn.html"><span class="name-color"><img id="tan_logo" src="./img/tan.jpg" alt="Lizhuang Tan" loading="lazy">谭立状 (Lizhuang Tan)</span></a></h1>
+        <h1><a href="index_cn.html"><span class="name-color"><img id="tan_logo" src="./img/tan.jpg" alt="Lizhuang Tan">谭立状 (Lizhuang Tan)</span></a></h1>
         <nav>
             <a href="index_cn.html" class="active">主页</a>
             <a href="cv_cn.html">简历</a>
@@ -387,7 +371,7 @@
     </header>
     <div class="container">
         <div class="profile">
-            <img id="tan" src="./img/tan.jpg" alt="Lizhuang Tan" loading="lazy">
+            <img id="tan" src="./img/tan.jpg" alt="Lizhuang Tan">
             <div class="information">
               <h2>谭立状</h2>
               <p><b>博士，副研究员，硕士生导师</b></p>
@@ -431,7 +415,7 @@
         </div>
         <div class="about-detail">
             <div class="about-image">
-                <img src="img/netmeasurement.jpeg" alt="Network Measurement" loading="lazy">
+                <img src="img/netmeasurement.jpeg" alt="Network Measurement">
             </div>
             <div class="text-container">
                 <h3>网络测量</h3>
@@ -445,7 +429,7 @@
         </div>
         <div class="about-detail">
             <div class="about-image">
-                <img src="img/nettesting.jpeg" alt="Network Testing" loading="lazy">
+                <img src="img/nettesting.jpeg" alt="Network Testing">
             </div>
             <div class="text-container">
                 <h3>网络测试</h3>
@@ -455,7 +439,7 @@
         </div>
         <div class="about-detail">
             <div class="about-image">
-                <img src="img/netmanagement.jpeg" alt="Network Measurement" loading="lazy">
+                <img src="img/netmanagement.jpeg" alt="Network Measurement">
             </div>
             <div class="text-container">
                 <h3>网络管控</h3>
@@ -484,7 +468,7 @@
                     <div class="video-title-overlay">
                         <h4>主动连接迁移</h4>
                     </div>
-                    <img src="img/video/pcm_video.avif" alt="主动连接迁移视频缩略图" class="thumbnail-img" loading="lazy">
+                    <img src="img/video/pcm_video.avif" alt="主动连接迁移视频缩略图" class="thumbnail-img">
                 </div>
                 <div class="video-thumbnail">
                     <div class="play-icon">
@@ -493,7 +477,7 @@
                     <div class="video-title-overlay">
                         <h4>遥测时空数据库</h4>
                     </div>
-                    <img src="img/video/intdb_video.avif" alt="遥测时空数据库视频缩略图" class="thumbnail-img" loading="lazy">
+                    <img src="img/video/intdb_video.avif" alt="遥测时空数据库视频缩略图" class="thumbnail-img">
                 </div>
                 <div class="video-thumbnail">
                     <div class="play-icon">
@@ -502,7 +486,7 @@
                     <div class="video-title-overlay">
                         <h4>带内网络遥测</h4>
                     </div>
-                    <img src="img/video/int_video.avif" alt="带内网络遥测视频缩略图" class="thumbnail-img" loading="lazy">
+                    <img src="img/video/int_video.avif" alt="带内网络遥测视频缩略图" class="thumbnail-img">
                 </div>
             </div>
         </div>
@@ -514,7 +498,7 @@
                     <div class="card-content">
                         <span class="news-date">07/2025</span>
                         <p>PCM-QUIC被《International Journal of Network Management》选为 <a href="https://onlinelibrary.wiley.com/doi/10.1002/nem.70022" target="_blank">FEATURED COVER</a>。</p>
-                        <img data-src="img/2025-论文-IJNM-Cover.jpg" class="card-image lazy-image" alt="IJNM Cover" loading="lazy">
+                        <img src="img/2025-论文-IJNM-Cover.jpg" class="card-image" alt="IJNM Cover">
                     </div>
                 </div>
                 <div class="card">
@@ -539,7 +523,7 @@
                     <div class="card-content">
                         <span class="news-date">12/2024</span>
                         <p>《网络操作系统SONiC: 原理、技术与实践》出版上市。</p>
-                        <img data-src="img/2024-专著-SONIC.jpg" class="card-image lazy-image" style="box-shadow: 0 2px 10px rgba(152, 48, 48, 0.1);" alt="SONiC Book Cover" loading="lazy">
+                        <img src="img/2024-专著-SONIC.jpg" class="card-image" style="box-shadow: 0 2px 10px rgba(152, 48, 48, 0.1);" alt="SONiC Book Cover">
                     </div>
                 </div>
                 <div class="card">
@@ -558,7 +542,7 @@
                     <div class="card-content">
                         <span class="news-date">07/2024</span>
                         <p>入选2024年度中韩青年科学家交流计划，将在<a href="https://cse.postech.ac.kr/">浦项科技大学</a>开展网络管理的研究工作。</p>
-                        <img data-src="img/postech.png" class="card-image lazy-image" alt="POSTECH" loading="lazy">
+                        <img src="img/postech.png" class="card-image" alt="POSTECH">
                     </div>
                 </div>
                 <div class="card">
@@ -589,7 +573,7 @@
                     <div class="card-content">
                         <span class="news-date">07/2023</span>
                         <p>基于P4的软件定义网络损伤仪研制完成，欢迎洽谈采购。</p>
-                        <img data-src="photos/20230725.jpeg" class="card-image lazy-image" alt="P4 Network Impairment Device" loading="lazy">
+                        <img src="photos/20230725.jpeg" class="card-image" alt="P4 Network Impairment Device">
                     </div>
                 </div>
                 <div class="card">
@@ -602,7 +586,7 @@
                     <div class="card-content">
                         <span class="news-date">05/2023</span>
                         <p>LossSight获第二十五届中国机器人及人工智能大赛国家二等奖。</p>
-                        <img data-src="img/CRAIC2023.jpg" class="card-image lazy-image" alt="CRAIC 2023 Award" loading="lazy">
+                        <img src="img/CRAIC2023.jpg" class="card-image" alt="CRAIC 2023 Award">
                     </div>
                 </div>
                 <div class="card">
@@ -621,7 +605,7 @@
                     <div class="card-content">
                         <span class="news-date">08/2022</span>
                         <p>Path-Flow Matching被《Wiley Transactions on Emerging Telecommunications Technologies》选为 <a href="https://onlinelibrary.wiley.com/doi/10.1002/ett.4637" target="_blank">FEATURED COVER</a>。</p>
-                        <img data-src="img/2019-论文-ETT-Cover.jpg" class="card-image lazy-image" alt="ETT Journal Cover" loading="lazy">
+                        <img src="img/2019-论文-ETT-Cover.jpg" class="card-image" alt="ETT Journal Cover">
                     </div>
                 </div>
                 <div class="card">
@@ -654,27 +638,6 @@
     </a>
     
     <script>
-        // 性能优化：图片懒加载
-        function lazyLoadImages() {
-            const images = document.querySelectorAll('img[data-src]');
-            const imageObserver = new IntersectionObserver((entries, observer) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        const img = entry.target;
-                        img.src = img.dataset.src;
-                        img.classList.remove('lazy-image');
-                        img.classList.add('loaded');
-                        imageObserver.unobserve(img);
-                    }
-                });
-            }, {
-                rootMargin: '50px 0px', // 提前50px开始加载
-                threshold: 0.01
-            });
-            
-            images.forEach(img => imageObserver.observe(img));
-        }
-
         // 性能优化：卡片动画延迟执行
         function animateCards() {
             const cards = document.querySelectorAll('.card');
@@ -731,11 +694,6 @@
 
         // DOM加载完成后执行
         document.addEventListener('DOMContentLoaded', function() {
-            // 初始化懒加载
-            if ('IntersectionObserver' in window) {
-                lazyLoadImages();
-            }
-            
             // 启动卡片动画
             setTimeout(animateCards, 500);
             

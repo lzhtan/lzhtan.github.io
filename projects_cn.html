@@ -11,6 +11,17 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@100..900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/jemdoc.css" type="text/css" />
+    <link rel="preload" href="img/tan.jpg" as="image">
+    <link rel="preload" href="img/video/pcm_video.avif" as="image">
+    
+    <!-- DNS预解析 -->
+    <link rel="dns-prefetch" href="//cdnjs.cloudflare.com">
+    <link rel="dns-prefetch" href="//fonts.googleapis.com">
+    <link rel="dns-prefetch" href="//fonts.gstatic.com">
+    
+    <!-- 关键CSS预加载 -->
+    <link rel="preload" href="css/jemdoc.css" as="style">
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.0/css/all.min.css" as="style">
     <style>
     
     .projects-grid {
@@ -166,6 +177,89 @@
     html {
         scroll-behavior: smooth;
     }
+    
+    /* 成果视频样式 */
+    .achievements {
+        margin: 0;
+        width: 100% !important;
+        max-width: none !important;
+    }
+    
+    .video-container {
+        display: grid !important;
+        grid-template-columns: repeat(3, 1fr) !important;
+        gap: 10px;
+        margin-top: 20px;
+        max-width: none !important;
+        width: 100% !important;
+        min-width: 100% !important;
+    }
+    
+    .video-title-overlay {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background: rgba(0, 0, 0, 0.7);
+        padding: 5px;
+        z-index: 3;
+    }
+    
+    .video-title-overlay h4 {
+        color: white;
+        margin: 0;
+        font-size: 0.9em;
+        text-align: center;
+        font-weight: 500;
+    }
+    
+    .video-thumbnail {
+        position: relative;
+        width: 100% !important;
+        margin: 0;
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease;
+        min-width: 0;
+        flex: 1;
+    }
+    
+    .video-thumbnail:hover {
+        transform: scale(1.01);
+    }
+    
+    .thumbnail-img {
+        width: 100%;
+        height: 200px;
+        object-fit: cover;
+        display: block;
+    }
+    
+    /* 永久显示的播放图标 */
+    .play-icon {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 60px;
+        height: 60px;
+        background: rgba(155, 13, 49, 0.9);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-size: 1.5em;
+        z-index: 2;
+        transition: all 0.3s ease;
+        cursor: pointer;
+    }
+    
+    .video-thumbnail:hover .play-icon {
+        background: rgba(155, 13, 49, 1);
+    }
+    
     @media screen and (max-width: 768px) {
         #back-to-top {
             bottom: 15px;
@@ -175,12 +269,25 @@
             line-height: 35px;
             font-size: 0.9em;
         }
+        
+        .video-container {
+            grid-template-columns: 1fr !important;
+            gap: 10px;
+        }
+        
+        .video-thumbnail {
+            margin: 5px 0;
+        }
+        
+        .thumbnail-img {
+            height: 150px;
+        }
     }
     </style>
 </head>
 <body>
     <header>
-        <h1><a href="index_cn.html"><span class="name-color"><img id="tan_logo" src="./img/tan.jpg" alt="Lizhuang Tan">谭立状 (Lizhuang Tan)</span></a></h1>
+        <h1><a href="index_cn.html"><span class="name-color"><img id="tan_logo" src="./img/tan.jpg" alt="Lizhuang Tan" loading="lazy">谭立状 (Lizhuang Tan)</span></a></h1>
         <nav>
           <a href="index_cn.html">主页</a>
           <a href="cv_cn.html">简历</a>
@@ -621,8 +728,61 @@
         </div>
     </div>
 </div>
-上述设备均可免费借用，欢迎有需要的老师同学与我联系。
+<p style="font-size: 0.9em; color: #666; margin: 10px 0;">上述设备均可借用，欢迎有需要的老师同学与我联系。</p>
+
+<h3><span class="color-bar"></span>成果演示</h3>
+<!-- 成果视频 -->
+<div class="achievements">
+    <div class="video-container">
+        <div class="video-thumbnail">
+            <div class="play-icon">
+                <i class="fas fa-play"></i>
+            </div>
+            <div class="video-title-overlay">
+                <h4>主动连接迁移</h4>
+            </div>
+            <img src="img/video/pcm_video.avif" alt="主动连接迁移视频缩略图" class="thumbnail-img" loading="lazy">
+        </div>
+        <div class="video-thumbnail">
+            <div class="play-icon">
+                <i class="fas fa-play"></i>
+            </div>
+            <div class="video-title-overlay">
+                <h4>遥测时序数据库</h4>
+            </div>
+            <img src="img/video/intdb_video.avif" alt="遥测时序数据库视频缩略图" class="thumbnail-img" loading="lazy">
+        </div>
+        <div class="video-thumbnail">
+            <div class="play-icon">
+                <i class="fas fa-play"></i>
+            </div>
+            <div class="video-title-overlay">
+                <h4>带内网络遥测</h4>
+            </div>
+            <img src="img/video/int_video.avif" alt="带内网络遥测视频缩略图" class="thumbnail-img" loading="lazy">
+        </div>
+        <div class="video-thumbnail">
+            <div class="play-icon">
+                <i class="fas fa-play"></i>
+            </div>
+            <div class="video-title-overlay">
+                <h4>可靠网络遥测</h4>
+            </div>
+            <img src="img/video/losssight.avif" alt="可靠网络遥测视频缩略图" class="thumbnail-img" loading="lazy">
+        </div>
+        <div class="video-thumbnail">
+            <div class="play-icon">
+                <i class="fas fa-play"></i>
+            </div>
+            <div class="video-title-overlay">
+                <h4>SONiC无中断热重启</h4>
+            </div>
+            <img src="img/video/sonic.avif" alt="SONiC视频缩略图" class="thumbnail-img" loading="lazy">
+        </div>
+    </div>
 </div>
+</div>
+
 <footer>
     <p>Copyright &copy; 2022 - New Era. By Lizhuang Tan</p>
 </footer>
@@ -723,6 +883,27 @@ document.getElementById("back-to-top").addEventListener("click", function(e) {
     window.scrollTo({
         top: 0,
         behavior: "smooth"
+    });
+});
+
+// 播放按钮点击事件
+document.addEventListener('DOMContentLoaded', function() {
+    const playIcons = document.querySelectorAll('.play-icon');
+    playIcons.forEach((playIcon, index) => {
+        playIcon.addEventListener('click', function(e) {
+            e.stopPropagation(); // 阻止事件冒泡
+            // 根据索引打开对应的哔哩哔哩视频
+            const videoUrls = [
+                'https://www.bilibili.com/video/BV1eaRhY9E4R/',
+                'https://www.bilibili.com/video/BV1PpT2zzELD/',
+                'https://www.bilibili.com/video/BV14Z4y1H7N2/',
+                'https://www.bilibili.com/video/BV1CV411j7AX/',
+                'https://www.bilibili.com/video/BV1VMJ4zhEQF/'
+            ];
+            if (videoUrls[index]) {
+                window.open(videoUrls[index], '_blank');
+            }
+        });
     });
 });
 </script>

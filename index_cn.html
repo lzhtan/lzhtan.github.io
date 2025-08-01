@@ -8,15 +8,17 @@
     <meta name="author" content="Lizhuang Tan"/>
     
     <!-- 预加载关键资源 -->
-    <link rel="preload" href="css/jemdoc.css" as="style">
     <link rel="preload" href="img/tan.jpg" as="image">
-    <link rel="preload" href="img/netmeasurement.jpeg" as="image">
+    <link rel="preload" href="img/video/pcm_video.avif" as="image">
     
     <!-- DNS预解析 -->
     <link rel="dns-prefetch" href="//cdnjs.cloudflare.com">
     <link rel="dns-prefetch" href="//fonts.googleapis.com">
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
-    <link rel="dns-prefetch" href="//clustrmaps.com">
+    
+    <!-- 关键CSS预加载 -->
+    <link rel="preload" href="css/jemdoc.css" as="style">
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.0/css/all.min.css" as="style">
     
     <!-- 图标优化 -->
     <link rel="icon" href="img/logo.ico" type="image/x-icon">
@@ -42,6 +44,8 @@
     
     <!-- 主要CSS -->
     <link rel="stylesheet" href="css/jemdoc.css" type="text/css" />
+    
+
     
     <style>
         /* 内联关键CSS减少阻塞 */
@@ -93,6 +97,11 @@
             border-radius: 5px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             text-align: justify;
+        }
+        
+        /* 最后一个about-detail元素，减少底部间距 */
+        .about-detail:last-of-type {
+            margin-bottom: 0 !important;
         }
         .about-image {
             margin-right: 20px;
@@ -245,6 +254,87 @@
         html {
             scroll-behavior: smooth;
         }
+        
+        /* 成果视频样式 */
+        .achievements {
+            margin: 0;
+        }
+        
+        .video-container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+        }
+        
+
+        
+        .video-title-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(0, 0, 0, 0.7);
+            padding: 5px;
+            z-index: 3;
+        }
+        
+        .video-title-overlay h4 {
+            color: white;
+            margin: 0;
+            font-size: 0.9em;
+            text-align: center;
+            font-weight: 500;
+        }
+        
+
+        
+        .video-thumbnail {
+            position: relative;
+            width: 100%;
+            margin: 0;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+        
+        .video-thumbnail:hover {
+            transform: scale(1.01);
+        }
+        
+        .thumbnail-img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            display: block;
+        }
+        
+        /* 永久显示的播放图标 */
+        .play-icon {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 60px;
+            height: 60px;
+            background: rgba(155, 13, 49, 0.9);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5em;
+            z-index: 2;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .video-thumbnail:hover .play-icon {
+            background: rgba(155, 13, 49, 1);
+        }
+        
+
+        
         @media screen and (max-width: 768px) {
             #back-to-top {
                 bottom: 15px;
@@ -254,14 +344,29 @@
                 line-height: 35px;
                 font-size: 0.9em;
             }
+            
+            .video-container {
+                grid-template-columns: 1fr;
+                gap: 10px;
+            }
+            
+            .video-thumbnail {
+                margin: 5px 0;
+            }
+            
+            .thumbnail-img {
+                height: 150px;
+            }
         }
+    
+        
     </style>
     
 
 </head>
 <body>
     <header>
-        <h1><a href="index_cn.html"><span class="name-color"><img id="tan_logo" src="./img/tan.jpg" alt="Lizhuang Tan">谭立状 (Lizhuang Tan)</span></a></h1>
+        <h1><a href="index_cn.html"><span class="name-color"><img id="tan_logo" src="./img/tan.jpg" alt="Lizhuang Tan" loading="lazy">谭立状 (Lizhuang Tan)</span></a></h1>
         <nav>
             <a href="index_cn.html" class="active">主页</a>
             <a href="cv_cn.html">简历</a>
@@ -282,7 +387,7 @@
     </header>
     <div class="container">
         <div class="profile">
-            <img id="tan" src="./img/tan.jpg" alt="Lizhuang Tan">
+            <img id="tan" src="./img/tan.jpg" alt="Lizhuang Tan" loading="lazy">
             <div class="information">
               <h2>谭立状</h2>
               <p><b>博士，副研究员，硕士生导师</b></p>
@@ -326,7 +431,7 @@
         </div>
         <div class="about-detail">
             <div class="about-image">
-                <img src="img/netmeasurement.jpeg" alt="Network Measurement">
+                <img src="img/netmeasurement.jpeg" alt="Network Measurement" loading="lazy">
             </div>
             <div class="text-container">
                 <h3>网络测量</h3>
@@ -340,7 +445,7 @@
         </div>
         <div class="about-detail">
             <div class="about-image">
-                <img src="img/nettesting.jpeg" alt="Network Testing">
+                <img src="img/nettesting.jpeg" alt="Network Testing" loading="lazy">
             </div>
             <div class="text-container">
                 <h3>网络测试</h3>
@@ -350,7 +455,7 @@
         </div>
         <div class="about-detail">
             <div class="about-image">
-                <img src="img/netmanagement.jpeg" alt="Network Measurement">
+                <img src="img/netmanagement.jpeg" alt="Network Measurement" loading="lazy">
             </div>
             <div class="text-container">
                 <h3>网络管控</h3>
@@ -368,6 +473,40 @@
                   </p>
             </div>
         </div>
+        
+        <!-- 成果视频 -->
+        <div class="achievements">
+            <div class="video-container">
+                <div class="video-thumbnail">
+                    <div class="play-icon">
+                        <i class="fas fa-play"></i>
+                    </div>
+                    <div class="video-title-overlay">
+                        <h4>主动连接迁移</h4>
+                    </div>
+                    <img src="img/video/pcm_video.avif" alt="主动连接迁移视频缩略图" class="thumbnail-img" loading="lazy">
+                </div>
+                <div class="video-thumbnail">
+                    <div class="play-icon">
+                        <i class="fas fa-play"></i>
+                    </div>
+                    <div class="video-title-overlay">
+                        <h4>遥测时空数据库</h4>
+                    </div>
+                    <img src="img/video/intdb_video.avif" alt="遥测时空数据库视频缩略图" class="thumbnail-img" loading="lazy">
+                </div>
+                <div class="video-thumbnail">
+                    <div class="play-icon">
+                        <i class="fas fa-play"></i>
+                    </div>
+                    <div class="video-title-overlay">
+                        <h4>带内网络遥测</h4>
+                    </div>
+                    <img src="img/video/int_video.avif" alt="带内网络遥测视频缩略图" class="thumbnail-img" loading="lazy">
+                </div>
+            </div>
+        </div>
+
         <div class="news">
             <h3><span class="color-bar"></span>最新消息</h3>
             <div class="card-container">
@@ -375,7 +514,7 @@
                     <div class="card-content">
                         <span class="news-date">07/2025</span>
                         <p>PCM-QUIC被《International Journal of Network Management》选为 <a href="https://onlinelibrary.wiley.com/doi/10.1002/nem.70022" target="_blank">FEATURED COVER</a>。</p>
-                        <img data-src="img/2025-论文-IJNM-Cover.jpg" class="card-image lazy-image" alt="IJNM Cover">
+                        <img data-src="img/2025-论文-IJNM-Cover.jpg" class="card-image lazy-image" alt="IJNM Cover" loading="lazy">
                     </div>
                 </div>
                 <div class="card">
@@ -400,7 +539,7 @@
                     <div class="card-content">
                         <span class="news-date">12/2024</span>
                         <p>《网络操作系统SONiC: 原理、技术与实践》出版上市。</p>
-                        <img data-src="img/2024-专著-SONIC.jpg" class="card-image lazy-image" style="box-shadow: 0 2px 10px rgba(152, 48, 48, 0.1);" alt="SONiC Book Cover">
+                        <img data-src="img/2024-专著-SONIC.jpg" class="card-image lazy-image" style="box-shadow: 0 2px 10px rgba(152, 48, 48, 0.1);" alt="SONiC Book Cover" loading="lazy">
                     </div>
                 </div>
                 <div class="card">
@@ -419,7 +558,7 @@
                     <div class="card-content">
                         <span class="news-date">07/2024</span>
                         <p>入选2024年度中韩青年科学家交流计划，将在<a href="https://cse.postech.ac.kr/">浦项科技大学</a>开展网络管理的研究工作。</p>
-                        <img data-src="img/postech.png" class="card-image lazy-image" alt="POSTECH">
+                        <img data-src="img/postech.png" class="card-image lazy-image" alt="POSTECH" loading="lazy">
                     </div>
                 </div>
                 <div class="card">
@@ -450,7 +589,7 @@
                     <div class="card-content">
                         <span class="news-date">07/2023</span>
                         <p>基于P4的软件定义网络损伤仪研制完成，欢迎洽谈采购。</p>
-                        <img data-src="photos/20230725.jpeg" class="card-image lazy-image" alt="P4 Network Impairment Device">
+                        <img data-src="photos/20230725.jpeg" class="card-image lazy-image" alt="P4 Network Impairment Device" loading="lazy">
                     </div>
                 </div>
                 <div class="card">
@@ -463,7 +602,7 @@
                     <div class="card-content">
                         <span class="news-date">05/2023</span>
                         <p>LossSight获第二十五届中国机器人及人工智能大赛国家二等奖。</p>
-                        <img data-src="img/CRAIC2023.jpg" class="card-image lazy-image" alt="CRAIC 2023 Award">
+                        <img data-src="img/CRAIC2023.jpg" class="card-image lazy-image" alt="CRAIC 2023 Award" loading="lazy">
                     </div>
                 </div>
                 <div class="card">
@@ -482,7 +621,7 @@
                     <div class="card-content">
                         <span class="news-date">08/2022</span>
                         <p>Path-Flow Matching被《Wiley Transactions on Emerging Telecommunications Technologies》选为 <a href="https://onlinelibrary.wiley.com/doi/10.1002/ett.4637" target="_blank">FEATURED COVER</a>。</p>
-                        <img data-src="img/2019-论文-ETT-Cover.jpg" class="card-image lazy-image" alt="ETT Journal Cover">
+                        <img data-src="img/2019-论文-ETT-Cover.jpg" class="card-image lazy-image" alt="ETT Journal Cover" loading="lazy">
                     </div>
                 </div>
                 <div class="card">
@@ -656,6 +795,25 @@
                 });
             });
         }
+        
+        // 播放按钮点击事件
+        document.addEventListener('DOMContentLoaded', function() {
+            const playIcons = document.querySelectorAll('.play-icon');
+            playIcons.forEach((playIcon, index) => {
+                playIcon.addEventListener('click', function(e) {
+                    e.stopPropagation(); // 阻止事件冒泡
+                    // 根据索引打开对应的哔哩哔哩视频
+                    const videoUrls = [
+                        'https://www.bilibili.com/video/BV1eaRhY9E4R/',
+                        'https://www.bilibili.com/video/BV1PpT2zzELD/',
+                        'https://www.bilibili.com/video/BV14Z4y1H7N2/'
+                    ];
+                    if (videoUrls[index]) {
+                        window.open(videoUrls[index], '_blank');
+                    }
+                });
+            });
+        });
     </script>
 </body>
 </html>

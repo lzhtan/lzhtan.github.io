@@ -241,13 +241,6 @@
   <td align="center" >无</td>
 </tr>
 <tr>
-  <td align="center" ><a href="https://www.iaria.org/conferences2026/ICN26.html">ICN'26</a></td>
-  <td align="center" >2026/02/04</td>
-  <td align="center" >Venice, Italy</td>
-  <td align="center" >2026/05/24</td>
-  <td align="center" >无</td>
-</tr>
-<tr>
   <td align="center" ><a href="https://collaboratecom.eai-conferences.org/2025/">CollaborateCom'25</a></td>
   <td align="center" >2025/05/01</td>
   <td align="center" >Shanghai, China</td>
@@ -461,7 +454,7 @@
   <td align="center" ><a href="https://ieee-msn.org/2025/">MSN'25</a></td>
   <td align="center" >2025/09/15</td>
   <td align="center" >Bandung, Indonesia</td>
-  <td align="center" >2025/12/3</td>
+  <td align="center" >2025/12/03</td>
   <td align="center" >C</td>
 </tr>
 <tr>
@@ -509,7 +502,7 @@
 <tr>
   <td align="center" ><a href="https://www.sigsac.org/ccs/CCS2025/">CCS'25</a></td>
   <td align="center" >2025/01/02</td>
-  <td align="center" >Taipei, Taiwan</td>
+  <td align="center" >Taipei, Taiwan, China</td>
   <td align="center" >2025/10/13</td>
   <td align="center" >A</td>
 </tr>
@@ -944,27 +937,29 @@ function highlightChinaConferences() {
     const locationText = locationCell.textContent.trim();
 
     // 检查是否包含中国相关的地点关键词
-    const chinaKeywords = ['China', '中国', 'Shanghai', '上海', 'Beijing', '北京', 'Shenzhen', '深圳', 'Xi\'an', '西安', 'Ningbo', '宁波', 'Guiyang', '贵阳', 'Xiangtan', '湘潭', 'Taipei', '台湾', 'Hong Kong', '香港', 'Nantong', '南通'];
+    const chinaKeywords = ['China'];
     
     const isInChina = chinaKeywords.some(keyword => 
       locationText.toLowerCase().includes(keyword.toLowerCase())
     );
 
     if (isInChina) {
-      // 设置背景颜色高亮中国会议
-      row.style.backgroundColor = "#e6f3ff"; // 浅蓝色背景
-      
-      // 创建蓝色标签并添加"中国"文字
+      // 创建标签并替换地点中的"China"
       const chinaLabel = document.createElement("span");
-      chinaLabel.textContent = "中国";
-      chinaLabel.style.backgroundColor = "#0066cc"; // 蓝色背景
+      chinaLabel.textContent = "China";
+      chinaLabel.style.backgroundColor = "#9b0d31"; // 主题色背景
       chinaLabel.style.color = "#ffffff"; // 白色文字
       chinaLabel.style.padding = "1px 3px";
       chinaLabel.style.marginLeft = "3px";
       chinaLabel.style.borderRadius = "4px";
       chinaLabel.style.fontSize = "0.8em";
 
-      // 将蓝色标签添加到地点单元格后
+      // 替换地点文本中的"China"为标签
+      const originalText = locationCell.textContent;
+      const newText = originalText.replace(/China/gi, '').trim();
+      locationCell.textContent = newText;
+      
+      // 将标签添加到地点单元格后
       locationCell.appendChild(chinaLabel);
     }
   });

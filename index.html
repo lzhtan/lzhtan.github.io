@@ -90,6 +90,11 @@
             text-align: justify;
 
         }
+        
+        /* 最后一个about-detail元素，减少底部间距 */
+        .about-detail:last-of-type {
+            margin-bottom: 0 !important;
+        }
 
         /* 音频播放器容器 */
         .audio-container {
@@ -203,6 +208,82 @@
         html {
             scroll-behavior: smooth;
         }
+        
+        /* 成果视频样式 */
+        .achievements {
+            margin: 0;
+        }
+        
+        .video-container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+        }
+        
+        .video-title-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(0, 0, 0, 0.7);
+            padding: 5px;
+            z-index: 3;
+        }
+        
+        .video-title-overlay h4 {
+            color: white;
+            margin: 0;
+            font-size: 0.9em;
+            text-align: center;
+            font-weight: 500;
+        }
+        
+        .video-thumbnail {
+            position: relative;
+            width: 100%;
+            margin: 0;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+        
+        .video-thumbnail:hover {
+            transform: scale(1.02);
+        }
+        
+        .thumbnail-img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            display: block;
+        }
+        
+        /* 永久显示的播放图标 */
+        .play-icon {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 60px;
+            height: 60px;
+            background: rgba(155, 13, 49, 0.9);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5em;
+            z-index: 2;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .video-thumbnail:hover .play-icon {
+            background: rgba(155, 13, 49, 1);
+            transform: translate(-50%, -50%) scale(1.1);
+        }
+        
         @media screen and (max-width: 768px) {
             #back-to-top {
                 bottom: 15px;
@@ -211,6 +292,19 @@
                 height: 35px;
                 line-height: 35px;
                 font-size: 0.9em;
+            }
+            
+            .video-container {
+                grid-template-columns: 1fr;
+                gap: 10px;
+            }
+            
+            .video-thumbnail {
+                margin: 5px 0;
+            }
+            
+            .thumbnail-img {
+                height: 150px;
             }
         }
     </style>
@@ -304,6 +398,40 @@
                 <p>Data center traffic scheduling method based on two-sided matching model (ETT, 2022), The lossless RDMA watermark automatic tuning mechanism ByteTuning (IEEE TCC, 2025), Data center QUIC transmission protocol DCQUIC (INFOCOM ICCN, 2021), Modular QUIC protocol development prototype (CoNEXT Poster, 2020), QUIC proactive connection migration mechanism for heterogeneous networks (MobiQuitous, 2020), MPDTP block scheduling mechanism in multi-path transmission scenarios (NaNA, 2021).</p>
             </div>
         </div>
+        
+        <!-- 成果视频 -->
+        <div class="achievements">
+            <div class="video-container">
+                <div class="video-thumbnail">
+                    <div class="play-icon">
+                        <i class="fas fa-play"></i>
+                    </div>
+                    <div class="video-title-overlay">
+                        <h4>Proactive Connection Migration</h4>
+                    </div>
+                    <img src="img/video/pcm_video.avif" alt="Active Connection Migration Video Thumbnail" class="thumbnail-img">
+                </div>
+                <div class="video-thumbnail">
+                    <div class="play-icon">
+                        <i class="fas fa-play"></i>
+                    </div>
+                    <div class="video-title-overlay">
+                        <h4>Spatiotemporal Database for Telemetry</h4>
+                    </div>
+                    <img src="img/video/intdb_video.avif" alt="Telemetry Time Series Database Video Thumbnail" class="thumbnail-img">
+                </div>
+                <div class="video-thumbnail">
+                    <div class="play-icon">
+                        <i class="fas fa-play"></i>
+                    </div>
+                    <div class="video-title-overlay">
+                        <h4>In-band Network Telemetry</h4>
+                    </div>
+                    <img src="img/video/int_video.avif" alt="In-band Network Telemetry Video Thumbnail" class="thumbnail-img">
+                </div>
+            </div>
+        </div>
+
         <div class="news">
             <h3><span class="color-bar"></span>News</h3>
             <div class="card-container">
@@ -437,6 +565,25 @@
             window.scrollTo({
                 top: 0,
                 behavior: "smooth"
+            });
+        });
+        
+        // 播放按钮点击事件
+        document.addEventListener('DOMContentLoaded', function() {
+            const playIcons = document.querySelectorAll('.play-icon');
+            playIcons.forEach((playIcon, index) => {
+                playIcon.addEventListener('click', function(e) {
+                    e.stopPropagation(); // 阻止事件冒泡
+                    // 根据索引打开对应的哔哩哔哩视频
+                    const videoUrls = [
+                        'https://www.bilibili.com/video/BV1PpT2zzELD/',
+                        'https://www.bilibili.com/video/BV1PpT2zzELD/',
+                        'https://www.bilibili.com/video/BV14Z4y1H7N2/'
+                    ];
+                    if (videoUrls[index]) {
+                        window.open(videoUrls[index], '_blank');
+                    }
+                });
             });
         });
     </script>

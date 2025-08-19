@@ -141,6 +141,30 @@
             padding: 10px; /* 卡片的内边距 */
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
             position: relative;
+            overflow: hidden;
+        }
+        
+        /* 主题色底部线条特效 */
+        .card::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #9b0d31, #c41e3a, #e74c3c);
+            transform: translateX(-100%);
+            transition: transform 0.4s ease;
+            z-index: 1;
+        }
+        
+        .card:hover::before {
+            transform: translateX(0);
+        }
+        
+        .card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
         }
         .card-image {
             width: 100%; /* 图片宽度自适应 */
@@ -623,15 +647,62 @@
             }
         }
         
-        // 回到顶部按钮
-        window.onscroll = function() {
-            var backToTopBtn = document.getElementById("back-to-top");
-            if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
+        // 性能优化：卡片动画延迟执行
+        function animateCards() {
+            const cards = document.querySelectorAll('.card');
+            cards.forEach((card, index) => {
+                setTimeout(() => {
+                    card.style.opacity = '1';
+                    card.style.transform = 'translate3d(0, 0, 0)';
+                }, index * 100); // 每张卡片延迟100ms
+            });
+        }
+
+        // 防抖函数优化滚动性能
+        function debounce(func, wait) {
+            let timeout;
+            return function executedFunction(...args) {
+                const later = () => {
+                    clearTimeout(timeout);
+                    func(...args);
+                };
+                clearTimeout(timeout);
+                timeout = setTimeout(later, wait);
+            };
+        }
+
+        // 优化滚动事件处理
+        const optimizedScrollHandler = debounce(function() {
+            const backToTopBtn = document.getElementById("back-to-top");
+            const scrollTop = document.body.scrollTop || document.documentElement.scrollTop;
+            
+            if (scrollTop > 300) {
                 backToTopBtn.style.display = "block";
             } else {
                 backToTopBtn.style.display = "none";
             }
-        };
+        }, 10);
+
+        // 预加载关键资源
+        function preloadCriticalResources() {
+            const criticalImages = [
+                'img/tan.jpg',
+                'img/netmeasurement.jpeg',
+                'img/nettesting.jpeg',
+                'img/netmanagement.jpeg'
+            ];
+            
+            criticalImages.forEach(src => {
+                const link = document.createElement('link');
+                link.rel = 'preload';
+                link.as = 'image';
+                link.href = src;
+                document.head.appendChild(link);
+            });
+        }
+        
+        // 回到顶部按钮 - 使用优化后的滚动处理
+        window.addEventListener('scroll', optimizedScrollHandler, { passive: true });
 
         // 点击回到顶部按钮
         document.getElementById("back-to-top").addEventListener("click", function(e) {
@@ -643,15 +714,22 @@
             });
         });
         
-        // 播放按钮点击事件
+        // DOM加载完成后执行
         document.addEventListener('DOMContentLoaded', function() {
+            // 启动卡片动画
+            setTimeout(animateCards, 500);
+            
+            // 预加载关键资源
+            preloadCriticalResources();
+            
+            // 播放按钮点击事件
             const playIcons = document.querySelectorAll('.play-icon');
             playIcons.forEach((playIcon, index) => {
                 playIcon.addEventListener('click', function(e) {
                     e.stopPropagation(); // 阻止事件冒泡
                     // 根据索引打开对应的哔哩哔哩视频
                     const videoUrls = [
-                        'https://www.bilibili.com/video/BV1PpT2zzELD/',
+                        'https://www.bilibili.com/video/BV1eaRhY9E4R/',
                         'https://www.bilibili.com/video/BV1PpT2zzELD/',
                         'https://www.bilibili.com/video/BV14Z4y1H7N2/'
                     ];
@@ -659,6 +737,21 @@
                         window.open(videoUrls[index], '_blank');
                     }
                 });
+            });
+        });
+
+        // 页面加载完成后的优化
+        window.addEventListener('load', function() {
+            // 移除加载状态
+            document.body.classList.add('loaded');
+            
+            // 预加载下一页面资源（可选）
+            const nextPageUrls = ['papers.html', 'cv.html', 'teaching.html'];
+            nextPageUrls.forEach(url => {
+                const link = document.createElement('link');
+                link.rel = 'prefetch';
+                link.href = url;
+                document.head.appendChild(link);
             });
         });
     </script>

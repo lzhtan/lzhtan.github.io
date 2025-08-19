@@ -11,9 +11,108 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@100..900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/jemdoc.css" type="text/css" />
+    <style>
+    #album {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(30%, 1fr)); /* 自适应列数 */
+        gap: 10px; /* 卡片之间的间距 */
+        font-size: 0.95em;
+    }
+    .photo-item {
+        display: flex;
+        flex-direction: column;
+        background: #fff;
+        border: 1px solid #eaeaea;
+        border-radius: 8px;
+        overflow: hidden; /* 防止内容溢出 */
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+        transition: box-shadow 0.3s ease-in-out;
+    }
+    
+         .photo-header {
+         display: flex;
+         align-items: center;
+         padding: 10px 15px;
+         background: #fff;
+         border-bottom: 1px solid #eaeaea;
+     }
+    
+         .photo-header img {
+         width: 88px;
+         height: 110px;
+         object-fit: cover;
+         border-radius: 6px;
+         margin-right: 15px;
+         box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+     }
+    
+    .photo-header .name {
+        font-weight: 600;
+        color: #9b0d31;
+        font-size: 1em;
+    }
+    
 
+         .info {
+         flex: 1; /* 使文本信息部分占据剩余空间 */
+         padding: 10px 15px;
+         background: linear-gradient(135deg, #f8f9fa 0%, #fff 100%);
+     }
+    
+    .info p {
+        margin: 0;
+        line-height: 1.6;
+        color: #333;
+    }
+        @media (max-width: 1300px) {
+            #album {
+            grid-template-columns: repeat(auto-fill, minmax(90%, 1fr));
+        }
+        }
+        
+        /* Back to top button */
+        #back-to-top {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            display: none;
+            background-color: #9b0d31;
+            color: white;
+            width: 40px;
+            height: 40px;
+            text-align: center;
+            line-height: 40px;
+            border-radius: 50%;
+            z-index: 99;
+            opacity: 0.8;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+        
+        #back-to-top:hover {
+            background-color: #7b0925;
+            opacity: 1;
+            transform: translateY(-3px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        }
+        
+        /* Smooth scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+        @media screen and (max-width: 768px) {
+            #back-to-top {
+                bottom: 15px;
+                right: 15px;
+                width: 35px;
+                height: 35px;
+                line-height: 35px;
+                font-size: 0.9em;
+            }
+        }
+    </style>
   </head>
-<body class="team-page">
+<body>
     <header>
       <h1><a href="index.html"><span class="name-color"><img id="tan_logo" src="./img/tan.jpg" alt="Lizhuang Tan">Lizhuang Tan (谭立状)</span></a></h1>
       <nav>
@@ -39,7 +138,7 @@
         <div class="photo-item">
             <div class="photo-header">
                 <img src="img/ruichao.png" alt="张瑞超" />
-                <div class="name"><span class="text-primary">Ruichao Zhang</span><br/><span class="text-black">2025-2028</span></div>
+                <div class="name"><span style="color: #9b0d31;">Ruichao Zhang</span><br/><span style="color: black; font-weight: normal;">2025-2028</span></div>
             </div>
             <div class="info">
                 <p>Interest: N/A
@@ -51,7 +150,7 @@
         <div class="photo-item">
             <div class="photo-header">
                 <img src="img/chufuming.png" alt="褚夫明" />
-                <div class="name"><a href="https://blog.csdn.net/qq_72505850" class="text-primary">Fuming Chu</a><br/><span class="text-black">2025-2028</span></div>
+                <div class="name"><a href="https://blog.csdn.net/qq_72505850" style="color: #9b0d31;">Fuming Chu</a><br/><span style="color: black; font-weight: normal;">2025-2028</span></div>
             </div>
             <div class="info">
                 <p>Interest: N/A
@@ -63,7 +162,7 @@
         <div class="photo-item">
             <div class="photo-header">
                 <img src="img/zhangyonghao.png" alt="张永毫" />
-                <div class="name"><span class="text-primary">Yonghao Zhang</span><br/><span class="text-black">2025-2028</span></div>
+                <div class="name"><span style="color: #9b0d31;">Yonghao Zhang</span><br/><span style="color: black; font-weight: normal;">2025-2028</span></div>
             </div>
             <div class="info">
                 <p>Interest: N/A
@@ -75,7 +174,7 @@
         <div class="photo-item">
             <div class="photo-header">
                 <img src="img/xindong.jpg" alt="董鑫" />
-                <div class="name"><span class="text-primary">Xin Dong</span><br/><span class="text-black">2024-2027</span></div>
+                <div class="name"><span style="color: #9b0d31;">Xin Dong</span><br/><span style="color: black; font-weight: normal;">2024-2027</span></div>
             </div>
             <div class="info">
                 <p>Interest: Virtual Networks
@@ -90,7 +189,7 @@
         <div class="photo-item">
             <div class="photo-header">
                 <img src="img/sui.png" alt="隋宗瑞" />
-                <div class="name"><a class="text-primary">Zongrui Sui</a></br><span class="text-black">2021-2024</span></div>
+                <div class="name"><a style="color: #9b0d31;">Zongrui Sui</a></br><span style="color: black; font-weight: normal;">2021-2024</span></div>
             </div>
             <div class="info">
                 <p>Interest: Virtual Networks

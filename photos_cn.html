@@ -13,9 +13,107 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@100..900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/jemdoc.css" type="text/css" />
-
+    <style>
+        #album {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); /* 列宽最小200px，自适应填充 */
+            gap: 10px; /* 图片间隔 */
+            padding: 10px; /* 相册内边距 */
+        }
+        
+        #album .photo-item {
+            background: #fff;
+            border: 1px solid #eaeaea;
+            border-radius: 8px;
+            overflow: hidden; /* 防止内容溢出 */
+            box-shadow: 0 2px 3px rgba(0, 0, 0, 0.08);
+            transition: box-shadow 0.1s ease-in-out;
+            text-align: center;
+        }
+        #album .photo-item:hover {
+            transform: scale(1.01);
+        }
+        #album img {
+            width: 100%;
+            height: auto;
+        }
+        
+        #album p {
+            margin: 1px 1px 3px 1px; /* 描述文本的上下外边距 */
+            color: #333;
+            font-size: 0.9em;
+        }
+        
+        /* 添加筛选按钮样式 */
+        .filter-buttons {
+            text-align: center;
+            margin: 10px 0px;
+        }
+        
+        .filter-buttons button {
+            padding: 8px 16px;
+            margin: 5px 5px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            background-color: white;
+            cursor: pointer;
+            transition: all 0.1s;
+            line-height: 1;
+            color: #333;
+        }
+        
+        .filter-buttons button:hover {
+            background-color: #f0f0f0;
+        }
+        
+        .filter-buttons button.active {
+            background-color: #9b0d31;
+            color: white;
+        }
+        
+        /* 回到顶部按钮样式 */
+        #back-to-top {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            display: none;
+            background-color: #9b0d31;
+            color: white;
+            width: 40px;
+            height: 40px;
+            text-align: center;
+            line-height: 40px;
+            border-radius: 50%;
+            z-index: 99;
+            opacity: 0.8;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+        
+        #back-to-top:hover {
+            background-color: #7b0925;
+            opacity: 1;
+            transform: translateY(-3px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        }
+        
+        /* 添加平滑滚动效果 */
+        html {
+            scroll-behavior: smooth;
+        }
+        @media screen and (max-width: 768px) {
+            #back-to-top {
+                bottom: 15px;
+                right: 15px;
+                width: 35px;
+                height: 35px;
+                line-height: 35px;
+                font-size: 1em;
+            }
+        }
+    </style>
 </head>
-<body class="photos-page">
+<body>
     <header>
         <h1><a href="index_cn.html"><span class="name-color"><img id="tan_logo" src="./img/tan.jpg" alt="Lizhuang Tan">谭立状 (Lizhuang Tan)</span></a></h1>
         <nav>
@@ -31,7 +129,7 @@
           <a href="data_cn.html">数据</a>
           <a href="photos_cn.html" class="active">相册</a>
           <a href="conference_cn.html">会议DDL</a>
-          <a href="index.html" class="language-switch">
+          <a href="index.html" style="font-size: 2em;">
               <img src="img/language-solid.svg" alt="Language Icon" class="language-icon">
           </a>
         </nav>

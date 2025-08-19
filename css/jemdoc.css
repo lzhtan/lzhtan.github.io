@@ -25,12 +25,58 @@ p{
 	background-color: #fff;
 	border: 1px solid #ddd;
 	border-radius: 5px;
+	border-right: 3px solid transparent;
+	border-bottom: 3px solid transparent;
+	background: linear-gradient(white, white) padding-box,
+	            linear-gradient(to right, rgba(155, 13, 49, 0) 0%, rgba(155, 13, 49, 0.5) 100%) border-box;
 	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 	padding: 20px;
 	display: flex;
 	align-items: center;
-	position: relative; /* 添加相对定位 */
+	position: relative;
 }
+
+.profile::after {
+	content: '';
+	position: absolute;
+	bottom: -3px;
+	left: 0;
+	right: 0;
+	height: 3px;
+	background: linear-gradient(to right, rgba(155, 13, 49, 0) 0%, rgba(155, 13, 49, 0.6) 50%, rgba(155, 13, 49, 0) 100%);
+}
+
+.profile::before {
+	content: '';
+	position: absolute;
+	bottom: 10px;
+	right: 10px;
+	width: 80px;
+	height: 80px;
+	background: 
+		radial-gradient(circle at 70% 70%, rgba(155, 13, 49, 0.08) 25%, transparent 25%),
+		radial-gradient(circle at 85% 50%, rgba(155, 13, 49, 0.06) 35%, transparent 35%),
+		radial-gradient(circle at 50% 85%, rgba(155, 13, 49, 0.04) 45%, transparent 45%);
+	border-radius: 50%;
+	pointer-events: none;
+	z-index: 0;
+}
+/* 添加额外的装饰扇形 */
+.profile .decoration-shape {
+	position: absolute;
+	bottom: 5px;
+	right: 5px;
+	width: 40px;
+	height: 40px;
+	background: conic-gradient(from 0deg at 100% 100%, 
+	            rgba(155, 13, 49, 0.1) 0deg 45deg, 
+	            transparent 45deg 90deg,
+	            rgba(155, 13, 49, 0.05) 90deg 135deg,
+	            transparent 135deg);
+	pointer-events: none;
+	z-index: 1;
+}
+
 .icon-container {
 	position: absolute; /* 绝对定位 */
 	top: 15px; /* 容器顶部对齐 */
@@ -131,6 +177,44 @@ footer {
 	padding: 20px 20px;
 	color: #000;
 	margin-bottom: 20px;
+}
+
+/* 移动端footer适配 */
+@media screen and (max-width: 768px) {
+	footer {
+		height: auto;
+		padding: 15px 10px;
+		margin-bottom: 15px;
+		font-size: 0.7em;
+	}
+	
+	/* ClusterMaps容器移动端适配 */
+	.clustrmap-container {
+		width: 60px !important;
+		overflow: hidden;
+		margin: auto;
+	}
+	
+	/* 移动端底部间距调整 */
+	.container {
+		padding-bottom: 20px;
+		margin-bottom: 20px;
+	}
+	
+	/* 确保页面底部有足够留白 */
+	body {
+		padding-bottom: 30px;
+	}
+	
+	/* 回到顶部按钮移动端调整 */
+	#back-to-top {
+		bottom: 20px;
+		right: 20px;
+		width: 40px;
+		height: 40px;
+		line-height: 40px;
+		font-size: 14px;
+	}
 }
 .active {
 	font-weight: bold;
@@ -987,6 +1071,55 @@ html {
 	}
 }
 
+/* 移动端详细适配 */
+@media screen and (max-width: 768px) {
+	/* 个人信息装饰元素移动端优化 */
+	.profile::before {
+		width: 60px;
+		height: 60px;
+		bottom: 8px;
+		right: 8px;
+	}
+	
+	.profile .decoration-shape {
+		width: 30px;
+		height: 30px;
+		bottom: 3px;
+		right: 3px;
+	}
+	
+	/* 个人信息区域移动端适配 */
+	.profile {
+		flex-direction: column;
+		text-align: center;
+		padding: 15px;
+	}
+	
+	.profile #tan {
+		display: block !important; /* 在移动端重新显示图片，覆盖1300px的隐藏设置 */
+		margin-bottom: 15px;
+		width: 120px;
+		height: 120px;
+	}
+	
+	.information {
+		margin-top: 0;
+	}
+	
+	/* 图标容器移动端适配 */
+	.icon-container {
+		position: static;
+		margin-top: 15px;
+		justify-content: center;
+	}
+	
+	/* 新闻卡片移动端适配 */
+	.card-container {
+		grid-template-columns: 1fr;
+		gap: 15px;
+	}
+}
+
 /* 原有响应式设计 */
 @media screen and (max-width: 1300px) {
 	header h1{
@@ -1001,7 +1134,7 @@ html {
 	nav a {
 		margin: 1px 0;
 	}
-	.profile img{
+	.profile #tan{
 		display: none;
 	}
 	#tan_logo {

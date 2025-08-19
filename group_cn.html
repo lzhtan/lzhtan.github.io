@@ -11,138 +11,9 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@100..900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/jemdoc.css" type="text/css" />
-    <style>
-    #album {
-        display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(30%, 1fr)); /* 自适应列数 */
-        gap: 10px; /* 卡片之间的间距 */
-        font-size: 0.95em;
-    }
-    .photo-item {
-        display: flex;
-        flex-direction: column;
-        background: #fff;
-        border: 1px solid #eaeaea;
-        border-radius: 8px;
-        overflow: hidden; /* 防止内容溢出 */
-        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
-        transition: box-shadow 0.3s ease-in-out;
-    }
-    
-    .photo-header {
-        display: flex;
-        align-items: center;
-        padding: 10px 15px;
-        background: #fff;
-        border-bottom: 1px solid #eaeaea;
-    }
-    
-    .photo-header img {
-        width: 90px; /* 头像大小 */
-        height: 120px; /* 固定高度，防止拉伸 */
-        object-fit: cover;
-        border-radius: 6px;
-        margin-right: 15px;
-        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-    }
-    
-    .photo-header .name {
-        font-weight: 500;
-        color: #9b0d31;
-        font-size: 1em;
-    }
 
-
-    .info {
-        flex: 1; /* 使文本信息部分占据剩余空间 */
-        padding: 10px 15px;
-        background: linear-gradient(135deg, #f8f9fa 0%, #fff 100%);
-    }
-    
-    .info p {
-        margin: 0;
-        line-height: 1.6;
-        color: #333;
-    }
-    
-    .board-card {
-        background: #fff;
-        border: 1px solid #eaeaea;
-        border-radius: 8px;
-        padding: 1px 15px;
-        margin-bottom: 10px;
-        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
-        transition: box-shadow 0.3s ease-in-out;
-    }
-    .board-title {
-        font-weight: bold;
-        color: #9b0d31;
-        margin-bottom: 5px;
-    }
-    .board-detail {
-        color: #000000;
-    }
-
-    @media (max-width: 1200px) {
-            #album {
-            grid-template-columns: repeat(auto-fill, minmax(90%, 1fr));
-        }
-        }
-
-    /* 手机屏幕适配 */
-    @media (max-width: 768px) {
-        #album {
-            grid-template-columns: 1fr; /* 手机屏幕一行一个 */
-        }
-        
-        
-        
-        
-    }
-
-    /* 回到顶部按钮样式 */
-    #back-to-top {
-        position: fixed;
-        bottom: 20px;
-        right: 20px;
-        display: none;
-        background-color: #9b0d31;
-        color: white;
-        width: 40px;
-        height: 40px;
-        text-align: center;
-        line-height: 40px;
-        border-radius: 50%;
-        z-index: 99;
-        opacity: 0.8;
-        transition: all 0.3s ease;
-        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-    }
-    
-    #back-to-top:hover {
-        background-color: #7b0925;
-        opacity: 1;
-        transform: translateY(-3px);
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-    }
-    
-    /* 添加平滑滚动效果 */
-    html {
-        scroll-behavior: smooth;
-    }
-    @media screen and (max-width: 768px) {
-        #back-to-top {
-            bottom: 15px;
-            right: 15px;
-            width: 35px;
-            height: 35px;
-            line-height: 35px;
-            font-size: 0.9em;
-        }
-    }
-    </style>
   </head>
-<body>
+<body class="team-page">
     <header>
       <h1><a href="index_cn.html"><span class="name-color"><img id="tan_logo" src="./img/tan.jpg" alt="Lizhuang Tan">谭立状 (Lizhuang Tan)</span></a></h1>
       <nav>
@@ -158,7 +29,7 @@
           <a href="data_cn.html">数据</a>
           <a href="photos_cn.html">相册</a>
           <a href="conference_cn.html">会议DDL</a>
-          <a href="index.html" style="font-size: 2em;">
+          <a href="index.html" class="language-switch">
               <img src="img/language-solid.svg" alt="Language Icon" class="language-icon">
           </a>
         </nav>
@@ -173,7 +44,7 @@
             名额充足（3年可招生10人），待遇优越。</br>
             <a style="color: red;">我的研究生培养经验不多，要求较为严格；在研项目及研究方向难度较大，工作任务较重，成果产出周期较长。对此无法适应的同学，不建议联系报考。</a></br>
             <a style="color: red;">本科期间成绩百分位在前20%以外或无科研经历、竞赛经历、实习经历的同学，不建议联系报考。</a></br>
-            <b style="color: red;">不愤不启，不悱不发，努力工作，快乐生活，非诚勿扰。</b></br>
+
         </p>
       </div>
       <div class="board-card">
@@ -189,7 +60,7 @@
         <div class="photo-item">
             <div class="photo-header">
                 <img src="img/ruichao.png" alt="张瑞超" />
-                <div class="name"><a style="color: #9b0d31;">张瑞超</a></br><span style="color: black; font-weight: normal;">2025级</span></div>
+                <div class="name"><a class="text-primary">张瑞超</a></br><span class="text-black">2025级</span></div>
             </div>
             <div class="info">
                 <p><b>研究方向:</b> 暂无
@@ -201,7 +72,7 @@
         <div class="photo-item">
             <div class="photo-header">
                 <img src="img/chufuming.png" alt="褚夫明" />
-                <div class="name"><a href="https://blog.csdn.net/qq_72505850" style="color: #9b0d31;">褚夫明</a></br><span style="color: black; font-weight: normal;">2025级</span></div>
+                <div class="name"><a href="https://blog.csdn.net/qq_72505850" class="text-primary">褚夫明</a></br><span class="text-black">2025级</span></div>
             </div>
             <div class="info">
                 <p><b>研究方向:</b> 暂无
@@ -213,7 +84,7 @@
         <div class="photo-item">
             <div class="photo-header">
                 <img src="img/zhangyonghao.png" alt="张永毫" />
-                <div class="name"><span style="color: #9b0d31;">张永毫</span></br><span style="color: black; font-weight: normal;">2025级</span></div>
+                <div class="name"><span class="text-primary">张永毫</span></br><span class="text-black">2025级</span></div>
             </div>
             <div class="info">
                 <p><b>研究方向:</b> 暂无
@@ -225,7 +96,7 @@
         <div class="photo-item">
             <div class="photo-header">
                 <img src="img/xindong.jpg" alt="董鑫" />
-                <div class="name"><span style="color: #9b0d31;">董鑫</span></br><span style="color: black; font-weight: normal;">2024级</span></div>
+                <div class="name"><span class="text-primary">董鑫</span></br><span class="text-black">2024级</span></div>
             </div>
             <div class="info">
                 <p><b>研究方向:</b> 虚拟网络, FPGA虚拟化
@@ -243,7 +114,7 @@
         <div class="photo-item">
             <div class="photo-header">
                 <img src="img/sui.png" alt="隋宗瑞" />
-                <div class="name"><a style="color: #9b0d31;">隋宗瑞</a></br><span style="color: black; font-weight: normal;">2021级</span></div>
+                <div class="name"><a class="text-primary">隋宗瑞</a></br><span class="text-black">2021级</span></div>
             </div>
             <div class="info">
                 <p><b>研究方向:</b> FPGA网络虚拟化

@@ -46,30 +46,271 @@
             max-height: 90vh;
         }
 
-        /* 搜索栏样式 */
-        .search-container {
+        /* 搜索组合组件 */
+        .search-group {
+            position: fixed;
+            bottom: 15px;
+            right: 180px; /* 默认位置，当没有管理模式时 */
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 25px;
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
+            padding: 2px;
+            transition: all 0.3s ease;
+            height: 40px; /* 与其他按钮高度保持一致 */
+            box-sizing: border-box;
+        }
+
+        /* 当管理模式按钮显示时，搜索组件向左移动 */
+        .search-group.with-management-mode {
+            right: 320px; /* 为管理模式按钮让出空间 */
+        }
+
+        /* 关闭按钮样式 */
+        .close-button {
             position: fixed;
             top: 15px;
             right: 15px;
-            z-index: 1000;
+            background: rgba(255, 255, 255, 0.9);
+            border: 1px solid #e9ecef;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 18px;
+            color: #666;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1002;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .close-button:hover {
+            background: #f8f9fa;
+            border-color: #dc3545;
+            color: #dc3545;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 16px rgba(220, 53, 69, 0.2);
+        }
+
+        .shortcut-settings-button {
+            background: transparent;
+            border: none;
+            border-radius: 20px;
+            padding: 6px 10px; /* 调整内边距适应40px容器高度 */
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 14px;
+            color: #666;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 6px;
+            height: 28px; /* 设置按钮内容高度 */
+            width: 28px; /* 设置按钮宽度，保持正方形 */
+        }
+
+        .shortcut-settings-button:hover {
+            background: rgba(0, 123, 255, 0.1);
+            color: #007bff;
+        }
+
+        /* 快捷键设置模态框样式 */
+        .shortcut-modal {
+            max-width: 600px;
+            max-height: 80vh;
+            overflow-y: auto;
+        }
+
+        .shortcut-info {
+            margin-bottom: 20px;
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 8px;
+        }
+
+        .sync-status {
+            margin-bottom: 15px;
+            padding: 10px;
+            border-radius: 6px;
+            font-size: 13px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .sync-status.connected {
+            background: #d4edda;
+            border: 1px solid #c3e6cb;
+            color: #155724;
+        }
+
+        .sync-status.disconnected {
+            background: #f8d7da;
+            border: 1px solid #f5c6cb;
+            color: #721c24;
+        }
+
+        .sync-status i {
+            font-size: 14px;
+        }
+
+        .shortcut-mode-selector {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .radio-option {
+            display: flex;
+            align-items: flex-start;
+            padding: 12px;
+            border: 2px solid #e9ecef;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .radio-option:hover {
+            border-color: #007bff;
+            background: rgba(0, 123, 255, 0.05);
+        }
+
+        .radio-option input[type="radio"] {
+            margin-right: 12px;
+            margin-top: 2px;
+        }
+
+        .radio-option input[type="radio"]:checked + .radio-label {
+            color: #007bff;
+        }
+
+        .radio-option:has(input[type="radio"]:checked) {
+            border-color: #007bff;
+            background: rgba(0, 123, 255, 0.1);
+        }
+
+        .radio-label {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .radio-label small {
+            color: #6c757d;
+            font-size: 12px;
+        }
+
+        .manual-settings {
+            margin: 20px 0;
+            padding: 15px;
+            border: 1px solid #e9ecef;
+            border-radius: 8px;
+            background: #fafafa;
+        }
+
+        .shortcut-list {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            max-height: 200px;
+            overflow-y: auto;
+        }
+
+        .shortcut-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 8px;
+            background: white;
+            border: 1px solid #e9ecef;
+            border-radius: 6px;
+        }
+
+        .shortcut-item-info {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .shortcut-item-title {
+            font-weight: 500;
+            color: #333;
+        }
+
+        .shortcut-item-url {
+            font-size: 12px;
+            color: #6c757d;
+        }
+
+        .shortcut-key-input {
+            width: 60px;
+            text-align: center;
+            padding: 4px 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-family: monospace;
+        }
+
+        .shortcut-help {
+            margin-top: 20px;
+            padding: 15px;
+            background: #e8f4fd;
+            border: 1px solid #bee5eb;
+            border-radius: 8px;
+        }
+
+        .shortcut-help h4 {
+            margin: 0 0 10px 0;
+            color: #0c5460;
+        }
+
+        .shortcut-help ul {
+            margin: 0;
+            padding-left: 20px;
+        }
+
+        .shortcut-help li {
+            margin: 5px 0;
+            color: #0c5460;
+        }
+
+        .shortcut-help kbd {
+            background: #f8f9fa;
+            border: 1px solid #dee2e6;
+            border-radius: 3px;
+            padding: 2px 6px;
+            font-family: monospace;
+            font-size: 12px;
         }
 
         .search-box {
-            width: 250px;
-            padding: 8px 15px;
-            border: 1px solid #e9ecef;
+            width: 200px;
+            padding: 8px 15px; /* 调整内边距适应40px高度 */
+            border: none;
             border-radius: 20px;
             font-size: 14px;
             outline: none;
             transition: all 0.3s ease;
-            background: white;
-            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+            background: transparent;
+            flex: 1;
+            height: 24px; /* 明确设置内容高度 */
+            line-height: 24px;
         }
 
         .search-box:focus {
-            border-color: #0984e3;
-            box-shadow: 0 3px 10px rgba(9, 132, 227, 0.12);
-            width: 300px;
+            background: rgba(0, 123, 255, 0.05);
+        }
+
+        .search-group:focus-within {
+            box-shadow: 0 4px 20px rgba(9, 132, 227, 0.2);
+            transform: translateY(-1px);
         }
 
         .search-box::placeholder {
@@ -663,22 +904,45 @@
                 gap: 6px;
             }
             
-            .search-container {
-                position: relative;
-                top: auto;
+                                                            .search-group {
+            position: fixed;
+                bottom: 70px;
+                left: 50%;
                 right: auto;
-                margin-bottom: 15px;
-                text-align: center;
+                transform: translateX(-50%);
+                padding: 2px;
+                height: 36px; /* 移动端稍微减小高度 */
+            }
+
+            /* 移动端管理模式时的位置调整 */
+            .search-group.with-management-mode {
+                right: auto; /* 移动端继续居中显示 */
+                left: 50%;
+                transform: translateX(-50%);
             }
             
             .search-box {
-                width: 100%;
-                max-width: 300px;
+                width: 150px;
+                padding: 6px 12px;
+                font-size: 13px;
+                height: 20px;
+                line-height: 20px;
             }
-            
-            .search-box:focus {
-                width: 100%;
-                max-width: 320px;
+
+            .shortcut-settings-button {
+                padding: 4px 6px;
+                font-size: 12px;
+                margin-right: 4px;
+                height: 24px;
+                width: 24px;
+            }
+
+            .close-button {
+                top: 12px;
+                right: 12px;
+                width: 36px;
+                height: 36px;
+                font-size: 16px;
             }
             
             .section {
@@ -721,9 +985,17 @@
     </style>
 </head>
 <body>
+    <!-- 关闭按钮 -->
+    <button class="close-button" onclick="returnToHomepage()" title="返回主页">
+        <i class="fas fa-times"></i>
+    </button>
+
     <div class="container">
-        <!-- 搜索栏 -->
-        <div class="search-container">
+        <!-- 搜索栏和快捷键设置组合 -->
+        <div class="search-group">
+            <button class="shortcut-settings-button" onclick="openShortcutSettings()" title="快捷键设置">
+                <i class="fas fa-keyboard"></i>
+            </button>
             <input type="text" class="search-box" placeholder="搜索链接..." onkeyup="searchLinks()">
         </div>
         <!-- 学校栏目 -->
@@ -889,29 +1161,6 @@
             </div>
                 </a>
 
-                <a href="http://kjt.shandong.gov.cn/index.html" class="link-card" target="_blank">
-                    <i class="fas fa-landmark link-icon"></i>
-                    <div class="link-content">
-                        <div class="link-title">山东省科技厅</div>
-                        <div class="link-url">kjt.shandong.gov.cn</div>
-                    </div>
-                </a>
-
-                <a href="https://grants.nsfc.gov.cn/pmpweb/login" class="link-card" target="_blank">
-                    <i class="fas fa-university link-icon"></i>
-                    <div class="link-content">
-                        <div class="link-title">自然基金委</div>
-                        <div class="link-url">grants.nsfc.gov.cn</div>
-                    </div>
-                </a>
-
-                <a href="https://service.most.gov.cn/" class="link-card" target="_blank">
-                    <i class="fas fa-project-diagram link-icon"></i>
-                    <div class="link-content">
-                        <div class="link-title">重点研发计划</div>
-                        <div class="link-url">service.most.gov.cn</div>
-                    </div>
-                </a>
 
                 <a href="https://www.overleaf.com/" class="link-card" target="_blank">
                     <i class="fas fa-edit link-icon"></i>
@@ -966,13 +1215,7 @@
                 </div>
             </div>
             <div class="links-grid">
-                <a href="https://tanlizhuang.cn" class="link-card" target="_blank">
-                    <i class="fas fa-home link-icon"></i>
-                    <div class="link-content">
-                        <div class="link-title">个人主页</div>
-                        <div class="link-url">tanlizhuang.cn</div>
-                    </div>
-                </a>
+                
 
                 <a href="https://github.com/lzhtan" class="link-card" target="_blank">
                     <i class="fab fa-github link-icon"></i>
@@ -1093,7 +1336,63 @@
         </div>
     </div>
 
+    <!-- 快捷键设置模态框 -->
+    <div class="modal-overlay" id="shortcutSettingsModal">
+        <div class="modal-content shortcut-modal">
+            <h3><i class="fas fa-keyboard"></i> 快捷键设置</h3>
+            
+            <div class="shortcut-info">
+                <div class="sync-status" id="shortcutSyncStatus">
+                    <!-- 动态显示同步状态 -->
+                </div>
+                
+                <div class="shortcut-mode-selector">
+                    <label class="radio-option">
+                        <input type="radio" name="shortcutMode" value="auto" checked onchange="changeShortcutMode()">
+                        <span class="radio-label">
+                            <strong>自动分配（推荐）</strong>
+                            <small>按链接在页面中的顺序自动分配1-9</small>
+                        </span>
+                    </label>
+                    <label class="radio-option">
+                        <input type="radio" name="shortcutMode" value="manual" onchange="changeShortcutMode()">
+                        <span class="radio-label">
+                            <strong>手动设置</strong>
+                            <small>为每个链接单独设置快捷键</small>
+                        </span>
+                    </label>
+                    <label class="radio-option">
+                        <input type="radio" name="shortcutMode" value="disabled" onchange="changeShortcutMode()">
+                        <span class="radio-label">
+                            <strong>禁用快捷键</strong>
+                            <small>完全关闭数字键快捷键功能</small>
+                        </span>
+                    </label>
+                </div>
+            </div>
+            
+            <div id="manualShortcutSettings" class="manual-settings" style="display: none;">
+                <h4>手动快捷键设置</h4>
+                <div class="shortcut-list" id="shortcutList">
+                    <!-- 动态生成的快捷键设置项 -->
+                </div>
+            </div>
 
+            <div class="shortcut-help">
+                <h4>快捷键说明</h4>
+                <ul>
+                    <li><kbd>1-9</kbd>: 访问对应链接</li>
+                    <li><kbd>ESC</kbd>: 清空搜索框</li>
+                    <li><kbd>Ctrl+K</kbd>: 聚焦搜索框</li>
+                </ul>
+            </div>
+            
+            <div>
+                <button class="modal-button" onclick="saveShortcutSettings()">保存设置</button>
+                <button class="modal-button secondary" onclick="closeShortcutSettings()">取消</button>
+            </div>
+        </div>
+    </div>
 
     <!-- 添加链接弹窗 -->
     <div class="modal-overlay" id="addLinkModal">
@@ -1421,6 +1720,7 @@
             updateAuthButton() {
                 const button = document.getElementById('githubAuthButton');
                 const managementButton = document.getElementById('managementModeToggle');
+                const searchGroup = document.querySelector('.search-group');
                 
                 console.log('updateAuthButton 被调用');
                 console.log('GitHub连接状态:', this.githubStorage.isConnected());
@@ -1431,13 +1731,25 @@
                     button.className = 'github-auth-button connected';
                     button.onclick = () => this.showUserMenu();
                     managementButton.style.display = 'block';
-                    console.log('显示管理按钮');
+                    
+                    // 调整搜索组件位置，为管理模式按钮让出空间
+                    if (searchGroup) {
+                        searchGroup.classList.add('with-management-mode');
+                    }
+                    
+                    console.log('显示管理按钮，搜索组件向左移动');
                 } else {
                     button.innerHTML = '<i class="fab fa-github"></i> 连接GitHub';
                     button.className = 'github-auth-button';
                     button.onclick = openGitHubAuthModal;
                     managementButton.style.display = 'none';
-                    console.log('隐藏管理按钮');
+                    
+                    // 恢复搜索组件的原始位置
+                    if (searchGroup) {
+                        searchGroup.classList.remove('with-management-mode');
+                    }
+                    
+                    console.log('隐藏管理按钮，搜索组件恢复原位');
                     // 如果断开连接时正在管理模式，退出管理模式
                     if (this.isManagementMode) {
                         toggleManagementMode();
@@ -1631,6 +1943,9 @@
                             if (config.sectionOrder) {
                                 this.applySectionOrder(config.sectionOrder);
                             }
+
+                            // 加载快捷键设置
+                            loadShortcutSettingsFromGitHub(config);
                         }
                         
                         showNotification('已从GitHub加载配置', 'success');
@@ -1863,6 +2178,293 @@
             showNotification('快捷键测试信息已输出到Console', 'success');
         }
 
+        // 测试完整拖拽功能
+        window.testFullDragAndDrop = function() {
+            console.log('=== 测试完整拖拽功能 ===');
+            
+            if (!linksManager) {
+                console.error('linksManager未初始化');
+                return;
+            }
+            
+            console.log('当前管理模式状态:', linksManager.isManagementMode ? '开启' : '关闭');
+            
+            if (!linksManager.isManagementMode) {
+                console.log('请先开启管理模式以启用拖拽功能');
+                return;
+            }
+            
+            // 检查栏目拖拽状态
+            const sections = document.querySelectorAll('.section');
+            console.log(`检查 ${sections.length} 个栏目的拖拽状态:`);
+            sections.forEach((section, index) => {
+                const sectionId = section.dataset.sectionId;
+                const draggable = section.draggable;
+                console.log(`栏目 ${index} (${sectionId}): draggable=${draggable}`);
+            });
+            
+            // 检查链接拖拽状态
+            const linkCards = document.querySelectorAll('.link-card');
+            console.log(`检查 ${linkCards.length} 个链接的拖拽状态:`);
+            linkCards.forEach((card, index) => {
+                const title = card.querySelector('.link-title')?.textContent || '未知';
+                const draggable = card.draggable;
+                console.log(`链接 ${index} (${title}): draggable=${draggable}`);
+            });
+            
+            // 检查事件监听器
+            console.log('拖拽相关全局变量状态:');
+            console.log('draggedElement:', draggedElement);
+            console.log('draggedLinkElement:', draggedLinkElement);
+            console.log('dragType:', dragType);
+            
+            console.log('=== 拖拽功能测试提示 ===');
+            console.log('1. 栏目拖拽：拖拽栏目标题区域来重排序栏目');
+            console.log('2. 链接拖拽：拖拽链接卡片来重排序链接或移动到其他栏目');
+            console.log('3. 查看Console输出的拖拽开始/结束消息');
+            
+            showNotification('拖拽功能测试信息已输出到Console', 'success');
+        }
+
+        // 测试快捷键GitHub同步功能
+        window.testShortcutSync = function() {
+            console.log('=== 测试快捷键GitHub同步功能 ===');
+            
+            if (!linksManager) {
+                console.error('linksManager未初始化');
+                return;
+            }
+            
+            console.log('GitHub连接状态:', linksManager.githubStorage.isConnected());
+            console.log('当前快捷键模式:', shortcutMode);
+            console.log('手动快捷键设置:', manualShortcuts);
+            
+            if (linksManager.githubStorage.isConnected()) {
+                console.log('开始测试保存到GitHub...');
+                saveShortcutSettingsToGitHub()
+                    .then(() => {
+                        console.log('✅ 快捷键设置保存到GitHub成功');
+                        return linksManager.githubStorage.loadConfig();
+                    })
+                    .then(config => {
+                        console.log('从GitHub加载的完整配置:', config);
+                        if (config && config.shortcutSettings) {
+                            console.log('✅ 快捷键设置已包含在GitHub配置中:', config.shortcutSettings);
+                        } else {
+                            console.log('❌ GitHub配置中未找到快捷键设置');
+                        }
+                    })
+                    .catch(error => {
+                        console.error('❌ 快捷键同步测试失败:', error);
+                    });
+            } else {
+                console.log('请先连接GitHub账户再测试同步功能');
+            }
+            
+            showNotification('快捷键同步测试已开始，请查看Console', 'info');
+        }
+
+        // 快捷键设置相关函数
+        function openShortcutSettings() {
+            // 初始化设置界面
+            loadShortcutSettings();
+            document.getElementById('shortcutSettingsModal').style.display = 'flex';
+        }
+
+        function closeShortcutSettings() {
+            document.getElementById('shortcutSettingsModal').style.display = 'none';
+        }
+
+        function loadShortcutSettings() {
+            // 设置当前模式
+            document.querySelector(`input[name="shortcutMode"][value="${shortcutMode}"]`).checked = true;
+            
+            // 显示同步状态
+            updateShortcutSyncStatus();
+            
+            // 显示/隐藏手动设置区域
+            changeShortcutMode();
+        }
+
+        function updateShortcutSyncStatus() {
+            const statusElement = document.getElementById('shortcutSyncStatus');
+            const isConnected = linksManager && linksManager.githubStorage.isConnected();
+            
+            if (isConnected) {
+                statusElement.className = 'sync-status connected';
+                statusElement.innerHTML = `
+                    <i class="fas fa-cloud-upload-alt"></i>
+                    <span>GitHub同步已启用 - 设置将自动同步到云端</span>
+                `;
+            } else {
+                statusElement.className = 'sync-status disconnected';
+                statusElement.innerHTML = `
+                    <i class="fas fa-exclamation-triangle"></i>
+                    <span>未连接GitHub - 设置仅保存在本地</span>
+                `;
+            }
+        }
+
+        function changeShortcutMode() {
+            const selectedMode = document.querySelector('input[name="shortcutMode"]:checked').value;
+            const manualSettings = document.getElementById('manualShortcutSettings');
+            
+            if (selectedMode === 'manual') {
+                manualSettings.style.display = 'block';
+                generateManualShortcutList();
+            } else {
+                manualSettings.style.display = 'none';
+            }
+        }
+
+        function generateManualShortcutList() {
+            const shortcutList = document.getElementById('shortcutList');
+            shortcutList.innerHTML = '';
+            
+            // 获取所有可见链接
+            const allCards = document.querySelectorAll('.link-card');
+            const visibleCards = Array.from(allCards).filter(card => {
+                const section = card.closest('.section');
+                return section && !section.classList.contains('hidden');
+            });
+            
+            visibleCards.forEach(card => {
+                const cardId = getCardId(card);
+                const title = card.querySelector('.link-title')?.textContent || '未知';
+                const href = card.href || '';
+                const currentKey = manualShortcuts[cardId] || '';
+                
+                const item = document.createElement('div');
+                item.className = 'shortcut-item';
+                item.innerHTML = `
+                    <div class="shortcut-item-info">
+                        <div class="shortcut-item-title">${title}</div>
+                        <div class="shortcut-item-url">${href}</div>
+                    </div>
+                    <input type="text" 
+                           class="shortcut-key-input" 
+                           value="${currentKey}" 
+                           placeholder="1-9"
+                           maxlength="1"
+                           data-card-id="${cardId}"
+                           onkeypress="validateShortcutKey(event)"
+                           onchange="updateManualShortcut(this)">
+                `;
+                shortcutList.appendChild(item);
+            });
+        }
+
+        function validateShortcutKey(event) {
+            const key = event.key;
+            if (key >= '1' && key <= '9') {
+                return true;
+            } else if (key === 'Backspace' || key === 'Delete') {
+                return true;
+            } else {
+                event.preventDefault();
+                return false;
+            }
+        }
+
+        function updateManualShortcut(input) {
+            const cardId = input.dataset.cardId;
+            const value = input.value;
+            
+            if (value === '' || (value >= '1' && value <= '9')) {
+                if (value === '') {
+                    delete manualShortcuts[cardId];
+                } else {
+                    // 检查是否与其他快捷键冲突
+                    const existingCardId = Object.keys(manualShortcuts).find(id => 
+                        id !== cardId && manualShortcuts[id] === value
+                    );
+                    
+                    if (existingCardId) {
+                        // 清除冲突的快捷键
+                        delete manualShortcuts[existingCardId];
+                        // 重新生成列表以更新显示
+                        setTimeout(generateManualShortcutList, 0);
+                    }
+                    
+                    manualShortcuts[cardId] = value;
+                }
+            } else {
+                input.value = manualShortcuts[cardId] || '';
+            }
+        }
+
+        function saveShortcutSettings() {
+            const selectedMode = document.querySelector('input[name="shortcutMode"]:checked').value;
+            
+            // 保存设置到localStorage
+            shortcutMode = selectedMode;
+            localStorage.setItem('shortcutMode', shortcutMode);
+            localStorage.setItem('manualShortcuts', JSON.stringify(manualShortcuts));
+            
+            // 更新快捷键
+            updateShortcutKeys();
+            
+            // 如果连接了GitHub，同步到云端
+            if (linksManager && linksManager.githubStorage.isConnected()) {
+                console.log('同步快捷键设置到GitHub...');
+                saveShortcutSettingsToGitHub()
+                    .then(() => {
+                        console.log('快捷键设置已同步到GitHub');
+                        showNotification('快捷键设置已保存并同步到GitHub', 'success');
+                    })
+                    .catch(error => {
+                        console.error('快捷键设置同步失败:', error);
+                        showNotification('快捷键设置已保存到本地，但同步失败: ' + error.message, 'warning');
+                    });
+            } else {
+                showNotification('快捷键设置已保存到本地', 'success');
+            }
+            
+            // 关闭模态框
+            closeShortcutSettings();
+        }
+
+        // 保存快捷键设置到GitHub
+        async function saveShortcutSettingsToGitHub() {
+            if (!linksManager || !linksManager.githubStorage.isConnected()) {
+                throw new Error('GitHub未连接');
+            }
+
+            const shortcutConfig = {
+                shortcutMode: shortcutMode,
+                manualShortcuts: manualShortcuts,
+                lastUpdated: new Date().toISOString()
+            };
+
+            // 获取当前完整配置
+            const fullConfig = linksManager.getFullConfig();
+            fullConfig.shortcutSettings = shortcutConfig;
+
+            // 保存到GitHub
+            await linksManager.githubStorage.saveConfig(fullConfig);
+        }
+
+        // 从GitHub加载快捷键设置
+        function loadShortcutSettingsFromGitHub(config) {
+            if (config && config.shortcutSettings) {
+                console.log('从GitHub加载快捷键设置:', config.shortcutSettings);
+                
+                shortcutMode = config.shortcutSettings.shortcutMode || 'auto';
+                manualShortcuts = config.shortcutSettings.manualShortcuts || {};
+                
+                // 同步到localStorage
+                localStorage.setItem('shortcutMode', shortcutMode);
+                localStorage.setItem('manualShortcuts', JSON.stringify(manualShortcuts));
+                
+                // 更新快捷键
+                updateShortcutKeys();
+                
+                console.log('快捷键设置已从GitHub恢复');
+                return true;
+            }
+            return false;
+        }
+
         // 检查用户权限
         function checkUserPermission() {
             if (!linksManager.githubStorage.isConnected()) {
@@ -2000,9 +2602,13 @@
             return names[sectionId] || sectionId;
         }
 
+        // 快捷键设置相关变量
+        let shortcutMode = localStorage.getItem('shortcutMode') || 'auto';
+        let manualShortcuts = JSON.parse(localStorage.getItem('manualShortcuts') || '{}');
+
         // 动态更新快捷键分配
         function updateShortcutKeys() {
-            console.log('更新快捷键分配...');
+            console.log('更新快捷键分配...', '模式:', shortcutMode);
             
             // 清除所有现有的快捷键标记
             document.querySelectorAll('[data-shortcut]').forEach(card => {
@@ -2011,6 +2617,12 @@
                 if (hint) hint.remove();
             });
             
+            // 如果快捷键被禁用，直接返回
+            if (shortcutMode === 'disabled') {
+                console.log('快捷键已禁用');
+                return;
+            }
+            
             // 获取所有可见的链接卡片（按DOM顺序）
             const allCards = document.querySelectorAll('.link-card');
             const visibleCards = Array.from(allCards).filter(card => {
@@ -2018,26 +2630,72 @@
                 return section && !section.classList.contains('hidden');
             });
             
-            console.log(`找到 ${visibleCards.length} 个可见链接，将分配前9个快捷键`);
+            console.log(`找到 ${visibleCards.length} 个可见链接`);
             
-            // 为前9个可见链接分配快捷键
-            visibleCards.slice(0, 9).forEach((card, index) => {
-                const shortcutKey = (index + 1).toString();
-                card.setAttribute('data-shortcut', shortcutKey);
-                
-                // 添加快捷键提示
-                if (!card.querySelector('.shortcut-hint')) {
-                    const hint = document.createElement('div');
-                    hint.className = 'shortcut-hint';
-                    hint.textContent = shortcutKey;
-                    card.appendChild(hint);
-                }
-                
-                const title = card.querySelector('.link-title')?.textContent || '未知';
-                console.log(`快捷键 ${shortcutKey} → ${title}`);
-            });
+            if (shortcutMode === 'auto') {
+                // 自动分配模式：为前9个可见链接分配快捷键
+                visibleCards.slice(0, 9).forEach((card, index) => {
+                    const shortcutKey = (index + 1).toString();
+                    assignShortcutToCard(card, shortcutKey);
+                });
+            } else if (shortcutMode === 'manual') {
+                // 手动设置模式：根据用户配置分配
+                visibleCards.forEach(card => {
+                    const cardId = getCardId(card);
+                    if (manualShortcuts[cardId] && manualShortcuts[cardId] >= '1' && manualShortcuts[cardId] <= '9') {
+                        assignShortcutToCard(card, manualShortcuts[cardId]);
+                    }
+                });
+            }
             
             console.log('快捷键分配完成');
+        }
+
+        // 为卡片分配快捷键
+        function assignShortcutToCard(card, shortcutKey) {
+            card.setAttribute('data-shortcut', shortcutKey);
+            
+            // 添加快捷键提示
+            if (!card.querySelector('.shortcut-hint')) {
+                const hint = document.createElement('div');
+                hint.className = 'shortcut-hint';
+                hint.textContent = shortcutKey;
+                card.appendChild(hint);
+            }
+            
+            const title = card.querySelector('.link-title')?.textContent || '未知';
+            console.log(`快捷键 ${shortcutKey} → ${title}`);
+        }
+
+        // 获取卡片的唯一ID
+        function getCardId(card) {
+            const title = card.querySelector('.link-title')?.textContent || '';
+            const href = card.href || '';
+            return `${title}-${href}`.replace(/[^a-zA-Z0-9\u4e00-\u9fa5]/g, '_');
+        }
+
+        // 动态调整搜索组件位置
+        function updateSearchGroupPosition() {
+            const searchGroup = document.querySelector('.search-group');
+            const managementButton = document.getElementById('managementModeToggle');
+            
+            if (searchGroup && managementButton) {
+                const isManagementVisible = managementButton.style.display !== 'none';
+                
+                if (isManagementVisible) {
+                    searchGroup.classList.add('with-management-mode');
+                } else {
+                    searchGroup.classList.remove('with-management-mode');
+                }
+                
+                console.log('搜索组件位置已更新，管理模式可见:', isManagementVisible);
+            }
+        }
+
+        // 返回主页功能
+        function returnToHomepage() {
+            console.log('返回主页');
+            window.location.href = 'https://tanlizhuang.cn/index_cn.html';
         }
 
         // 在链接状态改变时调用此函数更新快捷键
@@ -2196,6 +2854,7 @@
                 section.draggable = true;
                 section.addEventListener('dragstart', handleSectionDragStart);
                 section.addEventListener('dragover', handleSectionDragOver);
+                section.addEventListener('dragleave', handleSectionDragLeave);
                 section.addEventListener('drop', handleSectionDrop);
                 section.addEventListener('dragend', handleSectionDragEnd);
                 console.log(`Section ${index} 拖拽已启用, draggable:`, section.draggable);
@@ -2213,6 +2872,7 @@
                 section.draggable = false;
                 section.removeEventListener('dragstart', handleSectionDragStart);
                 section.removeEventListener('dragover', handleSectionDragOver);
+                section.removeEventListener('dragleave', handleSectionDragLeave);
                 section.removeEventListener('drop', handleSectionDrop);
                 section.removeEventListener('dragend', handleSectionDragEnd);
             });
@@ -2250,6 +2910,7 @@
                 card.draggable = true;
                 card.addEventListener('dragstart', handleLinkDragStart);
                 card.addEventListener('dragover', handleLinkDragOver);
+                card.addEventListener('dragleave', handleLinkDragLeave);
                 card.addEventListener('drop', handleLinkDrop);
                 card.addEventListener('dragend', handleLinkDragEnd);
                 console.log(`Link ${index} 拖拽已启用, draggable:`, card.draggable);
@@ -2262,6 +2923,7 @@
                 card.draggable = false;
                 card.removeEventListener('dragstart', handleLinkDragStart);
                 card.removeEventListener('dragover', handleLinkDragOver);
+                card.removeEventListener('dragleave', handleLinkDragLeave);
                 card.removeEventListener('drop', handleLinkDrop);
                 card.removeEventListener('dragend', handleLinkDragEnd);
             });
@@ -2269,119 +2931,168 @@
 
         let draggedElement = null;
         let draggedLinkElement = null;
+        let dragType = null; // 跟踪拖拽类型
 
         // 栏目拖拽处理函数
         function handleSectionDragStart(e) {
             console.log('栏目拖拽开始:', this);
             draggedElement = this;
+            dragType = 'section';
             this.classList.add('dragging');
             e.dataTransfer.effectAllowed = 'move';
-            e.dataTransfer.setData('text/plain', 'section');
+            e.dataTransfer.setData('text/plain', 'section'); // 设置数据用于识别
+            console.log('栏目拖拽数据已设置');
         }
 
         function handleSectionDragOver(e) {
-            if (e.dataTransfer.types.includes('text/plain')) {
-                const dragType = e.dataTransfer.getData('text/plain');
-                if (dragType === 'section') {
-                    e.preventDefault();
-                    e.dataTransfer.dropEffect = 'move';
-                    
-                    if (this !== draggedElement) {
-                        this.classList.add('drag-over');
-                    }
+            // 只处理栏目拖拽
+            if (dragType === 'section' && draggedElement) {
+                e.preventDefault();
+                e.dataTransfer.dropEffect = 'move';
+                
+                if (this !== draggedElement) {
+                    // 清除其他section的drag-over样式
+                    document.querySelectorAll('.section').forEach(section => {
+                        if (section !== this) section.classList.remove('drag-over');
+                    });
+                    this.classList.add('drag-over');
                 }
             }
         }
 
+        function handleSectionDragLeave(e) {
+            // 只有当真正离开元素时才移除样式
+            if (dragType === 'section' && !this.contains(e.relatedTarget)) {
+                this.classList.remove('drag-over');
+            }
+        }
+
         function handleSectionDrop(e) {
-            if (e.dataTransfer.types.includes('text/plain')) {
-                const dragType = e.dataTransfer.getData('text/plain');
-                if (dragType === 'section') {
-                    e.preventDefault();
-                    this.classList.remove('drag-over');
+            if (dragType === 'section' && draggedElement) {
+                e.preventDefault();
+                e.stopPropagation();
+                this.classList.remove('drag-over');
+                
+                if (this !== draggedElement) {
+                    const container = document.querySelector('.container');
+                    console.log('执行栏目重排序...');
                     
-                    if (this !== draggedElement) {
-                        const container = document.querySelector('.container');
-                        
-                        // 在目标元素之前插入拖拽元素
-                        if (this.nextSibling) {
-                            container.insertBefore(draggedElement, this.nextSibling);
-                        } else {
-                            container.appendChild(draggedElement);
-                        }
-                        
-                        showNotification('栏目顺序已更新', 'success');
-                        linksManager.saveToGitHub(false);
+                    // 获取所有栏目的当前位置
+                    const targetIndex = Array.from(container.children).indexOf(this);
+                    const draggedIndex = Array.from(container.children).indexOf(draggedElement);
+                    
+                    console.log(`从位置 ${draggedIndex} 移动到位置 ${targetIndex}`);
+                    
+                    // 执行移动
+                    if (targetIndex > draggedIndex) {
+                        // 向下移动：插入到目标元素之后
+                        container.insertBefore(draggedElement, this.nextSibling);
+                    } else {
+                        // 向上移动：插入到目标元素之前
+                        container.insertBefore(draggedElement, this);
                     }
+                    
+                    showNotification('栏目顺序已更新', 'success');
+                    linksManager.saveToGitHub(false);
+                    refreshShortcuts(); // 更新快捷键
                 }
             }
         }
 
         function handleSectionDragEnd(e) {
+            console.log('栏目拖拽结束');
             this.classList.remove('dragging');
             document.querySelectorAll('.section').forEach(section => {
                 section.classList.remove('drag-over');
             });
             draggedElement = null;
+            dragType = null;
         }
 
         // 链接拖拽处理函数
         function handleLinkDragStart(e) {
             console.log('链接拖拽开始:', this);
             draggedLinkElement = this;
+            dragType = 'link';
             this.classList.add('dragging');
             e.dataTransfer.effectAllowed = 'move';
             e.dataTransfer.setData('text/plain', 'link');
             e.stopPropagation(); // 防止触发栏目拖拽
+            console.log('链接拖拽数据已设置');
         }
 
         function handleLinkDragOver(e) {
-            if (e.dataTransfer.types.includes('text/plain')) {
-                const dragType = e.dataTransfer.getData('text/plain');
-                if (dragType === 'link') {
-                    e.preventDefault();
-                    e.dataTransfer.dropEffect = 'move';
-                    e.stopPropagation();
-                    
-                    if (this !== draggedLinkElement && this.classList.contains('link-card')) {
-                        this.classList.add('drag-over');
-                    }
+            // 只处理链接拖拽
+            if (dragType === 'link' && draggedLinkElement && this.classList.contains('link-card')) {
+                e.preventDefault();
+                e.stopPropagation();
+                e.dataTransfer.dropEffect = 'move';
+                
+                if (this !== draggedLinkElement) {
+                    // 清除其他链接的drag-over样式
+                    document.querySelectorAll('.link-card').forEach(card => {
+                        if (card !== this) card.classList.remove('drag-over');
+                    });
+                    this.classList.add('drag-over');
                 }
             }
         }
 
+        function handleLinkDragLeave(e) {
+            // 只有当真正离开元素时才移除样式
+            if (dragType === 'link' && this.classList.contains('link-card') && !this.contains(e.relatedTarget)) {
+                this.classList.remove('drag-over');
+            }
+        }
+
         function handleLinkDrop(e) {
-            if (e.dataTransfer.types.includes('text/plain')) {
-                const dragType = e.dataTransfer.getData('text/plain');
-                if (dragType === 'link') {
-                    e.preventDefault();
-                    e.stopPropagation();
-                    this.classList.remove('drag-over');
+            if (dragType === 'link' && draggedLinkElement && this.classList.contains('link-card')) {
+                e.preventDefault();
+                e.stopPropagation();
+                this.classList.remove('drag-over');
+                
+                if (this !== draggedLinkElement) {
+                    const sourceGrid = draggedLinkElement.parentElement;
+                    const targetGrid = this.parentElement;
+                    console.log('执行链接重排序...');
                     
-                    if (this !== draggedLinkElement && this.classList.contains('link-card')) {
-                        const sourceGrid = draggedLinkElement.parentElement;
-                        const targetGrid = this.parentElement;
-                        
-                        // 在目标链接之前插入拖拽的链接
-                        if (this.nextSibling) {
+                    // 获取链接的当前位置
+                    const targetCards = Array.from(targetGrid.children);
+                    const draggedIndex = Array.from(sourceGrid.children).indexOf(draggedLinkElement);
+                    const targetIndex = targetCards.indexOf(this);
+                    
+                    console.log(`从位置 ${draggedIndex} 移动到位置 ${targetIndex}`);
+                    
+                    // 执行移动
+                    if (sourceGrid === targetGrid) {
+                        // 同一栏目内重排序
+                        if (targetIndex > draggedIndex) {
+                            // 向下移动：插入到目标元素之后
                             targetGrid.insertBefore(draggedLinkElement, this.nextSibling);
                         } else {
-                            targetGrid.appendChild(draggedLinkElement);
+                            // 向上移动：插入到目标元素之前
+                            targetGrid.insertBefore(draggedLinkElement, this);
                         }
-                        
-                        showNotification('链接顺序已更新', 'success');
-                        linksManager.saveToGitHub(false);
+                    } else {
+                        // 跨栏目移动：插入到目标元素之前
+                        targetGrid.insertBefore(draggedLinkElement, this);
                     }
+                    
+                    showNotification('链接顺序已更新', 'success');
+                    linksManager.saveToGitHub(false);
+                    refreshShortcuts(); // 更新快捷键
                 }
             }
         }
 
         function handleLinkDragEnd(e) {
+            console.log('链接拖拽结束');
             this.classList.remove('dragging');
             document.querySelectorAll('.link-card').forEach(card => {
                 card.classList.remove('drag-over');
             });
             draggedLinkElement = null;
+            dragType = null;
         }
 
         // UI交互函数
@@ -2657,8 +3368,15 @@
             });
         });
 
+            // 初始化快捷键设置
+            shortcutMode = localStorage.getItem('shortcutMode') || 'auto';
+            manualShortcuts = JSON.parse(localStorage.getItem('manualShortcuts') || '{}');
+            
             // 初始化快捷键分配
             setTimeout(updateShortcutKeys, 500); // 延迟执行，确保linksManager已完全初始化
+            
+            // 初始化搜索组件位置
+            setTimeout(updateSearchGroupPosition, 600); // 在linksManager初始化后调用
 
             // 点击模态框背景关闭
             document.querySelectorAll('.modal-overlay').forEach(modal => {

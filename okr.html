@@ -1,0 +1,2082 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="OKR管理"/>
+    <meta name="keywords" content="OKR, 目标管理, 谭立状, tanlizhuang"/>
+    <meta name="author" content="Lizhuang Tan"/>
+    
+    <title>OKR管理</title>
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.0/css/all.min.css">
+    
+    <!-- 主要CSS -->
+    <link rel="stylesheet" href="css/jemdoc.css" type="text/css" />
+    
+    <style>
+        html {
+            overflow-x: hidden;
+        }
+        
+        body {
+            font-family: "Noto Sans SC", sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #f6f9fc 0%, #e9ecef 100%);
+            min-height: 100vh;
+            background-attachment: fixed;
+            line-height: 1.4;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1400px;
+            width: calc(100% - 40px);
+            margin: 0 auto;
+            padding: 10px 20px 20px 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            min-height: 50vh;
+            padding-bottom: 100px; /* 为右下角按钮留出空间 */
+        }
+
+        .page-header {
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0;
+        }
+
+        .header-left {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .header-left h1 {
+            color: #9b0d31;
+            margin: 0;
+            font-size: 1.5rem;
+            font-weight: 600;
+        }
+
+        .back-link-inline {
+            background: rgba(155, 13, 49, 0.1);
+            border: 1px solid rgba(155, 13, 49, 0.2);
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 16px;
+            color: #9b0d31;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+        }
+
+        .back-link-inline:hover {
+            background: rgba(155, 13, 49, 0.2);
+            border-color: #9b0d31;
+            box-shadow: 0 4px 12px rgba(155, 13, 49, 0.2);
+        }
+
+        .header-right {
+            display: none;
+            align-items: center;
+            gap: 15px;
+        }
+
+
+
+
+
+
+
+        .auth-section {
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+
+        .github-login-btn {
+            background: #9b0d31;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-size: 14px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 500;
+        }
+
+        .github-login-btn:hover {
+            background: #7a0a26;
+            box-shadow: 0 4px 12px rgba(155, 13, 49, 0.3);
+        }
+
+
+
+        .logout-btn {
+            background: #28a745;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 500;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 14px;
+            box-shadow: 0 2px 8px rgba(40, 167, 69, 0.3);
+        }
+
+        .logout-btn:hover {
+            background: #218838;
+            box-shadow: 0 4px 12px rgba(40, 167, 69, 0.4);
+        }
+
+        .okr-container {
+            display: none;
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+            transition: all 0.3s ease;
+        }
+
+        .okr-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px;
+            padding-bottom: 12px;
+            border-bottom: 2px solid #9b0d31;
+        }
+
+        .okr-header h2 {
+            color: #2c3e50;
+            margin: 0;
+            font-weight: 500;
+            font-size: 1.1rem;
+        }
+
+        .okr-header-right {
+            display: flex;
+            align-items: center;
+        }
+
+        .add-okr-btn {
+            background: #9b0d31;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 13px;
+            font-weight: 500;
+        }
+
+        .add-okr-btn:hover {
+            background: #7a0a26;
+            box-shadow: 0 4px 12px rgba(155, 13, 49, 0.3);
+        }
+
+
+
+        /* 成员输入按钮样式 */
+        .add-member-btn {
+            background: #28a745;
+            color: white;
+            border: none;
+            padding: 8px 12px;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 12px;
+            margin-right: 5px;
+        }
+
+        .add-member-btn:hover {
+            background: #218838;
+        }
+
+        .add-more-btn {
+            background: #6c757d;
+            color: white;
+            border: none;
+            padding: 8px 12px;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 12px;
+        }
+
+        .add-more-btn:hover {
+            background: #5a6268;
+        }
+
+        .remove-member-btn {
+            background: #dc3545;
+            color: white;
+            border: none;
+            padding: 8px 12px;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 12px;
+        }
+
+        .remove-member-btn:hover {
+            background: #c82333;
+        }
+
+        .okr-list {
+            display: grid;
+            gap: 8px;
+        }
+
+        .okr-item {
+            background: white;
+            border-radius: 10px;
+            padding: 15px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+            border: 1px solid #e9ecef;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .okr-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: linear-gradient(180deg, #9b0d31 0%, #c41e3a 100%);
+            transition: width 0.3s ease;
+        }
+
+        .okr-item:hover {
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+            background: white;
+        }
+
+        .okr-item:hover::before {
+            width: 6px;
+        }
+
+        .okr-title {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 0 0 12px 0;
+            padding: 8px 12px;
+            background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
+            border-radius: 8px;
+            border: 1px solid #e9ecef;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+        }
+
+        .okr-title-text {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #1a252f;
+            margin: 0;
+            flex: 1;
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+            letter-spacing: 0.3px;
+        }
+
+        .okr-actions {
+            display: flex;
+            gap: 10px;
+        }
+
+        .edit-btn, .delete-btn {
+            background: rgba(255, 255, 255, 0.8);
+            border: 1px solid #e9ecef;
+            cursor: pointer;
+            padding: 6px;
+            border-radius: 6px;
+            transition: all 0.2s ease;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+
+        .edit-btn i, .delete-btn i {
+            font-size: 12px;
+        }
+
+        .edit-btn {
+            color: #007bff;
+        }
+
+        .edit-btn:hover {
+            background: rgba(0, 123, 255, 0.15);
+            border-color: #007bff;
+            box-shadow: 0 2px 6px rgba(0, 123, 255, 0.2);
+        }
+
+        .delete-btn {
+            color: #dc3545;
+        }
+
+        .delete-btn:hover {
+            background: rgba(220, 53, 69, 0.15);
+            border-color: #dc3545;
+            box-shadow: 0 2px 6px rgba(220, 53, 69, 0.2);
+        }
+
+        .okr-description {
+            color: #495057;
+            margin: 0 0 20px 0;
+            line-height: 1.6;
+            font-size: 1rem;
+            font-weight: 400;
+            padding: 0 2px;
+        }
+
+        .okr-metrics {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 8px;
+            margin-bottom: 15px;
+        }
+
+        .metric {
+            background: #f8f9fa;
+            padding: 8px 12px;
+            border-radius: 6px;
+            border-left: 3px solid #9b0d31;
+            transition: all 0.3s ease;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .metric:hover {
+            background: #e9ecef;
+        }
+
+        .metric-label {
+            font-size: 0.8rem;
+            color: #6c757d;
+            font-weight: 500;
+        }
+
+        .metric-value {
+            font-size: 0.9rem;
+            color: #2c3e50;
+            font-weight: 500;
+        }
+
+
+
+
+
+        /* 弹窗样式 */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 2000;
+        }
+
+        .modal-content {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            max-width: 500px;
+            width: 90%;
+            max-height: 80vh;
+            overflow-y: auto;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .modal-content h3 {
+            margin-top: 0;
+            color: #2c3e50;
+            font-size: 1.4rem;
+        }
+
+        .auth-steps {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+        }
+
+        .auth-steps ol {
+            margin: 10px 0;
+            padding-left: 20px;
+        }
+
+        .auth-steps li {
+            margin: 8px 0;
+            line-height: 1.4;
+        }
+
+        .modal-input {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #e9ecef;
+            border-radius: 8px;
+            font-size: 14px;
+            margin: 10px 0;
+            box-sizing: border-box;
+        }
+
+        .modal-input:focus {
+            border-color: #9b0d31;
+            outline: none;
+        }
+
+        .modal-button {
+            background: #9b0d31;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 500;
+            margin: 5px;
+            transition: background 0.3s ease;
+        }
+
+        .modal-button:hover {
+            background: #7a0a26;
+        }
+
+        .modal-button.secondary {
+            background: #6c757d;
+        }
+
+        .modal-button.secondary:hover {
+            background: #5a6268;
+        }
+
+        /* 认证信息样式 */
+        .auth-info {
+            margin: 20px 0;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .info-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px;
+            background: #f8f9fa;
+            border-radius: 8px;
+            border-left: 3px solid #9b0d31;
+        }
+
+        .info-item i {
+            color: #9b0d31;
+            font-size: 1.1rem;
+            width: 20px;
+            text-align: center;
+        }
+
+        .info-item span {
+            color: #495057;
+            font-size: 0.9rem;
+            line-height: 1.4;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+            backdrop-filter: blur(5px);
+        }
+
+        .modal-content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            width: 90%;
+            max-width: 600px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+            padding-bottom: 12px;
+            border-bottom: 2px solid #9b0d31;
+        }
+
+        .modal-header h3 {
+            margin: 0;
+            color: #2c3e50;
+            font-weight: 500;
+        }
+
+        .close-btn {
+            background: none;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+            color: #666;
+            padding: 0;
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            transition: all 0.2s ease;
+        }
+
+        .close-btn:hover {
+            background: #f0f0f0;
+            color: #333;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #333;
+        }
+
+        .form-group input, .form-group textarea, .form-group select {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #e9ecef;
+            border-radius: 8px;
+            font-size: 14px;
+            transition: border-color 0.3s ease;
+            box-sizing: border-box;
+        }
+
+        .form-group input:focus, .form-group textarea:focus, .form-group select:focus {
+            outline: none;
+            border-color: #9b0d31;
+        }
+
+        /* 日期输入框特殊样式 */
+        .form-group input[placeholder*="2022"] {
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%236c757d' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect x='3' y='4' width='18' height='18' rx='2' ry='2'%3E%3C/rect%3E%3Cline x1='16' y1='2' x2='16' y2='6'%3E%3C/line%3E%3Cline x1='8' y1='2' x2='8' y2='6'%3E%3C/line%3E%3Cline x1='3' y1='10' x2='21' y2='10'%3E%3C/line%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 12px center;
+            background-size: 16px;
+            padding-right: 40px;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+
+        .form-actions {
+            display: flex;
+            gap: 15px;
+            justify-content: flex-end;
+            margin-top: 30px;
+        }
+
+        .btn {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary {
+            background: #9b0d31;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #7a0a26;
+            box-shadow: 0 4px 12px rgba(155, 13, 49, 0.3);
+        }
+
+        .btn-secondary {
+            background: #6c757d;
+            color: white;
+        }
+
+        .btn-secondary:hover {
+            background: #5a6268;
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 60px 20px;
+            color: #6c757d;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            border-radius: 20px;
+            margin: 20px 0;
+            border: 1px solid #e9ecef;
+        }
+
+        .empty-state i {
+            font-size: 64px;
+            color: #9b0d31;
+            margin-bottom: 25px;
+            opacity: 0.8;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .empty-state h3 {
+            margin: 0 0 15px 0;
+            color: #2c3e50;
+            font-weight: 600;
+            font-size: 1.4rem;
+        }
+
+        .empty-state p {
+            margin: 0;
+            line-height: 1.6;
+            color: #6c757d;
+            font-size: 1.1rem;
+            max-width: 400px;
+            margin: 0 auto;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .empty-state-btn {
+            margin: 30px auto 0 auto;
+            padding: 12px 24px;
+            font-size: 1rem;
+            font-weight: 600;
+            border-radius: 25px;
+            background: linear-gradient(135deg, #9b0d31 0%, #c41e3a 100%);
+            color: white;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(155, 13, 49, 0.3);
+            position: relative;
+            overflow: hidden;
+            display: block;
+        }
+
+        .empty-state-btn:hover {
+            box-shadow: 0 8px 25px rgba(155, 13, 49, 0.4);
+            background: linear-gradient(135deg, #7a0a26 0%, #a0182e 100%);
+        }
+
+        .empty-state-btn:active {
+            box-shadow: 0 2px 10px rgba(155, 13, 49, 0.3);
+        }
+
+        .empty-state-btn i {
+            margin-right: 8px;
+            font-size: 1rem;
+        }
+
+        /* 添加微妙的动画效果 */
+        .empty-state-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .empty-state-btn:hover::before {
+            left: 100%;
+        }
+
+        /* 成员管理样式 */
+        .members-input-container {
+            border: 2px solid #e9ecef;
+            border-radius: 8px;
+            padding: 15px;
+            background: #f8f9fa;
+        }
+
+        .member-input-row {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .member-input-row input {
+            flex: 1;
+            padding: 8px 12px;
+            border: 1px solid #ced4da;
+            border-radius: 6px;
+            font-size: 14px;
+        }
+
+        .member-input-row input:focus {
+            outline: none;
+            border-color: #9b0d31;
+        }
+
+        .add-member-btn {
+            background: #9b0d31;
+            color: white;
+            border: none;
+            padding: 8px 12px;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            font-size: 14px;
+        }
+
+        .add-member-btn:hover {
+            background: #7a0a26;
+        }
+
+        .members-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 10px;
+        }
+
+        .member-tag {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: white;
+            border: 1px solid #e9ecef;
+            border-radius: 8px;
+            padding: 6px 10px;
+            font-size: 13px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+            transition: all 0.2s ease;
+        }
+
+        .member-tag .member-avatar {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .member-tag .member-avatar i {
+            font-size: 12px;
+        }
+
+        .member-tag.leader {
+            border: 2px solid #9b0d31;
+            background: linear-gradient(135deg, #fce4ec, #f8bbd9);
+        }
+
+        .member-tag.leader .member-avatar {
+            border: 2px solid #9b0d31;
+        }
+
+        .member-tag .remove-member {
+            background: none;
+            border: none;
+            color: #dc3545;
+            cursor: pointer;
+            padding: 2px;
+            border-radius: 50%;
+            width: 18px;
+            height: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+        }
+
+        .member-tag .remove-member:hover {
+            background: rgba(220, 53, 69, 0.1);
+        }
+
+        .member-tag:hover {
+            border-color: #9b0d31;
+            box-shadow: 0 2px 6px rgba(155, 13, 49, 0.15);
+        }
+
+        /* OKR成员显示样式 */
+        .okr-members {
+            margin: 8px 0 12px 0;
+            padding: 0;
+            background: transparent;
+            border-radius: 0;
+            border-left: none;
+        }
+
+        .members-label {
+            font-size: 0.9rem;
+            color: #6c757d;
+            font-weight: 500;
+            margin-right: 10px;
+        }
+
+        .members-avatars {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 0;
+        }
+
+        .okr-members .member-avatar {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            gap: 8px;
+            background: white;
+            border: 1px solid #e9ecef;
+            border-radius: 8px;
+            padding: 6px 10px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+            transition: all 0.2s ease;
+        }
+
+        .okr-members .member-avatar:hover {
+            border-color: #9b0d31;
+            box-shadow: 0 2px 6px rgba(155, 13, 49, 0.15);
+        }
+
+        .okr-members .avatar-icon {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid #e9ecef;
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.06);
+            flex-shrink: 0;
+        }
+
+        .okr-members .avatar-icon i {
+            font-size: 12px;
+        }
+
+        .okr-members .member-avatar.leader .avatar-icon {
+            border: 2px solid #9b0d31;
+            box-shadow: 0 1px 3px rgba(155, 13, 49, 0.2);
+        }
+
+        .okr-members .member-name {
+            font-size: 0.8rem;
+            color: #495057;
+            font-weight: 500;
+            white-space: nowrap;
+        }
+
+        /* 底部栏样式 */
+        .bottom-bar {
+            position: fixed;
+            bottom: 15px;
+            right: 15px;
+            height: auto;
+            background: transparent;
+            border: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0;
+            box-shadow: none;
+            z-index: 100;
+            width: auto;
+        }
+
+
+
+        .github-connect-btn {
+            background: #28a745;
+            color: white;
+            border: none;
+            padding: 10px 16px;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 500;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 13px;
+            box-shadow: 0 4px 12px rgba(40, 167, 69, 0.3);
+            min-width: 110px;
+            text-align: center;
+            height: 40px;
+            box-sizing: border-box;
+        }
+
+        .github-connect-btn:hover {
+            background: #218838;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(40, 167, 69, 0.4);
+        }
+
+        .github-connect-btn i {
+            font-size: 14px;
+        }
+
+        /* 右下角GitHub用户信息按钮样式 */
+        .github-user-button {
+            position: fixed;
+            bottom: 15px;
+            right: 15px;
+            background: #28a745;
+            color: white;
+            border: none;
+            border-radius: 50px;
+            padding: 10px 16px;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(40, 167, 69, 0.3);
+            transition: all 0.3s ease;
+            font-size: 13px;
+            font-weight: 500;
+            z-index: 1000;
+            min-width: 110px;
+            text-align: center;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-sizing: border-box;
+        }
+
+        .github-user-button:hover {
+            background: #218838;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(40, 167, 69, 0.4);
+        }
+
+        .github-user-button i {
+            margin-right: 8px;
+            font-size: 14px;
+        }
+
+        /* 通知系统样式 */
+        .notification {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            padding: 15px 20px;
+            border-radius: 8px;
+            color: white;
+            font-weight: 500;
+            z-index: 1001;
+            transform: translateX(100%);
+            transition: transform 0.3s ease;
+            max-width: 300px;
+        }
+
+        .notification.show {
+            transform: translateX(0);
+        }
+
+        .notification.success {
+            background: #28a745;
+        }
+
+        .notification.error {
+            background: #dc3545;
+        }
+
+        .notification.info {
+            background: #17a2b8;
+        }
+
+        .notification.warning {
+            background: #ffc107;
+            color: #333;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 15px;
+            }
+            
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+            
+            .okr-metrics {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+
+    <div class="container">
+        <!-- 标题和用户信息 -->
+        <div class="page-header" id="headerWithUser">
+            <div class="header-left">
+                <a href="index_cn.html" class="back-link-inline" title="返回主页">
+        <i class="fas fa-arrow-left"></i>
+    </a>
+                <h1><i class="fas fa-bullseye"></i> OKR管理</h1>
+            </div>
+        </div>
+
+        <!-- 右下角GitHub用户信息按钮 -->
+        <button class="github-user-button" id="githubUserButton" onclick="logout()" style="display: none;">
+            <i class="fab fa-github"></i>
+            <span id="githubUserName"></span>
+        </button>
+
+        <!-- 认证区域 -->
+        <div class="auth-section" id="authSection">
+            <h2>请先登录GitHub账户</h2>
+            <p>登录后即可管理您的OKR目标</p>
+            <div class="auth-info">
+                <div class="info-item">
+                    <i class="fas fa-shield-alt"></i>
+                    <span>您的OKR数据将安全存储在GitHub Gist中，支持多设备同步</span>
+        </div>
+                <div class="info-item">
+                    <i class="fas fa-key"></i>
+                    <span>只需要GitHub Gist权限，无需代码仓库权限</span>
+                </div>
+                <div class="info-item">
+                    <i class="fas fa-sync-alt"></i>
+                    <span>数据自动同步，确保您的目标管理不丢失</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- OKR管理区域 -->
+        <div class="okr-container" id="okrContainer">
+            <div class="okr-header">
+                <h2><i class="fas fa-list-check"></i> 我的OKR</h2>
+                <div class="okr-header-right">
+                    <button class="add-okr-btn" onclick="openAddOKRModal()">
+                        <i class="fas fa-plus"></i> 添加OKR
+                    </button>
+                </div>
+            </div>
+
+            <div class="okr-list" id="okrList">
+                <!-- OKR项目将在这里动态显示 -->
+            </div>
+        </div>
+    </div>
+
+    <!-- 底部GitHub登录按钮 -->
+    <div class="bottom-bar" id="bottomBar">
+        <button class="github-connect-btn" onclick="loginWithGitHub()" id="githubConnectBtn">
+            <i class="fab fa-github"></i>
+            连接GitHub
+        </button>
+    </div>
+
+    <!-- 添加/编辑OKR模态框 -->
+    <div class="modal" id="okrModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="modalTitle">添加OKR</h3>
+                <button class="close-btn" onclick="closeOKRModal()">&times;</button>
+            </div>
+            <form id="okrForm">
+                <div class="form-group">
+                    <label for="okrTitle">目标标题 *</label>
+                    <input type="text" id="okrTitle" required placeholder="请输入目标标题">
+                </div>
+                <div class="form-group">
+                    <label for="okrDescription">目标描述</label>
+                    <textarea id="okrDescription" rows="3" placeholder="请描述您的目标"></textarea>
+                </div>
+
+                    <div class="form-group">
+                    <label for="okrEndDate">结束日期 *</label>
+                    <input type="text" id="okrEndDate" required placeholder="年/月/日 或 20221201" maxlength="10">
+                    <small style="color: #6c757d; font-size: 12px;">开始日期将自动设置为今天。支持快速输入：20221201</small>
+                    </div>
+
+                    <div class="form-group">
+                    <label>团队成员</label>
+                    <div class="members-input-container">
+                        <div class="member-input-row">
+                            <input type="text" class="member-name" placeholder="成员姓名" maxlength="20">
+                            <button type="button" class="add-member-btn" onclick="addMemberFromInput(this.parentElement)">
+                                <i class="fas fa-user-plus"></i>
+                            </button>
+                            <button type="button" class="add-more-btn" onclick="addMemberInput()">
+                                <i class="fas fa-plus"></i>
+                            </button>
+                    </div>
+                        <div id="membersList" class="members-list">
+                            <!-- 成员列表将在这里显示 -->
+                </div>
+                    </div>
+                    <small style="color: #6c757d; font-size: 12px;">输入姓名后点击用户图标添加成员，第一个成员将自动设为组长</small>
+                </div>
+                <div class="form-group">
+                    <label for="okrProgress">剩余天数</label>
+                    <div style="text-align: center; margin-top: 5px; color: #666;">
+                        <span id="progressValue">请选择结束日期</span>
+                    </div>
+                    <small style="color: #6c757d; font-size: 12px;">基于当前日期到结束日期的距离自动计算</small>
+                </div>
+                <div class="form-actions">
+                    <button type="button" class="btn btn-secondary" onclick="closeOKRModal()">取消</button>
+                    <button type="submit" class="btn btn-primary">保存</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- GitHub认证弹窗 -->
+    <div class="modal-overlay" id="githubAuthModal">
+        <div class="modal-content">
+            <h3><i class="fab fa-github"></i> 连接GitHub账户</h3>
+            <p>为了保存和同步您的OKR目标数据，需要连接GitHub账户。</p>
+            
+            <div class="auth-steps">
+                <h4>设置步骤：</h4>
+                <ol>
+                    <li>访问 <a href="https://github.com/settings/tokens" target="_blank">GitHub Settings → Developer settings → Personal access tokens → Tokens (classic)</a></li>
+                    <li>点击 "Generate new token (classic)"</li>
+                    <li>勾选 <strong>"gist"</strong> 权限</li>
+                    <li>点击生成并复制Token</li>
+                    <li>将Token粘贴到下方输入框</li>
+                </ol>
+            </div>
+            
+            <input type="password" class="modal-input" id="githubToken" placeholder="粘贴您的GitHub Personal Access Token">
+            <div>
+                <button class="modal-button" onclick="setupGitHubAuth()">连接GitHub</button>
+                <button class="modal-button secondary" onclick="closeModal('githubAuthModal')">取消</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // GitHub认证相关
+        let currentUser = null;
+        let okrData = [];
+        let editingOKRId = null;
+
+        document.addEventListener('DOMContentLoaded', function() {
+            checkAuthStatus();
+            loadOKRData();
+            initializeMemberInputs();
+            initializeQuickDateInput();
+        });
+
+
+
+        function initializeQuickDateInput() {
+            const endDateInput = document.getElementById('okrEndDate');
+            if (endDateInput) {
+                endDateInput.addEventListener('input', function(e) {
+                    const value = e.target.value.trim();
+                    
+                    // 检测快速输入格式：YYYYMMDD
+                    if (/^\d{8}$/.test(value)) {
+                        const year = value.substring(0, 4);
+                        const month = value.substring(4, 6);
+                        const day = value.substring(6, 8);
+                        
+                        // 验证日期有效性
+                        const date = new Date(year, month - 1, day);
+                        if (date.getFullYear() == year && 
+                            date.getMonth() == month - 1 && 
+                            date.getDate() == day) {
+                            
+                            // 转换为标准日期格式
+                            const formattedDate = `${year}-${month}-${day}`;
+                            e.target.value = formattedDate;
+                            
+                            // 自动更新剩余天数显示
+                            updateRemainingDaysDisplay(formattedDate);
+                            
+                            // 显示成功提示
+                            showNotification(`日期已自动转换: ${formattedDate}`, 'success');
+                        } else {
+                            // 无效日期提示
+                            showNotification('请输入有效的日期格式，如：20221201', 'error');
+                        }
+                    }
+                });
+                
+                // 添加焦点事件，显示提示
+                endDateInput.addEventListener('focus', function() {
+                    if (!this.value) {
+                        this.placeholder = '年/月/日 或 20221201';
+                    }
+                });
+                
+                // 添加失焦事件，恢复默认提示
+                endDateInput.addEventListener('blur', function() {
+                    if (!this.value) {
+                        this.placeholder = '年/月/日 或 20221201';
+                    }
+                });
+            }
+        }
+
+        function checkAuthStatus() {
+            const token = localStorage.getItem('githubToken');
+            if (token) {
+                // 验证token有效性
+                fetch('https://api.github.com/user', {
+                    headers: {
+                        'Authorization': `token ${token}`
+                    }
+                })
+                .then(response => {
+                    if (response.ok) {
+                        return response.json();
+                    } else {
+                        throw new Error('Token无效');
+                    }
+                })
+                .then(user => {
+                    currentUser = user;
+                    showUserInfo(user);
+                    showOKRContainer();
+                })
+                .catch(error => {
+                    console.error('认证失败:', error);
+                    localStorage.removeItem('githubToken');
+                    showAuthSection();
+                });
+            } else {
+                showAuthSection();
+            }
+        }
+
+        function showAuthSection() {
+            document.getElementById('authSection').style.display = 'block';
+            document.getElementById('okrContainer').style.display = 'none';
+            
+            // 隐藏右下角GitHub用户信息按钮
+            document.getElementById('githubUserButton').style.display = 'none';
+            
+            // 显示底部栏
+            document.getElementById('bottomBar').style.display = 'flex';
+        }
+
+        function showUserInfo(user) {
+            document.getElementById('authSection').style.display = 'none';
+            document.getElementById('okrContainer').style.display = 'block';
+            
+            // 隐藏底部栏
+            document.getElementById('bottomBar').style.display = 'none';
+            
+            // 显示右下角GitHub用户信息按钮
+            const githubUserButton = document.getElementById('githubUserButton');
+            const githubUserName = document.getElementById('githubUserName');
+            githubUserButton.style.display = 'flex';
+            githubUserName.textContent = user.login || user.name;
+        }
+
+        function showOKRContainer() {
+            document.getElementById('okrContainer').style.display = 'block';
+        }
+
+        function loginWithGitHub() {
+            document.getElementById('githubAuthModal').style.display = 'flex';
+        }
+
+        function closeModal(modalId) {
+            document.getElementById(modalId).style.display = 'none';
+            // 清空表单
+            const form = document.querySelector(`#${modalId} form`);
+            if (form) form.reset();
+        }
+
+        async function setupGitHubAuth() {
+            const token = document.getElementById('githubToken').value.trim();
+            if (!token) {
+                showNotification('请输入GitHub Token', 'error');
+                return;
+            }
+
+            try {
+                closeModal('githubAuthModal');
+                await validateGitHubToken(token);
+            } catch (error) {
+                showNotification('连接失败: ' + error.message, 'error');
+            }
+        }
+
+        function showNotification(message, type = 'info') {
+            // 移除现有通知
+            const existingNotification = document.querySelector('.notification');
+            if (existingNotification) {
+                existingNotification.remove();
+            }
+            
+            // 创建新通知
+            const notification = document.createElement('div');
+            notification.className = `notification ${type}`;
+            notification.textContent = message;
+            
+            document.body.appendChild(notification);
+            
+            // 显示通知
+            setTimeout(() => {
+                notification.classList.add('show');
+            }, 100);
+            
+            // 自动隐藏
+            setTimeout(() => {
+                notification.classList.remove('show');
+                setTimeout(() => {
+                    if (notification.parentNode) {
+                        notification.remove();
+                    }
+                }, 300);
+            }, 3000);
+        }
+
+        // 验证GitHub Personal Access Token
+        async function validateGitHubToken(token) {
+            try {
+                showNotification('正在验证GitHub Token...', 'info');
+                
+                // 调用GitHub API验证token有效性
+                const response = await fetch('https://api.github.com/user', {
+                    headers: {
+                        'Authorization': `token ${token}`,
+                        'Accept': 'application/vnd.github.v3+json'
+                    }
+                });
+                
+                if (!response.ok) {
+                    throw new Error(`Token无效: ${response.status}`);
+                }
+                
+                // Token有效，保存并获取用户信息
+                localStorage.setItem('githubToken', token);
+                await fetchGitHubUserInfo(token);
+                
+            } catch (error) {
+                console.error('Token验证失败:', error);
+                showDetailedError(error);
+            }
+        }
+
+        // 显示详细的错误信息
+        function showDetailedError(error) {
+            let message = '操作失败';
+            let details = '';
+            
+            if (error.message.includes('401')) {
+                message = 'GitHub Token已过期';
+                details = '请重新生成Token或检查Token是否有效';
+            } else if (error.message.includes('403')) {
+                message = '权限不足';
+                details = '请确保Token包含gist权限';
+            } else if (error.message.includes('404')) {
+                message = 'GitHub服务不可用';
+                details = '请检查网络连接或稍后重试';
+            } else if (error.message.includes('500')) {
+                message = 'GitHub服务器错误';
+                details = '请稍后重试';
+            } else {
+                details = error.message;
+            }
+            
+            showNotification(`${message}: ${details}`, 'error');
+        }
+
+
+
+
+
+        // 获取GitHub用户信息
+        async function fetchGitHubUserInfo(token) {
+            try {
+                showNotification('正在获取GitHub用户信息...', 'info');
+                
+                // 调用GitHub API获取用户信息
+                const response = await fetch('https://api.github.com/user', {
+                    headers: {
+                        'Authorization': `token ${token}`,
+                        'Accept': 'application/vnd.github.v3+json'
+                    }
+                });
+                
+                if (!response.ok) {
+                    throw new Error(`GitHub API错误: ${response.status}`);
+                }
+                
+                const user = await response.json();
+                currentUser = user;
+                showUserInfo(user);
+                showOKRContainer();
+                
+                showNotification('GitHub登录成功！', 'success');
+                
+                // 清除URL中的参数
+                window.history.replaceState({}, document.title, window.location.pathname);
+                
+                // 加载用户的OKR数据
+                await loadOKRFromGitHub(token);
+                
+            } catch (error) {
+                console.error('获取用户信息失败:', error);
+                showNotification('获取用户信息失败: ' + error.message, 'error');
+            }
+        }
+
+        // 退出登录
+        function logout() {
+            const userName = currentUser ? (currentUser.login || currentUser.name) : '用户';
+            const confirmMessage = `已连接到GitHub账户: ${userName}\n点击"确定"断开连接，点击"取消"继续使用`;
+            
+            if (confirm(confirmMessage)) {
+            localStorage.removeItem('githubToken');
+            currentUser = null;
+            showAuthSection();
+                showNotification('已成功退出GitHub账户', 'success');
+            }
+        }
+
+        // GitHub Gist相关功能
+        async function loadOKRFromGitHub(token) {
+            try {
+                showNotification('正在从GitHub加载OKR数据...', 'info');
+                
+                // 查找用户的OKR Gist
+                const gistId = localStorage.getItem('okrGistId');
+                
+                if (gistId) {
+                    // 如果已有Gist ID，直接加载
+                    await loadOKRFromGist(token, gistId);
+                } else {
+                    // 搜索用户的OKR Gist
+                    await searchOKRGist(token);
+                }
+                
+            } catch (error) {
+                console.error('从GitHub加载OKR失败:', error);
+                showNotification('加载OKR数据失败，将使用本地数据', 'warning');
+                loadOKRFromLocal();
+            }
+        }
+
+        async function searchOKRGist(token) {
+            try {
+                // 搜索用户的Gist，查找OKR相关的
+                const response = await fetch('https://api.github.com/gists', {
+                    headers: {
+                        'Authorization': `token ${token}`,
+                        'Accept': 'application/vnd.github.v3+json'
+                    }
+                });
+                
+                if (!response.ok) {
+                    throw new Error(`GitHub API错误: ${response.status}`);
+                }
+                
+                const gists = await response.json();
+                const okrGist = gists.find(gist => 
+                    gist.description && gist.description.includes('OKR') ||
+                    Object.keys(gist.files).some(filename => filename.includes('okr'))
+                );
+                
+                if (okrGist) {
+                    localStorage.setItem('okrGistId', okrGist.id);
+                    await loadOKRFromGist(token, okrGist.id);
+                } else {
+                    // 创建新的OKR Gist
+                    await createOKRGist(token);
+                }
+                
+            } catch (error) {
+                console.error('搜索OKR Gist失败:', error);
+                throw error;
+            }
+        }
+
+        async function loadOKRFromGist(token, gistId) {
+            try {
+                const response = await fetch(`https://api.github.com/gists/${gistId}`, {
+                    headers: {
+                        'Authorization': `token ${token}`,
+                        'Accept': 'application/vnd.github.v3+json'
+                    }
+                });
+                
+                if (!response.ok) {
+                    throw new Error(`GitHub API错误: ${response.status}`);
+                }
+                
+                const gist = await response.json();
+                const okrFile = Object.values(gist.files).find(file => 
+                    file.filename.includes('okr') || file.filename.includes('OKR')
+                );
+                
+                if (okrFile && okrFile.content) {
+                    try {
+                        const loadedData = JSON.parse(okrFile.content);
+                        // 检查加载的数据是否有效
+                        if (Array.isArray(loadedData) && loadedData.length > 0) {
+                            okrData = loadedData;
+                            renderOKRList();
+                            showNotification('OKR数据已从GitHub同步', 'success');
+                        }
+                    } catch (parseError) {
+                        console.error('解析OKR数据失败:', parseError);
+                    }
+                }
+                
+            } catch (error) {
+                console.error('加载Gist失败:', error);
+                throw error;
+            }
+        }
+
+        async function createOKRGist(token) {
+            try {
+                showNotification('正在创建GitHub Gist...', 'info');
+                
+                const gistData = {
+                    description: 'OKR管理系统数据',
+                    public: false,
+                    files: {
+                        'okr-data.json': {
+                            content: JSON.stringify([], null, 2)
+                        }
+                    }
+                };
+                
+                const response = await fetch('https://api.github.com/gists', {
+                    method: 'POST',
+                    headers: {
+                        'Authorization': `token ${token}`,
+                        'Accept': 'application/vnd.github.v3+json',
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(gistData)
+                });
+                
+                if (!response.ok) {
+                    throw new Error(`创建Gist失败: ${response.status}`);
+                }
+                
+                const gist = await response.json();
+                localStorage.setItem('okrGistId', gist.id);
+                
+                showNotification('GitHub Gist创建成功！', 'success');
+                
+            } catch (error) {
+                console.error('创建Gist失败:', error);
+                showNotification('创建Gist失败，将使用本地存储', 'warning');
+            }
+        }
+
+        async function saveOKRToGitHub(token) {
+            try {
+                const gistId = localStorage.getItem('okrGistId');
+                if (!gistId) {
+                    showNotification('未找到Gist ID，无法保存到GitHub', 'error');
+                    return;
+                }
+                
+                showNotification('正在保存到GitHub...', 'info');
+                
+                const gistData = {
+                    files: {
+                        'okr-data.json': {
+                            content: JSON.stringify(okrData, null, 2)
+                        }
+                    }
+                };
+                
+                const response = await fetch(`https://api.github.com/gists/${gistId}`, {
+                    method: 'PATCH',
+                    headers: {
+                        'Authorization': `token ${token}`,
+                        'Accept': 'application/vnd.github.v3+json',
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(gistData)
+                });
+                
+                if (!response.ok) {
+                    throw new Error(`保存到GitHub失败: ${response.status}`);
+                }
+                
+                showNotification('OKR数据已保存到GitHub！', 'success');
+                
+            } catch (error) {
+                console.error('保存到GitHub失败:', error);
+                showNotification('保存到GitHub失败: ' + error.message, 'error');
+            }
+        }
+
+        // OKR相关功能
+        function loadOKRFromLocal() {
+            const savedOKRs = localStorage.getItem('okrData');
+            if (savedOKRs) {
+                try {
+                    const parsedData = JSON.parse(savedOKRs);
+                    if (Array.isArray(parsedData) && parsedData.length > 0) {
+                        okrData = parsedData;
+                        renderOKRList();
+                    }
+                } catch (parseError) {
+                    console.error('解析本地OKR数据失败:', parseError);
+                }
+            }
+        }
+
+        function loadOKRData() {
+            // 如果已登录GitHub，从GitHub加载；否则从本地加载
+            const token = localStorage.getItem('githubToken');
+            if (token) {
+                loadOKRFromGitHub(token);
+            } else {
+                loadOKRFromLocal();
+            }
+        }
+
+        function saveOKRData() {
+            // 保存到本地
+            localStorage.setItem('okrData', JSON.stringify(okrData));
+            
+            // 如果已登录GitHub，同时保存到GitHub
+            const token = localStorage.getItem('githubToken');
+            if (token) {
+                saveOKRToGitHub(token);
+            }
+        }
+
+        function renderOKRList() {
+            const okrList = document.getElementById('okrList');
+            
+
+            
+            if (okrData.length === 0) {
+                okrList.innerHTML = `
+                    <div class="empty-state">
+                        <i class="fas fa-rocket"></i>
+                        <h3>开始您的OKR之旅</h3>
+                        <p>设定目标，追踪进度，实现突破</p>
+                        <button class="btn btn-primary empty-state-btn" onclick="openAddOKRModal()">
+                            创建第一个OKR
+                        </button>
+                    </div>
+                `;
+                return;
+            }
+            
+            okrList.innerHTML = okrData.map(okr => `
+                <div class="okr-item">
+                    <div class="okr-title">
+                        <h3 class="okr-title-text">${okr.title}</h3>
+                        <div class="okr-actions">
+                            <button class="edit-btn" onclick="editOKR('${okr.id}')" title="编辑">
+                                <i class="fas fa-edit"></i>
+                            </button>
+                            <button class="delete-btn" onclick="deleteOKR('${okr.id}')" title="删除">
+                                <i class="fas fa-trash"></i>
+                            </button>
+                        </div>
+                    </div>
+                    ${okr.members && okr.members.length > 0 ? `
+                        <div class="okr-members">
+                            <div class="members-avatars">
+                                ${okr.members.map(member => `
+                                    <div class="member-avatar ${member.isLeader ? 'leader' : ''}" title="${member.name}">
+                                        <div class="avatar-icon" style="background-color: ${member.avatarColor || '#9b0d31'}">
+                                            <i class="${member.avatarIcon || 'fas fa-user'}" style="color: white;"></i>
+                                        </div>
+                                        <span class="member-name">
+                                            ${member.name}
+                                        </span>
+                                    </div>
+                                `).join('')}
+                            </div>
+                        </div>
+                    ` : ''}
+                    ${okr.description ? `<p class="okr-description">${okr.description}</p>` : ''}
+                    <div class="okr-metrics">
+                        <div class="metric">
+                            <span class="metric-label">结束日期</span>
+                            <span class="metric-value">${okr.endDate || '未设置'}</span>
+                        </div>
+                        <div class="metric">
+                            <span class="metric-label">剩余天数</span>
+                            <span class="metric-value">
+                                ${okr.progress > 0 ? `还有 ${okr.progress} 天` : 
+                                  okr.progress === 0 ? '今天到期' : 
+                                  `已过期 ${Math.abs(okr.progress)} 天`}
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function openAddOKRModal() {
+            editingOKRId = null;
+            document.getElementById('modalTitle').textContent = '添加OKR';
+            document.getElementById('okrForm').reset();
+            
+            // 设置开始日期为今天
+            const today = new Date().toISOString().split('T')[0];
+            document.getElementById('okrEndDate').value = '';
+            document.getElementById('progressValue').textContent = '请选择结束日期';
+            
+            // 清空成员列表
+            clearMembersInputs();
+            
+            document.getElementById('okrModal').style.display = 'block';
+        }
+
+        function closeOKRModal() {
+            document.getElementById('okrModal').style.display = 'none';
+            editingOKRId = null;
+        }
+
+        function editOKR(okrId) {
+            const okr = okrData.find(item => item.id === okrId);
+            if (okr) {
+                editingOKRId = okrId;
+                document.getElementById('modalTitle').textContent = '编辑OKR';
+                document.getElementById('okrTitle').value = okr.title;
+                document.getElementById('okrDescription').value = okr.description || '';
+                document.getElementById('okrEndDate').value = okr.endDate || '';
+                
+                // 加载成员信息
+                currentMembers = okr.members ? [...okr.members] : [];
+                
+                // 确保成员头像颜色正确（组长红色，组员灰色）
+                currentMembers.forEach(member => {
+                    member.avatarColor = generateAvatarColor(member.name, member.isLeader);
+                });
+                
+                renderMembersList();
+                
+                // 计算并显示剩余天数
+                updateRemainingDaysDisplay(okr.endDate);
+                
+                document.getElementById('okrModal').style.display = 'block';
+            }
+        }
+
+        function deleteOKR(okrId) {
+            if (confirm('确定要删除这个OKR吗？此操作不可撤销。')) {
+                okrData = okrData.filter(item => item.id !== okrId);
+                saveOKRData();
+                renderOKRList();
+            }
+        }
+
+        // 计算剩余天数
+        function calculateRemainingDays(endDate) {
+            if (!endDate) return null;
+            
+            const today = new Date();
+            const end = new Date(endDate);
+            
+            // 重置时间为00:00:00，只计算日期差异
+            today.setHours(0, 0, 0, 0);
+            end.setHours(0, 0, 0, 0);
+            
+            const diffTime = end - today;
+            const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+            
+            return diffDays;
+        }
+
+        // 更新剩余天数显示
+        function updateRemainingDaysDisplay(endDate) {
+            const progressValue = document.getElementById('progressValue');
+            if (!endDate) {
+                progressValue.textContent = '请选择结束日期';
+                return;
+            }
+            
+            const remainingDays = calculateRemainingDays(endDate);
+            if (remainingDays === null) {
+                progressValue.textContent = '请选择结束日期';
+            } else if (remainingDays > 0) {
+                progressValue.textContent = `还有 ${remainingDays} 天`;
+            } else if (remainingDays === 0) {
+                progressValue.textContent = '今天到期';
+            } else {
+                progressValue.textContent = `已过期 ${Math.abs(remainingDays)} 天`;
+            }
+        }
+
+        // 结束日期变化时自动计算剩余天数
+        document.getElementById('okrEndDate').addEventListener('change', function() {
+            updateRemainingDaysDisplay(this.value);
+        });
+
+        // 表单提交处理
+        document.getElementById('okrForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const endDate = document.getElementById('okrEndDate').value;
+            if (!endDate) {
+                showNotification('请选择结束日期', 'error');
+                return;
+            }
+            
+            // 验证日期格式
+            const dateRegex = /^\d{4}-\d{2}-\d{2}$/;
+            if (!dateRegex.test(endDate)) {
+                showNotification('请输入正确的日期格式：YYYY-MM-DD', 'error');
+                return;
+            }
+            
+            // 验证日期有效性
+            const inputDate = new Date(endDate);
+            if (isNaN(inputDate.getTime())) {
+                showNotification('请输入有效的日期', 'error');
+                return;
+            }
+            
+            const formData = {
+                title: document.getElementById('okrTitle').value,
+                description: document.getElementById('okrDescription').value,
+                startDate: new Date().toISOString().split('T')[0], // 自动设置为今天
+                endDate: endDate,
+                progress: calculateRemainingDays(endDate), // 自动计算剩余天数
+                members: [...currentMembers] // 添加成员信息
+            };
+            
+            if (editingOKRId) {
+                // 编辑现有OKR
+                const index = okrData.findIndex(item => item.id === editingOKRId);
+                if (index !== -1) {
+                    okrData[index] = { ...okrData[index], ...formData };
+                }
+            } else {
+                // 添加新OKR
+                const newOKR = {
+                    id: Date.now().toString(),
+                    ...formData,
+                    createdAt: new Date().toISOString()
+                };
+                okrData.push(newOKR);
+            }
+            
+            saveOKRData();
+            renderOKRList();
+            closeOKRModal();
+        });
+
+        // 点击模态框外部关闭
+        window.addEventListener('click', function(e) {
+            const modal = document.getElementById('okrModal');
+            if (e.target === modal) {
+                closeOKRModal();
+            }
+            
+            const githubAuthModal = document.getElementById('githubAuthModal');
+            if (e.target === githubAuthModal) {
+                closeModal('githubAuthModal');
+            }
+        });
+
+        // 成员管理相关函数
+        let currentMembers = [];
+
+        function initializeMemberInputs() {
+            // 为第一个成员输入行添加事件监听器
+            const firstRow = document.querySelector('.member-input-row');
+            if (firstRow) {
+                const nameInput = firstRow.querySelector('.member-name');
+                
+                nameInput.addEventListener('keypress', function(e) {
+                    if (e.key === 'Enter') {
+                        addMemberFromInput(firstRow);
+                    }
+                });
+            }
+        }
+
+        function addMemberInput() {
+            const container = document.querySelector('.members-input-container');
+            const newRow = document.createElement('div');
+            newRow.className = 'member-input-row';
+            newRow.innerHTML = `
+                <input type="text" class="member-name" placeholder="成员姓名" maxlength="20">
+                <button type="button" class="add-member-btn" onclick="addMemberFromInput(this.parentElement)">
+                    <i class="fas fa-user-plus"></i>
+                </button>
+                <button type="button" class="remove-member-btn" onclick="removeMemberInput(this)">
+                    <i class="fas fa-minus"></i>
+                </button>
+            `;
+            
+            // 为新行添加事件监听器
+            const nameInput = newRow.querySelector('.member-name');
+            nameInput.addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    addMemberFromInput(newRow);
+                }
+            });
+            
+            container.appendChild(newRow);
+        }
+
+        function removeMemberInput(button) {
+            button.parentElement.remove();
+        }
+
+        function addMemberFromInput(row) {
+            const nameInput = row.querySelector('.member-name');
+            
+            const name = nameInput.value.trim();
+            
+            if (name) {
+                // 检查是否已存在同名成员
+                if (currentMembers.some(member => member.name === name)) {
+                    showNotification('该成员已存在', 'error');
+                    return;
+                }
+                
+                // 生成卡通头像颜色和图标
+                const isLeader = currentMembers.length === 0; // 第一个成员为组长
+                const avatarColor = generateAvatarColor(name, isLeader);
+                const avatarIcon = generateAvatarIcon(name);
+                
+                const member = { 
+                    name, 
+                    avatarColor, 
+                    avatarIcon, 
+                    isLeader 
+                };
+                currentMembers.push(member);
+                
+                // 清空输入框
+                nameInput.value = '';
+                
+                // 更新成员列表显示
+                renderMembersList();
+                
+                const leaderText = isLeader ? '（组长）' : '';
+                showNotification(`已添加成员: ${name}${leaderText}`, 'success');
+            } else {
+                showNotification('请输入成员姓名', 'error');
+            }
+        }
+
+        function removeMember(memberName) {
+            currentMembers = currentMembers.filter(member => member.name !== memberName);
+            renderMembersList();
+            showNotification(`已移除成员: ${memberName}`, 'success');
+        }
+
+        function renderMembersList() {
+            const membersList = document.getElementById('membersList');
+            if (!membersList) return;
+            
+            membersList.innerHTML = currentMembers.map(member => `
+                <div class="member-tag ${member.isLeader ? 'leader' : ''}">
+                    <div class="member-avatar" style="background-color: ${member.avatarColor}">
+                        <i class="${member.avatarIcon}" style="color: white;"></i>
+                    </div>
+                    <span>${member.name}</span>
+                    <button class="remove-member" onclick="removeMember('${member.name}')" title="移除">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+            `).join('');
+        }
+
+        function clearMembersInputs() {
+            currentMembers = [];
+            renderMembersList();
+            
+            // 清空所有输入框
+            const nameInputs = document.querySelectorAll('.member-name');
+            
+            nameInputs.forEach(input => input.value = '');
+            
+            // 只保留第一个输入行
+            const container = document.querySelector('.members-input-container');
+            const rows = container.querySelectorAll('.member-input-row');
+            for (let i = 1; i < rows.length; i++) {
+                rows[i].remove();
+            }
+        }
+
+        // 生成卡通头像颜色
+        function generateAvatarColor(name, isLeader = false) {
+            if (isLeader) {
+                // 组长使用主题色
+                return '#9b0d31';
+            } else {
+                // 组员使用灰色系
+                return '#6c757d';
+            }
+        }
+
+        // 生成卡通头像图标
+        function generateAvatarIcon(name) {
+            const icons = [
+                'fas fa-user', 'fas fa-user-graduate', 'fas fa-user-tie',
+                'fas fa-user-ninja', 'fas fa-user-astronaut', 'fas fa-user-cowboy',
+                'fas fa-user-md', 'fas fa-user-astronaut', 'fas fa-user-graduate',
+                'fas fa-user-ninja', 'fas fa-user-astronaut', 'fas fa-user-cowboy'
+            ];
+            
+            // 使用名字的多个字符来计算，确保不同名字得到不同图标
+            let hash = 0;
+            for (let i = 0; i < name.length; i++) {
+                hash = ((hash << 5) - hash + name.charCodeAt(i)) & 0xffffffff;
+            }
+            const index = Math.abs(hash) % icons.length;
+            return icons[index];
+        }
+
+
+
+
+    </script>
+</body>
+</html> 

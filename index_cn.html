@@ -50,6 +50,50 @@
     <style>
         /* 内联关键CSS减少阻塞 */
         
+        /* 顶部导航栏样式 */
+        .top-nav {
+            position: relative;
+            width: 100%;
+            height: 30px;
+            background: #fafafa;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .top-nav-content {
+            max-width: 1200px;
+            width: 100%;
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            padding-right: 20px;
+            padding-left: 20px;
+        }
+
+        .top-nav a {
+            color: #333;
+            text-decoration: none;
+            padding: 5px 12px;
+            margin-left: 8px;
+            font-size: 13px;
+            font-weight: 500;
+            border-radius: 4px;
+            transition: all 0.2s ease;
+        }
+
+        .top-nav a:hover {
+            background: rgba(0, 0, 0, 0.05);
+            color: #9b0d31;
+        }
+
+        /* 移动端隐藏顶部导航栏 */
+        @media screen and (max-width: 768px) {
+            .top-nav {
+                display: none;
+            }
+        }
+        
         /* 卡片动画 */
         .news-card {
             opacity: 0;
@@ -434,6 +478,15 @@
 
 </head>
 <body>
+    <!-- 顶部导航栏 -->
+    <nav class="top-nav">
+        <div class="top-nav-content">
+            <a href="https://calendar.google.com" target="_blank">日程</a>
+                            <a href="okr.html">OKR</a>
+            <a href="link.html">链接</a>
+        </div>
+    </nav>
+
     <header>
         <h1><a href="index_cn.html"><span class="name-color"><img id="tan_logo" src="./img/tan.jpg" alt="Lizhuang Tan">谭立状 (Lizhuang Tan)</span></a></h1>
         <nav>

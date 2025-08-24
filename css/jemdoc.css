@@ -79,6 +79,11 @@ header {
 	align-items: center;
 	padding: 20px 0;
 }
+
+/* 只有中文主页的header减少上边距 */
+body.index-cn header {
+	margin-top: -30px;
+}
 .name-color {
 	color: #9b0d31; /* 您想要的颜色 */
 	}

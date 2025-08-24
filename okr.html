@@ -169,6 +169,18 @@
             border-bottom: 2px solid #9b0d31;
         }
 
+        .okr-header-left {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .sort-info {
+            color: #6c757d;
+            font-size: 0.75rem;
+            font-weight: 400;
+        }
+
         .okr-header h2 {
             color: #2c3e50;
             margin: 0;
@@ -249,19 +261,71 @@
 
         .okr-list {
             display: grid;
-            gap: 8px;
+            gap: 6px;
         }
 
         .okr-item {
-            background: white;
+            background: #fef7f7;
             border-radius: 10px;
-            padding: 15px;
+            padding: 12px;
             box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
-            border: 1px solid #e9ecef;
+            border: 1px solid #f5e6e8;
             transition: all 0.3s ease;
             position: relative;
             overflow: hidden;
         }
+
+        /* 已完成OKR的白色背景 */
+        .urgent-overdue {
+            background: white;
+            border-color: #e9ecef;
+        }
+
+        /* 进行中OKR的浅黄色背景 */
+        .in-progress {
+            background: #fffbf0;
+            border-color: #f4e4b3;
+        }
+
+        /* 进行中OKR的标题和指标信息使用白色背景 */
+        .in-progress .okr-title {
+            background: white;
+            border-color: #e9ecef;
+        }
+
+        .in-progress .okr-metrics .metric {
+            background: white;
+            border-color: #e9ecef;
+        }
+
+        /* 紧迫性图标样式 */
+        .urgency-icon {
+            margin-right: 8px;
+            font-size: 14px;
+            vertical-align: middle;
+        }
+
+        .urgent-overdue-icon {
+            color: #28a745;
+        }
+
+        .urgent-today-icon {
+            color: #fd7e14;
+        }
+
+        .urgent-soon-icon {
+            color: #ffc107;
+        }
+
+        .urgent-week-icon {
+            color: #17a2b8;
+        }
+
+        .in-progress-icon {
+            color: #007bff;
+        }
+
+        /* 已完成OKR保持正常样式，只显示绿色对号 */
 
         .okr-item::before {
             content: '';
@@ -276,7 +340,15 @@
 
         .okr-item:hover {
             box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
-            background: white;
+            background: #fff5f5;
+        }
+
+        .urgent-overdue:hover {
+            background: #f8f9fa;
+        }
+
+        .in-progress:hover {
+            background: #fff8e1;
         }
 
         .okr-item:hover::before {
@@ -287,8 +359,8 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin: 0 0 12px 0;
-            padding: 8px 12px;
+            margin: 0 0 8px 0;
+            padding: 6px 10px;
             background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
             border-radius: 8px;
             border: 1px solid #e9ecef;
@@ -296,7 +368,7 @@
         }
 
         .okr-title-text {
-            font-size: 1.1rem;
+            font-size: 1rem;
             font-weight: 600;
             color: #1a252f;
             margin: 0;
@@ -346,9 +418,9 @@
 
         .okr-description {
             color: #495057;
-            margin: 0 0 20px 0;
-            line-height: 1.6;
-            font-size: 1rem;
+            margin: 0 0 12px 0;
+            line-height: 1.5;
+            font-size: 0.9rem;
             font-weight: 400;
             padding: 0 2px;
         }
@@ -356,23 +428,18 @@
         .okr-metrics {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
-            gap: 8px;
-            margin-bottom: 15px;
+            gap: 6px;
+            margin-bottom: 0;
         }
 
         .metric {
             background: #f8f9fa;
-            padding: 8px 12px;
+            padding: 6px 10px;
             border-radius: 6px;
             border-left: 3px solid #9b0d31;
-            transition: all 0.3s ease;
             display: flex;
             justify-content: space-between;
             align-items: center;
-        }
-
-        .metric:hover {
-            background: #e9ecef;
         }
 
         .metric-label {
@@ -385,6 +452,12 @@
             font-size: 0.9rem;
             color: #2c3e50;
             font-weight: 500;
+        }
+
+        /* 30天以内剩余天数的紧急样式 */
+        .metric-value.urgent {
+            color: #dc3545 !important;
+            font-weight: 600;
         }
 
 
@@ -407,11 +480,11 @@
 
         .modal-content {
             background: white;
-            padding: 30px;
+            padding: 25px;
             border-radius: 12px;
             max-width: 500px;
             width: 90%;
-            max-height: 80vh;
+            max-height: 86vh;
             overflow-y: auto;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
         }
@@ -572,7 +645,7 @@
         }
 
         .form-group {
-            margin-bottom: 20px;
+            margin-bottom: 18px;
         }
 
         .form-group label {
@@ -616,7 +689,7 @@
             display: flex;
             gap: 15px;
             justify-content: flex-end;
-            margin-top: 30px;
+            margin-top: 25px;
         }
 
         .btn {
@@ -807,7 +880,7 @@
         }
 
         .member-tag .member-avatar i {
-            font-size: 12px;
+            font-size: 10px;
         }
 
         .member-tag.leader {
@@ -845,7 +918,7 @@
 
         /* OKR成员显示样式 */
         .okr-members {
-            margin: 8px 0 12px 0;
+            margin: 6px 0 8px 0;
             padding: 0;
             background: transparent;
             border-radius: 0;
@@ -870,11 +943,11 @@
             display: flex;
             flex-direction: row;
             align-items: center;
-            gap: 8px;
+            gap: 6px;
             background: white;
             border: 1px solid #e9ecef;
-            border-radius: 8px;
-            padding: 6px 10px;
+            border-radius: 6px;
+            padding: 4px 8px;
             box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
             transition: all 0.2s ease;
         }
@@ -885,8 +958,8 @@
         }
 
         .okr-members .avatar-icon {
-            width: 24px;
-            height: 24px;
+            width: 20px;
+            height: 20px;
             border-radius: 50%;
             display: flex;
             align-items: center;
@@ -897,7 +970,7 @@
         }
 
         .okr-members .avatar-icon i {
-            font-size: 12px;
+            font-size: 10px;
         }
 
         .okr-members .member-avatar.leader .avatar-icon {
@@ -906,7 +979,7 @@
         }
 
         .okr-members .member-name {
-            font-size: 0.8rem;
+            font-size: 0.75rem;
             color: #495057;
             font-weight: 500;
             white-space: nowrap;
@@ -1091,7 +1164,9 @@
         <!-- OKR管理区域 -->
         <div class="okr-container" id="okrContainer">
             <div class="okr-header">
-                <h2><i class="fas fa-list-check"></i> 我的OKR</h2>
+                <div class="okr-header-left">
+                    <h2><i class="fas fa-list-check"></i>  目标和关键结果</h2>
+                </div>
                 <div class="okr-header-right">
                     <button class="add-okr-btn" onclick="openAddOKRModal()">
                         <i class="fas fa-plus"></i> 添加OKR
@@ -1154,12 +1229,11 @@
                     </div>
                     <small style="color: #6c757d; font-size: 12px;">输入姓名后点击用户图标添加成员，第一个成员将自动设为组长</small>
                 </div>
-                <div class="form-group">
-                    <label for="okrProgress">剩余天数</label>
-                    <div style="text-align: center; margin-top: 5px; color: #666;">
+                <div class="form-group" style="margin-bottom: 15px;">
+                    <label for="okrProgress" style="margin-bottom: 6px;">剩余天数</label>
+                    <div style="text-align: center; margin-top: 4px; color: #666; font-size: 13px;">
                         <span id="progressValue">请选择结束日期</span>
                     </div>
-                    <small style="color: #6c757d; font-size: 12px;">基于当前日期到结束日期的距离自动计算</small>
                 </div>
                 <div class="form-actions">
                     <button type="button" class="btn btn-secondary" onclick="closeOKRModal()">取消</button>
@@ -1260,7 +1334,7 @@
         }
 
         function checkAuthStatus() {
-            const token = localStorage.getItem('githubToken');
+            const token = localStorage.getItem('github_token');
             if (token) {
                 // 验证token有效性
                 fetch('https://api.github.com/user', {
@@ -1282,7 +1356,7 @@
                 })
                 .catch(error => {
                     console.error('认证失败:', error);
-                    localStorage.removeItem('githubToken');
+                    localStorage.removeItem('github_token');
                     showAuthSection();
                 });
             } else {
@@ -1393,7 +1467,7 @@
                 }
                 
                 // Token有效，保存并获取用户信息
-                localStorage.setItem('githubToken', token);
+                localStorage.setItem('github_token', token);
                 await fetchGitHubUserInfo(token);
                 
             } catch (error) {
@@ -1472,7 +1546,7 @@
             const confirmMessage = `已连接到GitHub账户: ${userName}\n点击"确定"断开连接，点击"取消"继续使用`;
             
             if (confirm(confirmMessage)) {
-            localStorage.removeItem('githubToken');
+            localStorage.removeItem('github_token');
             currentUser = null;
             showAuthSection();
                 showNotification('已成功退出GitHub账户', 'success');
@@ -1671,7 +1745,7 @@
 
         function loadOKRData() {
             // 如果已登录GitHub，从GitHub加载；否则从本地加载
-            const token = localStorage.getItem('githubToken');
+            const token = localStorage.getItem('github_token');
             if (token) {
                 loadOKRFromGitHub(token);
             } else {
@@ -1684,7 +1758,7 @@
             localStorage.setItem('okrData', JSON.stringify(okrData));
             
             // 如果已登录GitHub，同时保存到GitHub
-            const token = localStorage.getItem('githubToken');
+            const token = localStorage.getItem('github_token');
             if (token) {
                 saveOKRToGitHub(token);
             }
@@ -1709,10 +1783,64 @@
                 return;
             }
             
-            okrList.innerHTML = okrData.map(okr => `
-                <div class="okr-item">
+            // 按时间紧迫性排序：有效OKR按剩余天数排序，过期OKR排在后面
+            const sortedOKRData = [...okrData].sort((a, b) => {
+                // 如果某个OKR没有结束日期，排在最后
+                if (!a.endDate && !b.endDate) return 0;
+                if (!a.endDate) return 1;
+                if (!b.endDate) return -1;
+                
+                // 过期OKR排在后面
+                if (a.progress < 0 && b.progress >= 0) return 1;
+                if (a.progress >= 0 && b.progress < 0) return -1;
+                
+                // 如果都是过期OKR，按过期天数排序（过期时间长的排在后面）
+                if (a.progress < 0 && b.progress < 0) {
+                    return a.progress - b.progress;
+                }
+                
+                // 有效OKR按剩余天数排序（少的在前）
+                return (a.progress || 0) - (b.progress || 0);
+            });
+            
+            okrList.innerHTML = sortedOKRData.map(okr => {
+                // 计算紧迫性等级
+                let urgencyClass = '';
+                let urgencyIcon = '';
+                let urgencyText = '';
+                
+                if (okr.progress !== null && okr.progress !== undefined) {
+                    if (okr.progress < 0) {
+                        urgencyClass = 'urgent-overdue';
+                        urgencyIcon = 'fas fa-check-circle';
+                        urgencyText = '已完成';
+                    } else if (okr.progress === 0) {
+                        urgencyClass = 'urgent-today';
+                        urgencyIcon = 'fas fa-clock';
+                        urgencyText = '今天到期';
+                    } else if (okr.progress <= 3) {
+                        urgencyClass = 'urgent-soon';
+                        urgencyIcon = 'fas fa-exclamation-circle';
+                        urgencyText = '即将到期';
+                    } else if (okr.progress <= 7) {
+                        urgencyClass = 'urgent-week';
+                        urgencyIcon = 'fas fa-calendar-week';
+                        urgencyText = '本周到期';
+                    } else {
+                        // 进行中的OKR（剩余天数大于7天）
+                        urgencyClass = 'in-progress';
+                        urgencyIcon = 'fas fa-arrow-right';
+                        urgencyText = '进行中';
+                    }
+                }
+                
+                return `
+                <div class="okr-item ${urgencyClass}">
                     <div class="okr-title">
-                        <h3 class="okr-title-text">${okr.title}</h3>
+                        <h3 class="okr-title-text">
+                            ${urgencyClass ? `<i class="${urgencyIcon}" style="color: ${urgencyClass === 'urgent-overdue' ? '#28a745' : urgencyClass === 'urgent-today' ? '#fd7e14' : urgencyClass === 'urgent-soon' ? '#ffc107' : urgencyClass === 'urgent-week' ? '#17a2b8' : '#007bff'}; margin-right: 8px;" title="${urgencyText}"></i>` : ''}
+                            ${okr.title}
+                        </h3>
                         <div class="okr-actions">
                             <button class="edit-btn" onclick="editOKR('${okr.id}')" title="编辑">
                                 <i class="fas fa-edit"></i>
@@ -1746,15 +1874,17 @@
                         </div>
                         <div class="metric">
                             <span class="metric-label">剩余天数</span>
-                            <span class="metric-value">
+                            <span class="metric-value" style="${okr.progress > 0 && okr.progress <= 30 ? 'color: #dc3545; font-weight: 600;' : ''}">
                                 ${okr.progress > 0 ? `还有 ${okr.progress} 天` : 
                                   okr.progress === 0 ? '今天到期' : 
                                   `已过期 ${Math.abs(okr.progress)} 天`}
                             </span>
+
                         </div>
                     </div>
                 </div>
-            `).join('');
+            `;
+            }).join('');
         }
 
         function openAddOKRModal() {

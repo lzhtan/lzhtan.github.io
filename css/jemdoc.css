@@ -84,6 +84,19 @@ header {
 body.index-cn header {
 	margin-top: -30px;
 }
+
+/* 移动端取消header的-30px设置 */
+@media screen and (max-width: 768px) {
+	body.index-cn header {
+		margin-top: 0 !important;
+	}
+	
+	/* 确保移动端header有合适的上边距 */
+	body.index-cn header {
+		margin-top: 0;
+		padding-top: 20px;
+	}
+}
 .name-color {
 	color: #9b0d31; /* 您想要的颜色 */
 	}
@@ -175,5 +188,18 @@ footer {
 	}
 	.language-icon {
 		padding: 0px 0;
+	}
+}
+
+/* 移动端特殊处理，确保header不受1300px规则影响 */
+@media screen and (max-width: 768px) {
+	body.index-cn header {
+		margin-top: 0 !important;
+		padding-top: 20px;
+	}
+	
+	/* 移动端调整information的margin */
+	body.index-cn .information {
+		margin-top: 10px;
 	}
 }

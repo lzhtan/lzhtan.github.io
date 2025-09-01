@@ -16,6 +16,20 @@
     <link rel="stylesheet" href="css/jemdoc.css" type="text/css" />
     
     <style>
+        /* 确保OKR标题样式优先级最高 */
+        .okr-title {
+            background: #9b0d31 !important;
+            background: linear-gradient(135deg, #9b0d31 0%, #c41e3a 100%) !important;
+            border: 1px solid #9b0d31 !important;
+            box-shadow: 0 2px 8px rgba(155, 13, 49, 0.2) !important;
+            border-radius: 6px !important;
+            height: 32px !important;
+            box-sizing: border-box !important;
+        }
+        
+        .okr-title-text {
+            color: #ffff00 !important;
+        }
         html {
             overflow-x: hidden;
         }
@@ -322,7 +336,7 @@
         }
 
         .in-progress-icon {
-            color: #007bff;
+            color: #ffc107;
         }
 
         /* 已完成OKR保持正常样式，只显示绿色对号 */
@@ -361,39 +375,104 @@
             align-items: center;
             margin: 0 0 8px 0;
             padding: 6px 10px;
-            background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
-            border-radius: 8px;
-            border: 1px solid #e9ecef;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+            background: #9b0d31 !important;
+            background: linear-gradient(135deg, #9b0d31 0%, #c41e3a 100%) !important;
+            border-radius: 6px;
+            border: 1px solid #9b0d31 !important;
+            box-shadow: 0 2px 8px rgba(155, 13, 49, 0.2) !important;
+            position: relative;
+            overflow: hidden;
+            height: 32px; /* 固定高度，与结束日期完全一致 */
+            box-sizing: border-box;
+        }
+
+        .okr-title::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 50%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.8), transparent);
+            transform: skewX(-15deg);
+            z-index: 1;
+            filter: blur(0.5px);
+            opacity: 0;
+            transition: opacity 0.1s ease;
+        }
+
+        .okr-title:hover::before {
+            opacity: 1;
+            animation: titleShine 1.5s ease-out forwards;
+        }
+
+        @keyframes titleShine {
+            0% { left: -100%; opacity: 1; }
+            100% { left: 100%; opacity: 0; }
+        }
+
+        /* 备选的光影效果 - 更明显 */
+        .okr-title::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 50%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.6), transparent);
+            transform: skewX(-10deg);
+            z-index: 1;
+            opacity: 0;
+            transition: opacity 0.1s ease;
+        }
+
+        .okr-title:hover::after {
+            opacity: 1;
+            animation: titleShineAlt 1s ease-out forwards;
+        }
+
+        @keyframes titleShineAlt {
+            0% { left: -100%; opacity: 1; }
+            100% { left: 100%; opacity: 0; }
         }
 
         .okr-title-text {
             font-size: 1rem;
             font-weight: 600;
-            color: #1a252f;
+            color: #ffff00 !important;
             margin: 0;
             flex: 1;
-            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
             letter-spacing: 0.3px;
+            position: relative;
+            z-index: 2;
         }
 
         .okr-actions {
             display: flex;
             gap: 10px;
+            position: relative;
+            z-index: 2;
         }
 
         .edit-btn, .delete-btn {
-            background: rgba(255, 255, 255, 0.8);
-            border: 1px solid #e9ecef;
+            background: rgba(255, 255, 255, 0.9);
+            border: 1px solid rgba(255, 255, 255, 0.3);
             cursor: pointer;
-            padding: 6px;
-            border-radius: 6px;
+            padding: 4px;
+            border-radius: 4px;
             transition: all 0.2s ease;
-            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+            width: 24px;
+            height: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-sizing: border-box;
         }
 
         .edit-btn i, .delete-btn i {
-            font-size: 12px;
+            font-size: 11px;
+            line-height: 1;
         }
 
         .edit-btn {
@@ -401,9 +480,9 @@
         }
 
         .edit-btn:hover {
-            background: rgba(0, 123, 255, 0.15);
-            border-color: #007bff;
-            box-shadow: 0 2px 6px rgba(0, 123, 255, 0.2);
+            background: rgba(255, 193, 7, 0.2);
+            border-color: #ffc107;
+            box-shadow: 0 2px 6px rgba(255, 193, 7, 0.3);
         }
 
         .delete-btn {
@@ -886,10 +965,32 @@
         .member-tag.leader {
             border: 2px solid #9b0d31;
             background: linear-gradient(135deg, #fce4ec, #f8bbd9);
+            box-shadow: 0 4px 12px rgba(155, 13, 49, 0.2);
+            transform: translateY(-1px);
         }
 
         .member-tag.leader .member-avatar {
             border: 2px solid #9b0d31;
+            box-shadow: 0 2px 8px rgba(155, 13, 49, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .member-tag.leader .member-avatar::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+            transform: rotate(45deg);
+            animation: shine 3s infinite;
+        }
+
+        @keyframes shine {
+            0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+            100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
         }
 
         .member-tag .remove-member {
@@ -975,7 +1076,10 @@
 
         .okr-members .member-avatar.leader .avatar-icon {
             border: 2px solid #9b0d31;
-            box-shadow: 0 1px 3px rgba(155, 13, 49, 0.2);
+            box-shadow: 0 2px 8px rgba(155, 13, 49, 0.3);
+            background: #9b0d31; /* 降级背景色 */
+            background: linear-gradient(135deg, #9b0d31 0%, #c41e3a 100%);
+            transform: scale(1.05);
         }
 
         .okr-members .member-name {
@@ -1275,10 +1379,26 @@
         let editingOKRId = null;
 
         document.addEventListener('DOMContentLoaded', function() {
-            checkAuthStatus();
-            loadOKRData();
-            initializeMemberInputs();
-            initializeQuickDateInput();
+            try {
+                checkAuthStatus();
+                loadOKRData();
+                initializeMemberInputs();
+                initializeQuickDateInput();
+                
+                // 设置定时器，每小时更新一次剩余天数显示
+                setInterval(function() {
+                    try {
+                        if (okrData.length > 0) {
+                            renderOKRList();
+                        }
+                    } catch (error) {
+                        console.error('定时器更新失败:', error);
+                    }
+                }, 60 * 60 * 1000); // 每小时更新一次
+            } catch (error) {
+                console.error('页面初始化失败:', error);
+                showNotification('页面初始化失败，请刷新页面重试', 'error');
+            }
         });
 
 
@@ -1632,14 +1752,23 @@
                     try {
                         const loadedData = JSON.parse(okrFile.content);
                         // 检查加载的数据是否有效
-                        if (Array.isArray(loadedData) && loadedData.length > 0) {
+                        if (Array.isArray(loadedData)) {
                             okrData = loadedData;
                             renderOKRList();
-                            showNotification('OKR数据已从GitHub同步', 'success');
+                            if (loadedData.length > 0) {
+                                showNotification('OKR数据已从GitHub同步', 'success');
+                            } else {
+                                showNotification('GitHub同步完成，暂无OKR数据', 'info');
+                            }
                         }
                     } catch (parseError) {
                         console.error('解析OKR数据失败:', parseError);
+                        showNotification('解析GitHub数据失败，将使用本地数据', 'warning');
+                        loadOKRFromLocal();
                     }
+                } else {
+                    // 没有找到OKR文件，使用本地数据
+                    loadOKRFromLocal();
                 }
                 
             } catch (error) {
@@ -1783,46 +1912,55 @@
                 return;
             }
             
+            // 实时计算每个OKR的剩余天数
+            const okrDataWithCurrentProgress = okrData.map(okr => ({
+                ...okr,
+                currentProgress: calculateRemainingDays(okr.endDate)
+            }));
+            
             // 按时间紧迫性排序：有效OKR按剩余天数排序，过期OKR排在后面
-            const sortedOKRData = [...okrData].sort((a, b) => {
+            const sortedOKRData = [...okrDataWithCurrentProgress].sort((a, b) => {
                 // 如果某个OKR没有结束日期，排在最后
                 if (!a.endDate && !b.endDate) return 0;
                 if (!a.endDate) return 1;
                 if (!b.endDate) return -1;
                 
                 // 过期OKR排在后面
-                if (a.progress < 0 && b.progress >= 0) return 1;
-                if (a.progress >= 0 && b.progress < 0) return -1;
+                if (a.currentProgress < 0 && b.currentProgress >= 0) return 1;
+                if (a.currentProgress >= 0 && b.currentProgress < 0) return -1;
                 
                 // 如果都是过期OKR，按过期天数排序（过期时间长的排在后面）
-                if (a.progress < 0 && b.progress < 0) {
-                    return a.progress - b.progress;
+                if (a.currentProgress < 0 && b.currentProgress < 0) {
+                    return a.currentProgress - b.currentProgress;
                 }
                 
                 // 有效OKR按剩余天数排序（少的在前）
-                return (a.progress || 0) - (b.progress || 0);
+                return (a.currentProgress || 0) - (b.currentProgress || 0);
             });
             
             okrList.innerHTML = sortedOKRData.map(okr => {
+                // 使用实时计算的剩余天数
+                const currentProgress = okr.currentProgress;
+                
                 // 计算紧迫性等级
                 let urgencyClass = '';
                 let urgencyIcon = '';
                 let urgencyText = '';
                 
-                if (okr.progress !== null && okr.progress !== undefined) {
-                    if (okr.progress < 0) {
+                if (currentProgress !== null && currentProgress !== undefined) {
+                    if (currentProgress < 0) {
                         urgencyClass = 'urgent-overdue';
                         urgencyIcon = 'fas fa-check-circle';
                         urgencyText = '已完成';
-                    } else if (okr.progress === 0) {
+                    } else if (currentProgress === 0) {
                         urgencyClass = 'urgent-today';
                         urgencyIcon = 'fas fa-clock';
                         urgencyText = '今天到期';
-                    } else if (okr.progress <= 3) {
+                    } else if (currentProgress <= 3) {
                         urgencyClass = 'urgent-soon';
                         urgencyIcon = 'fas fa-exclamation-circle';
                         urgencyText = '即将到期';
-                    } else if (okr.progress <= 7) {
+                    } else if (currentProgress <= 7) {
                         urgencyClass = 'urgent-week';
                         urgencyIcon = 'fas fa-calendar-week';
                         urgencyText = '本周到期';
@@ -1838,7 +1976,7 @@
                 <div class="okr-item ${urgencyClass}">
                     <div class="okr-title">
                         <h3 class="okr-title-text">
-                            ${urgencyClass ? `<i class="${urgencyIcon}" style="color: ${urgencyClass === 'urgent-overdue' ? '#28a745' : urgencyClass === 'urgent-today' ? '#fd7e14' : urgencyClass === 'urgent-soon' ? '#ffc107' : urgencyClass === 'urgent-week' ? '#17a2b8' : '#007bff'}; margin-right: 8px;" title="${urgencyText}"></i>` : ''}
+                            ${urgencyClass ? `<i class="${urgencyIcon}" style="color: ${urgencyClass === 'in-progress' ? '#ffc107' : 'white'}; margin-right: 8px;" title="${urgencyText}"></i>` : ''}
                             ${okr.title}
                         </h3>
                         <div class="okr-actions">
@@ -1856,7 +1994,7 @@
                                 ${okr.members.map(member => `
                                     <div class="member-avatar ${member.isLeader ? 'leader' : ''}" title="${member.name}">
                                         <div class="avatar-icon" style="background-color: ${member.avatarColor || '#9b0d31'}">
-                                            <i class="${member.avatarIcon || 'fas fa-user'}" style="color: white;"></i>
+                                            <i class="fas fa-user" style="color: white;"></i>
                                         </div>
                                         <span class="member-name">
                                             ${member.name}
@@ -1874,10 +2012,10 @@
                         </div>
                         <div class="metric">
                             <span class="metric-label">剩余天数</span>
-                            <span class="metric-value" style="${okr.progress > 0 && okr.progress <= 30 ? 'color: #dc3545; font-weight: 600;' : ''}">
-                                ${okr.progress > 0 ? `还有 ${okr.progress} 天` : 
-                                  okr.progress === 0 ? '今天到期' : 
-                                  `已过期 ${Math.abs(okr.progress)} 天`}
+                            <span class="metric-value" style="${currentProgress > 0 && currentProgress <= 30 ? 'color: #dc3545; font-weight: 600;' : ''}">
+                                ${currentProgress > 0 ? `还有 ${currentProgress} 天` : 
+                                  currentProgress === 0 ? '今天到期' : 
+                                  `已过期 ${Math.abs(currentProgress)} 天`}
                             </span>
 
                         </div>
@@ -1920,9 +2058,10 @@
                 // 加载成员信息
                 currentMembers = okr.members ? [...okr.members] : [];
                 
-                // 确保成员头像颜色正确（组长红色，组员灰色）
+                // 确保成员头像颜色和图标正确（组长红色，组员灰色，统一图标）
                 currentMembers.forEach(member => {
                     member.avatarColor = generateAvatarColor(member.name, member.isLeader);
+                    member.avatarIcon = generateAvatarIcon(member.name); // 重新生成统一图标
                 });
                 
                 renderMembersList();
@@ -2008,6 +2147,16 @@
                 return;
             }
             
+            // 验证日期不能是过去的时间
+            const today = new Date();
+            today.setHours(0, 0, 0, 0);
+            inputDate.setHours(0, 0, 0, 0);
+            
+            if (inputDate < today) {
+                showNotification('结束日期不能是过去的日期', 'error');
+                return;
+            }
+            
             const formData = {
                 title: document.getElementById('okrTitle').value,
                 description: document.getElementById('okrDescription').value,
@@ -2070,6 +2219,8 @@
 
         function addMemberInput() {
             const container = document.querySelector('.members-input-container');
+            if (!container) return;
+            
             const newRow = document.createElement('div');
             newRow.className = 'member-input-row';
             newRow.innerHTML = `
@@ -2084,17 +2235,21 @@
             
             // 为新行添加事件监听器
             const nameInput = newRow.querySelector('.member-name');
-            nameInput.addEventListener('keypress', function(e) {
-                if (e.key === 'Enter') {
-                    addMemberFromInput(newRow);
-                }
-            });
+            if (nameInput) {
+                nameInput.addEventListener('keypress', function(e) {
+                    if (e.key === 'Enter') {
+                        addMemberFromInput(newRow);
+                    }
+                });
+            }
             
             container.appendChild(newRow);
         }
 
         function removeMemberInput(button) {
-            button.parentElement.remove();
+            if (button && button.parentElement) {
+                button.parentElement.remove();
+            }
         }
 
         function addMemberFromInput(row) {
@@ -2148,7 +2303,7 @@
             membersList.innerHTML = currentMembers.map(member => `
                 <div class="member-tag ${member.isLeader ? 'leader' : ''}">
                     <div class="member-avatar" style="background-color: ${member.avatarColor}">
-                        <i class="${member.avatarIcon}" style="color: white;"></i>
+                        <i class="fas fa-user" style="color: white;"></i>
                     </div>
                     <span>${member.name}</span>
                     <button class="remove-member" onclick="removeMember('${member.name}')" title="移除">
@@ -2165,21 +2320,27 @@
             // 清空所有输入框
             const nameInputs = document.querySelectorAll('.member-name');
             
-            nameInputs.forEach(input => input.value = '');
+            nameInputs.forEach(input => {
+                if (input) input.value = '';
+            });
             
             // 只保留第一个输入行
             const container = document.querySelector('.members-input-container');
-            const rows = container.querySelectorAll('.member-input-row');
-            for (let i = 1; i < rows.length; i++) {
-                rows[i].remove();
+            if (container) {
+                const rows = container.querySelectorAll('.member-input-row');
+                for (let i = 1; i < rows.length; i++) {
+                    if (rows[i]) {
+                        rows[i].remove();
+                    }
+                }
             }
         }
 
         // 生成卡通头像颜色
         function generateAvatarColor(name, isLeader = false) {
             if (isLeader) {
-                // 组长使用主题色
-                return '#9b0d31';
+                // 组长使用渐变主题色，更高级
+                return 'linear-gradient(135deg, #9b0d31 0%, #c41e3a 100%)';
             } else {
                 // 组员使用灰色系
                 return '#6c757d';
@@ -2188,24 +2349,21 @@
 
         // 生成卡通头像图标
         function generateAvatarIcon(name) {
-            const icons = [
-                'fas fa-user', 'fas fa-user-graduate', 'fas fa-user-tie',
-                'fas fa-user-ninja', 'fas fa-user-astronaut', 'fas fa-user-cowboy',
-                'fas fa-user-md', 'fas fa-user-astronaut', 'fas fa-user-graduate',
-                'fas fa-user-ninja', 'fas fa-user-astronaut', 'fas fa-user-cowboy'
-            ];
-            
-            // 使用名字的多个字符来计算，确保不同名字得到不同图标
-            let hash = 0;
-            for (let i = 0; i < name.length; i++) {
-                hash = ((hash << 5) - hash + name.charCodeAt(i)) & 0xffffffff;
-            }
-            const index = Math.abs(hash) % icons.length;
-            return icons[index];
+            // 所有成员都使用同一种图标
+            return 'fas fa-user';
         }
 
+        // 全局错误处理器
+        window.addEventListener('error', function(event) {
+            console.error('全局错误:', event.error);
+            showNotification('发生未知错误，请刷新页面重试', 'error');
+        });
 
-
+        // 未处理的Promise拒绝处理器
+        window.addEventListener('unhandledrejection', function(event) {
+            console.error('未处理的Promise拒绝:', event.reason);
+            showNotification('操作失败，请重试', 'error');
+        });
 
     </script>
 </body>

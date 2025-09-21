@@ -67,7 +67,7 @@
         opacity: 0; /* 初始透明度为0 */
         animation: slideUp 0.5s forwards; /* 应用动画 */
         display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); /* 自适应列数 */
+        grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); /* 自适应列数 */
         gap: 10px; /* 卡片之间的间距 */
     }
    
@@ -197,6 +197,167 @@
     .stat-card.active-filter .stat-label {
         color: #fff;
     }
+
+    /* 成果视频样式 */
+    .achievements {
+        margin: 0;
+    }
+    
+    .video-container {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 10px;
+    }
+    
+    .video-title-overlay {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background: rgba(0, 0, 0, 0.7);
+        padding: 5px;
+        z-index: 3;
+    }
+    
+    .video-title-overlay h4 {
+        color: white;
+        margin: 0;
+        font-size: 0.9em;
+        text-align: center;
+        font-weight: 500;
+    }
+    
+    /* 视频标识样式 */
+    .video-badge {
+        position: absolute;
+        top: 8px;
+        right: 8px;
+        background: rgba(155, 13, 49, 0.9);
+        color: white !important;
+        padding: 6px 10px;
+        border-radius: 5px;
+        font-size: 0.75em;
+        font-weight: 500;
+        z-index: 4;
+        backdrop-filter: blur(2px);
+        box-shadow: 0 2px 8px rgba(155, 13, 49, 0.3);
+        transform: scale(1);
+        transition: all 0.3s ease;
+        display: flex;
+        align-items: center;
+        gap: 4px;
+        white-space: nowrap;
+        overflow: hidden;
+    }
+    
+    .video-badge i {
+        font-size: 0.8em;
+        color: white !important;
+    }
+    
+    .video-badge:hover {
+        transform: scale(1.05);
+        background: rgba(155, 13, 49, 1);
+        box-shadow: 0 4px 12px rgba(155, 13, 49, 0.5);
+    }
+    
+    /* 添加闪烁效果 */
+    .video-badge::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(45deg, transparent 30%, rgba(255, 255, 255, 0.4) 50%, transparent 70%);
+        animation: shimmer 3s ease-in-out infinite;
+        border-radius: 10px;
+        pointer-events: none;
+    }
+    
+    @keyframes shimmer {
+        0% {
+            left: -100%;
+        }
+        100% {
+            left: 100%;
+        }
+    }
+    
+    .video-thumbnail {
+        position: relative;
+        width: 100%;
+        margin: 0;
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease;
+    }
+    
+    .video-thumbnail:hover {
+        transform: scale(1.01);
+    }
+    
+    .thumbnail-img {
+        width: 100%;
+        height: 200px;
+        object-fit: cover;
+        display: block;
+    }
+    
+    /* 永久显示的播放图标 */
+    .play-icon {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 60px;
+        height: 60px;
+        background: rgba(155, 13, 49, 0.9);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white !important;
+        font-size: 1.5em;
+        z-index: 2;
+        transition: all 0.3s ease;
+        cursor: pointer;
+    }
+    
+    /* 确保播放图标内的图标是白色 */
+    .play-icon i {
+        color: white !important;
+    }
+    
+    .video-thumbnail:hover .play-icon {
+        background: rgba(155, 13, 49, 1);
+    }
+    
+    @media screen and (max-width: 768px) {
+        .video-container {
+            grid-template-columns: 1fr;
+            gap: 10px;
+        }
+        
+        .video-thumbnail {
+            margin: 5px 0;
+        }
+        
+        .thumbnail-img {
+            height: 150px;
+        }
+        
+        .video-badge {
+            font-size: 0.7em;
+            padding: 4px 8px;
+            gap: 3px;
+        }
+        
+        .video-badge i {
+            font-size: 0.75em;
+        }
+    }
     </style>
   </head>
 <body>
@@ -204,11 +365,9 @@
       <h1><a href="index_cn.html"><span class="name-color"><img id="tan_logo" src="./img/tan.jpg" alt="Lizhuang Tan">谭立状 (Lizhuang Tan)</span></a></h1>
       <nav>
             <a href="index_cn.html">主页</a>
-            <a href="cv_cn.html">简历</a>
             <a href="teaching_cn.html">教学</a>
             <a href="projects_cn.html">科研</a>
             <a href="papers_cn.html" class="active">成果</a>
-            <a href="patents_cn.html">专利</a>
             <a href="standard_cn.html">标准</a>
             <a href="group_cn.html">团队</a>
             <a href="service_cn.html">服务</a>
@@ -245,6 +404,18 @@
         <div class="stat-card">
             <div class="stat-number">500+</div>
             <div class="stat-label">引用</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-number" id="total-patents">0</div>
+            <div class="stat-label">总专利</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-number" id="invention-patents">0</div>
+            <div class="stat-label">发明专利</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-number" id="utility-patents">0</div>
+            <div class="stat-label">实用新型专利</div>
         </div>
       </div>
 
@@ -571,10 +742,160 @@
         </ol>
       </div>
 
-      <h3><span class="color-bar"></span>奖励/奖项</h3>
+      
+      <h3><span class="color-bar"></span>发明专利</h3>
+      <div class="paper-card">
+        <ol style="margin: 0; padding-left: 35px;">
+        
+        <li><p>
+            <span class="paper-title"><b>面向网络遥测重排的FPGA比较器资源分配方法及系统</b></span>
+            <span class="paper-tags">
+                <span class="paper-tag">网络遥测</span>
+            </span>
+            <a href="./papers/2025-专利-面向网络遥测重排的FPGA比较器资源分配方法及系统.pdf" class="pdf-link"><i class="fas fa-file-pdf"></i></a><br>
+            <span class="paper-authors">谭立状, 董鑫, 隋宗瑞, 史慧玲, 张玮, James Won-ki Hong</span><br>
+            <span class="paper-location"><i>ZL202511254231.X, 2025-09-04</i></span>    
+        </p></li>
+        
+        <li><p>
+            <span class="paper-title"><b>一种基于双协同模块的网络损伤模拟实现方法及系统</b></span>
+            <span class="paper-tags">
+                <span class="paper-tag">网络仿真</span>
+            </span>
+            <a href="./papers/2025-专利-一种基于双协同模块的网络损伤模拟实现方法及系统.pdf" class="pdf-link"><i class="fas fa-file-pdf"></i></a><br>
+            <span class="paper-authors">谭立状, 王新航, 董鑫, 史慧玲, 张玮</span><br>
+            <span class="paper-location"><i>ZL202510036261.7, 2025-01-09</i></span>    
+        </p></li>
+        
+        <li><p>
+          <span class="paper-title"><b>一种基于RDMA的云内存池优先级流控方法及系统</b></span>
+          <span class="paper-tags">
+            <span class="paper-tag">RDMA</span>
+          </span>
+          <a href="./papers/2024-专利-一种基于RDMA的云内存池优先级流控方法及系统.pdf" class="pdf-link"><i class="fas fa-file-pdf"></i></a><br>
+          <span class="paper-authors">谭立状, 董鑫, 史慧玲, 张玮</span><br>
+          <span class="paper-location"><i>ZL202411716592.7, 2024-11-27</i></span>    
+        </p></li>
+
+        <li><p>
+          <span class="paper-title"><b>一种RDMA与CXL协议双向高速转换方法、装置及系统</b></span>
+          <span class="paper-tags">
+          <span class="paper-tag">RDMA</span>
+          </span>
+          <a href="./papers/2024-专利-一种RDMA与CXL协议双向高速转换方法、装置及系统.pdf" class="pdf-link"><i class="fas fa-file-pdf"></i></a><br>
+          <span class="paper-authors">谭立状, 董鑫, 史慧玲, 张玮</span><br>
+          <span class="paper-location"><i>ZL202411716594.6, 2024-11-27</i></span>    
+        </p></li>
+
+        <li><p>
+          <span class="paper-title"><b>基于FPGA的RDMA数据传输优化方法及系统</b></span>
+          <span class="paper-tags">
+          <span class="paper-tag">RDMA</span>
+          </span>
+          <a href="./papers/2024-专利-基于FPGA的RDMA数据传输优化方法及系统.pdf" class="pdf-link"><i class="fas fa-file-pdf"></i></a><br>
+          <span class="paper-authors">谭立状, 董鑫, 史慧玲, 张玮</span><br>
+          <span class="paper-location"><i>ZL202411712714.5, 2024-11-27</i></span>    
+        </p></li>
+
+        <li><p>
+          <span class="paper-title"><b>基于多级流水线的数据库查询任务RDMA卸载方法及系统</b></span>
+          <span class="paper-tags">
+          <span class="paper-tag">RDMA</span>
+          </span>
+          <a href="./papers/2024-专利-基于多级流水线的数据库查询任务RDMA卸载方法及系统.pdf" class="pdf-link"><i class="fas fa-file-pdf"></i></a><br>
+          <span class="paper-authors">谭立状, 董鑫, 史慧玲, 张玮</span><br>
+          <span class="paper-location"><i>ZL202411660753.5, 2024-11-20</i></span>    
+        </p></li>
+
+        <li><p>
+          <span class="paper-title"><b>基于接收注册表机制的数据传输优化方法及系统</b></span>
+          <span class="paper-tags">
+          <span class="paper-tag">RDMA</span>
+          </span>
+          <a href="./papers/2024-专利-基于接收注册表机制的数据传输优化方法及系统.pdf" class="pdf-link"><i class="fas fa-file-pdf"></i></a><br>
+          <span class="paper-authors">谭立状, 董鑫, 史慧玲, 张玮</span><br>
+          <span class="paper-location"><i>ZL202411660756.9, 2024-11-20</i></span>    
+        </p></li>
+
+        <li><p>
+          <span class="paper-title"><b>CPU/FPGA协同的网络遥测乱序重排方法及系统</b></span>
+          <span class="paper-tags">
+          <span class="paper-tag">网络遥测</span>
+          </span>
+          <a href="./papers/2024-专利-CPUFPGA协同的网络遥测乱序重排方法及系统.pdf" class="pdf-link"><i class="fas fa-file-pdf"></i></a><br>
+          <span class="paper-authors">谭立状, 隋宗瑞, 王新航, 董鑫, 史慧玲, 张玮</span><br>
+          <span class="paper-location"><i>ZL202410435319.0, 2024-04-11</i></span>    
+        </p></li>
+
+        <li><p>
+          <span class="paper-title"><b>一种意图驱动的网络损伤配置生成方法和系统</b></span>
+          <span class="paper-tags">
+          <span class="paper-tag">网络仿真</span>
+          </span>
+          <a href="./papers/2024-专利-一种意图驱动的网络损伤配置生成方法及系统.pdf" class="pdf-link"><i class="fas fa-file-pdf"></i></a><br>
+          <span class="paper-authors">谭立状, 许一鸣, 王新航, 史慧玲, 张玮</span><br>
+          <span class="paper-location"><i>ZL202410409855.3, 2024-04-07</i></span>    
+        </p></li>
+
+        <li><p>
+          <span class="paper-title"><b>一种网络损伤组合化模拟实现方法及系统</b></span>
+          <span class="paper-tags">
+          <span class="paper-tag">网络仿真</span>
+          </span>
+          <a href="./papers/2023-专利-一种网络损伤组合化模拟实现方法及系统.pdf" class="pdf-link"><i class="fas fa-file-pdf"></i></a><br>
+          <span class="paper-authors">谭立状, 王新航, 史慧玲, 张玮</span><br>
+          <span class="paper-location"><i>ZL2023117778457.0, 2023-12-21</i></span>    
+        </p></li>
+
+        <li><p>
+          <span class="paper-title"><b>一种实现网络损伤的方法、系统及装置</b></span>
+          <span class="paper-tags">
+          <span class="paper-tag">网络仿真</span>
+          </span>
+          <a href="./papers/2023-专利-一种实现网络损伤的方法、系统及装置.pdf" class="pdf-link"><i class="fas fa-file-pdf"></i></a><br>
+          <span class="paper-authors">谭立状, 王新航, 史慧玲, 张玮</span><br>
+          <span class="paper-location"><i>ZL202310224941.2, 2023-03-03</i></span>    
+        </p></li>
+
+        <li><p>
+          <span class="paper-title"><b>一种基于QUIC传输协议的主动连接迁移方法及系统</b></span>
+          <span class="paper-tags">
+          <span class="paper-tag">QUIC</span>
+          </span>
+          <a href="./papers/2022-专利-一种基于QUIC传输协议的主动连接迁移方法及系统.pdf" class="pdf-link"><i class="fas fa-file-pdf"></i></a><br>
+          <span class="paper-authors">谭立状, 王成, 史慧玲, 张玮</span><br>
+          <span class="paper-location"><i>ZL202211650317.0, 2022-12-21</i></span>    
+        </p></li>
+
+        <li><p>
+          <span class="paper-title"><b>一种带内网络遥测承载流选取方法及系统</b></span>
+          <span class="paper-tags">
+          <span class="paper-tag">网络遥测</span>
+          </span>
+          <a href="./papers/2020-专利-一种带内网络遥测承载流选取方法及系统.pdf" class="pdf-link"><i class="fas fa-file-pdf"></i></a><br>
+          <span class="paper-authors">苏伟, 谭立状, 郜帅, 张宏科, 刘延雯, 张臻熠</span><br>
+          <span class="paper-location"><i>CN111835588A, 2020-06-29</i></span>    
+        </p></li>
+      </ol>
+    </div>
+    <h3><span class="color-bar"></span>实用新型专利</h3>
+    <div class="paper-card">
+      <ol style="margin: 0; padding-left: 35px;">
+        <li><p>
+        <span class="paper-title"><b>一种用于网络损伤仪的壳体及网络损伤仪</b></span>
+        <span class="paper-tags">
+        <span class="paper-tag">网络仿真</span>
+        </span>
+        <a href="./papers/2023-专利-一种用于网络损伤仪的壳体及网络损伤仪.pdf" class="pdf-link"><i class="fas fa-file-pdf"></i></a><br>
+        <span class="paper-authors">谭立状, 王新航, 史慧玲, 张玮</span><br>
+        <span class="paper-location"><i>ZL202320329297.0, 2023-02-22</i></span>    
+      </p></li>
+    </ol>
+  </div>
+
+  <h3><span class="color-bar"></span>奖励/奖项</h3>
         <div class="paper-card">
           <ol style="margin: 0; padding-left: 35px;">
-          </p></li>
           <li><p>
           <span class="paper-title"><b>IntDB: Towards a Spatiotemporal Database for In-Band Network Telemetry</b></span>
           <span class="paper-tags">
@@ -612,6 +933,73 @@
           </p></li>
         </ol>
       </div>
+
+      <h3><span class="color-bar"></span>成果演示视频</h3>
+      <!-- 成果视频 -->
+      <div class="achievements">
+          <div class="video-container">
+              <div class="video-thumbnail">
+                  <div class="video-badge">
+                      <i class="fas fa-video"></i> 成果演示视频
+                  </div>
+                  <div class="play-icon">
+                      <i class="fas fa-play"></i>
+                  </div>
+                  <div class="video-title-overlay">
+                      <h4>主动连接迁移</h4>
+                  </div>
+                  <img src="img/video/pcm_video.avif" alt="主动连接迁移视频缩略图" class="thumbnail-img">
+              </div>
+              <div class="video-thumbnail">
+                  <div class="video-badge">
+                      <i class="fas fa-video"></i> 成果演示视频
+                  </div>
+                  <div class="play-icon">
+                      <i class="fas fa-play"></i>
+                  </div>
+                  <div class="video-title-overlay">
+                      <h4>遥测时序数据库</h4>
+                  </div>
+                  <img src="img/video/intdb_video.avif" alt="遥测时序数据库视频缩略图" class="thumbnail-img">
+              </div>
+              <div class="video-thumbnail">
+                  <div class="video-badge">
+                      <i class="fas fa-video"></i> 成果演示视频
+                  </div>
+                  <div class="play-icon">
+                      <i class="fas fa-play"></i>
+                  </div>
+                  <div class="video-title-overlay">
+                      <h4>带内网络遥测</h4>
+                  </div>
+                  <img src="img/video/int_video.avif" alt="带内网络遥测视频缩略图" class="thumbnail-img">
+              </div>
+              <div class="video-thumbnail">
+                  <div class="video-badge">
+                      <i class="fas fa-video"></i> 成果演示视频
+                  </div>
+                  <div class="play-icon">
+                      <i class="fas fa-play"></i>
+                  </div>
+                  <div class="video-title-overlay">
+                      <h4>可靠网络遥测</h4>
+                  </div>
+                  <img src="img/video/losssight.avif" alt="可靠网络遥测视频缩略图" class="thumbnail-img">
+              </div>
+              <div class="video-thumbnail">
+                  <div class="video-badge">
+                      <i class="fas fa-video"></i> 成果演示视频
+                  </div>
+                  <div class="play-icon">
+                      <i class="fas fa-play"></i>
+                  </div>
+                  <div class="video-title-overlay">
+                      <h4>SONiC无中断热重启</h4>
+                  </div>
+                  <img src="img/video/sonic.avif" alt="SONiC视频缩略图" class="thumbnail-img">
+              </div>
+          </div>
+      </div>
       </br>*本网页资料均为投稿前版本，非正式版本，仅供个人使用。正式版本版权归相应机构和个人所有，未经允许不得转载。
 
 </div>
@@ -626,12 +1014,17 @@
               const conferenceSection = Array.from(document.querySelectorAll('h3')).find(h3 => h3.textContent.includes("会议论文")).nextElementSibling;
               const booksSection = Array.from(document.querySelectorAll('h3')).find(h3 => h3.textContent.includes("专著")).nextElementSibling;
               const awardsSection = Array.from(document.querySelectorAll('h3')).find(h3 => h3.textContent.includes("奖励/奖项")).nextElementSibling;
+              const inventionSection = Array.from(document.querySelectorAll('h3')).find(h3 => h3.textContent.includes("发明专利")).nextElementSibling;
+              const utilitySection = Array.from(document.querySelectorAll('h3')).find(h3 => h3.textContent.includes("实用新型专利")).nextElementSibling;
     
               // 计算各类数量
               const journalCount = journalSection ? journalSection.getElementsByTagName('li').length : 0;
               const conferenceCount = conferenceSection ? conferenceSection.getElementsByTagName('li').length : 0;
               const booksCount = booksSection ? booksSection.getElementsByTagName('li').length : 0;
               const awardsCount = awardsSection ? awardsSection.getElementsByTagName('li').length : 0;
+              const inventionCount = inventionSection ? inventionSection.getElementsByTagName('li').length : 0;
+              const utilityCount = utilitySection ? utilitySection.getElementsByTagName('li').length : 0;
+              const totalPatentCount = inventionCount + utilityCount;
               
               // 修正：论文总数只包含期刊论文和会议论文
               const totalCount = journalCount + conferenceCount;
@@ -642,15 +1035,42 @@
               document.getElementById('conference-papers').textContent = conferenceCount;
               document.getElementById('total-books').textContent = booksCount;
               document.getElementById('total-awards').textContent = awardsCount;
+              document.getElementById('total-patents').textContent = totalPatentCount;
+              document.getElementById('invention-patents').textContent = inventionCount;
+              document.getElementById('utility-patents').textContent = utilityCount;
               
-              // 统计所有标签，包括专著和奖励
+              // 统计所有标签，包括专著、奖励、专利和视频
               const tagStats = new Map();
               const allTags = [
                   ...journalSection.querySelectorAll('.paper-tag'),
                   ...conferenceSection.querySelectorAll('.paper-tag'),
                   ...booksSection.querySelectorAll('.paper-tag'),
-                  ...awardsSection.querySelectorAll('.paper-tag')
+                  ...awardsSection.querySelectorAll('.paper-tag'),
+                  ...inventionSection.querySelectorAll('.paper-tag'),
+                  ...utilitySection.querySelectorAll('.paper-tag')
               ];
+              
+              // 为视频添加标签
+              const videoTags = document.querySelectorAll('.video-thumbnail');
+              videoTags.forEach(video => {
+                  const title = video.querySelector('h4').textContent;
+                  let tagName = '';
+                  if (title.includes('主动连接迁移')) {
+                      tagName = 'QUIC';
+                  } else if (title.includes('遥测') || title.includes('INT')) {
+                      tagName = '网络遥测';
+                  } else if (title.includes('SONiC')) {
+                      tagName = 'SONiC';
+                  }
+                  if (tagName) {
+                      const tagElement = document.createElement('span');
+                      tagElement.className = 'paper-tag video-tag';
+                      tagElement.textContent = tagName;
+                      tagElement.style.display = 'none'; // 隐藏但用于统计
+                      video.appendChild(tagElement);
+                      allTags.push(tagElement);
+                  }
+              });
               
               allTags.forEach(tag => {
                   const tagText = tag.textContent.trim();
@@ -688,13 +1108,14 @@
               });
           });
     
-          // 筛选函数现在也要包括专著和奖励
+          // 筛选函数现在也要包括专著、奖励和视频
           function filterPapersByTag() {
               const activeFilters = document.querySelectorAll('.tag-item.active-filter');
               const activeTags = Array.from(activeFilters).map(filter => 
                   filter.textContent.replace(/\d+$/, '').trim()
               );
 
+              // 筛选论文、专利、专著、奖励
               const allItems = document.querySelectorAll('.paper-card li');
               allItems.forEach(item => {
                   const itemTags = Array.from(item.querySelectorAll('.paper-tag'))
@@ -704,12 +1125,26 @@
                   );
                   item.style.display = hasTag ? '' : 'none';
               });
+              
+              // 筛选视频
+              const allVideos = document.querySelectorAll('.video-thumbnail');
+              allVideos.forEach(video => {
+                  const videoTags = Array.from(video.querySelectorAll('.paper-tag'))
+                      .map(tag => tag.textContent.trim());
+                  const hasTag = videoTags.some(videoTag => 
+                      activeTags.includes(videoTag)
+                  );
+                  video.style.display = hasTag ? '' : 'none';
+              });
           }
     
           // 显示所有内容的函数
           function showAllPapers() {
               document.querySelectorAll('.paper-card li').forEach(item => {
                   item.style.display = '';
+              });
+              document.querySelectorAll('.video-thumbnail').forEach(video => {
+                  video.style.display = '';
               });
           }
 
@@ -770,10 +1205,16 @@
               const conferenceSection = Array.from(document.querySelectorAll('h3')).find(h3 => h3.textContent.includes("会议论文"));
               const booksSection = Array.from(document.querySelectorAll('h3')).find(h3 => h3.textContent.includes("专著"));
               const awardsSection = Array.from(document.querySelectorAll('h3')).find(h3 => h3.textContent.includes("奖励/奖项"));
+              const inventionSection = Array.from(document.querySelectorAll('h3')).find(h3 => h3.textContent.includes("发明专利"));
+              const utilitySection = Array.from(document.querySelectorAll('h3')).find(h3 => h3.textContent.includes("实用新型专利"));
 
               // 隐藏所有条目
               const allItems = document.querySelectorAll('.paper-card li');
               allItems.forEach(item => item.style.display = 'none');
+              
+              // 隐藏所有视频
+              const allVideos = document.querySelectorAll('.video-thumbnail');
+              allVideos.forEach(video => video.style.display = 'none');
 
               switch(type) {
                   case '论文总数':
@@ -810,8 +1251,31 @@
                           awardItems.forEach(item => item.style.display = '');
                       }
                       break;
+                  case '总专利':
+                      if (inventionSection) {
+                          const inventionItems = inventionSection.nextElementSibling.querySelectorAll('li');
+                          inventionItems.forEach(item => item.style.display = '');
+                      }
+                      if (utilitySection) {
+                          const utilityItems = utilitySection.nextElementSibling.querySelectorAll('li');
+                          utilityItems.forEach(item => item.style.display = '');
+                      }
+                      break;
+                  case '发明专利':
+                      if (inventionSection) {
+                          const inventionItems = inventionSection.nextElementSibling.querySelectorAll('li');
+                          inventionItems.forEach(item => item.style.display = '');
+                      }
+                      break;
+                  case '实用新型专利':
+                      if (utilitySection) {
+                          const utilityItems = utilitySection.nextElementSibling.querySelectorAll('li');
+                          utilityItems.forEach(item => item.style.display = '');
+                      }
+                      break;
                   default:
                       allItems.forEach(item => item.style.display = '');
+                      allVideos.forEach(video => video.style.display = '');
               }
           }
 
@@ -819,7 +1283,31 @@
               document.querySelectorAll('.paper-card li').forEach(item => {
                   item.style.display = '';
               });
+              document.querySelectorAll('.video-thumbnail').forEach(video => {
+                  video.style.display = '';
+              });
           }
+
+          // 播放按钮点击事件
+          document.addEventListener('DOMContentLoaded', function() {
+              const playIcons = document.querySelectorAll('.play-icon');
+              playIcons.forEach((playIcon, index) => {
+                  playIcon.addEventListener('click', function(e) {
+                      e.stopPropagation(); // 阻止事件冒泡
+                      // 根据索引打开对应的哔哩哔哩视频
+                      const videoUrls = [
+                          'https://www.bilibili.com/video/BV1eaRhY9E4R/',
+                          'https://www.bilibili.com/video/BV1PpT2zzELD/',
+                          'https://www.bilibili.com/video/BV14Z4y1H7N2/',
+                          'https://www.bilibili.com/video/BV1CV411j7AX/',
+                          'https://www.bilibili.com/video/BV1VMJ4zhEQF/'
+                      ];
+                      if (videoUrls[index]) {
+                          window.open(videoUrls[index], '_blank');
+                      }
+                  });
+              });
+          });
           </script>
 
 </body>

@@ -292,21 +292,40 @@
         </div>
         <div class="stat-card">
             <div class="stat-number" id="invention-patents">0</div>
-            <div class="stat-label">Utility</div>
+            <div class="stat-label">Invention</div>
         </div>
         <div class="stat-card">
             <div class="stat-number" id="utility-patents">0</div>
-            <div class="stat-label">Design</div>
+            <div class="stat-label">Utility</div>
         </div>
     </div>
     <div class="tag-overview">
         <div class="tag-title">研究领域</div>
         <div class="tag-list" id="tag-list"></div>
     </div>
-      <h3><span class="color-bar"></span>Utility Patents</h3>
+      <h3><span class="color-bar"></span>Invention Patents</h3>
       <div class="paper-card">
         <ol style="margin: 0; padding-left: 35px;">
         <li><p>
+            <span class="paper-title"><b>A machine-centric adaptive control method and system for streaming media frames</b></span>
+            <span class="patent-tags">
+                <span class="patent-tag">Network Management</span>
+            </span>
+            <a href="./papers/2026-专利-一种以机器为中心的流媒体帧段自适应控制方法及系统.pdf" class="pdf-link"><i class="fas fa-file-pdf"></i></a><br>
+            <span class="paper-authors">Lizhuang Tan, Ruichao Zhang, Huiling Shi, Wei Zhang, Zhiyuan Zhang</span><br>
+            <span class="paper-location"><i>ZL202610224657.9, 2026-02-25</i></span>    
+          </p></li>
+          <li><p>
+            <span class="paper-title"><b>A method and system for tuning the ECN watermark of RoCEv2 network based on digital twins</b></span>
+            <span class="patent-tags">
+                <span class="patent-tag">RDMA</span>
+            </span>
+            <a href="./papers/2025-专利-一种基于数字孪生的RoCEv2网络ECN水线调优方法和系统.pdf" class="pdf-link"><i class="fas fa-file-pdf"></i></a><br>
+            <span class="paper-authors">Lizhuang Tan, Fuming Chu, Huiling Shi, Wei Zhang, Zhiyuan Zhang</span><br>
+            <span class="paper-location"><i>ZL202511532757.X, 2025-10-25</i></span>    
+          </p></li>
+          
+          <li><p>
             <span class="paper-title"><b>Virtual network resource sharing method and system for FPGA NIC</b></span>
             <span class="patent-tags">
                 <span class="patent-tag">FPGA</span>
@@ -424,7 +443,7 @@
           </p></li>
       </ol>
     </div>
-    <h3><span class="color-bar"></span>Design Patents</h3>
+    <h3><span class="color-bar"></span>Utility Patents</h3>
     <div class="paper-card">
       <ol style="margin: 0; padding-left: 35px;">
         <li><p>
@@ -450,8 +469,8 @@
 <script>
 document.addEventListener('DOMContentLoaded', function() {
     // 获取各类专利数量
-    const inventionSection = Array.from(document.querySelectorAll('h3')).find(h3 => h3.textContent.includes("Utility Patents"));
-    const utilitySection = Array.from(document.querySelectorAll('h3')).find(h3 => h3.textContent.includes("Design Patents"));
+    const inventionSection = Array.from(document.querySelectorAll('h3')).find(h3 => h3.textContent.includes("Invention Patents"));
+    const utilitySection = Array.from(document.querySelectorAll('h3')).find(h3 => h3.textContent.includes("Utility Patents"));
 
     // 计算各类数量
     const inventionCount = inventionSection ? inventionSection.nextElementSibling.getElementsByTagName('li').length : 0;

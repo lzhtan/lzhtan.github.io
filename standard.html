@@ -12,102 +12,109 @@
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@100..900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/jemdoc.css" type="text/css" />
     <style>
-    .paper-card {
-        background: #fff;
-        border: 1px solid #eaeaea;
-        border-radius: 8px;
-        padding: 0px 15px;
-        margin-bottom: 1px;
-        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
-        transition: box-shadow 0.3s ease-in-out;
-        font-size: 0.95em;
-    }
-
-    .container ol {
-        list-style: none;
-        padding: 0;
-    }
-
-    .container ol li {
-        margin-bottom: 2px;
-        line-height: 1.6;
-    }
-    .container a {
-        text-decoration: none;
-        border-bottom: 1px dashed transparent;
-        transition: color 0.3s, border-color 0.3s;
-    }
-
-    .container a:visited {
-        color: #9b0d31;
-    }
-
-    .paper-title {
-        font-weight: bold;
-        color: #9b0d31;
-        margin-bottom: 5px;
-    }
-
-    .paper-authors {
-        color: #423a3a;
-        margin-bottom: 5px;
-    }
-
-    .paper-location {
-        color: #9b0d31;
-        font-size: 0.95em;
-    }
-
-    .paper-card i {
-    color: #9b0d31; /* 将颜色设置为红色 */
-    }
-
-    /* Back to top button */
-    #back-to-top {
-        position: fixed;
-        bottom: 20px;
-        right: 20px;
-        display: none;
-        background-color: #9b0d31;
-        color: white;
-        width: 40px;
-        height: 40px;
-        text-align: center;
-        line-height: 40px;
-        border-radius: 50%;
-        z-index: 99;
-        opacity: 0.8;
-        transition: all 0.3s ease;
-        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-    }
-    
-    #back-to-top:hover {
-        background-color: #7b0925;
-        opacity: 1;
-        transform: translateY(-3px);
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-    }
-    
-    /* Smooth scrolling */
-    html {
-        scroll-behavior: smooth;
-    }
-    @media screen and (max-width: 768px) {
-        #back-to-top {
-            bottom: 15px;
-            right: 15px;
-            width: 35px;
-            height: 35px;
-            line-height: 35px;
-            font-size: 0.9em;
+        .paper-card {
+            background: #fff;
+            border: 1px solid #eaeaea;
+            border-radius: 8px;
+            padding: 0px 15px;
+            margin-bottom: 1px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+            transition: box-shadow 0.3s ease-in-out;
+            font-size: 0.95em;
         }
-    }
+
+        .container ol {
+            list-style: none;
+            padding: 0;
+        }
+
+        .container ol li {
+            margin-bottom: 2px;
+            line-height: 1.6;
+        }
+        .container a {
+            text-decoration: none;
+            border-bottom: 1px dashed transparent;
+            transition: color 0.3s, border-color 0.3s;
+        }
+
+        .container a:visited {
+            color: #9b0d31;
+        }
+
+        .paper-title {
+            font-weight: bold;
+            color: #9b0d31;
+            margin-bottom: 5px;
+        }
+
+        .paper-authors {
+            color: #423a3a;
+            margin-bottom: 5px;
+        }
+
+        .paper-location {
+            color: #9b0d31;
+            font-size: 0.95em;
+        }
+
+        .paper-card i {
+            color: #9b0d31; /* 将颜色设置为红色 */
+        }
+
+        /* Back to top button */
+        #back-to-top {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            display: none;
+            background-color: #9b0d31;
+            color: white;
+            width: 40px;
+            height: 40px;
+            text-align: center;
+            line-height: 40px;
+            border-radius: 50%;
+            z-index: 99;
+            opacity: 0.8;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+        
+        #back-to-top:hover {
+            background-color: #7b0925;
+            opacity: 1;
+            transform: translateY(-3px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        }
+        
+        /* Smooth scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+        @media screen and (max-width: 768px) {
+            #back-to-top {
+                bottom: 15px;
+                right: 15px;
+                width: 35px;
+                height: 35px;
+                line-height: 35px;
+                font-size: 0.9em;
+            }
+        }
     </style>
-  </head>
+</head>
 <body>
     <header>
-      <h1><a href="index.html"><span class="name-color"><img id="tan_logo" src="./img/tan.jpg" alt="Lizhuang Tan">Lizhuang Tan (谭立状)</span></a></h1>
-      <nav>
+        <h1>
+            <a href="index.html">
+                <span class="name-color">
+                    <img id="tan_logo" src="./img/tan.jpg" alt="Lizhuang Tan">
+                    Lizhuang Tan (谭立状)
+                </span>
+            </a>
+        </h1>
+        <nav>
             <a href="index.html">Home</a>
             <a href="cv.html">CV</a>
             <a href="teaching.html">Teaching</a>
@@ -120,96 +127,194 @@
             <a href="photos.html">Photo</a>
             <a href="conference.html">Conference</a>
             <a href="index_cn.html">
-              <img src="img/language-solid.svg" alt="Language Icon" class="language-icon">
+                <img src="img/language-solid.svg" alt="Language Icon" class="language-icon">
             </a>
         </nav>
     </header>
     <div class="container">
-      <h3><span class="color-bar"></span>Standard</h3>
-      <h3><span class="color-bar"></span>IETF Draft</h3>
-<ol>
-  <li class="paper-item">
-    <div class="paper-card">
-      <p>
-        <span class="paper-title"><b>Connection Migration in QUIC</b></span>
-        <a href="./papers/2020-IETF-PCM.pdf" class="pdf-link"><i class="fas fa-file-pdf"></i></a><br>
-        <span class="paper-authors">Lizhuang Tan, Xiaochuan Gao, Wei Su, Na Li, Wei Zhang</span><br>
-        <span class="paper-location"><i>draft-tan-quic-connection-migration-00</i></span>    
-      </p>
+        <h3><span class="color-bar"></span>Standard</h3>
+        <ol>
+            <li class="paper-item">
+                <div class="paper-card">
+                    <p>
+                        <span class="paper-title"><b>Technical Requirements for Computing Power Routing Protocol in Computing Power Network — Extension of BGP Protocol</b></span>
+                        <a href="https://std.samr.gov.cn/hb/search/stdHBDetailed?id=2F7B4471A779F3B1E06397BE0A0A6557" class="pdf-link"><i class="fas fa-file-pdf"></i></a><br>
+                        <span class="paper-authors">YD/T 6251-2024, 2024</span><br>
+                    </p>
+                </div>
+            </li>
+            <li class="paper-item">
+                <div class="paper-card">
+                    <p>
+                        <span class="paper-title"><b>Technical Requirements for Software Defined Network Controllers Supporting In-band Telemetry</b></span>
+                    </p>
+                </div>
+            </li>
+            <li class="paper-item">
+                <div class="paper-card">
+                    <p>
+                        <span class="paper-title"><b>Technical Requirements for Multipath Remote Direct Memory Access (RDMA) Transport Protocol</b></span>
+                    </p>
+                </div>
+            </li>
+            <li class="paper-item">
+                <div class="paper-card">
+                    <p>
+                        <span class="paper-title"><b>Technical Requirements for Bitmap-based RDMA Network Packet Loss Detection</b></span>
+                    </p>
+                </div>
+            </li>
+            <li class="paper-item">
+                <div class="paper-card">
+                    <p>
+                        <span class="paper-title"><b>Computing Power Network — Maturity Assessment — Part 1: Principles and General Requirements</b></span>
+                    </p>
+                </div>
+            </li>
+            <li class="paper-item">
+                <div class="paper-card">
+                    <p>
+                        <span class="paper-title"><b>Computing Power Network — Key Indicator System — Part 1: Indicator Classification</b></span>
+                    </p>
+                </div>
+            </li>
+            <li class="paper-item">
+                <div class="paper-card">
+                    <p>
+                        <span class="paper-title"><b>Computing Power Network — Technical Requirements for Computing-network Convergence Scheduling for IP Bearer Network</b></span><br>
+                    </p>
+                </div>
+            </li>
+            <li class="paper-item">
+                <div class="paper-card">
+                    <p>
+                        <span class="paper-title"><b>Computing Power Network — Technical Requirements for Trading Platform Interfaces</b></span><br>
+                    </p>
+                </div>
+            </li>
+            <li class="paper-item">
+                <div class="paper-card">
+                    <p>
+                        <span class="paper-title"><b>Test Methods for SDN Controllers Supporting SRv6</b></span><br>
+                    </p>
+                </div>
+            </li>
+            <li class="paper-item">
+                <div class="paper-card">
+                    <p>
+                        <span class="paper-title"><b>Technical Requirements for IPv6 Network Policies for Data Circulation Scenarios</b></span><br>
+                    </p>
+                </div>
+            </li>
+            <li class="paper-item">
+                <div class="paper-card">
+                    <p>
+                        <span class="paper-title"><b>Technical Requirements for Remote Direct Memory Access (RDMA) Acceleration for Wide Area Networks</b></span><br>
+                    </p>
+                </div>
+            </li>
+            <li class="paper-item">
+                <div class="paper-card">
+                    <p>
+                        <span class="paper-title"><b>Technical Requirements for Alternate Coloring-based In-situ Flow Information Telemetry YANG Model for IP Networks</b></span><br>
+                    </p>
+                </div>
+            </li>
+            <li class="paper-item">
+                <div class="paper-card">
+                    <p>
+                        <span class="paper-title"><b>Technical Requirements for SRv6 Networks Supporting Pseudowire (PW) Services</b></span><br>
+                    </p>
+                </div>
+            </li>
+            <li class="paper-item">
+                <div class="paper-card">
+                    <p>
+                        <span class="paper-title"><b>Enhanced Technical Requirements for Switches Supporting Distributed Training</b></span><br>
+                    </p>
+                </div>
+            </li>
+        </ol>
+
+        <h3><span class="color-bar"></span>IETF Draft</h3>
+        <ol>
+            <li class="paper-item">
+                <div class="paper-card">
+                    <p>
+                        <span class="paper-title"><b>Connection Migration in QUIC</b></span>
+                        <a href="./papers/2020-IETF-PCM.pdf" class="pdf-link"><i class="fas fa-file-pdf"></i></a><br>
+                        <span class="paper-authors">Lizhuang Tan, Xiaochuan Gao, Wei Su, Na Li, Wei Zhang</span><br>
+                        <span class="paper-location"><i>draft-tan-quic-connection-migration-00</i></span>    
+                    </p>
+                </div>
+            </li>
+        </ol>
+
+        <h3><span class="color-bar"></span>White Paper</h3>
+        <ol>
+            <li class="paper-item">
+                <div class="paper-card">
+                    <p>
+                        <span class="paper-title"><b>Computing Network Infrastructure Research Report</b></span>
+                        <a href="./papers/2024-白皮书-算网融合技术与产业白皮书.pdf" class="pdf-link"><i class="fas fa-file-pdf"></i></a>    
+                    </p>
+                </div>
+            </li>
+            <li class="paper-item">
+                <div class="paper-card">
+                    <p>
+                        <span class="paper-title"><b>Technology and Industry White Paper of Computing and Network Convergence</b></span>
+                        <a href="./papers/2023-白皮书-算网基础设施研究报告.pdf" class="pdf-link"><i class="fas fa-file-pdf"></i></a>    
+                    </p>
+                </div>
+            </li>
+            <li class="paper-item">
+                <div class="paper-card">
+                    <p>
+                        <span class="paper-title"><b>Networked Computing Research Report</b></span>
+                        <a href="./papers/2022-白皮书-计算网络化研究报告.pdf" class="pdf-link"><i class="fas fa-file-pdf"></i></a>    
+                    </p>
+                </div>
+            </li>
+            <li class="paper-item">
+                <div class="paper-card">
+                    <p>
+                        <span class="paper-title"><b>White Paper on Computing Power Internet Technology for Shandong Province</b></span>    
+                    </p>
+                </div>
+            </li>
+        </ol>
     </div>
-  </li>
-</ol>
 
-<h3><span class="color-bar"></span>White Paper</h3>
-<ol>
-  <li class="paper-item">
-    <div class="paper-card">
-      <p>
-        <span class="paper-title"><b>Computing Network Infrastructure Research Report</b></span>
-        <a href="./papers/2024-白皮书-算网融合技术与产业白皮书.pdf" class="pdf-link"><i class="fas fa-file-pdf"></i></a>    
-      </p>
-    </div>
-  </li>
+    <footer>
+        <p>Copyright &copy; 2022 - New Era. By Lizhuang Tan</p>
+    </footer>
 
-  <li class="paper-item">
-    <div class="paper-card">
-      <p>
-        <span class="paper-title"><b>Technology and Industry White Paper of Computing and Network Convergence</b></span>
-        <a href="./papers/2023-白皮书-算网基础设施研究报告.pdf" class="pdf-link"><i class="fas fa-file-pdf"></i></a>    
-      </p>
-    </div>
-  </li>
+    <!-- Back to top button -->
+    <a href="#" id="back-to-top" title="Back to Top">
+        <i class="fas fa-arrow-up"></i>
+    </a>
 
-  <li class="paper-item">
-    <div class="paper-card">
-      <p>
-        <span class="paper-title"><b>Networked Computing Research Report</b></span>
-        <a href="./papers/2022-白皮书-计算网络化研究报告.pdf" class="pdf-link"><i class="fas fa-file-pdf"></i></a>    
-      </p>
-    </div>
-  </li>
+    <script>
+        // Back to top button
+        window.onscroll = function() {
+            var backToTopBtn = document.getElementById("back-to-top");
+            if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
+                backToTopBtn.style.display = "block";
+            } else {
+                backToTopBtn.style.display = "none";
+            }
+        };
 
-  <li class="paper-item">
-    <div class="paper-card">
-      <p>
-        <span class="paper-title"><b>White Paper on Computing Power Internet Technology for Shandong Province</b></span>    
-      </p>
-    </div>
-  </li>
-</ol>
-
- 
-
-</div>
-        <footer>
-            <p>Copyright &copy; 2022 - New Era. By Lizhuang Tan</p>
-        </footer>
-
-<!-- Back to top button -->
-<a href="#" id="back-to-top" title="Back to Top">
-    <i class="fas fa-arrow-up"></i>
-</a>
-
-<script>
-    // Back to top button
-    window.onscroll = function() {
-        var backToTopBtn = document.getElementById("back-to-top");
-        if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
-            backToTopBtn.style.display = "block";
-        } else {
-            backToTopBtn.style.display = "none";
-        }
-    };
-
-    // Click event for back to top button
-    document.getElementById("back-to-top").addEventListener("click", function(e) {
-        e.preventDefault();
-        // Smooth scroll to top
-        window.scrollTo({
-            top: 0,
-            behavior: "smooth"
+        // Click event for back to top button
+        document.getElementById("back-to-top").addEventListener("click", function(e) {
+            e.preventDefault();
+            // Smooth scroll to top
+            window.scrollTo({
+                top: 0,
+                behavior: "smooth"
+            });
         });
-    });
-</script>
+    </script>
 </body>
 </html>

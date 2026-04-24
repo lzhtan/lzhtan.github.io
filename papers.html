@@ -10,197 +10,188 @@
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@100..900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/jemdoc.css" type="text/css" />
     <style>
-    .paper-card {
-        background: #fff;
-        border: 1px solid #f1f1f1;
-        border-radius: 8px;
-        box-shadow: 0 1px 1px rgba(0, 0, 0, 0.08);
-        transition: box-shadow 0.3s ease-in-out;
-    }
-    
-    .paper-title {
-        font-weight: bold;
-        color: #9b0d31;
-        margin-bottom: 2px;
-    }
-
-    .paper-authors {
-        color: #423a3a;
-        margin-bottom: 2px;
-    }
-    
-
-    .paper-location i {
-        color: #000000 !important;
-    }
-  
-    .paper-card i {
-    color: #9b0d31; /* 将颜色设置为红色 */
-    }
-
-    /* 统一调整所有文件中有序列表的样式 */
-    ol {
-        padding-left: 25px;   /* 减小左边距 */
-        padding-right: 25px;  /* 添加右边距 */
-        margin: 10px auto;    /* 上下10px，左右自动居中 */
-        max-width: 1300px;     /* 控制最大宽度 */
-    }
-
-    ol li {
-        margin-bottom: 10px;
-    }
-
-    
-    .stats-overview {
-        flex-wrap: wrap;
-        justify-content: center;
-        margin-bottom: 10px;
-        position: relative; /* 使其相对于正常流 */
-        transform: translateY(3px); /* 隐藏在视口下方 */
-        opacity: 0; /* 初始透明度为0 */
-        animation: slideUp 0.5s forwards; /* 应用动画 */
-        display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); /* 自适应列数 */
-        gap: 10px; /* 卡片之间的间距 */
-    }
-   
-    .stat-card {
-        padding: 10px 10px;
-        background: rgba(155, 13, 49, 0.1);
-        border-radius: 8px;
-        box-shadow: 0 2px 4px rgba(0,0,0,0.05);
-        text-align: center;
-        border: 1px solid #f0f0f0;
-    }
-
-    .stat-number {
-        font-size: 1.1em;
-        font-weight: bold;
-        color: #9b0d31;
-    }
-
-    .stat-label {
-        color: #9b0d31;
-        font-size: 0.95em;
-    }
-
-    /* 标签统计区域样式 */
-    .tag-overview {
-        margin: 10px 0;
-        padding: 10px;
-        background: white;
-        border-radius: 8px;
-        box-shadow: 0 2px 4px rgba(0,0,0,0.05);
-        border: 1px solid #f0f0f0;
-        position: relative; /* 使其相对于正常流 */
-        transform: translateY(3px); /* 隐藏在视口下方 */
-        opacity: 0; /* 初始透明度为0 */
-        animation: slideUp 0.5s forwards; /* 应用动画 */
-    }
-    /* 定义动画效果 */
-    @keyframes slideUp {
-        to {
-            transform: translateY(0); /* 动画结束时的位置 */
-            opacity: 1; /* 动画结束时的透明度 */
+        .paper-card {
+            background: #fff;
+            border: 1px solid #f1f1f1;
+            border-radius: 8px;
+            box-shadow: 0 1px 1px rgba(0, 0, 0, 0.08);
+            transition: box-shadow 0.3s ease-in-out;
         }
-    }
 
+        .paper-title {
+            font-weight: bold;
+            color: #9b0d31;
+            margin-bottom: 2px;
+        }
 
-    .tag-title {
-        margin-bottom: 15px;
-        padding-bottom: 10px;
-        border-bottom: 1px solid #f0f0f0;
-        font-size: 0.95em;
-    }
+        .paper-authors {
+            color: #423a3a;
+            margin-bottom: 2px;
+        }
 
-    .tag-list {
-        flex-wrap: wrap;
-        display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); /* 自适应列数 */
-        gap: 3px; /* 卡片之间的间距 */
-        font-size: 0.95em;
-    }
+        .paper-location i {
+            color: #000000 !important;
+        }
 
-    .tag-item {
-        position: relative;
-        padding: 6px 12px;
-        background: rgba(155, 13, 49, 0.1);
-        min-width: 180px;
-        color: #9b0d31;
-        border-radius: 8px;
-        font-size: 0.95em;
-        display: inline-flex;
-        align-items: center;
-        gap: 6px;
-        cursor: pointer;
-        transition: all 0.3s ease;
-        margin: 0 2px;
-        flex: 0 0 auto;
-        font-weight: 500;
-    }
+        .paper-card i {
+            color: #9b0d31;
+        }
 
-    .tag-count {
-        position: absolute;
-        right: 10px;
-        top: 50%;
-        transform: translateY(-50%);
-        background: #9b0d31;
-        color: white;
-        padding: 2px 8px;
-        border-radius: 4px;
-        font-size: 0.85em;
-    }
+        ol {
+            padding-left: 25px;
+            padding-right: 25px;
+            margin: 10px auto;
+            max-width: 1300px;
+        }
 
+        ol li {
+            margin-bottom: 10px;
+        }
 
-    .tag-item.active-filter {
-        background: #9b0d31;
-        color: white;
-    }
+        .stats-overview {
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-bottom: 10px;
+            position: relative;
+            transform: translateY(3px);
+            opacity: 0;
+            animation: slideUp 0.5s forwards;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            gap: 10px;
+        }
 
-    .tag-item.active-filter .tag-count {
-        background: white;
-        color: #9b0d31;
-    }
+        .stat-card {
+            padding: 10px 10px;
+            background: rgba(155, 13, 49, 0.1);
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            text-align: center;
+            border: 1px solid #f0f0f0;
+        }
 
-    /* 标签容器 */
-    .paper-tags {
-        display: inline;
-    }
+        .stat-number {
+            font-size: 1.1em;
+            font-weight: bold;
+            color: #9b0d31;
+        }
 
-    /* 标签样式 */
-    .paper-tag {
-        display: inline-block;
-        padding: 2px 8px;
-        border-radius: 4px;
-        background: rgba(155, 13, 49, 0.1);
-        color: #9b0d31;
-        font-size: 0.85em;
-        margin-right: 4px;
-    }
-    .stat-card {
-        cursor: pointer;
-        transition: all 0.3s ease;
-    }
-    
-    
-    .stat-card.active-filter {
-        background: #9b0d31;
-    }
+        .stat-label {
+            color: #9b0d31;
+            font-size: 0.95em;
+        }
 
-    .stat-card.active-filter .stat-number {
-        color: #fff;
-    }
-    .stat-card.active-filter .stat-label {
-        color: #fff;
-    }
+        .tag-overview {
+            margin: 10px 0;
+            padding: 10px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            border: 1px solid #f0f0f0;
+            position: relative;
+            transform: translateY(3px);
+            opacity: 0;
+            animation: slideUp 0.5s forwards;
+        }
 
-    
+        @keyframes slideUp {
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .tag-title {
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #f0f0f0;
+            font-size: 0.95em;
+        }
+
+        .tag-list {
+            flex-wrap: wrap;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 3px;
+            font-size: 0.95em;
+        }
+
+        .tag-item {
+            position: relative;
+            padding: 6px 12px;
+            background: rgba(155, 13, 49, 0.1);
+            min-width: 180px;
+            color: #9b0d31;
+            border-radius: 8px;
+            font-size: 0.95em;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin: 0 2px;
+            flex: 0 0 auto;
+            font-weight: 500;
+        }
+
+        .tag-count {
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: #9b0d31;
+            color: white;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 0.85em;
+        }
+
+        .tag-item.active-filter {
+            background: #9b0d31;
+            color: white;
+        }
+
+        .tag-item.active-filter .tag-count {
+            background: white;
+            color: #9b0d31;
+        }
+
+        .paper-tags {
+            display: inline;
+        }
+
+        .paper-tag {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 4px;
+            background: rgba(155, 13, 49, 0.1);
+            color: #9b0d31;
+            font-size: 0.85em;
+            margin-right: 4px;
+        }
+
+        .stat-card {
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .stat-card.active-filter {
+            background: #9b0d31;
+        }
+
+        .stat-card.active-filter .stat-number {
+            color: #fff;
+        }
+
+        .stat-card.active-filter .stat-label {
+            color: #fff;
+        }
     </style>
   </head>
 <body>
     <header>
-      <h1><a href="index.html"><span class="name-color"><img id="tan_logo" src="./img/tan.jpg" alt="Lizhuang Tan">Lizhuang Tan (谭立状)</span></a></h1>
-      <nav>
+        <h1><a href="index.html"><span class="name-color"><img id="tan_logo" src="./img/tan.jpg" alt="Lizhuang Tan">Lizhuang Tan (谭立状)</span></a></h1>
+        <nav>
             <a href="index.html">Home</a>
             <a href="cv.html">CV</a>
             <a href="teaching.html">Teaching</a>
@@ -219,418 +210,417 @@
     </header>
 
     <div class="container">
-      <!-- 统计卡片部分 -->
-      <div class="stats-overview">
-        <div class="stat-card">
-            <div class="stat-number" id="total-papers">0</div>
-            <div class="stat-label">Total Papers</div>
+        <div class="stats-overview">
+            <div class="stat-card">
+                <div class="stat-number" id="total-papers">0</div>
+                <div class="stat-label">Total Papers</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number" id="journal-papers">0</div>
+                <div class="stat-label">Journal</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number" id="conference-papers">0</div>
+                <div class="stat-label">Conference</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number" id="total-books">0</div>
+                <div class="stat-label">Books</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number" id="total-awards">0</div>
+                <div class="stat-label">Awards</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">500+</div>
+                <div class="stat-label">Citations</div>
+            </div>
         </div>
-        <div class="stat-card">
-            <div class="stat-number" id="journal-papers">0</div>
-            <div class="stat-label">Journal</div>
-        </div>
-        <div class="stat-card">
-            <div class="stat-number" id="conference-papers">0</div>
-            <div class="stat-label">Conference</div>
-        </div>
-        <div class="stat-card">
-            <div class="stat-number" id="total-books">0</div>
-            <div class="stat-label">Books</div>
-        </div>
-        <div class="stat-card">
-            <div class="stat-number" id="total-awards">0</div>
-            <div class="stat-label">Awards</div>
-        </div>
-        <div class="stat-card">
-          <div class="stat-number">500+</div>
-          <div class="stat-label">Citations</div>
-      </div>
-      </div>
 
-      <div class="tag-overview">
-        <div class="tag-title">Research Direction</div>
-        <div class="tag-list" id="tag-list"></div>
+        <div class="tag-overview">
+            <div class="tag-title">Research Direction</div>
+            <div class="tag-list" id="tag-list"></div>
+        </div>
+
+        <h3><span class="color-bar"></span>Journal Papers</h3>
+        <div class="paper-card">
+            <ol style="margin: 0; padding-left: 35px;">
+                
+                <li><p>
+                    <span class="paper-title"><b>SDNIE: A Software-Defined Approach to High-Performance Network Impairment Emulation using Programmable Switches</b></span>
+                    <span class="paper-tags">
+                        <span class="paper-tag">Network Emulation</span>
+                    </span>
+                    <a href="papers/2026-论文-TNSM.pdf" class="pdf-link"><i class="fas fa-file-pdf"></i></a><br>
+                    <span class="paper-authors">Lizhuang Tan, Nguyen Van Tu, Xinhang Wang, Peiying Zhang, James Won-Ki Hong</span><br>
+                    <span class="paper-location"><i>IEEE Transactions on Network and Service Management, 2026</i></span>
+                </p></li>
+                <li><p>
+                    <span class="paper-title"><b>S2EDL: Selective Semantic Efficient Distillation Learning for Large-Scale Remote Sensing Representation</b></span>
+                    <span class="paper-tags">
+                        <span class="paper-tag">Algorithm</span>
+                    </span>
+                    <a href="https://ieeexplore.ieee.org/abstract/document/11314685/" class="pdf-link"><i class="fas fa-file-pdf"></i></a><br>
+                    <span class="paper-authors">Wu Wen, Jinghui Luo, Lizhuang Tan*, Konstantin Igorevich Kostromiti, Jian Wang, Peiying Zhang</span><br>
+                    <span class="paper-location"><i>IEEE Journal of Selected Topics in Applied Earth Observations and Remote Sensing, 2026</i></span>
+                </p></li>
+                <li><p>
+                    <span class="paper-title"><b>Genetically-Modified Multi-Population Particle Swarm Optimization for Workflow Scheduling in Cloud Environment</b></span>
+                    <span class="paper-tags">
+                        <span class="paper-tag">Algorithm</span>
+                    </span>
+                    <a href="papers/2025-论文-SWEVO.pdf" class="pdf-link"><i class="fas fa-file-pdf"></i></a><br>
+                    <span class="paper-authors">Peiying Zhang, Jingfei Gao, Lizhuang Tan*, Kai Liu, Konstantin Igorevich Kostromitin, Neeraj Kumar</span><br>
+                    <span class="paper-location"><i>Swarm and Evolutionary Computation, 2025</i></span>
+                </p></li>
+                <li><p>
+                    <span class="paper-title"><b>Enhancing QUIC Performance in Heterogeneous Networks: A Proactive Connection Migration Approach</b></span>
+                    <span class="paper-tags">
+                        <span class="paper-tag">QUIC</span>
+                    </span>
+                    <a href="papers/2025-论文-IJNM.pdf" class="pdf-link"><i class="fas fa-file-pdf"></i></a>
+                    <a target="_blank" rel="noopener" href="https://github.com/lzhtan/PCM_for_QUIC"><i class="fab fa-github"></i></a>
+                    <a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1eaRhY9E4R/"><i class="fas fa-video"></i></a><br>
+                    <span class="paper-authors">Lizhuang Tan*, Xin Dong, Xiaochuan Gao, Peiying Zhang, Wei Su, James Won-Ki Hong</span><br>
+                    <span class="paper-location"><i>International Journal of Network Management, 2025 [<b>Cover Paper</b>]</i></span>
+                </p></li>
+                <li><p>
+                    <span class="paper-title"><b>MRLATO: An Adaptive Task Offloading Mechanism Based on Meta Reinforcement Learning in Edge Computing Environment</b></span>
+                    <span class="paper-tags">
+                        <span class="paper-tag">Network Management</span>
+                    </span>
+                    <a href="papers/2025-论文-TVT.pdf" class="pdf-link"><i class="fas fa-file-pdf"></i></a><br>
+                    <span class="paper-authors">Peiying Zhang, Jiamin Liu, Maher Guizani, Jian Wang, Neeraj Kumar, Lizhuang Tan*</span><br>
+                    <span class="paper-location"><i>IEEE Transactions on Vehicular Technology, 2025</i></span>
+                </p></li>
+                <li><p>
+                    <span class="paper-title"><b>In-situ data scheduling optimization based on rainbow DQN for IIoT</b></span>
+                    <span class="paper-tags">
+                        <span class="paper-tag">Network Management</span>
+                    </span>
+                    <a href="https://www.sciencedirect.com/science/article/abs/pii/S0167739X25002353" class="pdf-link"><i class="fas fa-file-pdf"></i></a><br>
+                    <span class="paper-authors">Peiying Zhang, Siyi Li, Lizhuang Tan*, Kumar Neeraj, Jian Wang, Kai Liu</span><br>
+                    <span class="paper-location"><i>Future Generation Computer Systems, 2025</i></span>
+                </p></li>
+                <li><p>
+                    <span class="paper-title"><b>Energy-Efficient Tactile-driven Rule Configuration and Anomaly Detection in Industrial IoT Systems</b></span>
+                    <span class="paper-tags">
+                        <span class="paper-tag">Network Measurement</span>
+                    </span>
+                    <a href="./papers/2025-论文-IOTJ.pdf" class="pdf-link"><i class="fas fa-file-pdf"></i></a><br>
+                    <span class="paper-authors">Lizhuang Tan, Amritpal Singh, Wei Zhang, Hongjuan Pei, Peiying Zhang*, Prabhjot Kaur, Maninderpal Singh</span><br>
+                    <span class="paper-location"><i>IEEE Internet of Things Journal, 2025</i></span>
+                </p></li>
+                <li><p>
+                    <span class="paper-title"><b>ByteTuning: Watermark Tuning for RoCEv2</b></span>
+                    <span class="paper-tags">
+                        <span class="paper-tag">RDMA</span>
+                    </span>
+                    <a href="./papers/2025-论文-TCC.pdf" class="pdf-link"><i class="fas fa-file-pdf"></i></a>
+                    <a target="_blank" rel="noopener" href="https://github.com/lzhtan/ByteTuning"><i class="fab fa-github"></i></a>
+                    <a target="_blank" rel="noopener" href="https://github.com/lzhtan/Fluid-Model-for-DCQCN-ECN-PFC"><i class="fab fa-github"></i></a><br>
+                    <span class="paper-authors">Lizhuang Tan, Zhuo Jiang*, Kefei Liu, Haoran Wei, Pengfei Huo, Huiling Shi, Wei Zhang, Wei Su*</span><br>
+                    <span class="paper-location"><i>IEEE Transactions on Cloud Computing, 2025</i></span>
+                </p></li>
+                <li><p>
+                    <span class="paper-title"><b>A Distributed Load Balancing Architecture based on In-band Network Telemetry</b></span>
+                    <span class="paper-tags">
+                        <span class="paper-tag">Network Telemetry</span>
+                    </span>
+                    <a href="./papers/2024-论文-ITL.pdf" class="pdf-link"><i class="fas fa-file-pdf"></i></a><br>
+                    <span class="paper-authors">Mingfa Li, Huiling Shi*, Lizhuang Tan*, Wei Zhang</span><br>
+                    <span class="paper-location"><i>Internet Technology Letters, 2024</i></span>
+                </p></li>
+                <li><p>
+                    <span class="paper-title"><b>Energy Efficient Resource Allocation based on Virtual Network Embedding for IoT Data Generation</b></span>
+                    <span class="paper-tags">
+                        <span class="paper-tag">Network Management</span>
+                    </span>
+                    <a href="./papers/2024-论文-ASE.pdf" class="pdf-link"><i class="fas fa-file-pdf"></i></a><br>
+                    <span class="paper-authors">Lizhuang Tan, Amjad Aldweesh, Ning Chen*, Jian Wang, Jianyong Zhang*, Yi Zhang, Kostromitin Konstantin Igorevich, Peiying Zhang</span><br>
+                    <span class="paper-location"><i>Automated Software Engineering, 2024</i></span>
+                </p></li>
+                <li><p>
+                    <span class="paper-title"><b>Multi-objective Optimization Of SFC Deployment Using Service Aggregation and Computing Offload</b></span>
+                    <span class="paper-tags">
+                        <span class="paper-tag">Network Management</span>
+                    </span>
+                    <a href="./papers/2024-论文-COMCOM.pdf" class="pdf-link"><i class="fas fa-file-pdf"></i></a><br>
+                    <span class="paper-authors">Junbi Xiao, Jiaqi Zheng, Wu Wen, Mohsen Guizani, Peiying Zhang, Lizhuang Tan*</span><br>
+                    <span class="paper-location"><i>Computer Communications, 2024</i></span>
+                </p></li>
+                <li><p>
+                    <span class="paper-title"><b>Security Analysis and Monitoring Assessment of Networked Printers: A Report</b></span>
+                    <span class="paper-tags">
+                        <span class="paper-tag">Network Measurement</span>
+                    </span>
+                    <a href="./papers/2024-论文-ELL.pdf" class="pdf-link"><i class="fas fa-file-pdf"></i></a>
+                    <a href="./files/Dataset/Knowledge base for networked printer.xlsx" class="pdf-link"><i class="fas fa-file-pdf"></i></a><br>
+                    <span class="paper-authors">Quanbo Pan, Shengbao Li, Na Li, Peiying Zhang, Lizhuang Tan*</span><br>
+                    <span class="paper-location"><i>IET Electronics Letters, 2024</i></span>
+                </p></li>
+                <li><p>
+                    <span class="paper-title"><b>A Packet Loss Monitoring System for In-Band Network Telemetry: Detection, Localization, Diagnosis and Recovery</b></span>
+                    <span class="paper-tags">
+                        <span class="paper-tag">Network Telemetry</span>
+                    </span>
+                    <a href="./papers/2021-论文-TNSM.pdf" class="pdf-link"><i class="fas fa-file-pdf"></i></a>
+                    <a href="https://github.com/lzhtan/LossSight" target="_blank" rel="noopener"><i class="fab fa-github"></i></a>
+                    <a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1CV411j7AX"><i class="fas fa-video"></i></a><br>
+                    <span class="paper-authors">Lizhuang Tan, Wei Su*, Wei Zhang, Huiling Shi, Jingying Miao, Pilar Manzanares-Lopez</span><br>
+                    <span class="paper-location"><i>IEEE Transactions on Network and Service Management, 2021</i></span>
+                </p></li>
+                <li><p>
+                    <span class="paper-title"><b>FindINT: Detect and Locate the Lost In-Band Network Telemetry Packet</b></span>
+                    <span class="paper-tags">
+                        <span class="paper-tag">Network Telemetry</span>
+                    </span>
+                    <a href="./papers/2021-论文-NETLETT.pdf" class="pdf-link"><i class="fas fa-file-pdf"></i></a>
+                    <a href="https://github.com/lzhtan/FindINT" target="_blank" rel="noopener"><i class="fab fa-github"></i></a>
+                    <a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1yv411t7G1"><i class="fas fa-video"></i></a><br>
+                    <span class="paper-authors">Lizhuang Tan, Wei Su*, Jingying Miao, Wei Zhang</span><br>
+                    <span class="paper-location"><i>IEEE Networking Letters, 2021</i></span>
+                </p></li>
+                <li><p>
+                    <span class="paper-title"><b>In-band Network Telemetry: A Survey</b></span>
+                    <span class="paper-tags">
+                        <span class="paper-tag">Network Telemetry</span>
+                    </span>
+                    <a href="./papers/2021-论文-COMNET.pdf" class="pdf-link"><i class="fas fa-file-pdf"></i></a>
+                    <a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV14Z4y1H7N2"><i class="fas fa-video"></i></a><br>
+                    <span class="paper-authors">Lizhuang Tan, Wei Su*, Wei Zhang, Jianhui Lv, Zhenyi Zhang, Jingying Miao, Xiaoxi Liu, Na Li</span><br>
+                    <span class="paper-location"><i>Computer Networks, 2021</i></span>
+                </p></li>
+                <li><p>
+                    <span class="paper-title"><b>Path-Flow Matching: Two-Sided Matching and Multiobjective Evolutionary Algorithm for Traffic Scheduling in Cloud Data Center Network</b></span>
+                    <span class="paper-tags">
+                        <span class="paper-tag">Network Management</span>
+                    </span>
+                    <a href="./papers/2019-论文-ETT.pdf" class="pdf-link"><i class="fas fa-file-pdf"></i></a>
+                    <a target="_blank" rel="noopener" href="https://github.com/lzhtan/FlowSampling"><i class="fab fa-github"></i></a></br>
+                    <span class="paper-authors">Lizhuang Tan*, Wei Su, Shuai Gao, Jingying Miao, Yuan Cheng, Peng Cheng</span><br>
+                    <span class="paper-location"><i>Transactions on Emerging Telecommunications Technologies, 2019 [<b>Cover Paper</b>]</i></span>
+                </p></li>
+            </ol>
+        </div>
+
+        <h3><span class="color-bar"></span>Conference Papers</h3>
+        <div class="paper-card">
+            <ol style="margin: 0; padding-left: 35px;">
+                <li><p>
+                    <span class="paper-title"><b>AoI is Incomplete: Age of Semantics (AoS)-driven Adaptive Frame/Segment Control for Machine-centric Streaming Transmission</b></span>
+                    <span class="paper-tags">
+                        <span class="paper-tag">Network Management</span>
+                    </span>
+                    <a href="./papers/2026-论文-IWCMC.pdf" class="pdf-link"><i class="fas fa-file-pdf"></i></a><br>
+                    <span class="paper-authors">Ruichao Zhang, Lizhuang Tan, Maher Guizani, Wei Zhang, Hongxia Zhang, Peiying Zhang</span><br>
+                    <span class="paper-location"><i>IWCMC'26</i></span>
+                </p></li>
+                <li><p>
+                    <span class="paper-title"><b>Collaborative Operator Selection for Multi-Objective Optimization via Large Language Models and Deep Reinforcement Learning</b></span>
+                    <span class="paper-tags">
+                        <span class="paper-tag">Algorithm</span>
+                    </span>
+                    <a href="papers/2025-论文-NTCI.pdf" class="pdf-link"><i class="fas fa-file-pdf"></i></a><br>
+                    <span class="paper-authors">Yanyan Tan, Wei Zhang, Lizhuang Tan, Wei Zhang, Peiying Zhang, Jiande Sun</span><br>
+                    <span class="paper-location"><i>NTCI'25 [<b>Best Paper Award</b>]</i></span>
+                </p></li>
+                <li><p>
+                    <span class="paper-title"><b>O2R: Performance-conscious FPGA Comparator Allocation for Online/Offline Reordering of In-Band Network Telemetry</b></span>
+                    <span class="paper-tags">
+                        <span class="paper-tag">FPGA</span>
+                    </span>
+                    <a href="papers/2025-论文-INCAS.pdf" class="pdf-link"><i class="fas fa-file-pdf"></i></a><br>
+                    <span class="paper-authors">Lizhuang Tan, Zongrui Sui, Peiying Zhang, James Won-ki Hong</span><br>
+                    <span class="paper-location"><i>CoNEXT'25 INCAS</i></span>
+                </p></li>
+                <li><p>
+                    <span class="paper-title"><b>FPGA Network Function Acceleration: A Space Division Multiplexing Approach</b></span>
+                    <span class="paper-tags">
+                        <span class="paper-tag">FPGA</span>
+                    </span>
+                    <a href="papers/2025-论文-APNOMS-DONG.pdf" class="pdf-link"><i class="fas fa-file-pdf"></i></a><br>
+                    <span class="paper-authors">Xin Dong, Lizhuang Tan, Huiling Shi, Wei Zhang, Peiying Zhang</span><br>
+                    <span class="paper-location"><i>APNOMS'25</i></span>
+                </p></li>
+                <li><p>
+                    <span class="paper-title"><b>In-Order INT: Efficient Reordering of Out-of-Order In-Band Network Telemetry Packets via CPU-FPGA Co-Design</b></span>
+                    <span class="paper-tags">
+                        <span class="paper-tag">Network Telemetry</span>
+                        <span class="paper-tag">FPGA</span>
+                    </span>
+                    <a href="papers/2025-论文-APNOMS-SUI.pdf" class="pdf-link"><i class="fas fa-file-pdf"></i></a><br>
+                    <span class="paper-authors">Zongrui Sui, Lizhuang Tan, Huiling Shi, Wei Zhang, Peiying Zhang</span><br>
+                    <span class="paper-location"><i>APNOMS'25</i></span>
+                </p></li>
+                <li><p>
+                    <span class="paper-title"><b>IntDB: Towards a Spatiotemporal Database for In-Band Network Telemetry</b></span>
+                    <span class="paper-tags">
+                        <span class="paper-tag">Network Telemetry</span>
+                    </span>
+                    <a href="papers/2025-论文-APNOMS-TAN.pdf" class="pdf-link"><i class="fas fa-file-pdf"></i></a>
+                    <a href="https://github.com/lzhtan/Intdb" target="_blank" rel="noopener"><i class="fab fa-github"></i></a>
+                    <a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1PpT2zzELD/"><i class="fas fa-video"></i></a><br>
+                    <span class="paper-authors">Lizhuang Tan, Xin Dong, Tu Van Nguyen, James Won-Ki Hong</span><br>
+                    <span class="paper-location"><i>APNOMS'25 [<b>Best Paper Award Candidate</b>]</i></span>
+                </p></li>
+                <li><p>
+                    <span class="paper-title"><b>CFcoQUIC: CPU/FPGA Co-design Accelerated QUIC for Low-Power IoT Communication</b></span>
+                    <span class="paper-tags">
+                        <span class="paper-tag">QUIC</span>
+                    </span>
+                    <a href="" class="pdf-link"><i class="fas fa-file-pdf"></i></a><br>
+                    <span class="paper-authors">Xin Dong, Lizhuang Tan, Huiling Shi, Wei Zhang, Peiying Zhang</span><br>
+                    <span class="paper-location"><i>ICCCN'25</i></span>
+                </p></li>
+                <li><p>
+                    <span class="paper-title"><b>CombNE: A Combined Network Emulator Based on Programmable Switch</b></span>
+                    <span class="paper-tags">
+                        <span class="paper-tag">Network Emulation</span>
+                    </span>
+                    <a href="./papers/2024-论文-HPCC.pdf" class="pdf-link"><i class="fas fa-file-pdf"></i></a><br>
+                    <span class="paper-authors">Xinhang Wang, Lizhuang Tan, Huiling Shi, Wei Zhang</span><br>
+                    <span class="paper-location"><i>HPCC'24</i></span>
+                </p></li>
+                <li><p>
+                    <span class="paper-title"><b>Hostping: Diagnosing Intra-host Performance Bottlenecks in RDMA Servers</b></span>
+                    <span class="paper-tags">
+                        <span class="paper-tag">RDMA</span>
+                    </span>
+                    <a href="./papers/2024-论文-NSDI.pdf" class="pdf-link"><i class="fas fa-file-pdf"></i></a><br>
+                    <span class="paper-authors">Kefei Liu, Zhuo Jiang, Jiao Zhang, Haoran Wei, Xiaolong Zhong, Lizhuang Tan, Tian Pan, Tao Huang</span><br>
+                    <span class="paper-location"><i>NSDI'23</i></span>
+                </p></li>
+                <li><p>
+                    <span class="paper-title"><b>In-band Network Telemetry Task Orchestration based on Multi-objective Optimization</b></span>
+                    <span class="paper-tags">
+                        <span class="paper-tag">Network Telemetry</span>
+                    </span>
+                    <a href="./papers/2021-论文-APNOMS.pdf" class="pdf-link"><i class="fas fa-file-pdf"></i></a><br>
+                    <span class="paper-authors">Zhenyi Zhang, Wei Su, Lizhuang Tan</span><br>
+                    <span class="paper-location"><i>APNOMS'21</i></span>
+                </p></li>
+                <li><p>
+                    <span class="paper-title"><b>Tetris: Near-optimal Scheduling for Multi-path Deadline-aware Transport Protocol</b></span>
+                    <span class="paper-tags">
+                        <span class="paper-tag">QUIC</span>
+                    </span>
+                    <a href="./papers/2021-论文-NaNA.pdf" class="pdf-link"><i class="fas fa-file-pdf"></i></a><br>
+                    <span class="paper-authors">Yanwen Liu, Wei Su, Lizhuang Tan</span><br>
+                    <span class="paper-location"><i>NaNA'21 [<b>Best Paper Award</b>]</i></span>
+                </p></li>
+                <li><p>
+                    <span class="paper-title"><b>DCQUIC: Flexible and Reliable Software-defined Data Center Transport</b></span>
+                    <span class="paper-tags">
+                        <span class="paper-tag">QUIC</span>
+                    </span>
+                    <a href="./papers/2021-论文-INFOCOM.pdf" class="pdf-link"><i class="fas fa-file-pdf"></i></a><br>
+                    <span class="paper-authors">Lizhuang Tan, Wei Su, Yanwen Liu, Xiaochuan Gao, Wei Zhang</span><br>
+                    <span class="paper-location"><i>INFOCOM'21 ICCN Workshop</i></span>
+                </p></li>
+                <li><p>
+                    <span class="paper-title"><b>Proactive Connection Migration in QUIC</b></span>
+                    <span class="paper-tags">
+                        <span class="paper-tag">QUIC</span>
+                    </span>
+                    <a href="./papers/2020-论文-MobiQuitous.pdf" class="pdf-link"><i class="fas fa-file-pdf"></i></a>
+                    <a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1ZA411J7Lv/"><i class="fas fa-video"></i></a><br>
+                    <span class="paper-authors">Lizhuang Tan, Wei Su, Xiaochuan Gao, Yanwen Liu, Na Li, Wei Zhang</span><br>
+                    <span class="paper-location"><i>MobiQuitous'20</i></span>
+                </p></li>
+                <li><p>
+                    <span class="paper-title"><b>OpenQUIC: Software-defined Transmission like Building Blocks</b></span>
+                    <span class="paper-tags">
+                        <span class="paper-tag">QUIC</span>
+                    </span>
+                    <a href="./papers/2020-论文-CoNEXT.pdf" class="pdf-link"><i class="fas fa-file-pdf"></i></a>
+                    <a href="https://github.com/lzhtan/OpenQUIC" target="_blank" rel="noopener"><i class="fab fa-github"></i></a><br>
+                    <span class="paper-authors">Lizhuang Tan, Wei Su, Xiaochuan Gao, Wei Zhang</span><br>
+                    <span class="paper-location"><i>CoNEXT'20 Poster</i></span>
+                </p></li>
+                <li><p>
+                    <span class="paper-title"><b>Genetic Algorithms Based on Clustering for Traveling Salesman Problems</b></span>
+                    <span class="paper-tags">
+                        <span class="paper-tag">Algorithm</span>
+                    </span>
+                    <a href="./papers/2016-论文-ICNC.pdf" class="pdf-link"><i class="fas fa-file-pdf"></i></a>
+                    <a href="https://github.com/lzhtan/k-means-GA-for-TSP" target="_blank" rel="noopener"><i class="fab fa-github"></i></a><br>
+                    <span class="paper-authors">Lizhuang Tan, Yanyan Tan, Guoxiao Yun, Yanna Wu</span><br>
+                    <span class="paper-location"><i>ICNC-FSKD'16</i></span>
+                </p></li>
+            </ol>
+        </div>
+
+        <h3><span class="color-bar"></span>Books</h3>
+        <div class="paper-card">
+            <ol style="margin: 0; padding-left: 35px;">
+                <li><p>
+                    <span class="paper-title"><b>Network Operating System SONiC: Principles, Technologies and Practices</b></span>
+                    <span class="paper-tags">
+                        <span class="paper-tag">SONiC</span>
+                    </span>
+                    <a href="./papers/2024-专著-SONIC.pdf" class="pdf-link"><i class="fas fa-file-pdf"></i></a><br>
+                    <span class="paper-authors">Wei Zhang, Huiling Shi, Lizhuang Tan, Xunliang Wu</span><br>
+                    <span class="paper-location"><i>Posts & Telecom Press, 2024</i></span>
+                </p></li>
+            </ol>
+        </div>
+
+        <h3><span class="color-bar"></span>Awards</h3>
+        <div class="paper-card">
+            <ol style="margin: 0; padding-left: 35px;">
+                <li><p>
+                    <span class="paper-title"><b>Collaborative Operator Selection for Multi-Objective Optimization via Large Language Models and Deep Reinforcement Learning</b></span>
+                    <span class="paper-tags">
+                        <span class="paper-tag">Algorithm</span>
+                    </span>
+                    <span class="paper-authors">Yanyan Tan, Wei Zhang, Lizhuang Tan, Wei Zhang, Peiying Zhang, Jiande Sun</span><br>
+                    <span class="paper-location"><i>Best Paper Award of NTCI Conference, 2025</i></span>
+                </p></li>
+                <li><p>
+                    <span class="paper-title"><b>IntDB: Towards a Spatiotemporal Database for In-Band Network Telemetry</b></span>
+                    <span class="paper-tags">
+                        <span class="paper-tag">Network Telemetry</span>
+                    </span>
+                    <span class="paper-authors">Lizhuang Tan, Xin Dong, Tu Van Nguyen, James Won-Ki Hong</span><br>
+                    <span class="paper-location"><i>Best Paper Award Candidate of APNOMS Conference, 2025</i></span>
+                </p></li>
+                <li><p>
+                    <span class="paper-title"><b>A Distributed Load Balancing Architecture based on In-band Network Telemetry</b></span>
+                    <span class="paper-tags">
+                        <span class="paper-tag">Network Telemetry</span>
+                    </span>
+                    <a href="./files/Wiley威立中国高贡献作者奖 (2024年第四季度).png" class="pdf-link"><i class="fas fa-file-pdf"></i></a><br>
+                    <span class="paper-authors">Mingfa Li, Huiling Shi, Lizhuang Tan, Wei Zhang</span><br>
+                    <span class="paper-location"><i>Wiley China Excellent Author Program (4th Quarter, 2024), 2024</i></span>
+                </p></li>
+                <li><p>
+                    <span class="paper-title"><b>Network Telemetry Progress Research</b></span>
+                    <span class="paper-tags">
+                        <span class="paper-tag">Network Telemetry</span>
+                    </span>
+                    <a href="./photos/20231101.jpg" class="pdf-link"><i class="fas fa-file-pdf"></i></a><br>
+                    <span class="paper-authors">Na Li, Kuchao Zhang, Lizhuang Tan, Fanrui Meng</span><br>
+                    <span class="paper-location"><i>Second Prize of Jinan Internet Information Security Basic Theory Research and Technological Innovation Application, 2023</i></span>
+                </p></li>
+                <li><p>
+                    <span class="paper-title"><b>Tetris: Near-optimal Scheduling for Multi-path Deadline-aware Transport Protocol</b></span>
+                    <span class="paper-tags">
+                        <span class="paper-tag">QUIC</span>
+                    </span>
+                    <a href="./papers/2021-论文-NaNA.pdf" class="pdf-link"><i class="fas fa-file-pdf"></i></a><br>
+                    <span class="paper-authors">Yanwen Liu, Wei Su, Lizhuang Tan</span><br>
+                    <span class="paper-location"><i>Best Paper Award of NaNA Conference, 2021</i></span>
+                </p></li>
+            </ol>
+        </div>
+
+        </br>* All documents on this webpage are pre-submission versions and not the official versions. They are provided for personal use only. The copyright of the official versions belongs to the respective organizations and individuals. Reproduction without permission is prohibited.
+
     </div>
-      <h3><span class="color-bar"></span>Journal Papers</h3>
-      <div class="paper-card">
-        <ol style="margin: 0; padding-left: 35px;">
-          
-          <li><p>
-                <span class="paper-title"><b>S2EDL: Selective Semantic Efficient Distillation Learning for Large-Scale Remote Sensing Representation</b></span>
-                <span class="paper-tags">
-                  <span class="paper-tag">Algorithm</span>
-                </span>
-                <a href="https://ieeexplore.ieee.org/abstract/document/11314685/" class="pdf-link"><i class="fas fa-file-pdf"></i></a><br>
-                <span class="paper-authors">Wu Wen, Jinghui Luo, Lizhuang Tan*, Konstantin Igorevich Kostromiti, Jian Wang, Peiying Zhang</span><br>
-                <span class="paper-location"><i>IEEE Journal of Selected Topics in Applied Earth Observations and Remote Sensing, 2026</i></span>   
-              </p></li>
-              <li><p>
-                <span class="paper-title"><b>Genetically-Modified Multi-Population Particle Swarm Optimization for Workflow Scheduling in Cloud Environment</b></span>
-                <span class="paper-tags">
-                  <span class="paper-tag">Algorithm</span>
-                </span>
-                <a href="papers/2025-论文-SWEVO.pdf" class="pdf-link"><i class="fas fa-file-pdf"></i></a><br>
-                <span class="paper-authors">Peiying Zhang, Jingfei Gao, Lizhuang Tan*, Kai Liu, Konstantin Igorevich Kostromitin, Neeraj Kumar</span><br>
-                <span class="paper-location"><i>Swarm and Evolutionary Computation, 2025</i></span>   
-              </p></li>
-            <li><p>
-                <span class="paper-title"><b>Enhancing QUIC Performance in Heterogeneous Networks: A Proactive Connection Migration Approach</b></span>
-                <span class="paper-tags">
-                  <span class="paper-tag">QUIC</span>
-                </span>
-                <a href="papers/2025-论文-IJNM.pdf" class="pdf-link"><i class="fas fa-file-pdf"></i></a>
-                <a target="_blank" rel="noopener" href="https://github.com/lzhtan/PCM_for_QUIC"><i class="fab fa-github"></i></a>
-                <a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1eaRhY9E4R/"><i class="fas fa-video"></i></a><br>
-                <span class="paper-authors">Lizhuang Tan*, Xin Dong, Xiaochuan Gao, Peiying Zhang, Wei Su, James Won-Ki Hong</span><br>
-                <span class="paper-location"><i>International Journal of Network Management, 2025 [<b>Cover Paper</b>]</i></span>   
-            </p></li>
-            <li><p>
-            <span class="paper-title"><b>MRLATO: An Adaptive Task Offloading Mechanism Based on Meta Reinforcement Learning in Edge Computing Environment</b></span>
-            <span class="paper-tags">
-              <span class="paper-tag">Network Management</span>
-              </span>
-              <a href="papers/2025-论文-TVT.pdf" class="pdf-link"><i class="fas fa-file-pdf"></i></a><br>
-              <span class="paper-authors">Peiying Zhang, Jiamin Liu, Maher Guizani, Jian Wang, Neeraj Kumar, Lizhuang Tan*</span><br>
-              <span class="paper-location"><i>IEEE Transactions on Vehicular Technology, 2025</i></span>    
-            </p></li>
-            <li><p>
-                <span class="paper-title"><b>In-situ data scheduling optimization based on rainbow DQN for IIoT</b></span>
-                <span class="paper-tags">
-                  <span class="paper-tag">Network Management</span>
-                </span>
-                <a href="https://www.sciencedirect.com/science/article/abs/pii/S0167739X25002353" class="pdf-link"><i class="fas fa-file-pdf"></i></a><br>
-                <span class="paper-authors">Peiying Zhang, Siyi Li, Lizhuang Tan*, Kumar Neeraj, Jian Wang, Kai Liu</span><br>
-                <span class="paper-location"><i>Future Generation Computer Systems, 2025</i></span>    
-          </p></li>
-          <li><p>
-            <span class="paper-title"><b>Energy-Efficient Tactile-driven Rule Configuration and Anomaly Detection in Industrial IoT Systems</b></span>
-            <span class="paper-tags">
-              <span class="paper-tag">Network Measurement</span>
-            </span>
-            <a href="./papers/2025-论文-IOTJ.pdf" class="pdf-link"><i class="fas fa-file-pdf"></i></a><br>
-            <span class="paper-authors">Lizhuang Tan, Amritpal Singh, Wei Zhang, Hongjuan Pei, Peiying Zhang*, Prabhjot Kaur, Maninderpal Singh</span><br>
-            <span class="paper-location"><i>IEEE Internet of Things Journal, 2025</i></span>    
-          </p></li>
-          <li><p>
-              <span class="paper-title"><b>ByteTuning: Watermark Tuning for RoCEv2</b></span>
-              <span class="paper-tags">
-              <span class="paper-tag">RDMA</span>
-              </span>
-              <a href="./papers/2025-论文-TCC.pdf" class="pdf-link"><i class="fas fa-file-pdf"></i></a>
-              <a target="_blank" rel="noopener" href="https://github.com/lzhtan/ByteTuning"><i class="fab fa-github"></i></a>
-              <a target="_blank" rel="noopener" href="https://github.com/lzhtan/Fluid-Model-for-DCQCN-ECN-PFC"><i class="fab fa-github"></i></a><br>
-              <span class="paper-authors">Lizhuang Tan, Zhuo Jiang*, Kefei Liu, Haoran Wei, Pengfei Huo, Huiling Shi, Wei Zhang, Wei Su*</span><br>
-              <span class="paper-location"><i>IEEE Transactions on Cloud Computing, 2025</i></span>    
-            </p></li>
-
-            <li><p>
-              <span class="paper-title"><b>A Distributed Load Balancing Architecture based on In-band Network Telemetry</b></span>
-              <span class="paper-tags">
-              <span class="paper-tag">Network Telemetry</span>
-              </span>
-              <a href="./papers/2024-论文-ITL.pdf" class="pdf-link"><i class="fas fa-file-pdf"></i></a><br>
-              <span class="paper-authors">Mingfa Li, Huiling Shi*, Lizhuang Tan*, Wei Zhang</span><br>
-              <span class="paper-location"><i>Internet Technology Letters, 2024</i></span>    
-            </p></li>
-
-            <li><p>
-              <span class="paper-title"><b>Energy Efficient Resource Allocation based on Virtual Network Embedding for IoT Data Generation</b></span>
-              <span class="paper-tags">
-              <span class="paper-tag">Network Management</span>
-              </span><a href="./papers/2024-论文-ASE.pdf" class="pdf-link"><i class="fas fa-file-pdf"></i></a><br>
-              <span class="paper-authors">Lizhuang Tan, Amjad Aldweesh, Ning Chen*, Jian Wang, Jianyong Zhang*, Yi Zhang, Kostromitin Konstantin Igorevich, Peiying Zhang</span><br>
-              <span class="paper-location"><i>Automated Software Engineering, 2024</i></span>    
-            </p></li>
-            <li><p>
-              <span class="paper-title"><b>Multi-objective Optimization Of SFC Deployment Using Service Aggregation and Computing Offload</b></span>
-              <span class="paper-tags">
-              <span class="paper-tag">Network Management</span>
-              </span>
-              <a href="./papers/2024-论文-COMCOM.pdf" class="pdf-link"><i class="fas fa-file-pdf"></i></a><br>
-              <span class="paper-authors">Junbi Xiao, Jiaqi Zheng, Wu Wen, Mohsen Guizani, Peiying Zhang, Lizhuang Tan*</span><br>
-              <span class="paper-location"><i>Computer Communications, 2024</i></span>    
-            </p></li>
-
-            <li><p>
-              <span class="paper-title"><b>Security Analysis and Monitoring Assessment of Networked Printers: A Report</b></span>
-              <span class="paper-tags">
-              <span class="paper-tag">Network Measurement</span>
-              </span>
-              <a href="./papers/2024-论文-ELL.pdf" class="pdf-link"><i class="fas fa-file-pdf"></i></a>
-              <a href="./files/Dataset/Knowledge base for networked printer.xlsx" class="pdf-link"><i class="fas fa-file-pdf"></i></a><br>
-              <span class="paper-authors">Quanbo Pan, Shengbao Li, Na Li, Peiying Zhang, Lizhuang Tan*</span><br>
-              <span class="paper-location"><i>IET Electronics Letters, 2024</i></span>    
-            </p></li>
-
-            <li><p>
-              <span class="paper-title"><b>A Packet Loss Monitoring System for In-Band Network Telemetry: Detection, Localization, Diagnosis and Recovery</b></span>
-              <span class="paper-tags">
-              <span class="paper-tag">Network Telemetry</span>
-              </span><a href="./papers/2021-论文-TNSM.pdf" class="pdf-link"><i class="fas fa-file-pdf"></i></a>
-              <a href="https://github.com/lzhtan/LossSight" target="_blank" rel="noopener"><i class="fab fa-github"></i></a>
-              <a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1CV411j7AX"><i class="fas fa-video"></i></a><br>                
-              <span class="paper-authors">Lizhuang Tan, Wei Su*, Wei Zhang, Huiling Shi, Jingying Miao, Pilar Manzanares-Lopez</span><br>
-              <span class="paper-location"><i>IEEE Transactions on Network and Service Management, 2021</i></span>    
-            </p></li>
-
-            <li><p>
-              <span class="paper-title"><b>FindINT: Detect and Locate the Lost In-Band Network Telemetry Packet</b></span>
-              <span class="paper-tags">
-              <span class="paper-tag">Network Telemetry</span>
-              </span>
-              <a href="./papers/2021-论文-NETLETT.pdf" class="pdf-link"><i class="fas fa-file-pdf"></i></a>
-              <a href="https://github.com/lzhtan/FindINT" target="_blank" rel="noopener"><i class="fab fa-github"></i></a>
-              <a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1yv411t7G1"><i class="fas fa-video"></i></a><br>                
-              <span class="paper-authors">Lizhuang Tan, Wei Su*, Jingying Miao, Wei Zhang</span><br>
-              <span class="paper-location"><i>IEEE Networking Letters, 2021</i></span>    
-            </p></li>
-
-            <li><p>
-              <span class="paper-title"><b>In-band Network Telemetry: A Survey</b></span>
-              <span class="paper-tags">
-              <span class="paper-tag">Network Telemetry</span>
-              </span>
-              <a href="./papers/2021-论文-COMNET.pdf" class="pdf-link"><i class="fas fa-file-pdf"></i></a>
-              <a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV14Z4y1H7N2"><i class="fas fa-video"></i></a><br>                
-              <span class="paper-authors">Lizhuang Tan, Wei Su*, Wei Zhang, Jianhui Lv, Zhenyi Zhang, Jingying Miao, Xiaoxi Liu, Na Li</span><br>
-              <span class="paper-location"><i>Computer Networks, 2021</i></span>    
-            </p></li>
-
-            <li><p>
-              <span class="paper-title"><b>Path-Flow Matching: Two-Sided Matching and Multiobjective Evolutionary Algorithm for Traffic Scheduling in Cloud Data Center Network</b></span>
-              <span class="paper-tags">
-              <span class="paper-tag">Network Management</span>
-              </span>
-              <a href="./papers/2019-论文-ETT.pdf" class="pdf-link"><i class="fas fa-file-pdf"></i></a>
-              <a target="_blank" rel="noopener" href="https://github.com/lzhtan/FlowSampling"><i class="fab fa-github"></i></a></br>
-              <span class="paper-authors">Lizhuang Tan*, Wei Su, Shuai Gao, Jingying Miao, Yuan Cheng, Peng Cheng</span><br>
-              <span class="paper-location"><i>Transactions on Emerging Telecommunications Technologies, 2019 [<b>Cover Paper</b>]</i></span>    
-            </p></li>
-          </ol>
-        </div>
-
-      <h3><span class="color-bar"></span>Conference Papers</h3>
-      <div class="paper-card">
-        <ol style="margin: 0; padding-left: 35px;">
-          <li><p>
-              <span class="paper-title"><b>AoI is Incomplete: Age of Semantics (AoS)-driven Adaptive Frame/Segment Control for Machine-centric Streaming Transmission</b></span>
-              <span class="paper-tags">
-              <span class="paper-tag">Network Management</span>
-              </span>
-              <a href="./papers/2026-论文-IWCMC.pdf" class="pdf-link"><i class="fas fa-file-pdf"></i></a><br>
-              <span class="paper-authors">Ruichao Zhang, Lizhuang Tan, Maher Guizani, Wei Zhang, Hongxia Zhang, Peiying Zhang</span><br>
-              <span class="paper-location"><i>IWCMC'26</i></span>    
-            </p></li>
-            <li><p>
-            <span class="paper-title"><b>Collaborative Operator Selection for Multi-Objective Optimization via Large Language Models and Deep Reinforcement Learning</b></span>
-            <span class="paper-tags">
-            <span class="paper-tag">Algorithm</span>
-            </span>
-            <a href="papers/2025-论文-NTCI.pdf" class="pdf-link"><i class="fas fa-file-pdf"></i></a><br>
-            <span class="paper-authors">Yanyan Tan, Wei Zhang, Lizhuang Tan, Wei Zhang, Peiying Zhang, Jiande Sun</span><br>
-            <span class="paper-location"><i>NTCI'25 [<b>Best Paper Award</b>]</i></span>    
-            </p></li>
-            <li><p>
-            <span class="paper-title"><b>O2R: Performance-conscious FPGA Comparator Allocation for Online/Offline Reordering of In-Band Network Telemetry</b></span>
-            <span class="paper-tags">
-            <span class="paper-tag">FPGA</span>
-            </span>
-            <a href="papers/2025-论文-INCAS.pdf" class="pdf-link"><i class="fas fa-file-pdf"></i></a><br>
-            <span class="paper-authors">Lizhuang Tan, Zongrui Sui, Peiying Zhang, James Won-ki Hong</span><br>
-            <span class="paper-location"><i>CoNEXT'25 INCAS</i></span>    
-          </p></li>
-          <li><p>
-            <span class="paper-title"><b>FPGA Network Function Acceleration: A Space Division Multiplexing Approach	</b></span>
-            <span class="paper-tags">
-            <span class="paper-tag">FPGA</span>
-            </span>
-            <a href="papers/2025-论文-APNOMS-DONG.pdf" class="pdf-link"><i class="fas fa-file-pdf"></i></a><br>
-            <span class="paper-authors">Xin Dong, Lizhuang Tan, Huiling Shi, Wei Zhang, Peiying Zhang</span><br>
-            <span class="paper-location"><i>APNOMS'25</i></span>    
-          </p></li>
-          <li><p>
-            <span class="paper-title"><b>In-Order INT: Efficient Reordering of Out-of-Order In-Band Network Telemetry Packets via CPU-FPGA Co-Design</b></span>
-            <span class="paper-tags">
-            <span class="paper-tag">Network Telemetry</span>
-            <span class="paper-tag">FPGA</span>
-            </span>
-            <a href="papers/2025-论文-APNOMS-SUI.pdf" class="pdf-link"><i class="fas fa-file-pdf"></i></a><br>
-            <span class="paper-authors">Zongrui Sui, Lizhuang Tan, Huiling Shi, Wei Zhang, Peiying Zhang</span><br>
-            <span class="paper-location"><i>APNOMS'25</i></span>    
-          </p></li>
-          <li><p>
-            <span class="paper-title"><b>IntDB: Towards a Spatiotemporal Database for In-Band Network Telemetry</b></span>
-            <span class="paper-tags">
-            <span class="paper-tag">Network Telemetry</span>
-            </span>
-            <a href="papers/2025-论文-APNOMS-TAN.pdf" class="pdf-link"><i class="fas fa-file-pdf"></i></a>
-            <a href="https://github.com/lzhtan/Intdb" target="_blank" rel="noopener"><i class="fab fa-github"></i></a>
-            <a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1PpT2zzELD/"><i class="fas fa-video"></i></a><br>
-            <span class="paper-authors">Lizhuang Tan, Xin Dong, Tu Van Nguyen, James Won-Ki Hong</span><br>
-            <span class="paper-location"><i>APNOMS'25 [<b>Best Paper Award Candidate</b>]</i></span>    
-          </p></li>
-          <li><p>
-            <span class="paper-title"><b>CFcoQUIC: CPU/FPGA Co-design Accelerated QUIC for Low-Power IoT Communication</b></span>
-            <span class="paper-tags">
-            <span class="paper-tag">QUIC</span>
-            </span>
-            <a href="" class="pdf-link"><i class="fas fa-file-pdf"></i></a><br>
-            <span class="paper-authors">Xin Dong, Lizhuang Tan, Huiling Shi, Wei Zhang, Peiying Zhang</span><br>
-            <span class="paper-location"><i>ICCCN'25</i></span>    
-          </p></li>
-          <li><p>
-            <span class="paper-title"><b>CombNE: A Combined Network Emulator Based on Programmable Switch</b></span>
-            <span class="paper-tags">
-            <span class="paper-tag">Network Emulation</span>
-            </span>
-            <a href="./papers/2024-论文-HPCC.pdf" class="pdf-link"><i class="fas fa-file-pdf"></i></a><br>
-            <span class="paper-authors">Xinhang Wang, Lizhuang Tan, Huiling Shi, Wei Zhang</span><br>
-            <span class="paper-location"><i>HPCC'24</i></span>    
-          </p></li>
-          <li><p>
-            <span class="paper-title"><b>Hostping: Diagnosing Intra-host Performance Bottlenecks in RDMA Servers</b></span>
-            <span class="paper-tags">
-            <span class="paper-tag">RDMA</span>
-            </span>
-            <a href="./papers/2024-论文-NSDI.pdf" class="pdf-link"><i class="fas fa-file-pdf"></i></a><br>
-            <span class="paper-authors">Kefei Liu, Zhuo Jiang, Jiao Zhang, Haoran Wei, Xiaolong Zhong, Lizhuang Tan, Tian Pan, Tao Huang</span><br>
-            <span class="paper-location"><i>NSDI'23</i></span>    
-          </p></li>
-
-          <li><p>
-            <span class="paper-title"><b>In-band Network Telemetry Task Orchestration based on Multi-objective Optimization</b></span>
-            <span class="paper-tags">
-              <span class="paper-tag">Network Telemetry</span>
-              </span>
-            <a href="./papers/2021-论文-APNOMS.pdf" class="pdf-link"><i class="fas fa-file-pdf"></i></a><br>
-            <span class="paper-authors">Zhenyi Zhang, Wei Su, Lizhuang Tan</span><br>
-            <span class="paper-location"><i>APNOMS'21</i></span>    
-          </p></li>
-
-          <li><p>
-            <span class="paper-title"><b>Tetris: Near-optimal Scheduling for Multi-path Deadline-aware Transport Protocol</b></span>
-            <span class="paper-tags">
-              <span class="paper-tag">QUIC</span>
-              </span>
-            <a href="./papers/2021-论文-NaNA.pdf" class="pdf-link"><i class="fas fa-file-pdf"></i></a><br>
-            <span class="paper-authors">Yanwen Liu, Wei Su, Lizhuang Tan</span><br>
-            <span class="paper-location"><i>NaNA'21 [<b>Best Paper Award</b>]</i></span>    
-          </p></li>
-
-          <li><p>
-            <span class="paper-title"><b>DCQUIC: Flexible and Reliable Software-defined Data Center Transport</b></span>
-            <span class="paper-tags">
-              <span class="paper-tag">QUIC</span>
-              </span>
-            <a href="./papers/2021-论文-INFOCOM.pdf" class="pdf-link"><i class="fas fa-file-pdf"></i></a><br>
-            <span class="paper-authors">Lizhuang Tan, Wei Su, Yanwen Liu, Xiaochuan Gao, Wei Zhang</span><br>
-            <span class="paper-location"><i>INFOCOM'21 ICCN Workshop</i></span>    
-          </p></li>
-
-          <li><p>
-            <span class="paper-title"><b>Proactive Connection Migration in QUIC</b></span>
-            <span class="paper-tags">
-              <span class="paper-tag">QUIC</span>
-              </span>
-            <a href="./papers/2020-论文-MobiQuitous.pdf" class="pdf-link"><i class="fas fa-file-pdf"></i></a>
-            <a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1ZA411J7Lv/"><i class="fas fa-video"></i></a>
-            <br>
-            <span class="paper-authors">Lizhuang Tan, Wei Su, Xiaochuan Gao, Yanwen Liu, Na Li, Wei Zhang</span><br>
-            <span class="paper-location"><i>MobiQuitous'20</i></span>    
-          </p></li>
-
-          <li><p>
-            <span class="paper-title"><b>OpenQUIC: Software-defined Transmission like Building Blocks</b></span>
-            <span class="paper-tags">
-              <span class="paper-tag">QUIC</span>
-              </span>
-            <a href="./papers/2020-论文-CoNEXT.pdf" class="pdf-link"><i class="fas fa-file-pdf"></i></a>
-            <a href="https://github.com/lzhtan/OpenQUIC" target="_blank" rel="noopener"><i class="fab fa-github"></i></a><br>
-            <span class="paper-authors">Lizhuang Tan, Wei Su, Xiaochuan Gao, Wei Zhang</span><br>
-            <span class="paper-location"><i>CoNEXT'20 Poster</i></span>    
-          </p></li>
-
-          <li><p>
-            <span class="paper-title"><b>Genetic Algorithms Based on Clustering for Traveling Salesman Problems</b></span>
-            <span class="paper-tags">
-              <span class="paper-tag">Algorithm</span>
-              </span>
-            <a href="./papers/2016-论文-ICNC.pdf" class="pdf-link"><i class="fas fa-file-pdf"></i></a>
-            <a href="https://github.com/lzhtan/k-means-GA-for-TSP" target="_blank" rel="noopener"><i class="fab fa-github"></i></a><br>
-            <span class="paper-authors">Lizhuang Tan, Yanyan Tan, Guoxiao Yun, Yanna Wu</span><br>
-            <span class="paper-location"><i>ICNC-FSKD'16</i></span>    
-          </p></li>
-        </ol>
-      </div>
-
-      <h3><span class="color-bar"></span>Books</h3>
-        <div class="paper-card">
-          <ol style="margin: 0; padding-left: 35px;">
-            <li><p>
-            <span class="paper-title"><b>Network Operating System SONiC: Principles, Technologies and Practices</b></span>
-            <span class="paper-tags">
-            <span class="paper-tag">SONiC</span>
-            </span>
-            <a href="./papers/2024-专著-SONIC.pdf" class="pdf-link"><i class="fas fa-file-pdf"></i></a><br>
-            <span class="paper-authors">Wei Zhang, Huiling Shi, Lizhuang Tan, Xunliang Wu</span><br>
-            <span class="paper-location"><i>Posts & Telecom Press, 2024</i></span>    
-          </p></li>
-        </ol>
-      </div>
-      <h3><span class="color-bar"></span>Awards</h3>
-        <div class="paper-card">
-          <ol style="margin: 0; padding-left: 35px;">
-            <li><p>
-              <span class="paper-title"><b>Collaborative Operator Selection for Multi-Objective Optimization via Large Language Models and Deep Reinforcement Learning</b></span>
-              <span class="paper-tags">
-              <span class="paper-tag">Algorithm</span><br>
-              </span>
-              <span class="paper-authors">Yanyan Tan, Wei Zhang, Lizhuang Tan, Wei Zhang, Peiying Zhang, Jiande Sun</span><br>
-              <span class="paper-location"><i>Best Paper Award of NTCI Conference, 2025</i></span>    
-            </p></li>
-            <li><p>
-              <span class="paper-title"><b>IntDB: Towards a Spatiotemporal Database for In-Band Network Telemetry</b></span>
-              <span class="paper-tags">
-                <span class="paper-tag">Network Telemetry</span><br>
-              </span>
-              <span class="paper-authors">Lizhuang Tan, Xin Dong, Tu Van Nguyen, James Won-Ki Hong</span><br>
-              <span class="paper-location"><i>Best Paper Award Candidate of APNOMS Conference, 2025</i></span>    
-            </p></li>
-            <li><p>
-              <span class="paper-title"><b>A Distributed Load Balancing Architecture based on In-band Network Telemetry</b></span>
-              <span class="paper-tags">
-                <span class="paper-tag">Network Telemetry</span>
-              </span>
-              <a href="./files/Wiley威立中国高贡献作者奖 (2024年第四季度).png" class="pdf-link"><i class="fas fa-file-pdf"></i></a><br>
-              <span class="paper-authors">Mingfa Li, Huiling Shi, Lizhuang Tan, Wei Zhang</span><br>
-              <span class="paper-location"><i>Wiley China Excellent Author Program (4th Quarter, 2024), 2024</i></span>    
-            </p></li>
-            <li><p>
-            <span class="paper-title"><b>Network Telemetry Progress Research</b></span>
-            <span class="paper-tags">
-            <span class="paper-tag">Network Telemetry</span>
-            </span>
-            <a href="./photos/20231101.jpg" class="pdf-link"><i class="fas fa-file-pdf"></i></a><br>
-            <span class="paper-authors">Na Li, Kuchao Zhang, Lizhuang Tan, Fanrui Meng</span><br>
-            <span class="paper-location"><i>Second Prize of Jinan Internet Information Security Basic Theory Research and Technological Innovation Application, 2023</i></span>    
-            </p></li>
-            <li><p>
-              <span class="paper-title"><b>Tetris: Near-optimal Scheduling for Multi-path Deadline-aware Transport Protocol</b></span>
-              <span class="paper-tags">
-              <span class="paper-tag">QUIC</span>
-              </span>
-              <a href="./papers/2021-论文-NaNA.pdf" class="pdf-link"><i class="fas fa-file-pdf"></i></a><br>
-              <span class="paper-authors">Yanwen Liu, Wei Su, Lizhuang Tan</span><br>
-              <span class="paper-location"><i>Best Paper Award of NaNA Conference, 2021</i></span>    
-            </p></li>
-        </ol>
-      </div>
-    </br>* All documents on this webpage are pre-submission versions and not the official versions. They are provided for personal use only. The copyright of the official versions belongs to the respective organizations and individuals. Reproduction without permission is prohibited.
-    
-</div>
-        <footer>
-            <p>Copyright &copy; 2022 - New Era. By Lizhuang Tan</p>
-        </footer>
+    <footer>
+        <p>Copyright &copy; 2022 - New Era. By Lizhuang Tan</p>
+    </footer>
 
 <script>
           document.addEventListener('DOMContentLoaded', function() {

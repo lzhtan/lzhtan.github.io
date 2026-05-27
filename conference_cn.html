@@ -75,65 +75,64 @@
     }
   }
 
-    #filterInput:focus {
-        border-color: #9b0d31; /* 聚焦时的边框颜色 */
-        outline: none; /* 去掉默认轮廓 */
-        box-shadow: 0 0 5px rgba(220, 4, 11, 0.5); /* 添加阴影效果 */
-    }
-    .highlight {
-        background-color: yellow;
-    }
-
-    /* 回到顶部按钮样式 */
-    #back-to-top {
-        position: fixed;
-        bottom: 20px;
-        right: 20px;
-        display: none;
-        background-color: #9b0d31;
-        color: white;
-        width: 40px;
-        height: 40px;
-        text-align: center;
-        line-height: 40px;
-        border-radius: 50%;
-        z-index: 99;
-        opacity: 0.8;
-        transition: all 0.3s ease;
-        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-    }
-    
-    #back-to-top:hover {
-        background-color: #7b0925;
-        opacity: 1;
-        transform: translateY(-3px);
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-    }
-    
-    /* 添加平滑滚动效果 */
-    html {
-        scroll-behavior: smooth;
-    }
-    @media screen and (max-width: 768px) {
-        #back-to-top {
-            bottom: 15px;
-            right: 15px;
-            width: 35px;
-            height: 35px;
-            line-height: 35px;
-            font-size: 0.9em;
+        #filterInput:focus {
+            border-color: #9b0d31; /* 聚焦时的边框颜色 */
+            outline: none; /* 去掉默认轮廓 */
+            box-shadow: 0 0 5px rgba(220, 4, 11, 0.5); /* 添加阴影效果 */
         }
-    }
+        .highlight {
+            background-color: yellow;
+        }
 
+        /* 回到顶部按钮样式 */
+        #back-to-top {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            display: none;
+            background-color: #9b0d31;
+            color: white;
+            width: 40px;
+            height: 40px;
+            text-align: center;
+            line-height: 40px;
+            border-radius: 50%;
+            z-index: 99;
+            opacity: 0.8;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+        
+        #back-to-top:hover {
+            background-color: #7b0925;
+            opacity: 1;
+            transform: translateY(-3px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        }
+        
+        /* 添加平滑滚动效果 */
+        html {
+            scroll-behavior: smooth;
+        }
+        @media screen and (max-width: 768px) {
+            #back-to-top {
+                bottom: 15px;
+                right: 15px;
+                width: 35px;
+                height: 35px;
+                line-height: 35px;
+                font-size: 0.9em;
+            }
+        }
     </style>
 </head>
 <body>
     <header>
-      <h1><a href="index_cn.html"><span class="name-color"><img id="tan_logo" src="./img/tan.jpg" alt="Lizhuang Tan">谭立状 (Lizhuang Tan)</span></a></h1>
-      <nav>
-          <a href="index_cn.html">主页</a>
-              <a href="teaching_cn.html">教学</a>
-              <a href="projects_cn.html">科研</a>
+        <h1><a href="index_cn.html"><span class="name-color"><img id="tan_logo" src="./img/tan.jpg" alt="Lizhuang Tan">谭立状 (Lizhuang Tan)</span></a></h1>
+        <nav>
+            <a href="index_cn.html">主页</a>
+            <a href="teaching_cn.html">教学</a>
+            <a href="projects_cn.html">科研</a>
               <a href="papers_cn.html">成果</a>
               <a href="group_cn.html">团队</a>
           <a href="service_cn.html">服务</a>

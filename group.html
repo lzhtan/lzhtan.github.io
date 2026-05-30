@@ -12,62 +12,61 @@
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@100..900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/jemdoc.css" type="text/css" />
     <style>
-    #album {
-        display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(30%, 1fr)); /* 自适应列数 */
-        gap: 10px; /* 卡片之间的间距 */
-        font-size: 0.95em;
-    }
-    .photo-item {
-        display: flex;
-        flex-direction: column;
-        background: #fff;
-        border: 1px solid #eaeaea;
-        border-radius: 8px;
-        overflow: hidden; /* 防止内容溢出 */
-        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
-        transition: box-shadow 0.3s ease-in-out;
-    }
-    
-         .photo-header {
-         display: flex;
-         align-items: center;
-         padding: 10px 15px;
-         background: #fff;
-         border-bottom: 1px solid #eaeaea;
-     }
-    
-         .photo-header img {
-         width: 88px;
-         height: 110px;
-         object-fit: cover;
-         border-radius: 6px;
-         margin-right: 15px;
-         box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-     }
-    
-    .photo-header .name {
-        font-weight: 600;
-        color: #9b0d31;
-        font-size: 1em;
-    }
-    
-
-         .info {
-         flex: 1; /* 使文本信息部分占据剩余空间 */
-         padding: 10px 15px;
-         background: linear-gradient(135deg, #f8f9fa 0%, #fff 100%);
-     }
-    
-    .info p {
-        margin: 0;
-        line-height: 1.6;
-        color: #333;
-    }
+        #album {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(30%, 1fr)); /* 自适应列数 */
+            gap: 10px; /* 卡片之间的间距 */
+            font-size: 0.95em;
+        }
+        .photo-item {
+            display: flex;
+            flex-direction: column;
+            background: #fff;
+            border: 1px solid #eaeaea;
+            border-radius: 8px;
+            overflow: hidden; /* 防止内容溢出 */
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+            transition: box-shadow 0.3s ease-in-out;
+        }
+        
+        .photo-header {
+            display: flex;
+            align-items: center;
+            padding: 10px 15px;
+            background: #fff;
+            border-bottom: 1px solid #eaeaea;
+        }
+        
+        .photo-header img {
+            width: 88px;
+            height: 110px;
+            object-fit: cover;
+            border-radius: 6px;
+            margin-right: 15px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+        
+        .photo-header .name {
+            font-weight: 600;
+            color: #9b0d31;
+            font-size: 1em;
+        }
+        
+        .info {
+            flex: 1; /* 使文本信息部分占据剩余空间 */
+            padding: 10px 15px;
+            background: linear-gradient(135deg, #f8f9fa 0%, #fff 100%);
+        }
+        
+        .info p {
+            margin: 0;
+            line-height: 1.6;
+            color: #333;
+        }
         @media (max-width: 1300px) {
             #album {
-            grid-template-columns: repeat(auto-fill, minmax(90%, 1fr));
-        }
+                grid-template-columns: repeat(auto-fill, minmax(90%, 1fr));
+            }
         }
         
         /* Back to top button */
@@ -111,11 +110,11 @@
             }
         }
     </style>
-  </head>
+</head>
 <body>
     <header>
-      <h1><a href="index.html"><span class="name-color"><img id="tan_logo" src="./img/tan.jpg" alt="Lizhuang Tan">Lizhuang Tan (谭立状)</span></a></h1>
-      <nav>
+        <h1><a href="index.html"><span class="name-color"><img id="tan_logo" src="./img/tan.jpg" alt="Lizhuang Tan">Lizhuang Tan (谭立状)</span></a></h1>
+        <nav>
             <a href="index.html">Home</a>
             <a href="cv.html">CV</a>
             <a href="teaching.html">Teaching</a>
@@ -133,103 +132,102 @@
         </nav>
     </header>
     <div class="container">
-      <h3><span class="color-bar"></span>Master Student</h3>
-      <div id="album">
-        <div class="photo-item">
-            <div class="photo-header">
-                <img src="img/ruichao.png" alt="张瑞超" />
-                <div class="name"><span style="color: #9b0d31;">Ruichao Zhang</span><br/><span style="color: black; font-weight: normal;">2025-2028</span></div>
+        <h3><span class="color-bar"></span>Master Student</h3>
+        <div id="album">
+            <div class="photo-item">
+                <div class="photo-header">
+                    <img src="img/ruichao.png" alt="张瑞超" />
+                    <div class="name"><span style="color: #9b0d31;">Ruichao Zhang</span><br/><span style="color: black; font-weight: normal;">2025-2028</span></div>
+                </div>
+                <div class="info">
+                    <p>Interest: Agent Networks
+                        <br/>Publications: IWCMC'26, Patent*1
+                        <br/>Internship: N/A
+                        <br/>Note: Forth Master Student</p>
+                </div>
             </div>
-            <div class="info">
-                <p>Interest: Agent Networks
-                  <br/>Publications: IWCMC'26, Patent*1
-                  <br/>Internship: N/A
-                  <br/>Note: Forth Master Student</p>
+            <div class="photo-item">
+                <div class="photo-header">
+                    <img src="img/chufuming.png" alt="褚夫明" />
+                    <div class="name"><a href="https://blog.csdn.net/qq_72505850" style="color: #9b0d31;">Fuming Chu</a><br/><span style="color: black; font-weight: normal;">2025-2028</span></div>
+                </div>
+                <div class="info">
+                    <p>Interest: RDMA
+                        <br/>Publications: Patent*4
+                        <br/>Internship: N/A
+                        <br/>Note: Third Master Student</p>
+                </div>
+            </div>
+            <div class="photo-item">
+                <div class="photo-header">
+                    <img src="img/zhangyonghao.png" alt="张永毫" />
+                    <div class="name"><span style="color: #9b0d31;">Yonghao Zhang</span><br/><span style="color: black; font-weight: normal;">2025-2028</span></div>
+                </div>
+                <div class="info">
+                    <p>Interest: Network Telemetry
+                        <br/>Publications: N/A
+                        <br/>Internship: N/A
+                        <br/>Note: Second Master Student</p>
+                </div>
+            </div>
+            <div class="photo-item">
+                <div class="photo-header">
+                    <img src="img/xindong.jpg" alt="董鑫" />
+                    <div class="name"><span style="color: #9b0d31;">Xin Dong</span><br/><span style="color: black; font-weight: normal;">2024-2027</span></div>
+                </div>
+                <div class="info">
+                    <p>Interest: Virtual Networks
+                        <br/>Publications: IJNM, APNOMS, ICCCN, Patent*6
+                        <br/>Internship: Inspur, POSTECH
+                        <br/>Note: First Master Student</p>
+                </div>
             </div>
         </div>
-        <div class="photo-item">
-            <div class="photo-header">
-                <img src="img/chufuming.png" alt="褚夫明" />
-                <div class="name"><a href="https://blog.csdn.net/qq_72505850" style="color: #9b0d31;">Fuming Chu</a><br/><span style="color: black; font-weight: normal;">2025-2028</span></div>
-            </div>
-            <div class="info">
-                <p>Interest: RDMA
-                  <br/>Publications: Patent*4
-                  <br/>Internship: N/A
-                  <br/>Note: Third Master Student</p>
-            </div>
-        </div>
-        <div class="photo-item">
-            <div class="photo-header">
-                <img src="img/zhangyonghao.png" alt="张永毫" />
-                <div class="name"><span style="color: #9b0d31;">Yonghao Zhang</span><br/><span style="color: black; font-weight: normal;">2025-2028</span></div>
-            </div>
-            <div class="info">
-                <p>Interest: Network Telemetry
-                  <br/>Publications: N/A
-                  <br/>Internship: N/A
-                  <br/>Note: Second Master Student</p>
+        <h3><span class="color-bar"></span>Undergraduate Student</h3>
+        <div id="album">
+            <div class="photo-item">
+                <div class="photo-header">
+                    <img src="img/sui.png" alt="隋宗瑞" />
+                    <div class="name"><a style="color: #9b0d31;">Zongrui Sui</a></br><span style="color: black; font-weight: normal;">2021-2024</span></div>
+                </div>
+                <div class="info">
+                    <p>Interest: Virtual Networks
+                        <br/>Publications: APNOMS'25, Patent*1
+                        <br/>Internship: Inspur</p>
+                </div>
             </div>
         </div>
-        <div class="photo-item">
-            <div class="photo-header">
-                <img src="img/xindong.jpg" alt="董鑫" />
-                <div class="name"><span style="color: #9b0d31;">Xin Dong</span><br/><span style="color: black; font-weight: normal;">2024-2027</span></div>
-            </div>
-            <div class="info">
-                <p>Interest: Virtual Networks
-                  <br/>Publications: IJNM, APNOMS, ICCCN, Patent*6
-                  <br/>Internship: Inspur, POSTECH
-                  <br/>Note: First Master Student</p>
-            </div>
-        </div>
+
     </div>
-    <h3><span class="color-bar"></span>Undergraduate Student</h3>
-      <div id="album">
-        <div class="photo-item">
-            <div class="photo-header">
-                <img src="img/sui.png" alt="隋宗瑞" />
-                <div class="name"><a style="color: #9b0d31;">Zongrui Sui</a></br><span style="color: black; font-weight: normal;">2021-2024</span></div>
-            </div>
-            <div class="info">
-                <p>Interest: Virtual Networks
-                  <br/>Publications: APNOMS'25, Patent*1
-                  <br/>Internship: Inspur
-            </div>
-        </div>
-       </div>
- 
+    <footer>
+        <p>Copyright &copy; 2022 - New Era. By Lizhuang Tan</p>
+    </footer>
 
-</div>
-        <footer>
-            <p>Copyright &copy; 2022 - New Era. By Lizhuang Tan</p>
-        </footer>
+    <!-- Back to top button -->
+    <a href="#" id="back-to-top" title="Back to Top">
+        <i class="fas fa-arrow-up"></i>
+    </a>
 
-<!-- Back to top button -->
-<a href="#" id="back-to-top" title="Back to Top">
-    <i class="fas fa-arrow-up"></i>
-</a>
+    <script>
+        // Back to top button
+        window.onscroll = function() {
+            var backToTopBtn = document.getElementById("back-to-top");
+            if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
+                backToTopBtn.style.display = "block";
+            } else {
+                backToTopBtn.style.display = "none";
+            }
+        };
 
-<script>
-    // Back to top button
-    window.onscroll = function() {
-        var backToTopBtn = document.getElementById("back-to-top");
-        if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
-            backToTopBtn.style.display = "block";
-        } else {
-            backToTopBtn.style.display = "none";
-        }
-    };
-
-    // Click event for back to top button
-    document.getElementById("back-to-top").addEventListener("click", function(e) {
-        e.preventDefault();
-        // Smooth scroll to top
-        window.scrollTo({
-            top: 0,
-            behavior: "smooth"
+        // Click event for back to top button
+        document.getElementById("back-to-top").addEventListener("click", function(e) {
+            e.preventDefault();
+            // Smooth scroll to top
+            window.scrollTo({
+                top: 0,
+                behavior: "smooth"
+            });
         });
-    });
-</script>
+    </script>
 </body>
 </html>

@@ -134,7 +134,7 @@
     <div class="container">
         <!-- 添加筛选按钮区域 -->
         <div class="filter-buttons">
-            <button class="active" data-year="all">All</button>
+            <button data-year="all">All</button>
         </div>
         
         <div id="album">
@@ -379,6 +379,9 @@
         const photos = document.querySelectorAll('.photo-item');
         const filterButtons = document.querySelector('.filter-buttons');
         
+        // 获取当前年份
+        const currentYear = new Date().getFullYear();
+        
         // 获取所有照片中的年份并去重
         const years = new Set();
         photos.forEach(photo => {
@@ -393,11 +396,34 @@
         // 将年份数组排序（降序）
         const sortedYears = Array.from(years).sort((a, b) => b - a);
         
-        // 为每个年份创建筛选按钮
+        // 找出当前年份或最近的年份
+        let defaultYear = currentYear.toString();
+        if (!sortedYears.includes(defaultYear)) {
+            defaultYear = sortedYears[0]; // 如果没有当前年份，使用最新年份
+        }
+        
+        // 初始化：只显示默认年份的照片
+        photos.forEach(photo => {
+            const photoTitle = photo.querySelector('p').textContent;
+            const yearMatch = photoTitle.match(/\b(20\d{2})\b/);
+            if (yearMatch && yearMatch[1] !== defaultYear) {
+                photo.style.display = 'none';
+                // 为其他年份的照片添加懒加载
+                const img = photo.querySelector('img');
+                if (img && !img.hasAttribute('loading')) {
+                    img.setAttribute('loading', 'lazy');
+                }
+            }
+        });
+        
+        // 为每个年份创建筛选按钮，默认年份设为active
         sortedYears.forEach(year => {
             const button = document.createElement('button');
             button.setAttribute('data-year', year);
             button.textContent = year;
+            if (year === defaultYear) {
+                button.classList.add('active');
+            }
             filterButtons.appendChild(button);
         });
         

@@ -1,0 +1,426 @@
+/* 成果页 - 卡片网格布局 */
+
+.pub-section {
+    display: block;
+    margin-bottom: 20px;
+}
+
+.pub-section.section-empty {
+    display: none;
+}
+
+.pub-section h3 {
+    margin-bottom: 12px;
+}
+
+/* 论文卡片网格 */
+.pub-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 14px;
+}
+
+/* 论文圆角矩形卡片 — 纯文字，无封面图 */
+.pub-paper-card {
+    --pub-badge-h: 28px;
+    --pub-card-pad: 12px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    min-width: 0;
+    height: auto;
+    padding: var(--pub-card-pad);
+    padding-top: calc(var(--pub-badge-h) + var(--pub-card-pad) + 6px);
+    padding-right: 34px;
+    box-sizing: border-box;
+    background: #f6f4f5;
+    border: 1px solid #ebe7e9;
+    border-radius: 16px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.06);
+    overflow: hidden;
+    text-decoration: none;
+    color: inherit;
+    transition: box-shadow 0.25s ease, transform 0.25s ease;
+}
+
+.pub-paper-card:hover {
+    box-shadow: 0 3px 12px rgba(155, 13, 49, 0.1);
+    border-color: rgba(155, 13, 49, 0.12);
+    transform: translateY(-1px);
+}
+
+.pub-paper-footer {
+    margin-top: auto;
+    padding-top: 4px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.pub-paper-card .pub-badge {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    display: inline-flex;
+    align-items: center;
+    max-width: calc(100% - 40px);
+    height: var(--pub-badge-h);
+    padding: 0 10px;
+    box-sizing: border-box;
+    background: #9b0d31;
+    color: #fff;
+    font-size: 0.72em;
+    border-radius: 15px 0 8px 0;
+    font-weight: 600;
+    line-height: 1.2;
+    letter-spacing: 0.02em;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.pub-paper-card .pub-title {
+    margin: 0 0 4px;
+    font-size: 0.92em;
+    font-weight: 600;
+    line-height: 1.4;
+    color: #1f1f1f;
+    word-break: break-word;
+    min-width: 0;
+    position: relative;
+    z-index: 0;
+}
+
+.pub-paper-card .pub-title-link {
+    color: inherit;
+    text-decoration: none;
+}
+
+.pub-paper-card .pub-title-link:hover {
+    color: #9b0d31;
+}
+
+.pub-paper-card .pub-authors {
+    margin: 0 0 2px;
+    font-size: 0.85em;
+    font-weight: 400;
+    color: #333333;
+    line-height: 1.4;
+    word-break: break-word;
+    min-width: 0;
+}
+
+.pub-paper-card .pub-authors:empty,
+.pub-paper-card .pub-venue:empty {
+    display: none;
+}
+
+.pub-paper-footer:not(:has(.pub-venue:not(:empty))) {
+    padding-top: 0;
+    margin-top: 0;
+}
+
+.pub-paper-card .pub-venue {
+    margin: 0;
+    font-size: 0.85em;
+    font-weight: 500;
+    color: #9b0d31;
+    line-height: 1.4;
+    word-break: break-word;
+    min-width: 0;
+}
+
+.pub-card-actions {
+    position: absolute;
+    top: 8px;
+    right: 10px;
+    z-index: 2;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-end;
+    height: 22px;
+    gap: 8px;
+}
+
+.pub-card-actions a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 18px;
+    height: 18px;
+    color: #9b0d31;
+    font-size: 0.85em;
+    text-decoration: none;
+    line-height: 1;
+    opacity: 0.85;
+    transition: opacity 0.2s ease;
+}
+
+.pub-card-actions a:hover {
+    opacity: 1;
+}
+
+.pub-paper-card.hidden,
+.pub-video-card.hidden {
+    display: none !important;
+}
+
+/* 视频网格 */
+.pub-video-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+}
+
+.pub-video-card {
+    position: relative;
+    border-radius: 10px;
+    overflow: hidden;
+    cursor: pointer;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.25s ease;
+    text-decoration: none;
+    display: block;
+}
+
+.pub-video-card:hover {
+    transform: scale(1.005);
+}
+
+.pub-video-card img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    display: block;
+}
+
+.pub-video-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(0, 0, 0, 0.65);
+    padding: 8px 10px;
+}
+
+.pub-video-overlay h4 {
+    margin: 0;
+    color: #fff;
+    font-size: 0.88em;
+    text-align: center;
+    font-weight: 500;
+}
+
+.pub-video-play {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 50px;
+    height: 50px;
+    background: rgba(155, 13, 49, 0.9);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    font-size: 1.2em;
+    z-index: 2;
+    transition: background 0.2s ease;
+}
+
+.pub-video-card:hover .pub-video-play {
+    background: rgba(155, 13, 49, 1);
+}
+
+.pub-disclaimer {
+    margin-top: 24px;
+    font-size: 0.85em;
+    color: #999;
+    line-height: 1.6;
+}
+
+/* 统计与标签 - 沿用原有样式微调 */
+.stats-overview {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 10px;
+    position: relative;
+    transform: translateY(3px);
+    opacity: 0;
+    animation: slideUp 0.5s forwards;
+}
+
+.stat-card {
+    flex: 1 1 160px;
+    min-width: 0;
+    padding: 10px;
+    background: rgba(155, 13, 49, 0.1);
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    text-align: center;
+    border: 1px solid #f0f0f0;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.stat-number {
+    font-size: 1.1em;
+    font-weight: bold;
+    color: #9b0d31;
+}
+
+.stat-label {
+    color: #9b0d31;
+    font-size: 0.9em;
+}
+
+.stat-card.active-filter {
+    background: #9b0d31;
+}
+
+.stat-card.active-filter .stat-number,
+.stat-card.active-filter .stat-label {
+    color: #fff;
+}
+
+.tag-overview {
+    margin: 10px 0 16px;
+    padding: 10px;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    border: 1px solid #f0f0f0;
+    animation: slideUp 0.5s forwards;
+}
+
+.tag-title {
+    margin-bottom: 10px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #f0f0f0;
+    font-size: 0.95em;
+}
+
+.tag-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    font-size: 0.95em;
+    align-content: flex-start;
+}
+
+.tag-item {
+    position: relative;
+    flex: 0 0 auto;
+    padding: 6px 38px 6px 12px;
+    background: rgba(155, 13, 49, 0.1);
+    color: #9b0d31;
+    border-radius: 8px;
+    font-size: 0.9em;
+    display: inline-flex;
+    align-items: center;
+    white-space: nowrap;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: 500;
+}
+
+.tag-count {
+    position: absolute;
+    right: 8px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: #9b0d31;
+    color: white;
+    padding: 2px 7px;
+    border-radius: 4px;
+    font-size: 0.8em;
+}
+
+.tag-item.active-filter {
+    background: #9b0d31;
+    color: white;
+}
+
+.tag-item.active-filter .tag-count {
+    background: white;
+    color: #9b0d31;
+}
+
+@keyframes slideUp {
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@media screen and (max-width: 900px) {
+    .pub-paper-card {
+        border-radius: 14px;
+    }
+
+    .pub-video-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .pub-grid {
+        grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+        gap: 10px;
+    }
+
+    .pub-video-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .pub-paper-card {
+        --pub-card-pad: 10px;
+        padding: var(--pub-card-pad);
+        padding-top: calc(var(--pub-badge-h) + var(--pub-card-pad) + 6px);
+        padding-right: 30px;
+        border-radius: 12px;
+    }
+
+    .pub-paper-card .pub-title {
+        font-size: 0.88em;
+    }
+
+    .pub-paper-card .pub-authors,
+    .pub-paper-card .pub-venue {
+        font-size: 0.82em;
+    }
+}
+
+#back-to-top {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    display: none;
+    background-color: #9b0d31;
+    color: white;
+    width: 40px;
+    height: 40px;
+    text-align: center;
+    line-height: 40px;
+    border-radius: 50%;
+    z-index: 99;
+    opacity: 0.85;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    text-decoration: none;
+}
+
+#back-to-top:hover {
+    background-color: #7b0925;
+    opacity: 1;
+    transform: translateY(-1px);
+}
+
+html {
+    scroll-behavior: smooth;
+}

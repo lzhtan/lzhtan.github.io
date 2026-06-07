@@ -100,6 +100,45 @@ body.index-cn header {
 .name-color {
 	color: #9b0d31; /* 您想要的颜色 */
 	}
+
+/* 页头姓名：每次打开页面高光滑过 */
+header h1 .site-name-text {
+	position: relative;
+	display: inline-block;
+	overflow: hidden;
+}
+
+header h1 .site-name-text::after {
+	content: '';
+	position: absolute;
+	top: -15%;
+	left: -75%;
+	width: 45%;
+	height: 130%;
+	background: linear-gradient(
+		105deg,
+		transparent 0%,
+		rgba(255, 255, 255, 0.2) 42%,
+		rgba(255, 255, 255, 0.75) 50%,
+		rgba(255, 255, 255, 0.2) 58%,
+		transparent 100%
+	);
+	transform: skewX(-18deg);
+	animation: siteNameShine 1.1s ease-in-out 0.4s 1 forwards;
+	pointer-events: none;
+}
+
+@keyframes siteNameShine {
+	from { left: -75%; }
+	to { left: 125%; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+	header h1 .site-name-text::after {
+		animation: none;
+	}
+}
+
 h1 a{
 	display: flex;
 	align-items: center; /* 垂直居中 */

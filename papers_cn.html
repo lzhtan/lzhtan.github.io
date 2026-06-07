@@ -1058,11 +1058,40 @@
             });
         }
 
+
+        function assignCardIndices() {
+            document.querySelectorAll('.pub-section').forEach(section => {
+                const cards = section.querySelectorAll('.pub-paper-card');
+                const total = cards.length;
+                cards.forEach((card, i) => {
+                    const badge = card.querySelector('.pub-badge');
+                    if (!badge) return;
+
+                    let wrap = badge.closest('.pub-badge-wrap');
+                    if (!wrap) {
+                        wrap = document.createElement('span');
+                        wrap.className = 'pub-badge-wrap';
+                        badge.parentNode.insertBefore(wrap, badge);
+                        wrap.appendChild(badge);
+                    }
+
+                    let indexEl = wrap.querySelector('.pub-index');
+                    if (!indexEl) {
+                        indexEl = document.createElement('span');
+                        indexEl.className = 'pub-index';
+                        wrap.appendChild(indexEl);
+                    }
+                    indexEl.textContent = String(total - i);
+                });
+            });
+        }
+
         function init(cfg) {
             config = cfg || {};
             updateStats();
             buildTagStats();
             initStatCards();
+            assignCardIndices();
         }
 
         return { init };

@@ -160,6 +160,100 @@
             color: #000000;
             text-decoration: none;
         }
+
+        /* 精简后的个人信息卡片 */
+        .profile.profile-compact {
+            padding: 16px 20px;
+            gap: 20px;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .profile.profile-compact img {
+            width: 110px;
+            margin-right: 0;
+            flex-shrink: 0;
+        }
+
+        .profile.profile-compact .information {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .profile.profile-compact h2 {
+            font-size: 1.15em;
+            font-weight: 600;
+            margin: 0 0 8px;
+        }
+
+        .profile.profile-compact .profile-email {
+            margin: 0 0 12px;
+        }
+
+        .profile.profile-compact .profile-email a {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: #64748b;
+            font-size: 0.95em;
+        }
+
+        .profile.profile-compact .profile-email a:hover {
+            color: #9b0d31;
+        }
+
+        .profile.profile-compact .profile-email i {
+            color: #9b0d31;
+            margin-right: 0;
+        }
+
+        .profile.profile-compact .icon-container {
+            position: static;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .profile.profile-compact .icon-container a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 34px;
+            height: 34px;
+            border-radius: 50%;
+            background: rgba(155, 13, 49, 0.08);
+            color: #9b0d31;
+            transition: background-color 0.2s ease, transform 0.2s ease;
+        }
+
+        .profile.profile-compact .icon-container a:hover {
+            background: rgba(155, 13, 49, 0.16);
+            transform: translateY(-1px);
+            color: #9b0d31;
+        }
+
+        .profile.profile-compact .icon-container i {
+            margin-right: 0;
+            font-size: 0.95em;
+        }
+
+        @media screen and (max-width: 1300px) {
+            .profile.profile-compact {
+                flex-direction: column;
+                text-align: center;
+                padding: 20px 16px;
+            }
+
+            .profile.profile-compact .information {
+                margin-top: 0;
+            }
+
+            .profile.profile-compact .profile-email a,
+            .profile.profile-compact .icon-container {
+                justify-content: center;
+            }
+        }
+
         /* 弹窗样式 */
         .modal {
             display: none;
@@ -511,43 +605,33 @@
         </nav>
     </header>
     <div class="container">
-        <div class="profile">
+        <div class="profile profile-compact">
             <img id="tan" src="./img/tan.jpg" alt="Lizhuang Tan">
             <div class="information">
-              <h2>谭立状</h2>
-              <p><b>副研究员，硕士生导师</b></p>
-              <p><a href="https://cpnis.qlu.edu.cn/" target="_blank">算力互联网与信息安全教育部重点实验室，山东省算力互联网与服务计算重点实验室（原山东省计算机网络重点实验室）</a>，</p>
-              <p><a href="https://cpnis.qlu.edu.cn/" target="_blank">山东省基础科学研究中心（计算机科学）</a>，</p>
-              <p><a href="http://www.scsc.cn/" target="_blank">山东省计算中心</a>（<a href="http://www.nsccjn.cn/" target="_blank">国家超级计算济南中心</a>），</p>
-              <p><a href="https://www.qlu.edu.cn/" target="_blank">齐鲁工业大学（山东省科学院）</a></p>
-                <p class="icon-text">
-                    <i class="fas fa-envelope"></i>tanlzh@sdas.org 或 lzhtan@qlu.edu.cn
+                <h2>谭立状</h2>
+                <p class="profile-email">
+                    <a href="mailto:johnney_tan@126.com"><i class="fas fa-envelope"></i>johnney_tan@126.com</a>
                 </p>
-                <p class="icon-text">
-                    <i class="fa-solid fa-map-location-dot"></i><a href="https://j.map.baidu.com/05/u-d" target="_blank">山东省济南市经十东路28666号超算科技园主楼</a>
-                </p>
-            </div>
-            <div class="icon-container">
-                <a href="http://jsxb.scsc.cn/introlist_76/806.html"><i class="fas fa-home"></i></a>
-                <a href="https://scholar.google.com/citations?user=knsgQNIAAAAJ&hl=zh-CN"><i class="fa-brands fa-google"></i></a>
-                <a href="https://github.com/lzhtan"><i class="fab fa-github"></i></a>
-                <a href="https://www.cnblogs.com/lzhtan/"><i class="fa-solid fa-square-rss"></i></a>
-                <a href="https://www.linkedin.com/in/lizhuang-tan-436663336"><i class="fab fa-linkedin"></i></a>
-                <a href="https://space.bilibili.com/7346870"><i class="fab fa-bilibili"></i></a>
-                <a onclick="openModal()"><i class="fab fa-weixin"></i></a>
-                <!-- 弹窗 -->
-                <div id="myModal" class="modal">
-                    <div class="modal-content">
-                        <img src="img/wechat.jpg" alt="微信图片" style="width:100%;">
-                    </div>
+                <div class="icon-container">
+                    <a href="https://scholar.google.com/citations?user=knsgQNIAAAAJ&hl=zh-CN" target="_blank" rel="noopener noreferrer" aria-label="Google Scholar"><i class="fa-brands fa-google"></i></a>
+                    <a href="https://github.com/lzhtan" target="_blank" rel="noopener noreferrer" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                    <a href="https://www.cnblogs.com/lzhtan/" target="_blank" rel="noopener noreferrer" aria-label="博客"><i class="fa-solid fa-square-rss"></i></a>
+                    <a href="https://www.linkedin.com/in/lizhuang-tan-436663336" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                    <a href="https://space.bilibili.com/7346870" target="_blank" rel="noopener noreferrer" aria-label="Bilibili"><i class="fab fa-bilibili"></i></a>
+                    <a href="javascript:void(0)" onclick="openModal()" role="button" aria-label="微信"><i class="fab fa-weixin"></i></a>
                 </div>
+            </div>
+        </div>
+        <div id="myModal" class="modal">
+            <div class="modal-content">
+                <img src="img/wechat.jpg" alt="微信二维码" style="width:100%;">
             </div>
         </div>
         <div class="about">
           <h3><span class="color-bar"></span>工作及教育经历</h3>
 
           <p>
-          2022年7月至今，我在山东省计算中心（国家超级计算济南中心）工作，从事<a href="https://www.bilibili.com/video/BV1xK411x75o" target="_blank">超算互联网</a>/<a href="https://haokan.baidu.com/v?pd=wisenatural&vid=2442334794048871825" target="_blank">山东算网</a>相关研究工作。2024年10月至2025年9月，我在浦项科技大学<a href="http://dpnm.postech.ac.kr/~jwkhong/" target="_blank">洪源基（James Won-Ki Hong）</a>教授实验室访问学习，从事网络智能平面研究工作。2021年4月至2022年6月，我在字节跳动高速网络团队担任研发实习生，在<a href="https://scholar.google.com/citations?user=8gJcbqYAAAAJ&hl=zh-CN" target="_blank">江卓</a>博士指导下从事RDMA/RoCE研发工作。<br />
+          2022年7月至2026年6月，我在山东省计算中心（国家超级计算济南中心）工作，从事<a href="https://www.bilibili.com/video/BV1xK411x75o" target="_blank">超算互联网</a>/<a href="https://haokan.baidu.com/v?pd=wisenatural&vid=2442334794048871825" target="_blank">山东算网</a>相关研究工作。2024年10月至2025年9月，我在浦项科技大学<a href="http://dpnm.postech.ac.kr/~jwkhong/" target="_blank">洪源基（James Won-Ki Hong）</a>教授实验室访问学习，从事网络智能平面研究工作。2021年4月至2022年6月，我在字节跳动高速网络团队担任研发实习生，在<a href="https://scholar.google.com/citations?user=8gJcbqYAAAAJ&hl=zh-CN" target="_blank">江卓</a>博士指导下从事RDMA/RoCE研发工作。<br />
           2022年6月，我从北京交通大学电子信息工程学院移动专用网络国家工程研究中心（原下一代互联网互联设备国家工程实验室）在<a href="http://faculty.bjtu.edu.cn/8131/" target="_blank">苏伟</a>教授指导下获得信息与通信工程专业工学博士学位。2017年6月，我从山东师范大学信息科学与工程学院获得通信工程专业工学学士学位，同时获得法学学士学位。<br />
           <h3><span class="color-bar"></span>研究概况</h3>
           <p>我的研究方向是<a href="https://scholar.google.com/citations?user=knsgQNIAAAAJ" target="_blank">高速网络测量、测试与管控</a>，主要技术对象包括<a href="https://www.bilibili.com/video/BV1mh411k7rS" target="_blank">软件定义网络</a>和<a href="https://space.bilibili.com/522278407/channel/collectiondetail?sid=2788892" target="_blank">数据（智算）中心网络</a>：<br /></p>

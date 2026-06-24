@@ -96,25 +96,104 @@
             margin-bottom: 0 !important;
         }
 
-        /* 音频播放器容器 */
-        .audio-container {
+        .profile a {
+            color: #000000;
+            text-decoration: none;
+        }
+
+        /* Compact profile card */
+        .profile.profile-compact {
+            padding: 16px 20px;
+            gap: 20px;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .profile.profile-compact img {
+            width: 110px;
+            margin-right: 0;
+            flex-shrink: 0;
+        }
+
+        .profile.profile-compact .information {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .profile.profile-compact h2 {
+            font-size: 1.15em;
+            font-weight: 600;
+            margin: 0 0 8px;
+        }
+
+        .profile.profile-compact .profile-email {
+            margin: 0 0 12px;
+        }
+
+        .profile.profile-compact .profile-email a {
             display: inline-flex;
             align-items: center;
-            cursor: pointer;
-            padding: 8px 8px;
-            border-radius: 4px;
-            transition: all 0.3s ease;
+            gap: 8px;
+            color: #64748b;
+            font-size: 0.95em;
         }
 
-        .audio-container:hover {
-            background: rgba(155, 13, 49, 0.1);
-        }
-
-        /* 播放图标样式 */
-        .audio-icon {
+        .profile.profile-compact .profile-email a:hover {
             color: #9b0d31;
-            font-size: 16px;
         }
+
+        .profile.profile-compact .profile-email i {
+            color: #9b0d31;
+            margin-right: 0;
+        }
+
+        .profile.profile-compact .icon-container {
+            position: static;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .profile.profile-compact .icon-container a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 34px;
+            height: 34px;
+            border-radius: 50%;
+            background: rgba(155, 13, 49, 0.08);
+            color: #9b0d31;
+            transition: background-color 0.2s ease, transform 0.2s ease;
+        }
+
+        .profile.profile-compact .icon-container a:hover {
+            background: rgba(155, 13, 49, 0.16);
+            transform: translateY(-1px);
+            color: #9b0d31;
+        }
+
+        .profile.profile-compact .icon-container i {
+            margin-right: 0;
+            font-size: 0.95em;
+        }
+
+        @media screen and (max-width: 1300px) {
+            .profile.profile-compact {
+                flex-direction: column;
+                text-align: center;
+                padding: 20px 16px;
+            }
+
+            .profile.profile-compact .information {
+                margin-top: 0;
+            }
+
+            .profile.profile-compact .profile-email a,
+            .profile.profile-compact .icon-container {
+                justify-content: center;
+            }
+        }
+
         @keyframes slideIn {
             from {
                 transform: translateY(20px); /* 从下方滑入 */
@@ -431,42 +510,26 @@
         </nav>
     </header>
     <div class="container">
-        <div class="profile">
+        <div class="profile profile-compact">
             <img id="tan" src="./img/tan.jpg" alt="Lizhuang Tan">
             <div class="information">
-                <h2>Lizhuang Tan (谭立状)
-                    <div class="audio-container" onclick="toggleAudio()">
-                        <i class="fas fa-volume-up audio-icon"></i>
-                        <span class="audio-text"></span>
-                        <audio id="audio-player" style="display: none;">
-                            <source src="./files/tanlizhuang-chinese.mp3" type="audio/mpeg">
-                        </audio>
-                    </div>
-                </h2>
-                <p><b>Associate Researcher, Ph.D.</b></p>
-                <p><a href="https://cpnis.qlu.edu.cn/" target="_blank">Shandong Provincial Key Laboratory of Computer Networks</a>,</p>
-                <p><a href="http://www.scsc.cn/" target="_blank">Shandong Computer Science Center</a> (<a href="http://www.nsccjn.cn/" target="_blank">National Supercomputer Center in Ji'nan</a>),</p>
-                <p><a href="https://www.qlu.edu.cn/" target="_blank">Qilu University of Technology (Shandong Academy of Sciences)</a></p>
-                <p class="icon-text">
-                    <i class="fas fa-envelope"></i> tanlzh@sdas.org/lzhtan@qlu.edu.cn
+                <h2>Lizhuang Tan (谭立状)</h2>
+                <p class="profile-email">
+                    <a href="mailto:johnney_tan@126.com"><i class="fas fa-envelope"></i>johnney_tan@126.com</a>
                 </p>
-                <p class="icon-text">
-                    <i class="fa-solid fa-map-location-dot"></i> <a href="https://j.map.baidu.com/05/u-d" target="_blank">Supercomputing Technology Park, No. 28666, Jingshi East Road, Ji'nan, Shandong, China.</a>
-                </p>
-            </div>
-            <div class="icon-container">
-                <a href="http://jsxb.scsc.cn/introlist_76/806.html"><i class="fas fa-home"></i></a>
-                <a href="https://scholar.google.com/citations?user=knsgQNIAAAAJ"><i class="fa-brands fa-google"></i></a>
-                <a href="https://github.com/lzhtan"><i class="fab fa-github"></i></a>
-                <a href="https://www.cnblogs.com/lzhtan/"><i class="fa-solid fa-square-rss"></i></a>
-                <a href="https://www.linkedin.com/in/lizhuang-tan-436663336"><i class="fab fa-linkedin"></i></a>
-                <a href="https://orcid.org/0000-0001-6826-4596"><i class="fab fa-orcid"></i></a>
+                <div class="icon-container">
+                    <a href="https://scholar.google.com/citations?user=knsgQNIAAAAJ" target="_blank" rel="noopener noreferrer" aria-label="Google Scholar"><i class="fa-brands fa-google"></i></a>
+                    <a href="https://github.com/lzhtan" target="_blank" rel="noopener noreferrer" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                    <a href="https://www.cnblogs.com/lzhtan/" target="_blank" rel="noopener noreferrer" aria-label="Blog"><i class="fa-solid fa-square-rss"></i></a>
+                    <a href="https://www.linkedin.com/in/lizhuang-tan-436663336" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                    <a href="https://orcid.org/0000-0001-6826-4596" target="_blank" rel="noopener noreferrer" aria-label="ORCID"><i class="fab fa-orcid"></i></a>
+                </div>
             </div>
         </div>
         <div class="about">
             <h3><span class="color-bar"></span>About Me</h3>
-            <p>Since July 2022, I have been working in Shandong Computer Science Center (National Supercomputer Center in Ji'nan), China. 
-            From October 2024 to October 2025, I am a visiting scholar in Professor <a href="http://dpnm.postech.ac.kr/~jwkhong/" target="_blank">James Won-Ki Hong</a>'s DPNM Lab at Pohang University of Science and Technology, Korea.
+            <p>From July 2022 to June 2026, I worked in Shandong Computer Science Center (National Supercomputer Center in Ji'nan), China. 
+            From October 2024 to October 2025, I was a visiting scholar in Professor <a href="http://dpnm.postech.ac.kr/~jwkhong/" target="_blank">James Won-Ki Hong</a>'s DPNM Lab at Pohang University of Science and Technology, Korea.
             From April 2021 to June 2022, I worked as a R&D intern in the High-Speed ​​Network Team of ByteDance, working on RDMA/RoCE under the leadership of Dr. <a href="https://scholar.google.com/citations?user=8gJcbqYAAAAJ" target="_blank">Zhuo Jiang</a>.</br>
             In June 2022, I received my Ph.D. degree from the National Engineering Research Center of Advanced Network Technologies, Beijing Jiaotong University.
             In June 2017, I received my Bachelor of Engineering degree in Communication Engineering and my Bachelor of Laws degree from Shandong Normal University.</br>
@@ -697,16 +760,6 @@
     </a>
 
     <script>
-        // 音频播放控制
-        function toggleAudio() {
-            var audio = document.getElementById("audio-player");
-            if (audio.paused) {
-                audio.play();
-            } else {
-                audio.pause();
-            }
-        }
-        
         // 性能优化：卡片动画延迟执行
         function animateCards() {
             const cards = document.querySelectorAll('.card');
